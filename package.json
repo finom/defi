@@ -86,12 +86,12 @@
         "cmd": "npm run deploy-to-git"
       },
       {
-        "path": "@semantic-release/exec",
-        "cmd": "rm -rf bundle/.git"
-      },
-      {
         "path": "@semantic-release/github",
-        "assets": "bundle"
+        "assets": [
+          "bundle/defi.js",
+          "bundle/defi.min.js",
+          "bundle/defi.min.js.map"
+        ]
       }
     ]
   },
