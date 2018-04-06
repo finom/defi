@@ -21,11 +21,9 @@ module.exports = {
         new UnminifiedWebpackPlugin(),
         new BannerAndFooterWebpackPlugin(),
         new UglifyJSPlugin({
-            compress: {
-                warnings: false
-            },
-            // keep banner there
-            comments: /------------------------------/
+            uglifyOptions: {
+                comments: /------------------------------/
+            }
         })
     ]
 };
