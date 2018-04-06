@@ -1,7 +1,7 @@
 {
   "name": "defi",
   "private": true,
-  "version": "0.0.0-auto",
+  "version": "0.0.0-development",
   "description": "Matreshka.js framework",
   "main": "defi.js",
   "scripts": {
@@ -16,7 +16,7 @@
     "watch-browser-test": "webpack --config test/webpack-test.config.js --watch",
     "lint": "eslint .",
     "commit": "git-cz",
-    "semantic-release": "semantic-release && npm run deploy && npm run twit-release",
+    "_OLD_semantic-release": "semantic-release && npm run deploy && npm run twit-release",
     "deploy": "npm run deploy-to-git && npm run npm-deploy",
     "npm-deploy-setup": "echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN}' >> npm/.npmrc",
     "npm-compile": "shx rm -rf npm && babel src -d npm --source-maps && shx cp README.md npm/README.md && shx cp -r .git npm/.git && node ./tools/generate-package",
@@ -26,7 +26,9 @@
     "deploy-to-git": "shx rm -rf bundle && deploy-to-git",
     "bundle-browser-test": "BABEL_ENV=test webpack --config test/webpack-test.config.js",
     "bundle-deploy-script": "npm run bundle && npm run bundle-browser-test",
-    "upgrade": "ncu -u -a && npm install"
+    "upgrade": "ncu -u -a && npm install",
+    "semantic-release": "semantic-release",
+    "travis-deploy-once": "travis-deploy-once"
   },
   "repository": {
     "type": "git",
@@ -126,6 +128,7 @@
     "npm-registry-client": "^8.5.1",
     "optimist": "^0.6.1",
     "semantic-release": "^15.1.5",
+    "semantic-release-cli": "^3.6.4",
     "shx": "^0.2.2",
     "twit": "^2.2.9",
     "uglifyjs-webpack-plugin": "^1.2.4",
@@ -135,6 +138,7 @@
     "webpack": "^4.5.0",
     "webpack-cli": "^2.0.14",
     "webpack-core": "^0.6.9",
-    "word-wrap": "^1.2.3"
+    "word-wrap": "^1.2.3",
+    "travis-deploy-once": "^4.4.1"
   }
 }
