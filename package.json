@@ -1,9 +1,7 @@
 {
   "name": "defi",
-  "private": true,
   "version": "0.0.0-development",
-  "description": "Matreshka.js framework",
-  "main": "defi.js",
+  "description": "defi.js library",
   "scripts": {
     "test": "npm run node-cover && npm run check-coverage && npm run lint",
     "node-test": "BABEL_ENV=test babel-node test/node-test/jasmine.js",
