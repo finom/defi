@@ -46,7 +46,8 @@
       "branch": "gh-pages",
       "folder": "bundle",
       "script": "npm run bundle-deploy-script",
-      "commit": "Bundle",
+      "beforePushScript": "git tag v$npm_package_version-bundle",
+      "commit": "$npm_package_version",
       "user": {
         "email": "andrey.a.gubanov@gmail.com",
         "name": "Andrey Gubanov (his virtual clone)"
@@ -79,6 +80,10 @@
       {
         "path": "@semantic-release/npm",
         "pkgRoot": "npm"
+      },
+      {
+        "path": "@semantic-release/npm",
+        "npmPublish": false
       },
       {
         "path": "@semantic-release/exec",
