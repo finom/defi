@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const sourcePackage = require('../package');
 
-const npmPackage = { name: 'defi', version: '0.0.0' };
+const npmPackage = { name: 'defi', version: '0.0.0-development' };
 
 for (const key of [
     'author',
