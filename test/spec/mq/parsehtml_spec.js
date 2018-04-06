@@ -1,5 +1,5 @@
 /* eslint-disable import/no-extraneous-dependencies, import/extensions */
-import $ from 'src/_dom/mq';
+import $ from 'src/_mq';
 
 describe('mq.parseHTML', () => {
     it('parses HTML', () => {

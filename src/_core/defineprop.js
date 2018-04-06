@@ -17,18 +17,16 @@ export default function defineProp(object, key, noAccessor) {
             mediator: null,
             bindings: null
         };
-        let getter;
-        let setter;
 
         if (!noAccessor) {
             Object.defineProperty(object, key, {
                 configurable: true,
                 enumerable: true,
                 get() {
-                    return getter ? getter() : propDef.value;
+                    return propDef.value;
                 },
                 set(v) {
-                    return setter ? setter() : set(object, key, v, {
+                    return set(object, key, v, {
                         fromSetter: true
                     });
                 }
