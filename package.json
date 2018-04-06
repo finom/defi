@@ -75,15 +75,14 @@
     "prepare": [{
       "path": "@semantic-release/npm",
       "pkgRoot": "npm"
+    }, {
+      "path": "@semantic-release/npm",
+      "npmPublish": false
     }],
     "publish": [
       {
         "path": "@semantic-release/npm",
         "pkgRoot": "npm"
-      },
-      {
-        "path": "@semantic-release/npm",
-        "npmPublish": false
       },
       {
         "path": "@semantic-release/exec",
