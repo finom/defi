@@ -3,13 +3,13 @@ import triggerOne from './trigger/_triggerone';
 import removeListener from './off/_removelistener';
 import defs from './_core/defs';
 import checkObjectType from './_helpers/checkobjecttype';
-import matreshkaError from './_helpers/matreshkaerror';
+import defiError from './_helpers/defierror';
 
 // removes a property, its bindings and its events
 // TODO: remove function does not correctly removes delegated events, bindings, tree listeners etc
 export default function remove(object, givenKey, eventOptions) {
-        // throw error when object type is wrong
-        checkObjectType(object, 'remove');
+    // throw error when object type is wrong
+    checkObjectType(object, 'remove');
 
     eventOptions = eventOptions || {}; // eslint-disable-line no-param-reassign
     const def = defs.get(object);
@@ -22,7 +22,7 @@ export default function remove(object, givenKey, eventOptions) {
 
         // if non-string is passed as a key
         if (typeof key !== 'string') {
-            throw matreshkaError('remove:key_type', { key });
+            throw defiError('remove:key_type', { key });
         }
 
         const props = def && def.props;

@@ -1,13 +1,13 @@
 import splitBySpaceReg from './_splitbyspaceregexp';
 import checkObjectType from '../_helpers/checkobjecttype';
-import matreshkaError from '../_helpers/matreshkaerror';
+import defiError from '../_helpers/defierror';
 import addListener from './_addlistener';
 import delegateListener from './_delegatelistener';
 
 // adds event listener
 export default function on(object, givenNames, callback, triggerOnInit, context) {
-        // throw error when object type is wrong
-        checkObjectType(object, 'on');
+    // throw error when object type is wrong
+    checkObjectType(object, 'on');
 
     const isNamesVarArray = givenNames instanceof Array;
 
@@ -19,7 +19,7 @@ export default function on(object, givenNames, callback, triggerOnInit, context)
     }
 
     if (typeof givenNames !== 'string' && !isNamesVarArray) {
-        throw matreshkaError('on:names_type', { names: givenNames });
+        throw defiError('on:names_type', { names: givenNames });
     }
 
     // split by spaces

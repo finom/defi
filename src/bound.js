@@ -16,11 +16,11 @@ export default function bound(object, key, { all } = { all: false }) {
 
     let nodes;
 
-    if(propDef) {
-      const { bindings } = propDef;
-      nodes = bindings && bindings.map(({ node }) => node) || [];
+    if (propDef) {
+        const { bindings } = propDef;
+        nodes = (bindings && bindings.map(({ node }) => node)) || [];
     } else {
-      nodes = [];
+        nodes = [];
     }
 
     return all ? nodes : nodes[0] || null;

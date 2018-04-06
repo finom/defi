@@ -2,7 +2,7 @@ import initMK from './_core/init';
 import defineProp from './_core/defineprop';
 import checkObjectType from './_helpers/checkobjecttype';
 import set from './set';
-import matreshkaError from './_helpers/matreshkaerror';
+import defiError from './_helpers/defierror';
 
 // creates property mediator
 function createMediator({
@@ -19,8 +19,8 @@ function createMediator({
 
 // transforms property value on its changing
 export default function mediate(object, givenKeys, mediator) {
-        // throw error when object type is wrong
-        checkObjectType(object, 'mediate');
+    // throw error when object type is wrong
+    checkObjectType(object, 'mediate');
 
     const isKeysArray = givenKeys instanceof Array;
 
@@ -38,7 +38,7 @@ export default function mediate(object, givenKeys, mediator) {
     nofn.forEach(keys, (key) => {
         // if non-string is passed as a key
         if (typeof key !== 'string') {
-            throw matreshkaError('mediate:key_type', { key });
+            throw defiError('mediate:key_type', { key });
         }
 
         const propDef = defineProp(object, key);

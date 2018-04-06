@@ -1,6 +1,6 @@
 import initMK from '../_core/init';
 import checkObjectType from '../_helpers/checkobjecttype';
-import matreshkaError from '../_helpers/matreshkaerror';
+import defiError from '../_helpers/defierror';
 import debounce from '../_helpers/debounce';
 import addSource from './_addsource';
 import createCalcHandler from './_createcalchandler';
@@ -8,8 +8,8 @@ import defineProp from '../_core/defineprop';
 
 // defines a property which is dependend on other properties
 export default function calc(object, target, sources, givenHandler, eventOptions) {
-        // throw error when object type is wrong
-        checkObjectType(object, 'calc');
+    // throw error when object type is wrong
+    checkObjectType(object, 'calc');
 
     if (target instanceof Object) {
         /*
@@ -41,7 +41,7 @@ export default function calc(object, target, sources, givenHandler, eventOptions
     }
 
     if (typeof target !== 'string') {
-        throw matreshkaError('calc:target_type', { target });
+        throw defiError('calc:target_type', { target });
     }
 
     eventOptions = eventOptions || {}; // eslint-disable-line no-param-reassign
@@ -99,7 +99,7 @@ export default function calc(object, target, sources, givenHandler, eventOptions
         } else {
             // source object is external object
             if (!source || typeof source !== 'object') {
-                throw matreshkaError('calc:source_type', { source });
+                throw defiError('calc:source_type', { source });
             }
 
             const sourceKey = source.key;

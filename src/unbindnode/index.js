@@ -3,12 +3,11 @@ import defs from '../_core/defs';
 import getNodes from '../bindnode/_getnodes';
 import removeTreeListener from '../off/_removetreelistener';
 import removeBinding from './_removebinding';
-import $ from '../_mq';
 
 // unbinds a node
 export default function unbindNode(object, key, node, eventOptions) {
-        // throw error when object type is wrong
-        checkObjectType(object, 'unbindNode');
+    // throw error when object type is wrong
+    checkObjectType(object, 'unbindNode');
 
     if (key instanceof Array) {
         if (typeof key[0] === 'string') {

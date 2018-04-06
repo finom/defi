@@ -4,7 +4,6 @@ import createObjectHandler from './_createobjecthandler';
 import triggerOne from '../trigger/_triggerone';
 import addListener from '../on/_addlistener';
 import debounce from '../_helpers/debounce';
-import matreshkaError from '../_helpers/matreshkaerror';
 
 const spaceReg = /\s+/;
 

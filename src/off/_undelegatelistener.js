@@ -54,17 +54,17 @@ export default function undelegateListener(object, givenPath, name, callback, co
         }
 
 
-            const delegatedChangeEvtName = `_change:delegated:${key}`;
-            if (allEvents[delegatedChangeEvtName]) {
-                detatchDelegatedLogic({
-                    delegatedEventName: delegatedChangeEvtName,
-                    pathStr,
-                    allEvents
-                });
-            }
+        const delegatedChangeEvtName = `_change:delegated:${key}`;
+        if (allEvents[delegatedChangeEvtName]) {
+            detatchDelegatedLogic({
+                delegatedEventName: delegatedChangeEvtName,
+                pathStr,
+                allEvents
+            });
+        }
 
-            if (typeof object[key] === 'object') {
-                undelegateListener(object[key], path, name, callback, context, info);
-            }
+        if (typeof object[key] === 'object') {
+            undelegateListener(object[key], path, name, callback, context, info);
+        }
     }
 }

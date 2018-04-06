@@ -6,8 +6,8 @@ import is from './_helpers/is';
 // the function sets new value for a property
 // since its performance is very critical we're checking events existence manually
 export default function set(object, key, value, eventOptions) {
-        // throw error when object type is wrong
-        checkObjectType(object, 'set');
+    // throw error when object type is wrong
+    checkObjectType(object, 'set');
 
     // if no key or falsy key is given
     if (!key) {

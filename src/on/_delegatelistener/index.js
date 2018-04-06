@@ -1,9 +1,4 @@
 import addListener from '../_addlistener';
-import defs from '../../_core/defs';
-import arrayAddHandler from './arrayaddhandler';
-import objectSetHandler from './objectsethandler';
-import arrayRemoveHandler from './arrayremovehandler';
-import objectRemoveHandler from './objectremovehandler';
 import changeHandler from './changehandler';
 
 // adds delegated event listener to an object by given path
@@ -37,14 +32,14 @@ export default function delegateListener(object, givenPath, name, callback, cont
         };
 
             // the event is triggered by "set"
-            addListener(object, `_change:delegated:${key}`, changeHandler, null, {
-                delegatedData,
-                pathStr
-            });
+        addListener(object, `_change:delegated:${key}`, changeHandler, null, {
+            delegatedData,
+            pathStr
+        });
 
-            // call handler manually
-            changeHandler({
-                value: object[key]
-            }, delegatedData);
+        // call handler manually
+        changeHandler({
+            value: object[key]
+        }, delegatedData);
     }
 }

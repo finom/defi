@@ -4,14 +4,13 @@ import getNodes from './_getnodes';
 import createBindingSwitcher from './_createbindingswitcher';
 import bindSingleNode from './_bindsinglenode';
 import checkObjectType from '../_helpers/checkobjecttype';
-import matreshkaError from '../_helpers/matreshkaerror';
+import defiError from '../_helpers/defierror';
 import addTreeListener from '../on/_addtreelistener';
 
 // initializes binsing between a property of an object to HTML node
 export default function bindNode(object, key, node, binder, eventOptions) {
-
-        // throw error when object type is wrong
-        checkObjectType(object, 'bindNode');
+    // throw error when object type is wrong
+    checkObjectType(object, 'bindNode');
 
     eventOptions = eventOptions || {}; // eslint-disable-line no-param-reassign
     binder = binder || {}; // eslint-disable-line no-param-reassign
@@ -24,7 +23,7 @@ export default function bindNode(object, key, node, binder, eventOptions) {
 
     // throw an error when key is falsy
     if (!key) {
-        throw matreshkaError('binding:falsy_key');
+        throw defiError('binding:falsy_key');
     }
 
     if (key instanceof Array) {
@@ -133,7 +132,7 @@ export default function bindNode(object, key, node, binder, eventOptions) {
             return object;
         }
 
-        throw matreshkaError('binding:node_missing', { key, node });
+        throw defiError('binding:node_missing', { key, node });
     }
 
     if (!exactKey) {

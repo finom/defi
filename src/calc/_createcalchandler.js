@@ -36,7 +36,7 @@ export default function createCalcHandler({
             values.push(value);
         });
 
-        let targetValue = handler.apply( object, values);
+        let targetValue = handler.apply(object, values);
 
         if (promiseCalc) {
             if (!(targetValue instanceof Promise)) {

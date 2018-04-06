@@ -24,7 +24,7 @@ for (let i = 0; i < funcNames.length; i++) {
             args.push(argument);
         });
 
-        method.apply(undefined, args);
+        method(...args);
 
         // returning this is important for chained calls
         return this;
@@ -33,7 +33,7 @@ for (let i = 0; i < funcNames.length; i++) {
 
 
 const ChainClass = function ChainClass(object) {
-  this.object = object;
+    this.object = object;
 };
 
 ChainClass.prototype = prototype;

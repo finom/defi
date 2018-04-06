@@ -1,6 +1,5 @@
 import defs from './defs';
 import set from '../set';
-import matreshkaError from '../_helpers/matreshkaerror';
 
 // the function defines needed descriptor for given property
 export default function defineProp(object, key, noAccessor) {

@@ -7,8 +7,8 @@ import $ from '../_mq';
 
 // removes event listener
 export default function off(object, givenNames, callback, context) {
-        // throw error when object type is wrong
-        checkObjectType(object, 'off');
+    // throw error when object type is wrong
+    checkObjectType(object, 'off');
 
     const isNamesVarArray = givenNames instanceof Array;
     const def = defs.get(object);

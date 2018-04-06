@@ -54,7 +54,7 @@ const errors = {
         `Error in mediate: ${getTypeError(key, 'key', 'string')}`
 };
 
-export default function matreshkaError(key, data) {
+export default function defiError(key, data) {
     const getError = errors[key];
     if (!getError) {
         throw Error(`Unknown error "${key}". Please report about this on Github.`);
