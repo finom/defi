@@ -6,3 +6,4 @@ coverage
 bundle
 npm
 .npmrc
+.eslintcache

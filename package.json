@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0-auto",
   "description": "Matreshka.js framework",
-  "main": "matreshka.js",
+  "main": "defi.js",
   "scripts": {
     "test": "npm run node-cover && npm run check-coverage && npm run lint",
     "node-test": "BABEL_ENV=test babel-node test/node-test/jasmine.js",
@@ -30,7 +30,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/matreshkajs/matreshka.git"
+    "url": "https://github.com/finom/defi.git"
   },
   "author": {
     "name": "Andrey Gubanov",
@@ -38,7 +38,7 @@
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/matreshkajs/matreshka/issues"
+    "url": "https://github.com/finom/defi/issues"
   },
   "config": {
     "deployToGit": {
@@ -71,7 +71,7 @@
       "commit-msg": "validate-commit-msg"
     }
   },
-  "homepage": "https://github.com/matreshkajs/matreshka#readme",
+  "homepage": "https://github.com/finom/defi#readme",
   "devDependencies": {
     "app-module-path": "^2.2.0",
     "babel-cli": "^6.26.0",
