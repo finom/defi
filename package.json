@@ -83,7 +83,10 @@
           "path": "@semantic-release/exec",
           "cmd": "npm run deploy-to-git"
         },
-        "@semantic-release/github"
+        {
+          "path": "@semantic-release/github",
+          "assets": "./bundle"
+        }
       ]
     }
   },
