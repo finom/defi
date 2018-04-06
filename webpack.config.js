@@ -1,6 +1,7 @@
 const webpack = require('webpack');
 const UnminifiedWebpackPlugin = require('unminified-webpack-plugin');
 const BannerAndFooterWebpackPlugin = require('./tools/banner-and-footer-webpack-plugin');
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = {
     devtool: 'source-map',
@@ -20,7 +21,7 @@ module.exports = {
     plugins: [
         new UnminifiedWebpackPlugin(),
         new BannerAndFooterWebpackPlugin(),
-        new webpack.optimize.UglifyJsPlugin({
+        new UglifyJSPlugin({
             compress: {
                 warnings: false
             },
