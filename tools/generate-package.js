@@ -11,7 +11,7 @@ for (const key of [
     'bugs',
     'homepage',
     'description',
-    'dependencies',
+    'dependencies'
 ]) {
     const value = sourcePackage[key];
     if (!value) {

@@ -1,6 +1,7 @@
 {
   "name": "defi",
   "version": "0.0.0-development",
+  "private": true,
   "description": "defi.js library",
   "scripts": {
     "test": "npm run node-cover && npm run check-coverage && npm run lint",
