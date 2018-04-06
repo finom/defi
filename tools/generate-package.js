@@ -10,8 +10,7 @@ for (const key of [
     'license',
     'bugs',
     'homepage',
-    'description',
-    'dependencies'
+    'description'
 ]) {
     const value = sourcePackage[key];
     if (!value) {
