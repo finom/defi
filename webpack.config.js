@@ -21,7 +21,9 @@ module.exports = {
         new UnminifiedWebpackPlugin(),
         new BannerAndFooterWebpackPlugin(),
         new UglifyJSPlugin({
+            sourceMap: true,
             uglifyOptions: {
+                // keep banner there
                 comments: /------------------------------/
             }
         })

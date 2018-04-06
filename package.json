@@ -21,7 +21,7 @@
     "npm-compile": "shx rm -rf npm && babel src -d npm --source-maps && shx cp README.md npm/README.md && node ./tools/generate-package",
     "npm-publish": "cd npm && npm publish && cd ..",
     "npm-deploy": "npm run npm-compile && npm run npm-deploy-setup && npm run npm-publish",
-    "bundle": "webpack --config ./webpack.config.js",
+    "bundle": "webpack --config ./webpack.config.js --mode production",
     "deploy-to-git": "shx rm -rf bundle && deploy-to-git",
     "bundle-browser-test": "BABEL_ENV=test webpack --config test/webpack-test.config.js",
     "bundle-deploy-script": "npm run bundle && npm run bundle-browser-test",
