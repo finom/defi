@@ -2,21 +2,16 @@ const fs = require('fs');
 const path = require('path');
 const sourcePackage = require('../package');
 
-const npmPackage = { name: 'matreshka' };
-const defaultVersion = '0.0.0-auto';
-
-if (sourcePackage.version === '0.0.0-auto') {
-    throw Error(`Package version cannot be "${defaultVersion}"`);
-}
+const npmPackage = { name: 'defi', version: '0.0.0' };
 
 for (const key of [
-    'version',
     'author',
     'repository',
     'license',
     'bugs',
     'homepage',
-    'description'
+    'description',
+    'dependencies',
 ]) {
     const value = sourcePackage[key];
     if (!value) {
