@@ -76,18 +76,6 @@
       {
         "path": "@semantic-release/exec",
         "cmd": "npm run npm-compile"
-      },
-      {
-        "path": "@semantic-release/npm",
-        "pkgRoot": "npm"
-      },
-      {
-        "path": "@semantic-release/exec",
-        "cmd": "npm run deploy-to-git"
-      },
-      {
-        "path": "@semantic-release/github",
-        "assets": "bundle"
       }
     ]
   },
