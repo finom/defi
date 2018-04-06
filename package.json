@@ -16,7 +16,7 @@
     "watch-browser-test": "webpack --config test/webpack-test.config.js --watch",
     "lint": "eslint .",
     "commit": "git-cz",
-    "semantic-release": "semantic-release && npm run deploy && npm run twit-release",
+    "semantic-release": "semantic-release",
     "deploy": "npm run deploy-to-git && npm run npm-deploy",
     "npm-deploy-setup": "echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN}' >> npm/.npmrc",
     "npm-compile": "shx rm -rf npm && babel src -d npm --source-maps && shx cp README.md npm/README.md && shx cp -r .git npm/.git && node ./tools/generate-package",
@@ -70,6 +70,23 @@
     },
     "ghooks": {
       "commit-msg": "validate-commit-msg"
+    },
+    "release": {
+      "publish": [
+        {
+          "path": "@semantic-release/exec",
+          "cmd": "npm run npm-compile"
+        },
+        {
+          "path": "@semantic-release/npm",
+          "pkgRoot":  "npm"
+        },
+        {
+          "path": "@semantic-release/exec",
+          "cmd": "npm run deploy-to-git"
+        },
+        "@semantic-release/github"
+      ]
     }
   },
   "homepage": "https://github.com/finom/defi#readme",
