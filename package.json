@@ -74,6 +74,10 @@
   "release": {
     "publish": [
       {
+        "path": "@semantic-release/exec",
+        "cmd": "node ./tools/generate-package"
+      },
+      {
         "path": "@semantic-release/npm",
         "pkgRoot": "npm"
       },
