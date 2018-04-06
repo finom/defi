@@ -74,7 +74,7 @@
       "publish": [
         {
           "path": "@semantic-release/npm",
-          "pkgRoot": "./npm"
+          "pkgRoot": "npm"
         },
         {
           "path": "@semantic-release/exec",
@@ -82,7 +82,7 @@
         },
         {
           "path": "@semantic-release/github",
-          "assets": "./bundle"
+          "assets": "bundle"
         }
       ]
     }
