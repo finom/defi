@@ -16,7 +16,7 @@
     "watch-browser-test": "webpack --config test/webpack-test.config.js --watch",
     "lint": "eslint .",
     "commit": "git-cz",
-    "_OLD_semantic-release": "semantic-release && npm run deploy && npm run twit-release",
+    "semantic-release": "semantic-release && npm run deploy && npm run twit-release",
     "deploy": "npm run deploy-to-git && npm run npm-deploy",
     "npm-deploy-setup": "echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN}' >> npm/.npmrc",
     "npm-compile": "shx rm -rf npm && babel src -d npm --source-maps && shx cp README.md npm/README.md && shx cp -r .git npm/.git && node ./tools/generate-package",
@@ -27,7 +27,6 @@
     "bundle-browser-test": "BABEL_ENV=test webpack --config test/webpack-test.config.js",
     "bundle-deploy-script": "npm run bundle && npm run bundle-browser-test",
     "upgrade": "ncu -u -a && npm install",
-    "semantic-release": "semantic-release",
     "travis-deploy-once": "travis-deploy-once"
   },
   "repository": {
