@@ -72,11 +72,11 @@
     }
   },
   "release": {
+    "prepare": [{
+      "path": "@semantic-release/npm",
+      "pkgRoot": "npm"
+    }],
     "publish": [
-      {
-        "path": "@semantic-release/exec",
-        "cmd": "node ./tools/generate-package"
-      },
       {
         "path": "@semantic-release/npm",
         "pkgRoot": "npm"
