@@ -69,23 +69,23 @@
     },
     "ghooks": {
       "commit-msg": "validate-commit-msg"
-    },
-    "release": {
-      "publish": [
-        {
-          "path": "@semantic-release/npm",
-          "pkgRoot": "npm"
-        },
-        {
-          "path": "@semantic-release/exec",
-          "cmd": "npm run deploy-to-git"
-        },
-        {
-          "path": "@semantic-release/github",
-          "assets": "bundle"
-        }
-      ]
     }
+  },
+  "release": {
+    "publish": [
+      {
+        "path": "@semantic-release/npm",
+        "pkgRoot": "npm"
+      },
+      {
+        "path": "@semantic-release/exec",
+        "cmd": "npm run deploy-to-git"
+      },
+      {
+        "path": "@semantic-release/github",
+        "assets": "bundle"
+      }
+    ]
   },
   "homepage": "https://github.com/finom/defi#readme",
   "devDependencies": {
