@@ -44,12 +44,14 @@ defi.on(obj, 'change:last', () => console.log('Last name is changed'));
 defi.calc(obj, 'greeting', ['first', 'last'], (first, last) => `Hello, ${first} ${last}`);
 
 // and we want to set up a two-way data binding between the props and corresponding DOM nodes
-defi.bindNode(obj, 'first', '.first');
-defi.bindNode(obj, 'last', '.last');
-defi.bindNode(obj, 'greeting', '.greeting');
+defi.bindNode(obj, {
+  first: '.first',
+  last: '.last',
+  greeting: '.greeting'
+});
 ```
 
-If `first` or `last` is changed then event handlers print info about that to console, `greeting` property is updated, `.greeting` element is populated by calculated data (by default "Hello, John Doe"). And it happens every time when these properties are changed and doesn't matter how. You can do `obj.first = 'Jane'` or you can type text into its field, and everything will happen immediately. That's the real reactiveness. Check the example above [here](http://jsbin.com/qolulirela/1/).
+If `first` or `last` is changed then event handlers print info about that to console, `greeting` property is updated, `.greeting` element is populated by calculated data (by default "Hello, John Doe"). And it happens every time when these properties are changed and doesn't matter how. You can do `obj.first = 'Jane'` or you can type text into its field, and everything will happen immediately. That's the real reactiveness. Check the example above [here](http://jsbin.com/qolulirela/3/edit).
 
 
 ## What is that?
