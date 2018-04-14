@@ -8,7 +8,7 @@ export default function bound(object, key, { all } = { all: false }) {
 
     // if no key or falsy key is given
     if (!key) {
-        return object;
+        return all ? [] : null;
     }
 
     const def = defs.get(object);
