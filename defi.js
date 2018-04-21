@@ -1,9 +1,9 @@
 /*
     --------------------------------------------------------------
-    Matreshka.js v0.0.16 (Fri, 06 Apr 2018 23:33:16 GMT)
-    JavaScript Framework by Andrey Gubanov http://github.com/finom
+    defi.js v0.0.17 (Sat, 21 Apr 2018 21:22:38 GMT)
+    By Andrey Gubanov http://github.com/finom
     Released under the MIT license
-    More info: https://matreshka.io
+    More info: https://defi.js.org
     --------------------------------------------------------------
 */
 
@@ -233,56 +233,50 @@ var errors = {
     'binding:falsy_key': function () {
         return bindingErrorPrefix + ' "key" arg cannot be falsy';
     },
-    'binding:instance_nodes_missing': function (_ref3) {
-        var $nodes = _ref3.$nodes;
-
-        var missing = !$nodes ? '$nodes' : 'nodes';
-        return bindingErrorPrefix + ' "' + missing + '" property of Matreshka instance is missing.' + ' It must be an object and must not be reassigned.';
-    },
-    'calc:target_type': function (_ref4) {
-        var target = _ref4.target;
+    'calc:target_type': function (_ref3) {
+        var target = _ref3.target;
         return calcErrorPrefix + ' ' + getTypeError(target, 'target key', 'string');
     },
-    'calc:source_key_type': function (_ref5) {
-        var sourceKey = _ref5.sourceKey;
+    'calc:source_key_type': function (_ref4) {
+        var sourceKey = _ref4.sourceKey;
         return calcErrorPrefix + ' ' + getTypeError(sourceKey, 'source key', 'string');
     },
-    'calc:source_object_type': function (_ref6) {
-        var sourceObject = _ref6.sourceObject;
+    'calc:source_object_type': function (_ref5) {
+        var sourceObject = _ref5.sourceObject;
         return calcErrorPrefix + ' ' + getTypeError(sourceObject, 'source object', 'object');
     },
-    'calc:source_type': function (_ref7) {
-        var source = _ref7.source;
+    'calc:source_type': function (_ref6) {
+        var source = _ref6.source;
         return calcErrorPrefix + ' ' + getTypeError(source, 'source', 'object');
     },
 
-    'trigger:names_type': function (_ref8) {
-        var names = _ref8.names;
+    'trigger:names_type': function (_ref7) {
+        var names = _ref7.names;
         return eventsErrorPrefix + ' ' + getTypeError(names, 'event name', 'string');
     },
 
-    'on:names_type': function (_ref9) {
-        var names = _ref9.names;
+    'on:names_type': function (_ref8) {
+        var names = _ref8.names;
         return errors['trigger:names_type']({ names: names });
     },
 
-    'removedatakeys:key_type': function (_ref10) {
-        var key = _ref10.key;
+    'removedatakeys:key_type': function (_ref9) {
+        var key = _ref9.key;
         return 'Error in removeDataKeys: ' + getTypeError(key, 'key', 'string');
     },
 
-    'adddatakeys:key_type': function (_ref11) {
-        var key = _ref11.key;
+    'adddatakeys:key_type': function (_ref10) {
+        var key = _ref10.key;
         return 'Error in addDataKeys: ' + getTypeError(key, 'key', 'string');
     },
 
-    'remove:key_type': function (_ref12) {
-        var key = _ref12.key;
+    'remove:key_type': function (_ref11) {
+        var key = _ref11.key;
         return 'Error in remove: ' + getTypeError(key, 'key', 'string');
     },
 
-    'mediate:key_type': function (_ref13) {
-        var key = _ref13.key;
+    'mediate:key_type': function (_ref12) {
+        var key = _ref12.key;
         return 'Error in mediate: ' + getTypeError(key, 'key', 'string');
     }
 };
@@ -1993,7 +1987,7 @@ function bound(object, key) {
 
     // if no key or falsy key is given
     if (!key) {
-        return object;
+        return all ? [] : null;
     }
 
     var def = defs.get(object);
@@ -3995,4 +3989,4 @@ module.exports = functions;
 
 /***/ })
 /******/ ]);
-});if(typeof Matreshka === "function") this.MK = Matreshka;
+});
