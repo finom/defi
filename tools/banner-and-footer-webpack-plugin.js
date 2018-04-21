@@ -4,17 +4,17 @@ const date = new Date().toUTCString();
 
 const banner = `/*
     --------------------------------------------------------------
-    Matreshka.js v${process.env.npm_package_version} (${date})
-    JavaScript Framework by Andrey Gubanov http://github.com/finom
+    defi.js v${process.env.npm_package_version} (${date})
+    By Andrey Gubanov http://github.com/finom
     Released under the MIT license
-    More info: https://matreshka.io
+    More info: https://defi.js.org
     --------------------------------------------------------------
 */
 
 `;
 
 // a hack to make 2nd global variable
-const footer = 'if(typeof Matreshka === "function") this.MK = Matreshka;';
+const footer = '';
 
 class BannerAndFooterWebpackPlugin {
     apply(compiler) {

@@ -22,11 +22,6 @@ const errors = {
         return `${bindingErrorPrefix} node is missing for key "${key}"${selectorInfo}.`;
     },
     'binding:falsy_key': () => `${bindingErrorPrefix} "key" arg cannot be falsy`,
-    'binding:instance_nodes_missing': ({ $nodes }) => {
-        const missing = !$nodes ? '$nodes' : 'nodes';
-        return `${bindingErrorPrefix} "${missing}" property of Matreshka instance is missing.`
-            + ' It must be an object and must not be reassigned.';
-    },
     'calc:target_type': ({ target }) =>
         `${calcErrorPrefix} ${getTypeError(target, 'target key', 'string')}`,
     'calc:source_key_type': ({ sourceKey }) =>
