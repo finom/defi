@@ -9,5 +9,5 @@ export {
     output,
     textarea,
     select,
-    progress,
+    progress
 };
