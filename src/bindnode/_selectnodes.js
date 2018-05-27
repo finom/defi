@@ -1,5 +1,4 @@
 import defs from '../_core/defs';
-import toArray from '../_helpers/toarray';
 import $ from '../_mq';
 
 const customSelectorReg = /\s*:bound\(([^(]*)\)\s*([\S\s]*)\s*/;
@@ -37,14 +36,14 @@ export default function selectNodes(object, givenSelector) {
                             nofn.forEach(boundNodes, (node) => {
                                 node.setAttribute(randomAttr, randomAttr);
                                 const selected = node.querySelectorAll(`[${randomAttr}="${randomAttr}"] ${subSelector}`);
-                                result = result.add(toArray(selected));
+                                result = result.add(selected);
                                 node.removeAttribute(randomAttr);
                             });
                         } else {
                             // if native selector doesn't contain children selector
                             nofn.forEach(boundNodes, (node) => {
                                 const selected = node.querySelectorAll(subSelector);
-                                result = result.add(toArray(selected));
+                                result = result.add(selected);
                             });
                         }
                     } else {
