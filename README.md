@@ -172,7 +172,7 @@ defi.bindOptionalNode(obj, 'myKey', '.my-element');
 
 ```js
 defi.bindNode(obj, 'myKey', '.my-element');
-defi.bound(obj, 'myKey'); // will return document.querySelector('.my-element')
+const node = defi.bound(obj, 'myKey'); // will return document.querySelector('.my-element')
 ```
 
 - [chain](https://defi.js.org/#!defi.chain) - Allows chained calls of defi.js functions.
