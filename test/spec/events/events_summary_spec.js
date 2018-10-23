@@ -1,5 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies, no-shadow, max-lines, import/extensions */
 import on from 'src/on';
+import once from 'src/once';
 import off from 'src/off';
 import trigger from 'src/trigger';
 import bindNode from 'src/bindnode';
@@ -7,7 +8,7 @@ import createSpy from '../../helpers/createspy';
 import makeObject from '../../helpers/makeobject';
 import simulateClick from '../../helpers/simulateclick';
 
-describe('Events summary (on, off, trigger)', () => {
+describe('Events summary (on, once, off, trigger)', () => {
     let obj;
     let handler;
     let node;
@@ -165,5 +166,35 @@ describe('Events summary (on, off, trigger)', () => {
         simulateClick(childNode);
         trigger(obj, 'foo');
         expect(handler).not.toHaveBeenCalled();
+    });
+
+    it('triggers once', () => {
+        once(obj, 'someevent', handler);
+        trigger(obj, 'someevent');
+        trigger(obj, 'someevent');
+        trigger(obj, 'someevent');
+
+        expect(handler).toHaveBeenCalledTimes(1);
+    });
+
+    it('allows to pass name-handler object to "once"', () => {
+        const handlers = {
+            foo: createSpy(),
+            bar: createSpy()
+        };
+
+        once(obj, handlers);
+
+        trigger(obj, 'foo');
+        trigger(obj, 'bar');
+
+        expect(handlers.foo).toHaveBeenCalledTimes(1);
+        expect(handlers.bar).toHaveBeenCalledTimes(1);
+
+        trigger(obj, 'foo');
+        trigger(obj, 'bar');
+
+        expect(handlers.foo).toHaveBeenCalledTimes(1);
+        expect(handlers.bar).toHaveBeenCalledTimes(1);
     });
 });
