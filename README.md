@@ -45,7 +45,7 @@ defi.on(obj, 'change:last', () => console.log('Last name is changed'));
 // when the first or last are changed
 defi.calc(obj, 'greeting', ['first', 'last'], (first, last) => `Hello, ${first} ${last}`);
 
-// and we want to set up a two-way data binding between the props 
+// and we want to set up a two-way data binding between the props
 // and corresponding DOM nodes
 defi.bindNode(obj, {
   first: '.first',
@@ -159,14 +159,6 @@ defi.unbindNode(obj, 'myKey', '.my-element');
 ```
 
 Note that a bunch of common binders can be found at [common-binders](https://github.com/finom/common-binders) project.
-
-
-- [bindOptionalNode](https://defi.js.org/#!defi.bindOptionalNode) - Works the same way as `bindNode` but doesn't throw an error if a node doesn't exist.
-
-```js
-defi.bindOptionalNode(obj, 'myKey', '.my-element');
-```
-
 
 - [bound](https://defi.js.org/#!defi.bound) - Returns a bound element.
 

@@ -1,6 +1,5 @@
 /* eslint-disable import/no-extraneous-dependencies, no-shadow, max-lines, import/extensions */
 import bindNode from 'src/bindnode';
-import bindOptionalNode from 'src/bindoptionalnode';
 import unbindNode from 'src/unbindnode';
 import bound from 'src/bound';
 import addListener from 'src/on/_addlistener';
@@ -298,21 +297,21 @@ describe('Bindings', () => {
     });
 
     it(
-        'doesn\'t throw error with bindOptionalNode method of Matreshka when node is missing',
+        'doesn\'t throw error with bindNode method of Matreshka when node is missing',
         () => {
             expect(() => {
-                bindOptionalNode(obj, 'x');
+                bindNode(obj, 'x', {}, { optional: true });
             }).not.toThrow();
         }
     );
 
-    it('doesn\'t throw error with bindOptionalNode method of'
+    it('doesn\'t throw error with bindNode method of'
         + ' Matreshka when node is missing (an object is used)', () => {
         expect(() => {
-            bindOptionalNode(obj, {
+            bindNode(obj, {
                 x: null,
                 y: undefined
-            });
+            }, {}, { optional: true });
         }).not.toThrow();
     });
 });

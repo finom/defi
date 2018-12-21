@@ -17,10 +17,6 @@ export default function bindNode(object, key, node, binder, eventOptions) {
 
     initMK(object);
 
-    const { temporaryOptionalFlag } = bindNode;
-
-    delete bindNode.temporaryOptionalFlag;
-
     // throw an error when key is falsy
     if (!key) {
         throw defiError('binding:falsy_key');
@@ -32,11 +28,6 @@ export default function bindNode(object, key, node, binder, eventOptions) {
              * accept array of keys
              * this.bindNode(['a', 'b', 'c'], node)
              */
-            if (temporaryOptionalFlag) {
-                // eslint-disable-next-line no-param-reassign
-                eventOptions = { ...eventOptions, optional: true };
-            }
-
             nofn.forEach(key, itemKey => bindNode(object, itemKey, node, binder, eventOptions));
         } else {
             /*
@@ -51,10 +42,6 @@ export default function bindNode(object, key, node, binder, eventOptions) {
             }) => {
                 const commonEventOptions = node;
                 const mergedEventOptions = {};
-
-                if (temporaryOptionalFlag) {
-                    mergedEventOptions.optional = true;
-                }
 
                 if (commonEventOptions) {
                     // extend event object by "global" event
@@ -77,12 +64,7 @@ export default function bindNode(object, key, node, binder, eventOptions) {
     if (typeof key === 'object') {
         nofn.forOwn(key, (keyObjValue, keyObjKey) => {
             // binder means eventOptions
-            if (temporaryOptionalFlag) {
-                // eslint-disable-next-line no-param-reassign
-                eventOptions = binder ? { ...binder, optional: true } : { optional: true };
-            } else {
-                eventOptions = binder; // eslint-disable-line no-param-reassign
-            }
+            eventOptions = binder; // eslint-disable-line no-param-reassign
 
             if (
                 keyObjValue
@@ -121,7 +103,7 @@ export default function bindNode(object, key, node, binder, eventOptions) {
     }
 
     const {
-        optional = temporaryOptionalFlag || false, // check out bindOptionalNode
+        optional = false,
         exactKey = false
     } = eventOptions;
     const $nodes = getNodes(object, node);

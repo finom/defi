@@ -5,7 +5,6 @@ import calc from './calc';
 import bindNode from './bindnode';
 import bound from './bound';
 import unbindNode from './unbindnode';
-import bindOptionalNode from './bindoptionalnode';
 import set from './set';
 import remove from './remove';
 import mediate from './mediate';
@@ -19,7 +18,6 @@ export {
     bindNode,
     bound,
     unbindNode,
-    bindOptionalNode,
     set,
     remove,
     mediate

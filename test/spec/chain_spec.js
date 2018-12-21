@@ -11,7 +11,6 @@ describe('chain', () => {
         calc,
         bindNode,
         unbindNode,
-        bindOptionalNode,
         set,
         bound,
         remove,
