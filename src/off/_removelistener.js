@@ -3,7 +3,7 @@ import triggerOne from '../trigger/_triggerone';
 import domEventReg from '../on/_domeventregexp';
 
 // removes simple event listener from an object
-export default function removeListener(object, name, callback, context, info) {
+export default function removeListener(object, name, callback, info) {
     const def = defs.get(object);
 
     // if no definition do nothing
@@ -22,7 +22,7 @@ export default function removeListener(object, name, callback, context, info) {
         // fixing circular reference issue
         const removeDomListener = require('./_removedomlistener');
 
-        removeDomListener(object, key, eventName, selector, callback, context, info);
+        removeDomListener(object, key, eventName, selector, callback, info);
 
         return true;
     }
@@ -34,8 +34,7 @@ export default function removeListener(object, name, callback, context, info) {
                 nofn.forEach(allEventsItem, (event) => {
                     const removeEventData = {
                         allEventsName,
-                        callback: event.callback,
-                        context: event.context
+                        callback: event.callback
                     };
 
                     triggerOne(object, `removeevent:${name}`, removeEventData);
@@ -52,15 +51,13 @@ export default function removeListener(object, name, callback, context, info) {
             const argCallback = (callback && callback._callback) || callback;
             const eventCallback = event.callback._callback || event.callback;
 
-            if ((argCallback && argCallback !== eventCallback)
-                || (context && context !== event.context)) {
+            if (argCallback && argCallback !== eventCallback) {
                 // keep event
                 retain.push(event);
             } else {
                 const removeEventData = {
                     name,
-                    callback: event.callback,
-                    context: event.context
+                    callback: event.callback
                 };
 
                 if (!noTrigger) {

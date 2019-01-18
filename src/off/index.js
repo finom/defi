@@ -6,7 +6,7 @@ import undelegateListener from './_undelegatelistener';
 import $ from '../_mq';
 
 // removes event listener
-export default function off(object, givenNames, callback, context) {
+export default function off(object, givenNames, callback) {
     // throw error when object type is wrong
     checkObjectType(object, 'off');
 
@@ -22,7 +22,7 @@ export default function off(object, givenNames, callback, context) {
     }
 
 
-    if (!givenNames && !callback && !context) {
+    if (!givenNames && !callback) {
         def.events = {};
 
         nofn.forOwn(def.props, ({ bindings }, propName) => {
@@ -45,9 +45,9 @@ export default function off(object, givenNames, callback, context) {
         const delegatedEventParts = name.split('@');
         if (delegatedEventParts.length > 1) {
             const [path, delegatedName] = delegatedEventParts;
-            undelegateListener(object, path, delegatedName, callback, context);
+            undelegateListener(object, path, delegatedName, callback);
         } else {
-            removeListener(object, name, callback, context);
+            removeListener(object, name, callback);
         }
     });
 

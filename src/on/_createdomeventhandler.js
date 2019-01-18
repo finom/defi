@@ -2,8 +2,7 @@
 export default function createDomEventHandler({
     key,
     object,
-    callback,
-    context
+    callback
 }) {
     return function domEventHandler(domEvent) {
         const originalEvent = domEvent.originalEvent || domEvent;
@@ -15,10 +14,10 @@ export default function createDomEventHandler({
 
         if (triggerArgs) {
             // if args are passed to trigger method then pass them to an event handler
-            callback.apply(context, triggerArgs);
+            callback.apply(object, triggerArgs);
         } else {
             // use the following object as an arg for event handler
-            callback.call(context, {
+            callback.call(object, {
                 self: object,
                 node: this,
                 preventDefault: () => domEvent.preventDefault(),

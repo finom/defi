@@ -27,15 +27,14 @@ function createBindingHandlers({
 }
 
 // adds DOM event listener for nodes bound to given property
-export default function addDomListener(object, key, eventName, selector, callback, context, info) {
+export default function addDomListener(object, key, eventName, selector, callback, info) {
     const def = initMK(object);
     const propDef = defineProp(object, key);
 
     const domEventHandler = createDomEventHandler({
         key,
         object,
-        callback,
-        context: context || object
+        callback
     });
 
     // making possible to remove this event listener
@@ -49,9 +48,9 @@ export default function addDomListener(object, key, eventName, selector, callbac
         selector
     });
     const addBindListenerResult
-        = addListener(object, `bind:${key}`, bindHandler, context, info);
+        = addListener(object, `bind:${key}`, bindHandler, info);
     const addUnbindListenerResult
-        = addListener(object, `unbind:${key}`, unbindHandler, context, info);
+        = addListener(object, `unbind:${key}`, unbindHandler, info);
 
     // if events are added successfully then run bindHandler for every node immediately
     // TODO: Describe why do we need addBindListenerResult and addUnbindListenerResult

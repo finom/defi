@@ -12,8 +12,6 @@ export default function initMK(object) {
             events: {
                 /* example: {
                     callback: function,
-                    ctx: object,
-                    context: object2,
                     name: "example",
                     info: { ...extra data for an event... }
                 } */

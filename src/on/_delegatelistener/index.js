@@ -2,13 +2,14 @@ import addListener from '../_addlistener';
 import changeHandler from './changehandler';
 
 // adds delegated event listener to an object by given path
-export default function delegateListener(object, givenPath, name, callback, context, info = {}) {
+// TODO Handler uses wrong context
+export default function delegateListener(object, givenPath, name, callback, info = {}) {
     // if typeof path is string and path is not empty string then split it
     let path = typeof givenPath === 'string' && givenPath !== '' ? givenPath.split('.') : givenPath;
 
     if (!path || !path.length) {
         // if no path then add simple listener
-        addListener(object, name, callback, context, info);
+        addListener(object, name, callback, info);
     } else {
         // else do all magic
         const key = path[0];
@@ -26,13 +27,12 @@ export default function delegateListener(object, givenPath, name, callback, cont
             path,
             name,
             callback,
-            context,
             info,
             object
         };
 
-            // the event is triggered by "set"
-        addListener(object, `_change:delegated:${key}`, changeHandler, null, {
+        // the event is triggered by "set"
+        addListener(object, `_change:delegated:${key}`, changeHandler, {
             delegatedData,
             pathStr
         });

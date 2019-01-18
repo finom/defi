@@ -11,16 +11,15 @@ export default function changeHandler({
     path,
     name,
     callback,
-    context,
     info
 } = triggerOne.latestEvent.info.delegatedData) {
     if (value && typeof value === 'object') {
         const delegateListener = require('./'); // fixing circular ref
 
-        delegateListener(value, path, name, callback, context, info);
+        delegateListener(value, path, name, callback, info);
     }
 
     if (previousValue && typeof previousValue === 'object') {
-        undelegateListener(previousValue, path, name, callback, context, info);
+        undelegateListener(previousValue, path, name, callback, info);
     }
 }

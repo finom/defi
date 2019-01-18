@@ -1,11 +1,13 @@
 import splitBySpaceReg from './_splitbyspaceregexp';
 import checkObjectType from '../_helpers/checkobjecttype';
 import defiError from '../_helpers/defierror';
+import off from '../off';
+import debounce from '../_helpers/debounce';
 import addListener from './_addlistener';
 import delegateListener from './_delegatelistener';
 
 // adds event listener
-export default function on(object, givenNames, callback, triggerOnInit, context) {
+export default function on(object, givenNames, givenCallback, options) {
     // throw error when object type is wrong
     checkObjectType(object, 'on');
 
@@ -14,7 +16,7 @@ export default function on(object, givenNames, callback, triggerOnInit, context)
     // allow to pass name-handler object
     if (givenNames && typeof givenNames === 'object' && !isNamesVarArray) {
         nofn.forOwn(givenNames, (namesObjCallback, namesObjName) =>
-            on(object, namesObjName, namesObjCallback, callback, triggerOnInit));
+            on(object, namesObjName, namesObjCallback, givenCallback, options));
         return object;
     }
 
@@ -23,13 +25,24 @@ export default function on(object, givenNames, callback, triggerOnInit, context)
     }
 
     // split by spaces
-    // TODO: Array of names passed to on method is non-documented feature
+    // TODO: Array of names passed to on method is a non-documented feature
     const names = isNamesVarArray ? givenNames : givenNames.split(splitBySpaceReg);
 
-    // flip triggerOnInit and context when triggerOnInit is not boolean
-    if (typeof triggerOnInit !== 'boolean' && typeof triggerOnInit !== 'undefined') {
-        // eslint-disable-next-line no-param-reassign
-        [context, triggerOnInit] = [triggerOnInit, context];
+    const { triggerOnInit, once, debounce: debounceOption } = options || {};
+    let callback;
+    if (once) {
+        callback = function onceCallback() {
+            givenCallback.apply(this, arguments);
+            // remove event listener after its call
+            off(object, names, onceCallback);
+        };
+
+        // allow to remove event listener py passing original callback to "off"
+        callback._callback = givenCallback;
+    } else if (typeof debounceOption === 'number' || debounceOption === true) {
+        callback = debounce(givenCallback, debounceOption === true ? 0 : debounceOption, object);
+    } else {
+        callback = givenCallback;
     }
 
     nofn.forEach(names, (name) => {
@@ -38,16 +51,16 @@ export default function on(object, givenNames, callback, triggerOnInit, context)
         if (delegatedEventParts.length > 1) {
             // if @ exists in event name then this is delegated event
             const [path, delegatedName] = delegatedEventParts;
-            delegateListener(object, path, delegatedName, callback, context || object);
+            delegateListener(object, path, delegatedName, callback);
         } else {
             // if not, this is simple event
-            addListener(object, name, callback, context);
+            addListener(object, name, callback);
         }
     });
 
     // call callback immediatelly if triggerOnInit is true
-    if (triggerOnInit === true) {
-        callback.call(context || object, { triggerOnInit });
+    if (triggerOnInit) {
+        callback.call(object, options);
     }
 
     return object;

@@ -13,15 +13,15 @@ export default function triggerOne(object, name, triggerArgs) {
         if (triggerArgs instanceof Array) {
             while (i < l) {
                 const event = triggerOne.latestEvent = events[i];
-                const { callback, ctx } = event;
-                callback.apply(ctx, triggerArgs);
+                const { callback } = event;
+                callback.apply(object, triggerArgs);
                 i += 1;
             }
         } else {
             while (i < l) {
                 const event = triggerOne.latestEvent = events[i];
-                const { callback, ctx } = event;
-                callback.call(ctx, triggerArgs);
+                const { callback } = event;
+                callback.call(object, triggerArgs);
                 i += 1;
             }
         }

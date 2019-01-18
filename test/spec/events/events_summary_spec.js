@@ -1,6 +1,5 @@
 /* eslint-disable import/no-extraneous-dependencies, no-shadow, max-lines, import/extensions */
 import on from 'src/on';
-import once from 'src/once';
 import off from 'src/off';
 import trigger from 'src/trigger';
 import bindNode from 'src/bindnode';
@@ -8,7 +7,7 @@ import createSpy from '../../helpers/createspy';
 import makeObject from '../../helpers/makeobject';
 import simulateClick from '../../helpers/simulateclick';
 
-describe('Events summary (on, once, off, trigger)', () => {
+describe('Events summary (on, off, trigger)', () => {
     let obj;
     let handler;
     let node;
@@ -147,17 +146,6 @@ describe('Events summary (on, once, off, trigger)', () => {
         expect(handlers.bar).toHaveBeenCalledTimes(1);
     });
 
-    it('allows to flip context and triggerOnInit (on)', () => {
-        const thisArg = {};
-        const handler = createSpy(() => {
-            expect(this).toEqual(thisArg);
-        });
-
-        on(obj, 'foo', handler, true, thisArg);
-        on(obj, 'bar', handler, thisArg, true);
-        expect(handler).toHaveBeenCalledTimes(2);
-    });
-
     it('removes all events when off is called with no args', () => {
         on(obj, 'click::x', handler);
         bindNode(obj, 'x', '#child');
@@ -169,7 +157,7 @@ describe('Events summary (on, once, off, trigger)', () => {
     });
 
     it('triggers once', () => {
-        once(obj, 'someevent', handler);
+        on(obj, 'someevent', handler, { once: true });
         trigger(obj, 'someevent');
         trigger(obj, 'someevent');
         trigger(obj, 'someevent');
@@ -183,7 +171,7 @@ describe('Events summary (on, once, off, trigger)', () => {
             bar: createSpy()
         };
 
-        once(obj, handlers);
+        on(obj, handlers, { once: true });
 
         trigger(obj, 'foo');
         trigger(obj, 'bar');
@@ -196,5 +184,53 @@ describe('Events summary (on, once, off, trigger)', () => {
 
         expect(handlers.foo).toHaveBeenCalledTimes(1);
         expect(handlers.bar).toHaveBeenCalledTimes(1);
+    });
+
+    it('triggers on init', () => {
+        on(obj, 'someevent', handler, { triggerOnInit: true });
+        expect(handler).toHaveBeenCalledTimes(1);
+        trigger(obj, 'someevent');
+        expect(handler).toHaveBeenCalledTimes(2);
+    });
+
+    it('adds debounced handler via debounce: true', (done) => {
+        setTimeout(() => {
+            expect(handler).toHaveBeenCalledTimes(1);
+            done();
+        }, 200);
+
+        on(obj, 'someevent', handler, { debounce: true });
+        trigger(obj, 'someevent');
+        trigger(obj, 'someevent');
+        trigger(obj, 'someevent');
+    });
+
+    it('adds debounced handler via debounce: 0', (done) => {
+        setTimeout(() => {
+            expect(handler).toHaveBeenCalledTimes(1);
+            done();
+        }, 200);
+
+        on(obj, 'someevent', handler, { debounce: 0 });
+        trigger(obj, 'someevent');
+        trigger(obj, 'someevent');
+        trigger(obj, 'someevent');
+    });
+
+    it('adds debounced handler via debounce: number', (done) => {
+        setTimeout(() => {
+            expect(handler).toHaveBeenCalledTimes(0);
+            done();
+        }, 200);
+
+        setTimeout(() => {
+            //  done();
+            //  expect(handler).toHaveBeenCalledTimes(1);
+        }, 600);
+
+        on(obj, 'someevent', handler, { debounce: 500 });
+        trigger(obj, 'someevent');
+        trigger(obj, 'someevent');
+        trigger(obj, 'someevent');
     });
 });

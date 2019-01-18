@@ -6,10 +6,9 @@ export default function makeObject(givenPath = '', lastValue = {}) {
     let obj = result;
     let key;
 
-
     while (path.length > 1) {
         key = path.shift();
-        obj = obj[key] = {};
+        obj = obj[key] = { myNameIs: key };
     }
 
     obj[path.shift()] = lastValue;

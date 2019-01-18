@@ -9,13 +9,13 @@ const propModEventReg // eslint-disable-next-line max-len
 
 // adds simple event listener
 // used as core of event engine
-export default function addListener(object, name, callback, context, info = {}) {
+export default function addListener(object, name, callback, info = {}) {
     const { events: allEvents } = initMK(object);
-    const ctx = context || object;
     const events = allEvents[name];
     const event = {
-        callback, context, ctx, name, info
+        callback, name, info
     };
+
     // skipChecks is used by internal methods for better performance
     const { skipChecks = false } = info;
 
@@ -27,7 +27,7 @@ export default function addListener(object, name, callback, context, info = {}) 
             // fixing circular reference issue
             const addDomListener = require('./_adddomlistener');
 
-            addDomListener(object, key, eventName, selector, callback, context, info);
+            addDomListener(object, key, eventName, selector, callback, info);
 
             return true;
         }
@@ -41,7 +41,7 @@ export default function addListener(object, name, callback, context, info = {}) 
                 const existingEvent = events[i];
                 const argCallback = (callback && callback._callback) || callback;
                 const eventCallback = existingEvent.callback._callback || existingEvent.callback;
-                if (argCallback === eventCallback && existingEvent.context === context) {
+                if (argCallback === eventCallback) {
                     return false;
                 }
             }

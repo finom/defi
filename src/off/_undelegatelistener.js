@@ -25,7 +25,7 @@ function detatchDelegatedLogic({
 }
 
 // removes delegated event listener from an object by given path
-export default function undelegateListener(object, givenPath, name, callback, context, info = {}) {
+export default function undelegateListener(object, givenPath, name, callback, info = {}) {
     const def = defs.get(object);
 
     // if no definition do nothing
@@ -39,7 +39,7 @@ export default function undelegateListener(object, givenPath, name, callback, co
 
     if (!path || !path.length) {
         // if no path then remove listener
-        removeListener(object, name, callback, context, info);
+        removeListener(object, name, callback, info);
     } else {
         // else do all magic
         const key = path[0];
@@ -64,7 +64,7 @@ export default function undelegateListener(object, givenPath, name, callback, co
         }
 
         if (typeof object[key] === 'object') {
-            undelegateListener(object[key], path, name, callback, context, info);
+            undelegateListener(object[key], path, name, callback, info);
         }
     }
 }

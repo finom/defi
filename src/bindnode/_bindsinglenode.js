@@ -148,7 +148,7 @@ export default function bindSingleNode(object, {
         }
 
         // TODO: Is it possible to get previous value of a property?
-        addListener(object, `_change:bindings:${key}`, objectHandler, null, { skipChecks: true });
+        addListener(object, `_change:bindings:${key}`, objectHandler, { skipChecks: true });
 
         if ((!isUndefined && setValueOnBind !== false) || setValueOnBind === true) {
             if (debounceSetValueOnBind) {

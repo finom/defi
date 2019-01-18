@@ -9,7 +9,6 @@ export default function removeDomListener(
     eventName,
     selector,
     callback,
-    context,
     info
 ) {
     const def = defs.get(object);
@@ -40,8 +39,8 @@ export default function removeDomListener(
     }
 
     // remove bind and unbind listeners from given key
-    removeListener(object, `bind:${key}`, callback, context, info);
-    removeListener(object, `unbind:${key}`, callback, context, info);
+    removeListener(object, `bind:${key}`, callback, info);
+    removeListener(object, `unbind:${key}`, callback, info);
 
     return object;
 }

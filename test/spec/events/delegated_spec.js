@@ -6,11 +6,9 @@ import makeObject from '../../helpers/makeobject';
 import createSpy from '../../helpers/createspy';
 
 describe('Delegated events (delegateListener, undelegateListener)', () => {
-    let ctx;
     let handler;
 
     beforeEach(() => {
-        ctx = {};
         handler = createSpy();
     });
 
@@ -171,24 +169,6 @@ describe('Delegated events (delegateListener, undelegateListener)', () => {
         expect(handler).not.toHaveBeenCalled();
     });
 
-    it('undelegates by callback and context (a.b)', () => {
-        const obj = makeObject('a.b');
-
-        delegateListener(obj, 'a.b', 'someevent', handler, ctx);
-        undelegateListener(obj, 'a.b', 'someevent', handler, ctx);
-        triggerOne(obj.a.b, 'someevent');
-        expect(handler).not.toHaveBeenCalled();
-    });
-
-    it('undelegates by callback and context (a.b.c)', () => {
-        const obj = makeObject('a.b.c');
-
-        delegateListener(obj, 'a.b.c', 'someevent', handler, ctx);
-        undelegateListener(obj, 'a.b.c', 'someevent', handler, ctx);
-        triggerOne(obj.a.b.c, 'someevent');
-        expect(handler).not.toHaveBeenCalled();
-    });
-
     it('undelegates by callback but keeps when callbacks are not same (a.b)', () => {
         const obj = makeObject('a.b');
 
@@ -207,31 +187,13 @@ describe('Delegated events (delegateListener, undelegateListener)', () => {
         expect(handler).toHaveBeenCalled();
     });
 
-    it('undelegates by callback but keeps when contexts are not same (a.b)', () => {
-        const obj = makeObject('a.b');
-
-        delegateListener(obj, 'a.b', 'someevent', handler, {});
-        undelegateListener(obj, 'a.b', 'someevent', handler, {});
-        triggerOne(obj.a.b, 'someevent');
-        expect(handler).toHaveBeenCalled();
-    });
-
-    it('undelegates by callback but keeps when contexts are not same (a.b.c)', () => {
-        const obj = makeObject('a.b.c');
-
-        delegateListener(obj, 'a.b.c', 'someevent', handler, {});
-        undelegateListener(obj, 'a.b.c', 'someevent', handler, {});
-        triggerOne(obj.a.b.c, 'someevent');
-        expect(handler).toHaveBeenCalled();
-    });
-
-    it('uses correct context for delegated events', () => {
+    xit('uses correct context for delegated events', () => {
         const obj = makeObject('a.b.c');
         let bool = false;
 
         delegateListener(obj, 'a.b.c', 'someevent', function handle() {
-            bool = this === ctx;
-        }, ctx);
+            bool = this === obj;
+        });
 
         triggerOne(obj.a.b.c, 'someevent');
         expect(bool).toBe(true);

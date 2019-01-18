@@ -30,7 +30,6 @@ function createTreeListener({ handler, restPath }) {
 }
 
 // listens changes for all branches of given path
-// TODO: Pass context to addTreeListener
 // one of the most hard functions to understand
 export default function addTreeListener(object, deepPath, handler) {
     if (typeof deepPath === 'string') {

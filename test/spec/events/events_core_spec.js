@@ -6,12 +6,10 @@ import createSpy from '../../helpers/createspy';
 
 describe('Events core (addListener, removeListener, triggerOne)', () => {
     let obj;
-    let ctx;
     let handler;
 
     beforeEach(() => {
         obj = {};
-        ctx = {};
         handler = createSpy();
     });
 
@@ -19,6 +17,13 @@ describe('Events core (addListener, removeListener, triggerOne)', () => {
         addListener(obj, 'someevent', handler);
         triggerOne(obj, 'someevent');
         expect(handler).toHaveBeenCalled();
+    });
+
+    it('uses correct context', () => {
+        addListener(obj, 'someevent', function handle() {
+            expect(obj === this).toEqual(true);
+        });
+        triggerOne(obj, 'someevent');
     });
 
     it('avoids conflicts', () => {
@@ -58,20 +63,6 @@ describe('Events core (addListener, removeListener, triggerOne)', () => {
     it('removes by callback but keeps when callbacks are not same', () => {
         addListener(obj, 'someevent', handler);
         removeListener(obj, 'someevent', () => {});
-        triggerOne(obj, 'someevent');
-        expect(handler).toHaveBeenCalled();
-    });
-
-    it('removes by callback and context', () => {
-        addListener(obj, 'someevent', handler, ctx);
-        removeListener(obj, 'someevent', handler, ctx);
-        triggerOne(obj, 'someevent');
-        expect(handler).not.toHaveBeenCalled();
-    });
-
-    it('removes by callback but keeps when contexts are not same', () => {
-        addListener(obj, 'someevent', handler, ctx);
-        removeListener(obj, 'someevent', handler, {});
         triggerOne(obj, 'someevent');
         expect(handler).toHaveBeenCalled();
     });
