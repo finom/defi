@@ -16,7 +16,6 @@
     "commit": "git-cz",
     "reinstall": "rm -rf node_modules package-lock.json && npm i",
     "release": "npm run npm-compile && npm run npm-publish && npm run deploy-to-git",
-    "deploy": "npm run deploy-to-git && npm run npm-deploy && npm run deploy-to-git",
     "npm-compile": "shx rm -rf npm && babel src -d npm --source-maps && shx cp README.md npm/README.md && node ./tools/generate-package",
     "npm-publish": "cd npm && npm publish && cd ..",
     "bundle": "webpack --config ./webpack.config.js --mode production",
@@ -45,7 +44,7 @@
       "repository": "git@github.com:defijs/defi.git",
       "branch": "gh-pages",
       "folder": "bundle",
-      "script": "npm run bundle-deploy-script",
+      "script": "npm run bundle-deploy-script && npm run bundle-browser-test",
       "beforePushScript": "git tag v$npm_package_version-bundle",
       "commit": "$npm_package_version",
       "user": {
