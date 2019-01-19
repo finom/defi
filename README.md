@@ -16,7 +16,7 @@ A bunch of utilities that enable accessor-based reactivity for JavaScript object
 
 
 <p align="center">
-  <img src="assets/defi_demo.gif" />
+  <img src="assets/defi_demo.gif" width="50%" />
 </p>
 
 It can be installed via NPM:
