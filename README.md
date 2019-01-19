@@ -7,7 +7,8 @@
 </p>
 
 <p align="center">
-[![npm version](https://badge.fury.io/js/defi.svg)](https://badge.fury.io/js/defi) [![Build Status](https://travis-ci.org/defijs/defi.svg)](https://travis-ci.org/defi/defi) [![Coverage Status](https://coveralls.io/repos/github/defijs/defi/badge.svg?branch=master)](https://coveralls.io/github/defijs/defi?branch=master)
+<a href="https://badge.fury.io/js/defi" rel="nofollow"><img src="https://camo.githubusercontent.com/b31c945ec1f09892388cda654d117de5c6aa3ed6/68747470733a2f2f62616467652e667572792e696f2f6a732f646566692e737667" alt="npm version" data-canonical-src="https://badge.fury.io/js/defi.svg" style="max-width:100%;"></a> <a href="https://travis-ci.org/defi/defi" rel="nofollow"><img src="https://camo.githubusercontent.com/08c41f8284a28f9799ed1eb27eac080cf445ec3e/68747470733a2f2f7472617669732d63692e6f72672f646566696a732f646566692e737667" alt="Build Status" data-canonical-src="https://travis-ci.org/defijs/defi.svg" style="max-width:100%;"></a> <a href="https://coveralls.io/github/defijs/defi?branch=master" rel="nofollow"><img src="https://camo.githubusercontent.com/526676c4a2e526e118492ff4eb25a87e71f92bfa/68747470733a2f2f636f766572616c6c732e696f2f7265706f732f6769746875622f646566696a732f646566692f62616467652e7376673f6272616e63683d6d6173746572" alt="Coverage Status" data-canonical-src="https://coveralls.io/repos/github/defijs/defi/badge.svg?branch=master" style="max-width:100%;"></a>
+
 </p>
 
 
