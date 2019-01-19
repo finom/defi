@@ -24,8 +24,8 @@
     "bundle-deploy-script": "npm run bundle && npm run bundle-browser-test",
     "upgrade": "ncu -u -a && npm install",
     "travis-deploy-once": "travis-deploy-once",
-    "patch": "npm version patch && npm run release",
-    "minor": "npm version minor && npm run release"
+    "patch": "npm version patch && npm run release && git push --tags",
+    "minor": "npm version minor && npm run release && git push --tags"
   },
   "repository": {
     "type": "git",
