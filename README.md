@@ -1,0 +1,14 @@
+# defi bundle
+
+This branch contains a minified bundle of [defi](https://github.com/defijs/defi).
+
+```html
+<script src="defi.min.js"></script>
+```
+
+```html
+<!-- do not do this on production -->
+<script src="https://defijs.github.io/defi/defi.min.js">
+</script>
+```
+
