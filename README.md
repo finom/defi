@@ -4,6 +4,10 @@
   <img src="assets/logo.svg" />
 </a>
 
+</p>
+
+<p align="center">
+
 A bunch of utilities that enable accessor-based reactivity for JavaScript objects.
 
 </p>
