@@ -1,6 +1,6 @@
 {
   "name": "defi",
-  "version": "0.0.25",
+  "version": "0.0.26",
   "description": "defi.js library",
   "scripts": {
     "test": "npm run node-cover && npm run check-coverage && npm run lint",
