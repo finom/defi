@@ -12,3 +12,4 @@ This branch contains a minified bundle of [defi](https://github.com/defijs/defi)
 </script>
 ```
 
+[Browser test runner](https://defijs.github.io/defi/test/SpecRunner.html)
