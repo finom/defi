@@ -297,7 +297,7 @@ describe('Bindings', () => {
     });
 
     it(
-        'doesn\'t throw error with bindNode method of Matreshka when node is missing',
+        'doesn\'t throw error with bindNode method when node is missing',
         () => {
             expect(() => {
                 bindNode(obj, 'x', {}, { optional: true });
@@ -305,8 +305,8 @@ describe('Bindings', () => {
         }
     );
 
-    it('doesn\'t throw error with bindNode method of'
-        + ' Matreshka when node is missing (an object is used)', () => {
+    it('doesn\'t throw error with bindNode method'
+        + ' when node is missing (an object is used)', () => {
         expect(() => {
             bindNode(obj, {
                 x: null,
