@@ -7,7 +7,6 @@ This branch contains a minified bundle of [defi](https://github.com/defijs/defi)
 ```
 
 ```html
-<!-- do not do this on production -->
 <script src="https://defijs.github.io/defi/defi.min.js">
 </script>
 ```
