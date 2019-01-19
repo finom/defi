@@ -1,7 +1,7 @@
 <p align="center">
 
 <a href="https://defi.js.org">
-  <img src="assets/logo.svg" />
+  <img src="https://defijs.github.io/assets/logo.svg" />
 </a>
 
 </p>
@@ -16,7 +16,7 @@
 
 
 <p align="center">
-  <img src="assets/defi_demo.gif" width="50%" />
+  <img src="https://defijs.github.io/assets/defi_demo.gif" width="50%" />
 </p>
 
 It can be installed via NPM:
