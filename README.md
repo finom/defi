@@ -1,4 +1,4 @@
-# [defi.js](http://defi.js.org) [![npm version](https://badge.fury.io/js/defi.svg)](https://badge.fury.io/js/defi) [![Build Status](https://travis-ci.org/finom/defi.svg)](https://travis-ci.org/finom/defi) [![Coverage Status](https://coveralls.io/repos/github/finom/defi/badge.svg?branch=master)](https://coveralls.io/github/finom/defi?branch=master)
+# [defi.js](http://defi.js.org) [![npm version](https://badge.fury.io/js/defi.svg)](https://badge.fury.io/js/defi) [![Build Status](https://travis-ci.org/defijs/defi.svg)](https://travis-ci.org/defi/defi) [![Coverage Status](https://coveralls.io/repos/github/defijs/defi/badge.svg?branch=master)](https://coveralls.io/github/defijs/defi?branch=master)
 
 A bunch of utilities that enable accessor-based reactivity for JavaScript objects.
 
@@ -12,7 +12,7 @@ const { bindNode, calc } = require('defi');
 bindNode(obj, 'key', node)
 ```
 
-Or [download to use as a global variable](https://github.com/finom/defi/tree/gh-pages)
+Or [download to use as a global variable](https://github.com/defijs/defi/tree/gh-pages)
 
 ```js
 // use defi as a global variable
@@ -54,22 +54,9 @@ defi.bindNode(obj, {
 });
 ```
 
-If `first` or `last` is changed then event handlers print info about that to console, `greeting` property is updated, `.greeting` element is populated by calculated data (by default "Hello, John Doe"). And it happens every time when these properties are changed and it doesn't matter which way. You can do `obj.first = 'Jane'` or you can type text into its field, and everything will happen immediately. That's the real reactiveness. Check the example above [here](http://jsbin.com/qolulirela/3/edit) and try to type `obj.first = 'Jane'` at "Console" tab.
+If `first` or `last` is changed then event handlers print info about that to console, `greeting` property is updated, `.greeting` element is populated by calculated data (by default "Hello, John Doe"). And it happens every time when these properties are changed and it doesn't matter which way. You can do `obj.first = 'Jane'` or you can type text into its field, and everything will happen immediately.
 
-
-## I have seen that before!
-
-defi.js is a hard-fork of [Matreshka.js framework](https://github.com/matreshkajs/matreshka) which includes a subset of its functions. It's created for applications which don't need a full list of features like array rendering but require quick and clear two-way data binding features and sugared reactivity.
-
-
-Note that defi.js is compatible with the most of Matreshka.js add-ons:
-
-- [Router](https://github.com/matreshkajs/matreshka-router)
-- [Form parser](https://github.com/matreshkajs/matreshka-parse-form)
-- [File binders](https://github.com/matreshkajs/file-binders)
-- [Codemirror binder](https://github.com/matreshkajs/matreshka-binder-codemirror)
-
-Also there is a [standalone set of common binders](https://github.com/finom/common-binders) compatible with both libraries.
+That's the real reactiveness. Check the example above [here](https://jsbin.com/vizumoroqu/edit?html,js,output) and try to type `obj.first = 'Jane'` at "Console" tab.
 
 ## Quick API ref
 
@@ -89,20 +76,14 @@ defi.bindNode(obj, 'myKey', '.my-slider', {
     on: 'slide',
     // how to extract element state?
     // - return 'value' of the widget
-    getValue() {
-        return $(this).slider('option', 'value');
-    },
+    getValue: ({ node }) => $(node).slider('option', 'value'),
     // how to set element state?
     // - set 'value'
-    setValue(v) {
-        $(this).slider('option', 'value', v);
-    },
+    setValue: (v, { node }) => $(node).slider('option', 'value', v),
     // how to initialize the widget?
     // you can initialize the slider in any way,
     // but 'initialize' function provides some syntactic sugar
-    initialize() {
-        $(this).slider({ min: 0, max: 100 });
-    }
+    initialize: ({ node }) => $(node).slider({ min: 0, max: 100 }),
 });
 ```
 
