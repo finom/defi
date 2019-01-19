@@ -23,7 +23,7 @@
     "deploy-to-git": "shx rm -rf bundle && deploy-to-git",
     "bundle-browser-test": "BABEL_ENV=test webpack --config test/webpack-test.config.js",
     "bundle-deploy-script": "npm run bundle && npm run bundle-browser-test",
-    "upgrade": "ncu -u -a && npm install",
+    "upgrade": "ncu -a -x coveralls && npm i",
     "travis-deploy-once": "travis-deploy-once",
     "patch": "npm version patch && npm run release && git push --tags",
     "minor": "npm version minor && npm run release && git push --tags"
@@ -98,7 +98,7 @@
     "babel-polyfill": "^6.26.0",
     "commitizen": "^2.9.6",
     "copy-webpack-plugin": "^4.5.1",
-    "coveralls": "^3.0.0",
+    "coveralls": "2.11.16",
     "cz-simple-conventional-changelog": "0.0.1",
     "deploy-to-git": "^0.1.5",
     "eslint": "^4.19.1",
