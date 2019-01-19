@@ -46,7 +46,7 @@ describe('Bindings', () => {
     beforeEach(() => {
         obj = {};
         node = document.createElement('div');
-        child = node.appendChild(document.createElement('div'))
+        child = node.appendChild(document.createElement('div'));
         child.className = 'child';
 
         initializeCall = createSpy();
@@ -212,17 +212,17 @@ describe('Bindings', () => {
     });
 
     it('should unbind by ":bound() [native_selector]" selector', () => {
-      bindNode(obj, 'x', node, binder, noDebounceFlag);
-      bindNode(obj, 'y', child, binder, noDebounceFlag);
-      unbindNode(obj, 'y', ':bound(x) .child');
-      testSimpleUnbind('y', child);
+        bindNode(obj, 'x', node, binder, noDebounceFlag);
+        bindNode(obj, 'y', child, binder, noDebounceFlag);
+        unbindNode(obj, 'y', ':bound(x) .child');
+        testSimpleUnbind('y', child);
     });
 
     it('should unbind by ":bound() > [native_selector]" selector', () => {
-      bindNode(obj, 'x', node, binder, noDebounceFlag);
-      bindNode(obj, 'y', child, binder, noDebounceFlag);
-      unbindNode(obj, 'y', ':bound(x) > .child');
-      testSimpleUnbind('y', child);
+        bindNode(obj, 'x', node, binder, noDebounceFlag);
+        bindNode(obj, 'y', child, binder, noDebounceFlag);
+        unbindNode(obj, 'y', ':bound(x) > .child');
+        testSimpleUnbind('y', child);
     });
 
     it('should unbind using key-node object', () => {
