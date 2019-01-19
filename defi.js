@@ -1,6 +1,6 @@
 /*
     --------------------------------------------------------------
-    defi.js v0.0.17 (Sat, 21 Apr 2018 21:22:38 GMT)
+    defi.js v0.0.21 (Sat, 19 Jan 2019 10:45:31 GMT)
     By Andrey Gubanov http://github.com/finom
     Released under the MIT license
     More info: https://defi.js.org
@@ -85,7 +85,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 61);
+/******/ 	return __webpack_require__(__webpack_require__.s = 59);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -168,19 +168,17 @@ function triggerOne(object, name, triggerArgs) {
         if (triggerArgs instanceof Array) {
             while (i < l) {
                 var event = triggerOne.latestEvent = events[i];
-                var callback = event.callback,
-                    ctx = event.ctx;
+                var callback = event.callback;
 
-                callback.apply(ctx, triggerArgs);
+                callback.apply(object, triggerArgs);
                 i += 1;
             }
         } else {
             while (i < l) {
                 var _event = triggerOne.latestEvent = events[i];
-                var _callback = _event.callback,
-                    _ctx = _event.ctx;
+                var _callback = _event.callback;
 
-                _callback.call(_ctx, triggerArgs);
+                _callback.call(object, triggerArgs);
                 i += 1;
             }
         }
@@ -302,139 +300,9 @@ var defs = __webpack_require__(0);
 
 var triggerOne = __webpack_require__(2);
 
-var domEventReg = __webpack_require__(16);
-
-// removes simple event listener from an object
-module.exports = removeListener;
-function removeListener(object, name, callback, context, info) {
-    var def = defs.get(object);
-
-    // if no definition do nothing
-    if (!def) {
-        return false;
-    }
-
-    var allEvents = def.events;
-
-    var events = allEvents[name];
-    var retain = [];
-    var noTrigger = name ? name[0] === '_' : false;
-    var domEventExecResult = domEventReg.exec(name);
-
-    if (domEventExecResult) {
-        var eventName = domEventExecResult[1],
-            key = domEventExecResult[2],
-            selector = domEventExecResult[3];
-        // fixing circular reference issue
-
-        var removeDomListener = __webpack_require__(50);
-
-        removeDomListener(object, key, eventName, selector, callback, context, info);
-
-        return true;
-    }
-
-    // if all events need to be removed
-    if (typeof name === 'undefined') {
-        if (!noTrigger) {
-            for (var _target2 = allEvents, _keys = Object.keys(_target2), _i = 0, allEventsName, allEventsItem, _l2 = _keys.length; (allEventsName = _keys[_i], allEventsItem = _target2[allEventsName]), _i < _l2; _i++) {
-                for (var _target = allEventsItem, _index = 0, event, _l = _target.length; event = _target[_index], _index < _l; _index++) {
-                    var removeEventData = {
-                        allEventsName: allEventsName,
-                        callback: event.callback,
-                        context: event.context
-                    };
-
-                    triggerOne(object, 'removeevent:' + name, removeEventData);
-                    triggerOne(object, 'removeevent', removeEventData);
-                }
-            }
-        }
-
-        // restore default value of "events"
-        def.events = {};
-    } else if (events) {
-        for (var _target3 = events, _index2 = 0, event, _l3 = _target3.length; event = _target3[_index2], _index2 < _l3; _index2++) {
-            var argCallback = callback && callback._callback || callback;
-            var eventCallback = event.callback._callback || event.callback;
-
-            if (argCallback && argCallback !== eventCallback || context && context !== event.context) {
-                // keep event
-                retain.push(event);
-            } else {
-                var _removeEventData = {
-                    name: name,
-                    callback: event.callback,
-                    context: event.context
-                };
-
-                if (!noTrigger) {
-                    triggerOne(object, 'removeevent:' + name, _removeEventData);
-                    triggerOne(object, 'removeevent', _removeEventData);
-                }
-            }
-        }
-        // if events with given name are found
-
-
-        if (retain.length) {
-            allEvents[name] = retain;
-        } else {
-            delete def.events[name];
-        }
-    }
-
-    return false;
-}
-
-/***/ }),
-/* 5 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var Init = __webpack_require__(15);
-
-var parseHTML = __webpack_require__(57);
-
-var on = __webpack_require__(56);
-
-var off = __webpack_require__(55);
-
-var add = __webpack_require__(54);
-
-var assign = __webpack_require__(53);
-
-// tiny jQuery replacement for Matreshka
-// mq previously called balalaika.js
-module.exports = mq;
-function mq(selector, context) {
-    return new Init(selector, context);
-}
-
-mq.parseHTML = parseHTML;
-
-assign(Init.prototype, {
-    on: on,
-    off: off,
-    add: add
-});
-
-/***/ }),
-/* 6 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var defs = __webpack_require__(0);
-
-var triggerOne = __webpack_require__(2);
-
 var checkObjectType = __webpack_require__(1);
 
-var is = __webpack_require__(24);
+var is = __webpack_require__(22);
 
 // the function sets new value for a property
 // since its performance is very critical we're checking events existence manually
@@ -603,7 +471,7 @@ function set(object, key, value, eventOptions) {
 }
 
 /***/ }),
-/* 7 */
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -611,7 +479,7 @@ function set(object, key, value, eventOptions) {
 
 var defs = __webpack_require__(0);
 
-var set = __webpack_require__(6);
+var set = __webpack_require__(4);
 
 // the function defines needed descriptor for given property
 module.exports = defineProp;
@@ -650,7 +518,7 @@ function defineProp(object, key, noAccessor) {
 }
 
 /***/ }),
-/* 8 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -671,8 +539,6 @@ function initMK(object) {
             events: {
                 /* example: {
                     callback: function,
-                    ctx: object,
-                    context: object2,
                     name: "example",
                     info: { ...extra data for an event... }
                 } */
@@ -703,19 +569,19 @@ function initMK(object) {
 }
 
 /***/ }),
-/* 9 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var initMK = __webpack_require__(8);
+var initMK = __webpack_require__(6);
 
 var triggerOne = __webpack_require__(2);
 
-var defineProp = __webpack_require__(7);
+var defineProp = __webpack_require__(5);
 
-var domEventReg = __webpack_require__(16);
+var domEventReg = __webpack_require__(17);
 
 // property modifier event regexp
 var propModEventReg // eslint-disable-next-line max-len
@@ -724,17 +590,17 @@ var propModEventReg // eslint-disable-next-line max-len
 // adds simple event listener
 // used as core of event engine
 module.exports = addListener;
-function addListener(object, name, callback, context) {
-    var info = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : {};
+function addListener(object, name, callback) {
+    var info = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
 
     var _initMK = initMK(object),
         allEvents = _initMK.events;
 
-    var ctx = context || object;
     var events = allEvents[name];
     var event = {
-        callback: callback, context: context, ctx: ctx, name: name, info: info
+        callback: callback, name: name, info: info
     };
+
     // skipChecks is used by internal methods for better performance
     var _info$skipChecks = info.skipChecks,
         skipChecks = _info$skipChecks === undefined ? false : _info$skipChecks;
@@ -749,9 +615,9 @@ function addListener(object, name, callback, context) {
                 selector = domEventExecResult[3];
             // fixing circular reference issue
 
-            var addDomListener = __webpack_require__(58);
+            var addDomListener = __webpack_require__(50);
 
-            addDomListener(object, key, eventName, selector, callback, context, info);
+            addDomListener(object, key, eventName, selector, callback, info);
 
             return true;
         }
@@ -765,7 +631,7 @@ function addListener(object, name, callback, context) {
                 var existingEvent = events[i];
                 var argCallback = callback && callback._callback || callback;
                 var eventCallback = existingEvent.callback._callback || existingEvent.callback;
-                if (argCallback === eventCallback && existingEvent.context === context) {
+                if (argCallback === eventCallback) {
                     return false;
                 }
             }
@@ -791,6 +657,134 @@ function addListener(object, name, callback, context) {
 
     // if event is added successfully return true
     return true;
+}
+
+/***/ }),
+/* 8 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var Init = __webpack_require__(16);
+
+var parseHTML = __webpack_require__(55);
+
+var on = __webpack_require__(54);
+
+var off = __webpack_require__(53);
+
+var add = __webpack_require__(52);
+
+var assign = __webpack_require__(51);
+
+// tiny jQuery replacement for Matreshka
+// mq previously called balalaika.js
+module.exports = mq;
+function mq(selector, context) {
+    return new Init(selector, context);
+}
+
+mq.parseHTML = parseHTML;
+
+assign(Init.prototype, {
+    on: on,
+    off: off,
+    add: add
+});
+
+/***/ }),
+/* 9 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var defs = __webpack_require__(0);
+
+var triggerOne = __webpack_require__(2);
+
+var domEventReg = __webpack_require__(17);
+
+// removes simple event listener from an object
+module.exports = removeListener;
+function removeListener(object, name, callback, info) {
+    var def = defs.get(object);
+
+    // if no definition do nothing
+    if (!def) {
+        return false;
+    }
+
+    var allEvents = def.events;
+
+    var events = allEvents[name];
+    var retain = [];
+    var noTrigger = name ? name[0] === '_' : false;
+    var domEventExecResult = domEventReg.exec(name);
+
+    if (domEventExecResult) {
+        var eventName = domEventExecResult[1],
+            key = domEventExecResult[2],
+            selector = domEventExecResult[3];
+        // fixing circular reference issue
+
+        var removeDomListener = __webpack_require__(56);
+
+        removeDomListener(object, key, eventName, selector, callback, info);
+
+        return true;
+    }
+
+    // if all events need to be removed
+    if (typeof name === 'undefined') {
+        if (!noTrigger) {
+            for (var _target2 = allEvents, _keys = Object.keys(_target2), _i = 0, allEventsName, allEventsItem, _l2 = _keys.length; (allEventsName = _keys[_i], allEventsItem = _target2[allEventsName]), _i < _l2; _i++) {
+                for (var _target = allEventsItem, _index = 0, event, _l = _target.length; event = _target[_index], _index < _l; _index++) {
+                    var removeEventData = {
+                        allEventsName: allEventsName,
+                        callback: event.callback
+                    };
+
+                    triggerOne(object, 'removeevent:' + name, removeEventData);
+                    triggerOne(object, 'removeevent', removeEventData);
+                }
+            }
+        }
+
+        // restore default value of "events"
+        def.events = {};
+    } else if (events) {
+        for (var _target3 = events, _index2 = 0, event, _l3 = _target3.length; event = _target3[_index2], _index2 < _l3; _index2++) {
+            var argCallback = callback && callback._callback || callback;
+            var eventCallback = event.callback._callback || event.callback;
+
+            if (argCallback && argCallback !== eventCallback) {
+                // keep event
+                retain.push(event);
+            } else {
+                var _removeEventData = {
+                    name: name,
+                    callback: event.callback
+                };
+
+                if (!noTrigger) {
+                    triggerOne(object, 'removeevent:' + name, _removeEventData);
+                    triggerOne(object, 'removeevent', _removeEventData);
+                }
+            }
+        }
+        // if events with given name are found
+
+
+        if (retain.length) {
+            allEvents[name] = retain;
+        } else {
+            delete def.events[name];
+        }
+    }
+
+    return false;
 }
 
 /***/ }),
@@ -881,11 +875,11 @@ var checkObjectType = __webpack_require__(1);
 
 var defs = __webpack_require__(0);
 
-var getNodes = __webpack_require__(18);
+var getNodes = __webpack_require__(19);
 
 var removeTreeListener = __webpack_require__(20);
 
-var removeBinding = __webpack_require__(38);
+var removeBinding = __webpack_require__(37);
 
 // unbinds a node
 module.exports = unbindNode;
@@ -1073,9 +1067,112 @@ function unbindNode(object, key, node, eventOptions) {
 "use strict";
 
 
+var addListener = __webpack_require__(7);
+
+var changeHandler = __webpack_require__(48);
+
+// adds delegated event listener to an object by given path
+// TODO Handler uses wrong context
+module.exports = delegateListener;
+function delegateListener(object, givenPath, name, callback) {
+    var info = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : {};
+
+    // if typeof path is string and path is not empty string then split it
+    var path = typeof givenPath === 'string' && givenPath !== '' ? givenPath.split('.') : givenPath;
+
+    if (!path || !path.length) {
+        // if no path then add simple listener
+        addListener(object, name, callback, info);
+    } else {
+        // else do all magic
+        var key = path[0];
+        var pathStr = void 0; // needed for undelegation
+
+        if (path.length > 1) {
+            var _source = path,
+                _l = _source.length,
+                _i = 1 || 0,
+                _end = null || _l,
+                _j = 0,
+                _result = Array(_end - _i);
+
+            while (_i < _end) {
+                _result[_j++] = _source[_i++];
+            }
+
+            path = _result;
+            pathStr = path.join('.');
+        } else {
+            path = [];
+            pathStr = path[0] || '';
+        }
+
+        var delegatedData = {
+            path: path,
+            name: name,
+            callback: callback,
+            info: info,
+            object: object
+        };
+
+        // the event is triggered by "set"
+        addListener(object, '_change:delegated:' + key, changeHandler, {
+            delegatedData: delegatedData,
+            pathStr: pathStr
+        });
+
+        // call handler manually
+        changeHandler({
+            value: object[key]
+        }, delegatedData);
+    }
+}
+
+/***/ }),
+/* 13 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+// Returns a function, that, as long as it continues to be invoked, will not
+// be triggered. The function will be called after it stops being called for
+// N milliseconds.
+// (c) https://davidwalsh.name/javascript-debounce-function
+
+module.exports = debounce;
+function debounce(func, givenDelay, thisArg) {
+    var timeout = void 0;
+    var delay = void 0;
+    if (typeof givenDelay !== 'number') {
+        thisArg = givenDelay; // eslint-disable-line no-param-reassign
+        delay = 0;
+    } else {
+        delay = givenDelay || 0;
+    }
+
+    return function debounced() {
+        var args = arguments;
+        var callContext = thisArg || this;
+
+        clearTimeout(timeout);
+
+        timeout = setTimeout(function () {
+            return func.apply(callContext, args);
+        }, delay);
+    };
+}
+
+/***/ }),
+/* 14 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
 var defs = __webpack_require__(0);
 
-var removeListener = __webpack_require__(4);
+var removeListener = __webpack_require__(9);
 
 // the function removes internally used events such as _asterisk:add
 function detatchDelegatedLogic(_ref) {
@@ -1102,8 +1199,8 @@ function detatchDelegatedLogic(_ref) {
 
 // removes delegated event listener from an object by given path
 module.exports = undelegateListener;
-function undelegateListener(object, givenPath, name, callback, context) {
-    var info = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : {};
+function undelegateListener(object, givenPath, name, callback) {
+    var info = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : {};
 
     var def = defs.get(object);
 
@@ -1119,7 +1216,7 @@ function undelegateListener(object, givenPath, name, callback, context) {
 
     if (!path || !path.length) {
         // if no path then remove listener
-        removeListener(object, name, callback, context, info);
+        removeListener(object, name, callback, info);
     } else {
         // else do all magic
         var key = path[0];
@@ -1154,81 +1251,13 @@ function undelegateListener(object, givenPath, name, callback, context) {
         }
 
         if (typeof object[key] === 'object') {
-            undelegateListener(object[key], path, name, callback, context, info);
+            undelegateListener(object[key], path, name, callback, info);
         }
     }
 }
 
 /***/ }),
-/* 13 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var addListener = __webpack_require__(9);
-
-var changeHandler = __webpack_require__(51);
-
-// adds delegated event listener to an object by given path
-module.exports = delegateListener;
-function delegateListener(object, givenPath, name, callback, context) {
-    var info = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : {};
-
-    // if typeof path is string and path is not empty string then split it
-    var path = typeof givenPath === 'string' && givenPath !== '' ? givenPath.split('.') : givenPath;
-
-    if (!path || !path.length) {
-        // if no path then add simple listener
-        addListener(object, name, callback, context, info);
-    } else {
-        // else do all magic
-        var key = path[0];
-        var pathStr = void 0; // needed for undelegation
-
-        if (path.length > 1) {
-            var _source = path,
-                _l = _source.length,
-                _i = 1 || 0,
-                _end = null || _l,
-                _j = 0,
-                _result = Array(_end - _i);
-
-            while (_i < _end) {
-                _result[_j++] = _source[_i++];
-            }
-
-            path = _result;
-            pathStr = path.join('.');
-        } else {
-            path = [];
-            pathStr = path[0] || '';
-        }
-
-        var delegatedData = {
-            path: path,
-            name: name,
-            callback: callback,
-            context: context,
-            info: info,
-            object: object
-        };
-
-        // the event is triggered by "set"
-        addListener(object, '_change:delegated:' + key, changeHandler, null, {
-            delegatedData: delegatedData,
-            pathStr: pathStr
-        });
-
-        // call handler manually
-        changeHandler({
-            value: object[key]
-        }, delegatedData);
-    }
-}
-
-/***/ }),
-/* 14 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1242,7 +1271,7 @@ module.exports = {
 };
 
 /***/ }),
-/* 15 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1295,7 +1324,7 @@ MQInit.prototype = [];
 module.exports = MQInit;
 
 /***/ }),
-/* 16 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1306,7 +1335,7 @@ module.exports = MQInit;
 module.exports = /([^::]+)::([^()]+)?(?:\((.*)\))?/;
 
 /***/ }),
-/* 17 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1316,15 +1345,15 @@ module.exports = /([^::]+)::([^()]+)?(?:\((.*)\))?/;
 module.exports = /\s+(?![^(]*\))/g;
 
 /***/ }),
-/* 18 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var selectNodes = __webpack_require__(41);
+var selectNodes = __webpack_require__(39);
 
-var $ = __webpack_require__(5);
+var $ = __webpack_require__(8);
 
 var htmlReg = /</;
 var customSelectorReg = /:bound\(([^(]*)\)/;
@@ -1346,237 +1375,15 @@ function getNodes(object, selector) {
 }
 
 /***/ }),
-/* 19 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var initMK = __webpack_require__(8);
-
-var defineProp = __webpack_require__(7);
-
-var getNodes = __webpack_require__(18);
-
-var createBindingSwitcher = __webpack_require__(39);
-
-var bindSingleNode = __webpack_require__(37);
-
-var checkObjectType = __webpack_require__(1);
-
-var defiError = __webpack_require__(3);
-
-var addTreeListener = __webpack_require__(21);
-
-// initializes binsing between a property of an object to HTML node
-module.exports = bindNode;
-function bindNode(object, key, node, binder, eventOptions) {
-    // throw error when object type is wrong
-    checkObjectType(object, 'bindNode');
-
-    eventOptions = eventOptions || {}; // eslint-disable-line no-param-reassign
-    binder = binder || {}; // eslint-disable-line no-param-reassign
-
-    initMK(object);
-
-    var temporaryOptionalFlag = bindNode.temporaryOptionalFlag;
-
-
-    delete bindNode.temporaryOptionalFlag;
-
-    // throw an error when key is falsy
-    if (!key) {
-        throw defiError('binding:falsy_key');
-    }
-
-    if (key instanceof Array) {
-        if (typeof key[0] === 'string') {
-            /*
-             * accept array of keys
-             * this.bindNode(['a', 'b', 'c'], node)
-             */
-            if (temporaryOptionalFlag) {
-                var _keys,
-                    _l,
-                    _i,
-                    _source,
-                    _key,
-                    _result = {};
-
-                for (_source = eventOptions, _keys = Object.keys(_source), _l = _keys.length, _i = 0; _i < _l; _i++) {
-                    _key = _keys[_i];
-                    _result[_key] = _source[_key];
-                }
-
-                _result.optional = true
-
-                // eslint-disable-next-line no-param-reassign
-                eventOptions = _result;
-            }
-
-            for (var _target = key, _index = 0, itemKey, _l2 = _target.length; itemKey = _target[_index], _index < _l2; _index++) {
-                bindNode(object, itemKey, node, binder, eventOptions)
-            }
-        } else {
-            for (var _target2 = key, _index2 = 0, _ref, _l7 = _target2.length; _ref = _target2[_index2], _index2 < _l7; _index2++) {
-                var itemKey = _ref.key,
-                    itemNode = _ref.node,
-                    itemBinder = _ref.binder,
-                    itemEventOptions = _ref.event;
-
-                var commonEventOptions = node;
-                var mergedEventOptions = {};
-
-                if (temporaryOptionalFlag) {
-                    mergedEventOptions.optional = true;
-                }
-
-                if (commonEventOptions) {
-                    var _result2 = mergedEventOptions;
-                    // extend event object by "global" event
-
-                    for (var _source3 = commonEventOptions, _keys3 = Object.keys(_source3), _l4 = _keys3.length, _i3 = 0, _key3; _i3 < _l4; _i3++) {
-                        _key3 = _keys3[_i3];
-                        _result2[_key3] = _source3[_key3];
-                    }
-                }
-
-                if (itemEventOptions) {
-                    var _result3 = mergedEventOptions;
-                    // extend event object by "local" event ("event" key of an object)
-
-                    for (var _source5 = itemEventOptions, _keys5 = Object.keys(_source5), _l6 = _keys5.length, _i5 = 0, _key5; _i5 < _l6; _i5++) {
-                        _key5 = _keys5[_i5];
-                        _result3[_key5] = _source5[_key5];
-                    }
-                }
-
-                bindNode(object, itemKey, itemNode, itemBinder, mergedEventOptions);
-            }
-            /*
-             * accept array of objects
-             * this.bindNode([{key, node, binder, event}], { silent: true });
-             */
-
-        }
-
-        return object;
-    }
-
-    if (typeof key === 'object') {
-        for (var _target4 = key, _keys7 = Object.keys(_target4), _i7 = 0, keyObjKey, keyObjValue, _l10 = _keys7.length; (keyObjKey = _keys7[_i7], keyObjValue = _target4[keyObjKey]), _i7 < _l10; _i7++) {
-            // binder means eventOptions
-            if (temporaryOptionalFlag) {
-                var _keys6,
-                    _l8,
-                    _i6,
-                    _source6,
-                    _key6,
-                    _result4 = {};
-
-                for (_source6 = binder, _keys6 = Object.keys(_source6), _l8 = _keys6.length, _i6 = 0; _i6 < _l8; _i6++) {
-                    _key6 = _keys6[_i6];
-                    _result4[_key6] = _source6[_key6];
-                }
-
-                _result4.optional = true
-
-                // eslint-disable-next-line no-param-reassign
-                eventOptions = binder ? _result4 : { optional: true };
-            } else {
-                eventOptions = binder; // eslint-disable-line no-param-reassign
-            }
-
-            if (keyObjValue && keyObjValue.constructor === Object && 'node' in keyObjValue) {
-                // this.bindNode({ key: { node: $(), binder } ) }, { on: 'evt' }, { silent: true });
-                bindNode(object, keyObjKey, keyObjValue.node, keyObjValue.binder || node, eventOptions);
-            } else if (keyObjValue && keyObjValue.constructor === Array && keyObjValue.length && keyObjValue[0].constructor === Object && 'node' in keyObjValue[0]) {
-                for (var _target3 = keyObjValue, _index3 = 0, keyObjValueItem, _l9 = _target3.length; keyObjValueItem = _target3[_index3], _index3 < _l9; _index3++) {
-                    bindNode(object, keyObjKey, keyObjValueItem.node, keyObjValueItem.binder || node, eventOptions);
-                }
-                // this.bindNode({ key: [{
-                //   node: $(),
-                //   binder
-                // }] ) }, { on: 'evt' }, { silent: true });
-
-            } else {
-                // this.bindNode({ key: $() }, { on: 'evt' }, { silent: true });
-                bindNode(object, keyObjKey, keyObjValue, node, eventOptions);
-            }
-        }
-
-        return object;
-    }
-
-    var _eventOptions = eventOptions,
-        _eventOptions$optiona = _eventOptions.optional,
-        optional = _eventOptions$optiona === undefined ? temporaryOptionalFlag || false : _eventOptions$optiona,
-        _eventOptions$exactKe = _eventOptions.exactKey,
-        exactKey = _eventOptions$exactKe === undefined ? false : _eventOptions$exactKe;
-
-    var $nodes = getNodes(object, node);
-
-    // check node existence
-    if (!$nodes.length) {
-        if (optional) {
-            return object;
-        }
-
-        throw defiError('binding:node_missing', { key: key, node: node });
-    }
-
-    if (!exactKey) {
-        var deepPath = key.split('.');
-        var deepPathLength = deepPath.length;
-
-        if (deepPathLength > 1) {
-            // handle binding when key arg includes dots (eg "a.b.c.d")
-            var bindingSwitcher = createBindingSwitcher({
-                object: object,
-                deepPath: deepPath,
-                $nodes: $nodes,
-                binder: binder,
-                eventOptions: eventOptions,
-                bindNode: bindNode
-            });
-
-            addTreeListener(object, deepPath.slice(0, deepPathLength - 1), bindingSwitcher);
-
-            bindingSwitcher();
-
-            return object;
-        }
-    }
-
-    var propDef = defineProp(object, key);
-
-    // handle binding for every node separately
-
-    for (var _target5 = $nodes, _index4 = 0, oneNode, _l11 = _target5.length; oneNode = _target5[_index4], _index4 < _l11; _index4++) {
-        bindSingleNode(object, {
-            $nodes: $nodes,
-            node: oneNode,
-            key: key,
-            eventOptions: eventOptions,
-            binder: binder,
-            propDef: propDef
-        })
-    }
-
-    return object;
-}
-
-/***/ }),
 /* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var undelegateListener = __webpack_require__(12);
+var undelegateListener = __webpack_require__(14);
 
 // removes tree listener from all object tree of fiven path
-// TODO: Pass context to removeTreeListener
 module.exports = removeTreeListener;
 function removeTreeListener(object, deepPath, handler) {
     if (typeof deepPath === 'string') {
@@ -1599,7 +1406,7 @@ function removeTreeListener(object, deepPath, handler) {
 "use strict";
 
 
-var delegateListener = __webpack_require__(13);
+var delegateListener = __webpack_require__(12);
 
 var removeTreeListener = __webpack_require__(20);
 
@@ -1648,7 +1455,6 @@ function createTreeListener(_ref) {
 }
 
 // listens changes for all branches of given path
-// TODO: Pass context to addTreeListener
 // one of the most hard functions to understand
 module.exports = addTreeListener;
 function addTreeListener(object, deepPath, handler) {
@@ -1676,33 +1482,14 @@ function addTreeListener(object, deepPath, handler) {
 "use strict";
 
 
-// Returns a function, that, as long as it continues to be invoked, will not
-// be triggered. The function will be called after it stops being called for
-// N milliseconds.
-// (c) https://davidwalsh.name/javascript-debounce-function
+// determines whether two values are the same value
+/* istanbul ignore next */
+// eslint-disable-next-line
+var isPolyfill = function (v1, v2) {
+  return v1 === 0 && v2 === 0 ? 1 / v1 === 1 / v2 : v1 !== v1 && v2 !== v2 || v1 === v2;
+};
 
-module.exports = debounce;
-function debounce(func, givenDelay, thisArg) {
-    var timeout = void 0;
-    var delay = void 0;
-    if (typeof givenDelay !== 'number') {
-        thisArg = givenDelay; // eslint-disable-line no-param-reassign
-        delay = 0;
-    } else {
-        delay = givenDelay || 0;
-    }
-
-    return function debounced() {
-        var args = arguments;
-        var callContext = thisArg || this;
-
-        clearTimeout(timeout);
-
-        timeout = setTimeout(function () {
-            return func.apply(callContext, args);
-        }, delay);
-    };
-}
+module.exports = Object.is || isPolyfill;
 
 /***/ }),
 /* 23 */
@@ -1756,14 +1543,74 @@ function html2nodeList(givenHTML) {
 "use strict";
 
 
-// determines whether two values are the same value
-/* istanbul ignore next */
-// eslint-disable-next-line
-var isPolyfill = function (v1, v2) {
-  return v1 === 0 && v2 === 0 ? 1 / v1 === 1 / v2 : v1 !== v1 && v2 !== v2 || v1 === v2;
-};
+var splitBySpaceReg = __webpack_require__(18);
 
-module.exports = Object.is || isPolyfill;
+var checkObjectType = __webpack_require__(1);
+
+var defs = __webpack_require__(0);
+
+var removeListener = __webpack_require__(9);
+
+var undelegateListener = __webpack_require__(14);
+
+var $ = __webpack_require__(8);
+
+// removes event listener
+module.exports = off;
+function off(object, givenNames, callback) {
+    // throw error when object type is wrong
+    checkObjectType(object, 'off');
+
+    var isNamesVarArray = givenNames instanceof Array;
+    var def = defs.get(object);
+
+    // allow to pass name-handler object
+    // TODO: Name-handler object passed to off method is non-documented feature
+    if (givenNames && typeof givenNames === 'object' && !isNamesVarArray) {
+        for (var _target = givenNames, _keys = Object.keys(_target), _i = 0, namesObjName, namesObjCallback, _l = _keys.length; (namesObjName = _keys[_i], namesObjCallback = _target[namesObjName]), _i < _l; _i++) {
+            off(object, namesObjName, namesObjCallback, callback)
+        }
+
+        return object;
+    }
+
+    if (!givenNames && !callback) {
+        def.events = {};
+
+        for (var _target3 = def.props, _keys2 = Object.keys(_target3), _i2 = 0, propName, _ref, _l3 = _keys2.length; (propName = _keys2[_i2], _ref = _target3[propName]), _i2 < _l3; _i2++) {
+            var bindings = _ref.bindings;
+
+            if (bindings) {
+                for (var _target2 = bindings, _index = 0, _ref2, _l2 = _target2.length; _ref2 = _target2[_index], _index < _l2; _index++) {
+                    var node = _ref2.node;
+
+                    var eventNamespace = def.id + propName;
+                    $(node).off('.' + eventNamespace);
+                }
+            }
+        }
+
+        return object;
+    }
+
+    // TODO: Array of names passed to off method is non-documented feature
+    // split by spaces
+    var names = isNamesVarArray ? givenNames : givenNames.split(splitBySpaceReg);
+
+    for (var _target4 = names, _index2 = 0, name, _l4 = _target4.length; name = _target4[_index2], _index2 < _l4; _index2++) {
+        var delegatedEventParts = name.split('@');
+        if (delegatedEventParts.length > 1) {
+            var path = delegatedEventParts[0],
+                delegatedName = delegatedEventParts[1];
+
+            undelegateListener(object, path, delegatedName, callback);
+        } else {
+            removeListener(object, name, callback);
+        }
+    }
+
+    return object;
+}
 
 /***/ }),
 /* 25 */
@@ -1772,13 +1619,13 @@ module.exports = Object.is || isPolyfill;
 "use strict";
 
 
-var initMK = __webpack_require__(8);
+var initMK = __webpack_require__(6);
 
-var defineProp = __webpack_require__(7);
+var defineProp = __webpack_require__(5);
 
 var checkObjectType = __webpack_require__(1);
 
-var set = __webpack_require__(6);
+var set = __webpack_require__(4);
 
 var defiError = __webpack_require__(3);
 
@@ -1852,7 +1699,7 @@ var unbindNode = __webpack_require__(11);
 
 var triggerOne = __webpack_require__(2);
 
-var removeListener = __webpack_require__(4);
+var removeListener = __webpack_require__(9);
 
 var defs = __webpack_require__(0);
 
@@ -1954,24 +1801,6 @@ function remove(object, givenKey, eventOptions) {
 "use strict";
 
 
-var bindNode = __webpack_require__(19);
-
-// TODO: Adds a binding, not throwing an error when a node is missing
-module.exports = bindOptionalNode;
-function bindOptionalNode() {
-    // this hack allows to keep bindOptionalNode as compact as possible
-    // and doesn't require to flip args and support all bindNode variations
-    bindNode.temporaryOptionalFlag = true;
-    return bindNode.apply(this, arguments);
-}
-
-/***/ }),
-/* 28 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
 var defs = __webpack_require__(0);
 
 var checkObjectType = __webpack_require__(1);
@@ -2010,7 +1839,7 @@ function bound(object, key) {
 }
 
 /***/ }),
-/* 29 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2059,15 +1888,15 @@ function createObjectHandler(_ref) {
 }
 
 /***/ }),
-/* 30 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var is = __webpack_require__(24);
+var is = __webpack_require__(22);
 
-var set = __webpack_require__(6);
+var set = __webpack_require__(4);
 
 // returns a function which called when bound node state is changed (eg DOM event is fired)
 module.exports = createNodeHandler;
@@ -2141,7 +1970,7 @@ function createNodeHandler(_ref) {
 }
 
 /***/ }),
-/* 31 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2163,7 +1992,7 @@ function output() {
 }
 
 /***/ }),
-/* 32 */
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2178,7 +2007,7 @@ function progress() {
 }
 
 /***/ }),
-/* 33 */
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2237,7 +2066,7 @@ function select(multiple) {
 }
 
 /***/ }),
-/* 34 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2253,7 +2082,7 @@ function textarea() {
 }
 
 /***/ }),
-/* 35 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2261,13 +2090,13 @@ function textarea() {
 
 var input = __webpack_require__(10);
 
-var textarea = __webpack_require__(34);
+var textarea = __webpack_require__(33);
 
-var select = __webpack_require__(33);
+var select = __webpack_require__(32);
 
-var progress = __webpack_require__(32);
+var progress = __webpack_require__(31);
 
-var output = __webpack_require__(31);
+var output = __webpack_require__(30);
 
 // defaultBinders collection by default contains only one function-checker
 module.exports = [function (node) {
@@ -2288,13 +2117,13 @@ module.exports = [function (node) {
 }];
 
 /***/ }),
-/* 36 */
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var defaultBinders = __webpack_require__(35);
+var defaultBinders = __webpack_require__(34);
 
 // tries to find a binder for given node
 module.exports = lookForBinder;
@@ -2310,23 +2139,23 @@ function lookForBinder(node) {
 }
 
 /***/ }),
-/* 37 */
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var lookForBinder = __webpack_require__(36);
+var lookForBinder = __webpack_require__(35);
 
-var createNodeHandler = __webpack_require__(30);
+var createNodeHandler = __webpack_require__(29);
 
-var createObjectHandler = __webpack_require__(29);
+var createObjectHandler = __webpack_require__(28);
 
 var triggerOne = __webpack_require__(2);
 
-var addListener = __webpack_require__(9);
+var addListener = __webpack_require__(7);
 
-var debounce = __webpack_require__(22);
+var debounce = __webpack_require__(13);
 
 var spaceReg = /\s+/;
 
@@ -2484,7 +2313,7 @@ function bindSingleNode(object, _ref) {
         }
 
         // TODO: Is it possible to get previous value of a property?
-        addListener(object, '_change:bindings:' + key, objectHandler, null, { skipChecks: true });
+        addListener(object, '_change:bindings:' + key, objectHandler, { skipChecks: true });
 
         if (!isUndefined && setValueOnBind !== false || setValueOnBind === true) {
             if (debounceSetValueOnBind) {
@@ -2530,13 +2359,13 @@ function bindSingleNode(object, _ref) {
 }
 
 /***/ }),
-/* 38 */
+/* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var removeListener = __webpack_require__(4);
+var removeListener = __webpack_require__(9);
 
 var triggerOne = __webpack_require__(2);
 
@@ -2607,7 +2436,7 @@ function removeBinding(_ref) {
 }
 
 /***/ }),
-/* 39 */
+/* 38 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2685,29 +2514,7 @@ function createBindingSwitcher(_ref) {
 }
 
 /***/ }),
-/* 40 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-// cheap conversion of an array-like object to Array instance
-module.exports = toArray;
-function toArray(object) {
-    var start = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
-    var length = object.length;
-
-    var array = Array(length);
-
-    for (var i = start; i < length; i++) {
-        array[i - start] = object[i];
-    }
-
-    return array;
-}
-
-/***/ }),
-/* 41 */
+/* 39 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2715,9 +2522,7 @@ function toArray(object) {
 
 var defs = __webpack_require__(0);
 
-var toArray = __webpack_require__(40);
-
-var $ = __webpack_require__(5);
+var $ = __webpack_require__(8);
 
 var customSelectorReg = /\s*:bound\(([^(]*)\)\s*([\S\s]*)\s*/;
 var randomAttr = Math.random().toString().replace('0.', 'x') + 'y'; // x12345y
@@ -2758,7 +2563,7 @@ function selectNodes(object, givenSelector) {
                             for (var _target2 = boundNodes, _index = 0, node, _l2 = _target2.length; node = _target2[_index], _index < _l2; _index++) {
                                 node.setAttribute(randomAttr, randomAttr);
                                 var selected = node.querySelectorAll('[' + randomAttr + '="' + randomAttr + '"] ' + subSelector);
-                                result = result.add(toArray(selected));
+                                result = result.add(selected);
                                 node.removeAttribute(randomAttr);
                             }
                             // selecting children
@@ -2766,7 +2571,7 @@ function selectNodes(object, givenSelector) {
                         } else {
                             for (var _target3 = boundNodes, _index2 = 0, node, _l3 = _target3.length; node = _target3[_index2], _index2 < _l3; _index2++) {
                                 var selected = node.querySelectorAll(subSelector);
-                                result = result.add(toArray(selected));
+                                result = result.add(selected);
                             }
                             // if native selector doesn't contain children selector
 
@@ -2787,7 +2592,182 @@ function selectNodes(object, givenSelector) {
 }
 
 /***/ }),
-/* 42 */
+/* 40 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var initMK = __webpack_require__(6);
+
+var defineProp = __webpack_require__(5);
+
+var getNodes = __webpack_require__(19);
+
+var createBindingSwitcher = __webpack_require__(38);
+
+var bindSingleNode = __webpack_require__(36);
+
+var checkObjectType = __webpack_require__(1);
+
+var defiError = __webpack_require__(3);
+
+var addTreeListener = __webpack_require__(21);
+
+// initializes binsing between a property of an object to HTML node
+module.exports = bindNode;
+function bindNode(object, key, node, binder, eventOptions) {
+    // throw error when object type is wrong
+    checkObjectType(object, 'bindNode');
+
+    eventOptions = eventOptions || {}; // eslint-disable-line no-param-reassign
+    binder = binder || {}; // eslint-disable-line no-param-reassign
+
+    initMK(object);
+
+    // throw an error when key is falsy
+    if (!key) {
+        throw defiError('binding:falsy_key');
+    }
+
+    if (key instanceof Array) {
+        if (typeof key[0] === 'string') {
+            for (var _target = key, _index = 0, itemKey, _l = _target.length; itemKey = _target[_index], _index < _l; _index++) {
+                bindNode(object, itemKey, node, binder, eventOptions)
+            }
+            /*
+             * accept array of keys
+             * this.bindNode(['a', 'b', 'c'], node)
+             */
+
+        } else {
+            for (var _target2 = key, _index2 = 0, _ref, _l6 = _target2.length; _ref = _target2[_index2], _index2 < _l6; _index2++) {
+                var itemKey = _ref.key,
+                    itemNode = _ref.node,
+                    itemBinder = _ref.binder,
+                    itemEventOptions = _ref.event;
+
+                var commonEventOptions = node;
+                var mergedEventOptions = {};
+
+                if (commonEventOptions) {
+                    var _result = mergedEventOptions;
+                    // extend event object by "global" event
+
+                    for (var _source2 = commonEventOptions, _keys2 = Object.keys(_source2), _l3 = _keys2.length, _i2 = 0, _key2; _i2 < _l3; _i2++) {
+                        _key2 = _keys2[_i2];
+                        _result[_key2] = _source2[_key2];
+                    }
+                }
+
+                if (itemEventOptions) {
+                    var _result2 = mergedEventOptions;
+                    // extend event object by "local" event ("event" key of an object)
+
+                    for (var _source4 = itemEventOptions, _keys4 = Object.keys(_source4), _l5 = _keys4.length, _i4 = 0, _key4; _i4 < _l5; _i4++) {
+                        _key4 = _keys4[_i4];
+                        _result2[_key4] = _source4[_key4];
+                    }
+                }
+
+                bindNode(object, itemKey, itemNode, itemBinder, mergedEventOptions);
+            }
+            /*
+             * accept array of objects
+             * this.bindNode([{key, node, binder, event}], { silent: true });
+             */
+
+        }
+
+        return object;
+    }
+
+    if (typeof key === 'object') {
+        for (var _target4 = key, _keys5 = Object.keys(_target4), _i5 = 0, keyObjKey, keyObjValue, _l8 = _keys5.length; (keyObjKey = _keys5[_i5], keyObjValue = _target4[keyObjKey]), _i5 < _l8; _i5++) {
+            // binder means eventOptions
+            eventOptions = binder; // eslint-disable-line no-param-reassign
+
+            if (keyObjValue && keyObjValue.constructor === Object && 'node' in keyObjValue) {
+                // this.bindNode({ key: { node: $(), binder } ) }, { on: 'evt' }, { silent: true });
+                bindNode(object, keyObjKey, keyObjValue.node, keyObjValue.binder || node, eventOptions);
+            } else if (keyObjValue && keyObjValue.constructor === Array && keyObjValue.length && keyObjValue[0].constructor === Object && 'node' in keyObjValue[0]) {
+                for (var _target3 = keyObjValue, _index3 = 0, keyObjValueItem, _l7 = _target3.length; keyObjValueItem = _target3[_index3], _index3 < _l7; _index3++) {
+                    bindNode(object, keyObjKey, keyObjValueItem.node, keyObjValueItem.binder || node, eventOptions);
+                }
+                // this.bindNode({ key: [{
+                //   node: $(),
+                //   binder
+                // }] ) }, { on: 'evt' }, { silent: true });
+
+            } else {
+                // this.bindNode({ key: $() }, { on: 'evt' }, { silent: true });
+                bindNode(object, keyObjKey, keyObjValue, node, eventOptions);
+            }
+        }
+
+        return object;
+    }
+
+    var _eventOptions = eventOptions,
+        _eventOptions$optiona = _eventOptions.optional,
+        optional = _eventOptions$optiona === undefined ? false : _eventOptions$optiona,
+        _eventOptions$exactKe = _eventOptions.exactKey,
+        exactKey = _eventOptions$exactKe === undefined ? false : _eventOptions$exactKe;
+
+    var $nodes = getNodes(object, node);
+
+    // check node existence
+    if (!$nodes.length) {
+        if (optional) {
+            return object;
+        }
+
+        throw defiError('binding:node_missing', { key: key, node: node });
+    }
+
+    if (!exactKey) {
+        var deepPath = key.split('.');
+        var deepPathLength = deepPath.length;
+
+        if (deepPathLength > 1) {
+            // handle binding when key arg includes dots (eg "a.b.c.d")
+            var bindingSwitcher = createBindingSwitcher({
+                object: object,
+                deepPath: deepPath,
+                $nodes: $nodes,
+                binder: binder,
+                eventOptions: eventOptions,
+                bindNode: bindNode
+            });
+
+            addTreeListener(object, deepPath.slice(0, deepPathLength - 1), bindingSwitcher);
+
+            bindingSwitcher();
+
+            return object;
+        }
+    }
+
+    var propDef = defineProp(object, key);
+
+    // handle binding for every node separately
+
+    for (var _target5 = $nodes, _index4 = 0, oneNode, _l9 = _target5.length; oneNode = _target5[_index4], _index4 < _l9; _index4++) {
+        bindSingleNode(object, {
+            $nodes: $nodes,
+            node: oneNode,
+            key: key,
+            eventOptions: eventOptions,
+            binder: binder,
+            propDef: propDef
+        })
+    }
+
+    return object;
+}
+
+/***/ }),
+/* 41 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2812,15 +2792,15 @@ function deepFind(obj, givenPath) {
 }
 
 /***/ }),
-/* 43 */
+/* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var set = __webpack_require__(6);
+var set = __webpack_require__(4);
 
-var deepFind = __webpack_require__(42);
+var deepFind = __webpack_require__(41);
 
 // creates event handler for target object which will be fired when a source is changed
 module.exports = createCalcHandler;
@@ -2897,13 +2877,13 @@ function createCalcHandler(_ref) {
 }
 
 /***/ }),
-/* 44 */
+/* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var addListener = __webpack_require__(9);
+var addListener = __webpack_require__(7);
 
 var addTreeListener = __webpack_require__(21);
 
@@ -2959,25 +2939,25 @@ function addSource(_ref) {
 }
 
 /***/ }),
-/* 45 */
+/* 44 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var initMK = __webpack_require__(8);
+var initMK = __webpack_require__(6);
 
 var checkObjectType = __webpack_require__(1);
 
 var defiError = __webpack_require__(3);
 
-var debounce = __webpack_require__(22);
+var debounce = __webpack_require__(13);
 
-var addSource = __webpack_require__(44);
+var addSource = __webpack_require__(43);
 
-var createCalcHandler = __webpack_require__(43);
+var createCalcHandler = __webpack_require__(42);
 
-var defineProp = __webpack_require__(7);
+var defineProp = __webpack_require__(5);
 
 // defines a property which is dependend on other properties
 module.exports = calc;
@@ -3131,7 +3111,7 @@ function calc(object, target, sources, givenHandler, eventOptions) {
 }
 
 /***/ }),
-/* 46 */
+/* 45 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3144,22 +3124,12 @@ function triggerOneDOMEvent(_ref) {
         eventName = _ref.eventName,
         triggerArgs = _ref.triggerArgs;
     var _window = window,
-        document = _window.document,
         Event = _window.Event;
 
-    var event = void 0;
-
-    // polyfill for older browsers
-    if (document.createEvent) {
-        /* istanbul ignore next */
-        event = document.createEvent('Event');
-        event.initEvent(eventName, true, true);
-    } else if (typeof Event !== 'undefined') {
-        event = new Event(eventName, {
-            bubbles: true,
-            cancelable: true
-        });
-    }
+    var event = new Event(eventName, {
+        bubbles: true,
+        cancelable: true
+    });
 
     // matreshkaTriggerArgs will be used in a handler created by addDOMListener
     event.matreshkaTriggerArgs = triggerArgs;
@@ -3168,13 +3138,13 @@ function triggerOneDOMEvent(_ref) {
 }
 
 /***/ }),
-/* 47 */
+/* 46 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var triggerOneDOMEvent = __webpack_require__(46);
+var triggerOneDOMEvent = __webpack_require__(45);
 
 var defs = __webpack_require__(0);
 
@@ -3228,25 +3198,25 @@ function triggerDOMEvent(object, key, eventName, selector, triggerArgs) {
 }
 
 /***/ }),
-/* 48 */
+/* 47 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var domEventReg = __webpack_require__(16);
+var domEventReg = __webpack_require__(17);
 
 var checkObjectType = __webpack_require__(1);
 
 var defiError = __webpack_require__(3);
 
-var splitBySpaceReg = __webpack_require__(17);
+var splitBySpaceReg = __webpack_require__(18);
 
 var defs = __webpack_require__(0);
 
 var triggerOne = __webpack_require__(2);
 
-var triggerDomEvent = __webpack_require__(47);
+var triggerDomEvent = __webpack_require__(46);
 
 // triggers an event
 module.exports = trigger;
@@ -3300,141 +3270,13 @@ function trigger(object, givenNames) {
 }
 
 /***/ }),
-/* 49 */
+/* 48 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var splitBySpaceReg = __webpack_require__(17);
-
-var checkObjectType = __webpack_require__(1);
-
-var defs = __webpack_require__(0);
-
-var removeListener = __webpack_require__(4);
-
-var undelegateListener = __webpack_require__(12);
-
-var $ = __webpack_require__(5);
-
-// removes event listener
-module.exports = off;
-function off(object, givenNames, callback, context) {
-    // throw error when object type is wrong
-    checkObjectType(object, 'off');
-
-    var isNamesVarArray = givenNames instanceof Array;
-    var def = defs.get(object);
-
-    // allow to pass name-handler object
-    // TODO: Name-handler object passed to off method is non-documented feature
-    if (givenNames && typeof givenNames === 'object' && !isNamesVarArray) {
-        for (var _target = givenNames, _keys = Object.keys(_target), _i = 0, namesObjName, namesObjCallback, _l = _keys.length; (namesObjName = _keys[_i], namesObjCallback = _target[namesObjName]), _i < _l; _i++) {
-            off(object, namesObjName, namesObjCallback, callback)
-        }
-
-        return object;
-    }
-
-    if (!givenNames && !callback && !context) {
-        def.events = {};
-
-        for (var _target3 = def.props, _keys2 = Object.keys(_target3), _i2 = 0, propName, _ref, _l3 = _keys2.length; (propName = _keys2[_i2], _ref = _target3[propName]), _i2 < _l3; _i2++) {
-            var bindings = _ref.bindings;
-
-            if (bindings) {
-                for (var _target2 = bindings, _index = 0, _ref2, _l2 = _target2.length; _ref2 = _target2[_index], _index < _l2; _index++) {
-                    var node = _ref2.node;
-
-                    var eventNamespace = def.id + propName;
-                    $(node).off('.' + eventNamespace);
-                }
-            }
-        }
-
-        return object;
-    }
-
-    // TODO: Array of names passed to off method is non-documented feature
-    // split by spaces
-    var names = isNamesVarArray ? givenNames : givenNames.split(splitBySpaceReg);
-
-    for (var _target4 = names, _index2 = 0, name, _l4 = _target4.length; name = _target4[_index2], _index2 < _l4; _index2++) {
-        var delegatedEventParts = name.split('@');
-        if (delegatedEventParts.length > 1) {
-            var path = delegatedEventParts[0],
-                delegatedName = delegatedEventParts[1];
-
-            undelegateListener(object, path, delegatedName, callback, context);
-        } else {
-            removeListener(object, name, callback, context);
-        }
-    }
-
-    return object;
-}
-
-/***/ }),
-/* 50 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var defs = __webpack_require__(0);
-
-var removeListener = __webpack_require__(4);
-
-var $ = __webpack_require__(5);
-
-// removes dom listener from nodes bound to given key
-module.exports = removeDomListener;
-function removeDomListener(object, key, eventName, selector, callback, context, info) {
-    var def = defs.get(object);
-
-    if (!def) {
-        return object;
-    }
-
-    var props = def.props;
-
-    var propDef = props[key];
-
-    if (!propDef) {
-        return object;
-    }
-
-    var bindings = propDef.bindings;
-
-
-    if (bindings) {
-        // collect bound nodes and remove DOM event listener
-        var nodes = Array(bindings.length);
-        var eventNamespace = def.id + key;
-
-        for (var _target = bindings, index = 0, binding, _l = _target.length; binding = _target[index], index < _l; index++) {
-            nodes[index] = binding.node;
-        }
-
-        $(nodes).off(eventName + '.' + eventNamespace, selector, callback);
-    }
-
-    // remove bind and unbind listeners from given key
-    removeListener(object, 'bind:' + key, callback, context, info);
-    removeListener(object, 'unbind:' + key, callback, context, info);
-
-    return object;
-}
-
-/***/ }),
-/* 51 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var undelegateListener = __webpack_require__(12);
+var undelegateListener = __webpack_require__(14);
 
 var triggerOne = __webpack_require__(2);
 
@@ -3450,22 +3292,21 @@ function changeHandler(_ref) {
         path = _ref2.path,
         name = _ref2.name,
         callback = _ref2.callback,
-        context = _ref2.context,
         info = _ref2.info;
 
     if (value && typeof value === 'object') {
-        var delegateListener = __webpack_require__(13); // fixing circular ref
+        var delegateListener = __webpack_require__(12); // fixing circular ref
 
-        delegateListener(value, path, name, callback, context, info);
+        delegateListener(value, path, name, callback, info);
     }
 
     if (previousValue && typeof previousValue === 'object') {
-        undelegateListener(previousValue, path, name, callback, context, info);
+        undelegateListener(previousValue, path, name, callback, info);
     }
 }
 
 /***/ }),
-/* 52 */
+/* 49 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3476,8 +3317,7 @@ module.exports = createDomEventHandler;
 function createDomEventHandler(_ref) {
     var key = _ref.key,
         object = _ref.object,
-        callback = _ref.callback,
-        context = _ref.context;
+        callback = _ref.callback;
 
     return function domEventHandler(domEvent) {
         var originalEvent = domEvent.originalEvent || domEvent;
@@ -3491,10 +3331,10 @@ function createDomEventHandler(_ref) {
 
         if (triggerArgs) {
             // if args are passed to trigger method then pass them to an event handler
-            callback.apply(context, triggerArgs);
+            callback.apply(object, triggerArgs);
         } else {
             // use the following object as an arg for event handler
-            callback.call(context, {
+            callback.call(object, {
                 self: object,
                 node: this,
                 preventDefault: function () {
@@ -3516,7 +3356,95 @@ function createDomEventHandler(_ref) {
 }
 
 /***/ }),
-/* 53 */
+/* 50 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var initMK = __webpack_require__(6);
+
+var defineProp = __webpack_require__(5);
+
+var addListener = __webpack_require__(7);
+
+var $ = __webpack_require__(8);
+
+var createDomEventHandler = __webpack_require__(49);
+
+// returns an object with event handlers used at addDomListener
+function createBindingHandlers(_ref) {
+    var fullEventName = _ref.fullEventName,
+        domEventHandler = _ref.domEventHandler,
+        selector = _ref.selector;
+
+    return {
+        bindHandler: function () {
+            var evt = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+            var node = evt.node;
+
+            if (node) {
+                $(node).on(fullEventName, selector, domEventHandler);
+            }
+        },
+        unbindHandler: function () {
+            var evt = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+            var node = evt.node;
+
+            if (node) {
+                $(node).off(fullEventName, selector, domEventHandler);
+            }
+        }
+    };
+}
+
+// adds DOM event listener for nodes bound to given property
+module.exports = addDomListener;
+function addDomListener(object, key, eventName, selector, callback, info) {
+    var def = initMK(object);
+    var propDef = defineProp(object, key);
+
+    var domEventHandler = createDomEventHandler({
+        key: key,
+        object: object,
+        callback: callback
+    });
+
+    // making possible to remove this event listener
+    domEventHandler._callback = callback;
+
+    var eventNamespace = def.id + key;
+    var fullEventName = eventName + '.' + eventNamespace;
+
+    var _createBindingHandler = createBindingHandlers({
+        fullEventName: fullEventName,
+        domEventHandler: domEventHandler,
+        selector: selector
+    }),
+        bindHandler = _createBindingHandler.bindHandler,
+        unbindHandler = _createBindingHandler.unbindHandler;
+
+    var addBindListenerResult = addListener(object, 'bind:' + key, bindHandler, info);
+    var addUnbindListenerResult = addListener(object, 'unbind:' + key, unbindHandler, info);
+
+    // if events are added successfully then run bindHandler for every node immediately
+    // TODO: Describe why do we need addBindListenerResult and addUnbindListenerResult
+    if (addBindListenerResult && addUnbindListenerResult) {
+        var bindings = propDef.bindings;
+
+        if (bindings) {
+            for (var _target = bindings, _index = 0, _ref2, _l = _target.length; _ref2 = _target[_index], _index < _l; _index++) {
+                var node = _ref2.node;
+                return bindHandler({ node: node });
+            }
+        }
+    }
+
+    return object;
+}
+
+/***/ }),
+/* 51 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3547,15 +3475,15 @@ var assign = Object.assign || function assign(target) {
 module.exports = assign;
 
 /***/ }),
-/* 54 */
+/* 52 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var Init = __webpack_require__(15);
+var Init = __webpack_require__(16);
 
-var data = __webpack_require__(14);
+var data = __webpack_require__(15);
 
 // adds unique nodes to mq collection
 module.exports = add;
@@ -3591,13 +3519,13 @@ function add(selector) {
 }
 
 /***/ }),
-/* 55 */
+/* 53 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var data = __webpack_require__(14);
+var data = __webpack_require__(15);
 
 var splitBySpaceReg = /\s+/;
 var splitByDotReg = /\.(.+)/;
@@ -3657,13 +3585,13 @@ function off(namesStr, selector, handler) {
 }
 
 /***/ }),
-/* 56 */
+/* 54 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var data = __webpack_require__(14);
+var data = __webpack_require__(15);
 
 var splitBySpaceReg = /\s+/;
 var splitByDotReg = /\.(.+)/;
@@ -3752,7 +3680,7 @@ function on(namesStr, selector, handler) {
 }
 
 /***/ }),
-/* 57 */
+/* 55 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3760,7 +3688,7 @@ function on(namesStr, selector, handler) {
 
 var html2nodeList = __webpack_require__(23);
 
-var Init = __webpack_require__(15);
+var Init = __webpack_require__(16);
 
 // parses given HTML and returns mq instance
 module.exports = parseHTML;
@@ -3769,114 +3697,81 @@ function parseHTML(html) {
 }
 
 /***/ }),
-/* 58 */
+/* 56 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var initMK = __webpack_require__(8);
+var defs = __webpack_require__(0);
 
-var defineProp = __webpack_require__(7);
+var removeListener = __webpack_require__(9);
 
-var addListener = __webpack_require__(9);
+var $ = __webpack_require__(8);
 
-var $ = __webpack_require__(5);
+// removes dom listener from nodes bound to given key
+module.exports = removeDomListener;
+function removeDomListener(object, key, eventName, selector, callback, info) {
+    var def = defs.get(object);
 
-var createDomEventHandler = __webpack_require__(52);
-
-// returns an object with event handlers used at addDomListener
-function createBindingHandlers(_ref) {
-    var fullEventName = _ref.fullEventName,
-        domEventHandler = _ref.domEventHandler,
-        selector = _ref.selector;
-
-    return {
-        bindHandler: function () {
-            var evt = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-            var node = evt.node;
-
-            if (node) {
-                $(node).on(fullEventName, selector, domEventHandler);
-            }
-        },
-        unbindHandler: function () {
-            var evt = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-            var node = evt.node;
-
-            if (node) {
-                $(node).off(fullEventName, selector, domEventHandler);
-            }
-        }
-    };
-}
-
-// adds DOM event listener for nodes bound to given property
-module.exports = addDomListener;
-function addDomListener(object, key, eventName, selector, callback, context, info) {
-    var def = initMK(object);
-    var propDef = defineProp(object, key);
-
-    var domEventHandler = createDomEventHandler({
-        key: key,
-        object: object,
-        callback: callback,
-        context: context || object
-    });
-
-    // making possible to remove this event listener
-    domEventHandler._callback = callback;
-
-    var eventNamespace = def.id + key;
-    var fullEventName = eventName + '.' + eventNamespace;
-
-    var _createBindingHandler = createBindingHandlers({
-        fullEventName: fullEventName,
-        domEventHandler: domEventHandler,
-        selector: selector
-    }),
-        bindHandler = _createBindingHandler.bindHandler,
-        unbindHandler = _createBindingHandler.unbindHandler;
-
-    var addBindListenerResult = addListener(object, 'bind:' + key, bindHandler, context, info);
-    var addUnbindListenerResult = addListener(object, 'unbind:' + key, unbindHandler, context, info);
-
-    // if events are added successfully then run bindHandler for every node immediately
-    // TODO: Describe why do we need addBindListenerResult and addUnbindListenerResult
-    if (addBindListenerResult && addUnbindListenerResult) {
-        var bindings = propDef.bindings;
-
-        if (bindings) {
-            for (var _target = bindings, _index = 0, _ref2, _l = _target.length; _ref2 = _target[_index], _index < _l; _index++) {
-                var node = _ref2.node;
-                return bindHandler({ node: node });
-            }
-        }
+    if (!def) {
+        return object;
     }
+
+    var props = def.props;
+
+    var propDef = props[key];
+
+    if (!propDef) {
+        return object;
+    }
+
+    var bindings = propDef.bindings;
+
+
+    if (bindings) {
+        // collect bound nodes and remove DOM event listener
+        var nodes = Array(bindings.length);
+        var eventNamespace = def.id + key;
+
+        for (var _target = bindings, index = 0, binding, _l = _target.length; binding = _target[index], index < _l; index++) {
+            nodes[index] = binding.node;
+        }
+
+        $(nodes).off(eventName + '.' + eventNamespace, selector, callback);
+    }
+
+    // remove bind and unbind listeners from given key
+    removeListener(object, 'bind:' + key, callback, info);
+    removeListener(object, 'unbind:' + key, callback, info);
 
     return object;
 }
 
 /***/ }),
-/* 59 */
+/* 57 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var splitBySpaceReg = __webpack_require__(17);
+var splitBySpaceReg = __webpack_require__(18);
 
 var checkObjectType = __webpack_require__(1);
 
 var defiError = __webpack_require__(3);
 
-var addListener = __webpack_require__(9);
+var off = __webpack_require__(24);
 
-var delegateListener = __webpack_require__(13);
+var debounce = __webpack_require__(13);
+
+var addListener = __webpack_require__(7);
+
+var delegateListener = __webpack_require__(12);
 
 // adds event listener
 module.exports = on;
-function on(object, givenNames, callback, triggerOnInit, context) {
+function on(object, givenNames, givenCallback, options) {
     // throw error when object type is wrong
     checkObjectType(object, 'on');
 
@@ -3885,7 +3780,7 @@ function on(object, givenNames, callback, triggerOnInit, context) {
     // allow to pass name-handler object
     if (givenNames && typeof givenNames === 'object' && !isNamesVarArray) {
         for (var _target = givenNames, _keys = Object.keys(_target), _i = 0, namesObjName, namesObjCallback, _l = _keys.length; (namesObjName = _keys[_i], namesObjCallback = _target[namesObjName]), _i < _l; _i++) {
-            on(object, namesObjName, namesObjCallback, callback, triggerOnInit)
+            on(object, namesObjName, namesObjCallback, givenCallback, options)
         }
 
         return object;
@@ -3896,16 +3791,28 @@ function on(object, givenNames, callback, triggerOnInit, context) {
     }
 
     // split by spaces
-    // TODO: Array of names passed to on method is non-documented feature
+    // TODO: Array of names passed to on method is a non-documented feature
     var names = isNamesVarArray ? givenNames : givenNames.split(splitBySpaceReg);
 
-    // flip triggerOnInit and context when triggerOnInit is not boolean
-    if (typeof triggerOnInit !== 'boolean' && typeof triggerOnInit !== 'undefined') {
-        var _ref = [triggerOnInit, context];
-        // eslint-disable-next-line no-param-reassign
+    var _ref = options || {},
+        triggerOnInit = _ref.triggerOnInit,
+        once = _ref.once,
+        debounceOption = _ref.debounce;
 
-        context = _ref[0];
-        triggerOnInit = _ref[1];
+    var callback = void 0;
+    if (once) {
+        callback = function onceCallback() {
+            givenCallback.apply(this, arguments);
+            // remove event listener after its call
+            off(object, names, onceCallback);
+        };
+
+        // allow to remove event listener py passing original callback to "off"
+        callback._callback = givenCallback;
+    } else if (typeof debounceOption === 'number' || debounceOption === true) {
+        callback = debounce(givenCallback, debounceOption === true ? 0 : debounceOption, object);
+    } else {
+        callback = givenCallback;
     }
 
     // call callback immediatelly if triggerOnInit is true
@@ -3917,44 +3824,42 @@ function on(object, givenNames, callback, triggerOnInit, context) {
             var path = delegatedEventParts[0],
                 delegatedName = delegatedEventParts[1];
 
-            delegateListener(object, path, delegatedName, callback, context || object);
+            delegateListener(object, path, delegatedName, callback);
         } else {
             // if not, this is simple event
-            addListener(object, name, callback, context);
+            addListener(object, name, callback);
         }
     }
 
-    if (triggerOnInit === true) {
-        callback.call(context || object, { triggerOnInit: triggerOnInit });
+    if (triggerOnInit) {
+        callback.call(object, options);
     }
 
     return object;
 }
 
 /***/ }),
-/* 60 */
+/* 58 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var on = __webpack_require__(59);
+var on = __webpack_require__(57);
 
-var off = __webpack_require__(49);
+var off = __webpack_require__(24);
 
-var trigger = __webpack_require__(48);
+var trigger = __webpack_require__(47);
 
-var calc = __webpack_require__(45);
+var calc = __webpack_require__(44);
 
-var bindNode = __webpack_require__(19);
+var bindNode = __webpack_require__(40);
 
-var bound = __webpack_require__(28);
+var bound = __webpack_require__(27);
 
 var unbindNode = __webpack_require__(11);
 
-var bindOptionalNode = __webpack_require__(27);
-
-var set = __webpack_require__(6);
+var set = __webpack_require__(4);
 
 var remove = __webpack_require__(26);
 
@@ -3968,19 +3873,18 @@ exports.calc = calc;
 exports.bindNode = bindNode;
 exports.bound = bound;
 exports.unbindNode = unbindNode;
-exports.bindOptionalNode = bindOptionalNode;
 exports.set = set;
 exports.remove = remove;
 exports.mediate = mediate;
 
 /***/ }),
-/* 61 */
+/* 59 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var _lib = __webpack_require__(60);
+var _lib = __webpack_require__(58);
 
 var functions = _lib;
 
