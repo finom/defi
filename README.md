@@ -1,6 +1,7 @@
+![logo](logo.svg)
+
 # [defi.js](http://defi.js.org) [![npm version](https://badge.fury.io/js/defi.svg)](https://badge.fury.io/js/defi) [![Build Status](https://travis-ci.org/defijs/defi.svg)](https://travis-ci.org/defi/defi) [![Coverage Status](https://coveralls.io/repos/github/defijs/defi/badge.svg?branch=master)](https://coveralls.io/github/defijs/defi?branch=master)
 
-![logo](logo.svg)
 
 A bunch of utilities that enable accessor-based reactivity for JavaScript objects.
 
