@@ -1,4 +1,4 @@
-import initMK from '../_core/init';
+import initDefi from '../_core/init';
 import checkObjectType from '../_helpers/checkobjecttype';
 import defiError from '../_helpers/defierror';
 import debounce from '../_helpers/debounce';
@@ -45,7 +45,7 @@ export default function calc(object, target, sources, givenHandler, eventOptions
     }
 
     eventOptions = eventOptions || {}; // eslint-disable-line no-param-reassign
-    const def = initMK(object);
+    const def = initDefi(object);
     const {
         setOnInit = true,
         debounceCalcOnInit = false,

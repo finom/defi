@@ -12,7 +12,7 @@ const { bindNode, calc } = require('defi');
 bindNode(obj, 'key', node)
 ```
 
-Or [download to use as a global variable](https://github.com/defijs/defi/tree/gh-pages)
+Or [downloaded to use as a global variable](https://github.com/defijs/defi/tree/gh-pages)
 
 ```js
 // use defi as a global variable

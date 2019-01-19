@@ -2,8 +2,8 @@ import defs from './defs';
 
 let objectId = 0;
 
-// this is common function which associates an object with its Matreshka definition
-export default function initMK(object) {
+// this is a common function which associates an object with its defi definition
+export default function initDefi(object) {
     let def = defs.get(object);
     if (!def) {
         def = {

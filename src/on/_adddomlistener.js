@@ -1,4 +1,4 @@
-import initMK from '../_core/init';
+import initDefi from '../_core/init';
 import defineProp from '../_core/defineprop';
 import addListener from './_addlistener';
 import $ from '../_mq';
@@ -28,7 +28,7 @@ function createBindingHandlers({
 
 // adds DOM event listener for nodes bound to given property
 export default function addDomListener(object, key, eventName, selector, callback, info) {
-    const def = initMK(object);
+    const def = initDefi(object);
     const propDef = defineProp(object, key);
 
     const domEventHandler = createDomEventHandler({

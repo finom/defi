@@ -6,8 +6,8 @@ export default function createDomEventHandler({
 }) {
     return function domEventHandler(domEvent) {
         const originalEvent = domEvent.originalEvent || domEvent;
-        // matreshkaTriggerArgs are created when DOM event is triggered by trigger method
-        const triggerArgs = originalEvent.matreshkaTriggerArgs;
+        // defiTriggerArgs are created when DOM event is triggered by trigger method
+        const triggerArgs = originalEvent.defiTriggerArgs;
         const {
             which, target, ctrlKey, altKey
         } = domEvent;

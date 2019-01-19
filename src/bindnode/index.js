@@ -1,4 +1,4 @@
-import initMK from '../_core/init';
+import initDefi from '../_core/init';
 import defineProp from '../_core/defineprop';
 import getNodes from './_getnodes';
 import createBindingSwitcher from './_createbindingswitcher';
@@ -15,7 +15,7 @@ export default function bindNode(object, key, node, binder, eventOptions) {
     eventOptions = eventOptions || {}; // eslint-disable-line no-param-reassign
     binder = binder || {}; // eslint-disable-line no-param-reassign
 
-    initMK(object);
+    initDefi(object);
 
     // throw an error when key is falsy
     if (!key) {

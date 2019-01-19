@@ -1,4 +1,4 @@
-import initMK from '../_core/init';
+import initDefi from '../_core/init';
 import triggerOne from '../trigger/_triggerone';
 import defineProp from '../_core/defineprop';
 import domEventReg from './_domeventregexp';
@@ -10,7 +10,7 @@ const propModEventReg // eslint-disable-next-line max-len
 // adds simple event listener
 // used as core of event engine
 export default function addListener(object, name, callback, info = {}) {
-    const { events: allEvents } = initMK(object);
+    const { events: allEvents } = initDefi(object);
     const events = allEvents[name];
     const event = {
         callback, name, info

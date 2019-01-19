@@ -1,4 +1,4 @@
-import initMK from './_core/init';
+import initDefi from './_core/init';
 import defineProp from './_core/defineprop';
 import checkObjectType from './_helpers/checkobjecttype';
 import set from './set';
@@ -30,7 +30,7 @@ export default function mediate(object, givenKeys, mediator) {
         return object;
     }
 
-    initMK(object);
+    initDefi(object);
 
     // allow to use both single key and an array of keys
     const keys = isKeysArray ? givenKeys : [givenKeys];
