@@ -1,6 +1,6 @@
 /*
     --------------------------------------------------------------
-    defi.js v0.0.24 (Sat, 19 Jan 2019 11:33:00 GMT)
+    defi.js v0.0.25 (Sat, 19 Jan 2019 11:38:48 GMT)
     By Andrey Gubanov http://github.com/finom
     Released under the MIT license
     More info: https://defi.js.org
@@ -678,8 +678,7 @@ var add = __webpack_require__(52);
 
 var assign = __webpack_require__(51);
 
-// tiny jQuery replacement for Matreshka
-// mq previously called balalaika.js
+// a tiny jQuery-like library
 module.exports = mq;
 function mq(selector, context) {
     return new Init(selector, context);
@@ -1860,7 +1859,7 @@ function createObjectHandler(_ref) {
             changedNode = eventOptions.changedNode,
             evtBinder = eventOptions.binder;
         var setValue = binder.setValue;
-        // dirty hack for https://github.com/matreshkajs/matreshka/issues/19
+        // a dirty hack for https://github.com/matreshkajs/matreshka/issues/19
 
         var dirtyHackValue = onChangeValue === 'string' && typeof value === 'number' ? '' + value : value;
 
