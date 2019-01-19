@@ -14,6 +14,7 @@
     "watch-browser-test": "webpack --config test/webpack-test.config.js --watch",
     "lint": "eslint .",
     "commit": "git-cz",
+    "reinstall": "rm -rf node_modules package-lock.json && npm i",
     "release": "npm run npm-compile && npm run npm-publish && npm run deploy-to-git",
     "deploy": "npm run deploy-to-git && npm run npm-deploy && npm run deploy-to-git",
     "npm-compile": "shx rm -rf npm && babel src -d npm --source-maps && shx cp README.md npm/README.md && node ./tools/generate-package",

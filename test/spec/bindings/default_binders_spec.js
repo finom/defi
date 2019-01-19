@@ -83,6 +83,18 @@ describe('Default binders', () => {
         expect(lookForBinder(node)).bindersEqual(input('text'));
     });
 
+    it('should bind checkbox input', () => {
+        const node = window.document.createElement('input');
+        node.type = 'checkbox';
+        node.checked = false;
+        bindNode(obj, 'x', node, input('checkbox'), noDebounceFlag);
+        expect(obj.x).toEqual(false);
+        obj.x = true;
+        expect(node.checked).toEqual(true);
+
+        expect(lookForBinder(node)).bindersEqual(input('checkbox'));
+    });
+
     it('should bind output', () => {
         const node = window.document.createElement('output');
         node.innerHTML = 'foo';

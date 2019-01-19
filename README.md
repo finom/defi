@@ -56,11 +56,11 @@ defi.bindNode(obj, {
 
 If `first` or `last` is changed then event handlers print info about that to console, `greeting` property is updated, `.greeting` element is populated by calculated data (by default "Hello, John Doe"). And it happens every time when these properties are changed and it doesn't matter which way. You can do `obj.first = 'Jane'` or you can type text into its field, and everything will happen immediately.
 
-That's the real reactiveness. Check the example above [here](https://jsbin.com/vizumoroqu/edit?html,js,output) and try to type `obj.first = 'Jane'` at "Console" tab.
+That's the real accessor-based reactiveness! Check the example above [here](https://jsbin.com/vizumoroqu/edit?html,js,output) and try to type `obj.first = 'Jane'` at "Console" tab.
 
 ## Quick API ref
 
-Full reference with all variations, flags and tutorials lives at [defi.js.org](http://defi.js.org)
+Full reference with all variations, flags and tutorials live at [defi.js.org](http://defi.js.org)
 
 
 - [bindNode](https://defi.js.org/#!defi.bindNode) - Binds a property of an object to HTML node, implementing two-way data binding.
@@ -139,7 +139,7 @@ defi.bindNode(obj, 'myKey', '.my-element');
 defi.unbindNode(obj, 'myKey', '.my-element');
 ```
 
-Note that a bunch of common binders can be found at [common-binders](https://github.com/finom/common-binders) project.
+Note that a bunch of common binders can be found at [common-binders](https://github.com/defi/common-binders) project.
 
 - [bound](https://defi.js.org/#!defi.bound) - Returns a bound element.
 

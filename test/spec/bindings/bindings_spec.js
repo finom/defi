@@ -16,6 +16,7 @@ describe('Bindings', () => {
 
     let obj;
     let node;
+    let child;
     let binder;
     let initializeCall;
     let destroyCall;
@@ -31,11 +32,11 @@ describe('Bindings', () => {
         expect(Array.from(bound(obj, key, { all: true }))).toEqual([node]);
     };
 
-    const testSimpleUnbind = (key = 'x') => {
+    const testSimpleUnbind = (key = 'x', testedNode = node) => {
         obj[key] = 'foo';
-        expect(node.value).toEqual('');
-        node.value = 'baz';
-        node.ondummyevent();
+        expect(testedNode.value).toEqual('');
+        testedNode.value = 'baz';
+        testedNode.ondummyevent();
         expect(obj[key]).toEqual('foo');
         expect(destroyCall).toHaveBeenCalled();
         expect(bound(obj, key)).toEqual(null);
@@ -45,6 +46,8 @@ describe('Bindings', () => {
     beforeEach(() => {
         obj = {};
         node = document.createElement('div');
+        child = node.appendChild(document.createElement('div'))
+        child.className = 'child';
 
         initializeCall = createSpy();
         destroyCall = createSpy();
@@ -200,6 +203,26 @@ describe('Bindings', () => {
         bindNode(obj, 'x', node, binder, noDebounceFlag);
         unbindNode(obj);
         testSimpleUnbind();
+    });
+
+    it('should unbind by ":bound()" selector', () => {
+        bindNode(obj, 'x', node, binder, noDebounceFlag);
+        unbindNode(obj, 'x', ':bound(x)');
+        testSimpleUnbind();
+    });
+
+    it('should unbind by ":bound() [native_selector]" selector', () => {
+      bindNode(obj, 'x', node, binder, noDebounceFlag);
+      bindNode(obj, 'y', child, binder, noDebounceFlag);
+      unbindNode(obj, 'y', ':bound(x) .child');
+      testSimpleUnbind('y', child);
+    });
+
+    it('should unbind by ":bound() > [native_selector]" selector', () => {
+      bindNode(obj, 'x', node, binder, noDebounceFlag);
+      bindNode(obj, 'y', child, binder, noDebounceFlag);
+      unbindNode(obj, 'y', ':bound(x) > .child');
+      testSimpleUnbind('y', child);
     });
 
     it('should unbind using key-node object', () => {
