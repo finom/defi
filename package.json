@@ -14,8 +14,8 @@
     "watch-browser-test": "webpack --config test/webpack-test.config.js --watch",
     "lint": "eslint .",
     "commit": "git-cz",
-    "release": "npm run npm-compile && npm run npm-publish",
-    "deploy": "npm run deploy-to-git && npm run npm-deploy",
+    "release": "npm run npm-compile && npm run npm-publish && npm run deploy-to-git",
+    "deploy": "npm run deploy-to-git && npm run npm-deploy && npm run deploy-to-git",
     "npm-compile": "shx rm -rf npm && babel src -d npm --source-maps && shx cp README.md npm/README.md && node ./tools/generate-package",
     "npm-publish": "cd npm && npm publish && cd ..",
     "bundle": "webpack --config ./webpack.config.js --mode production",
@@ -41,7 +41,7 @@
   },
   "config": {
     "deployToGit": {
-      "repository": "https://$GH_TOKEN@github.com/finom/defi.git",
+      "repository": "git@github.com:defijs/defi.git",
       "branch": "gh-pages",
       "folder": "bundle",
       "script": "npm run bundle-deploy-script",
