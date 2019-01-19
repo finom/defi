@@ -1,6 +1,8 @@
 <p align="center">
 
-[![logo](logo.svg)](http://defi.js.org)
+<a href="https://defi.js.org">
+  <img src="logo.svg" />
+</a>
 
 </p>
 
