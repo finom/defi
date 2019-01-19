@@ -52,6 +52,7 @@ const errors = {
 export default function defiError(key, data) {
     const getError = errors[key];
     if (!getError) {
+        /* istanbul ignore next */
         throw Error(`Unknown error "${key}". Please report about this on Github.`);
     }
 

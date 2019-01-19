@@ -313,6 +313,12 @@ describe('Bindings', () => {
         }).toThrow();
     });
 
+    it('throws error when node falsy', () => {
+        expect(() => {
+            bindNode(obj, '', node);
+        }).toThrow();
+    });
+
     it('does not throw error when node is not there and optional=true is given', () => {
         expect(() => {
             bindNode(obj, 'x', undefined, undefined, { optional: true });

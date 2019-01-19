@@ -2,6 +2,12 @@
 import mediate from 'src/mediate';
 
 describe('mediate', () => {
+    it('throws an error if an object is null', () => {
+        expect(() => {
+            mediate(null, 'a', String);
+        }).toThrow();
+    });
+
     it('mediates', () => {
         const obj = {};
 

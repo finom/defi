@@ -7,6 +7,12 @@ import trigger from 'src/trigger';
 import createSpy from '../helpers/createspy';
 
 describe('remove', () => {
+    it('throws an error if an object is null', () => {
+        expect(() => {
+            remove(null, 'a');
+        }).toThrow();
+    });
+
     it('removes a property', () => {
         const obj = {
             a: 1

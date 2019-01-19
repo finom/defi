@@ -8,6 +8,12 @@ const noDebounceFlag = { debounceCalc: false };
 const delay = duration => new Promise(resolve => setTimeout(resolve, duration));
 
 describe('calc', () => {
+    it('throws an error if an object is null', () => {
+        expect(() => {
+            calc(null, 'a', 'b');
+        }).toThrow();
+    });
+
     it('adds simple dependency', () => {
         const obj = {
             a: 1,
