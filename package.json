@@ -15,7 +15,7 @@
     "watch-browser-test": "webpack --config test/webpack-test.config.js --watch",
     "lint": "eslint .",
     "commit": "git-cz",
-    "semantic-release": "npm run npm-compile && semantic-release",
+    "release": "npm run npm-compile && npm publish",
     "deploy": "npm run deploy-to-git && npm run npm-deploy",
     "npm-deploy-setup": "echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN}' >> npm/.npmrc",
     "npm-compile": "shx rm -rf npm && babel src -d npm --source-maps && shx cp README.md npm/README.md && node ./tools/generate-package",
@@ -26,7 +26,9 @@
     "bundle-browser-test": "BABEL_ENV=test webpack --config test/webpack-test.config.js",
     "bundle-deploy-script": "npm run bundle && npm run bundle-browser-test",
     "upgrade": "ncu -u -a && npm install",
-    "travis-deploy-once": "travis-deploy-once"
+    "travis-deploy-once": "travis-deploy-once",
+    "patch": "npm version patch && npm run release",
+    "minor": "npm version minor && npm run release"
   },
   "repository": {
     "type": "git",
@@ -71,36 +73,8 @@
       "commit-msg": "validate-commit-msg"
     }
   },
-  "release": {
-    "prepare": [{
-      "path": "@semantic-release/npm",
-      "pkgRoot": "npm"
-    }, {
-      "path": "@semantic-release/npm",
-      "npmPublish": false
-    }],
-    "publish": [
-      {
-        "path": "@semantic-release/npm",
-        "pkgRoot": "npm"
-      },
-      {
-        "path": "@semantic-release/exec",
-        "cmd": "npm run deploy-to-git"
-      },
-      {
-        "path": "@semantic-release/github",
-        "assets": [
-          "bundle/defi.js",
-          "bundle/defi.min.js",
-          "bundle/defi.min.js.map"
-        ]
-      }
-    ]
-  },
   "homepage": "https://github.com/finom/defi#readme",
   "devDependencies": {
-    "@semantic-release/exec": "^2.2.3",
     "app-module-path": "^2.2.0",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
@@ -153,8 +127,6 @@
     "npm-check-updates": "^2.14.1",
     "npm-registry-client": "^8.5.1",
     "optimist": "^0.6.1",
-    "semantic-release": "^15.1.5",
-    "semantic-release-cli": "^3.6.4",
     "shx": "^0.2.2",
     "travis-deploy-once": "^4.4.1",
     "twit": "^2.2.9",
