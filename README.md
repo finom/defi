@@ -73,7 +73,8 @@ defi.bindNode(obj, 'myKey', '.my-element');
 defi.bindNode(obj, 'myKey', '.my-slider', {
     // when is element state changed?
     // - after 'slide' event
-    on: 'slide',
+    // (a function can be used to listen to any non-DOM events)
+  	on: (callback, { node }) => $(node).on('slide', callback),
     // how to extract element state?
     // - return 'value' of the widget
     getValue: ({ node }) => $(node).slider('option', 'value'),

@@ -21,7 +21,7 @@
     "npm-publish": "cd npm && npm publish && cd ..",
     "bundle": "webpack --config ./webpack.config.js --mode production",
     "deploy-to-git": "shx rm -rf bundle && deploy-to-git",
-    "bundle-browser-test": "BABEL_ENV=test webpack --config test/webpack-test.config.js",
+    "bundle-browser-test": "BABEL_ENV=test webpack --config test/webpack-test.config.js --mode development",
     "bundle-deploy-script": "npm run bundle && npm run bundle-browser-test",
     "upgrade": "ncu -a -x coveralls && npm i",
     "travis-deploy-once": "travis-deploy-once",
@@ -133,7 +133,7 @@
     "validate-commit-msg": "^2.14.0",
     "webidl-conversions": "^4.0.2",
     "webpack": "^4.5.0",
-    "webpack-cli": "^2.0.14",
+    "webpack-cli": "^3.2.1",
     "webpack-core": "^0.6.9",
     "word-wrap": "^1.2.3"
   }

@@ -220,15 +220,14 @@ describe('Events summary (on, off, trigger)', () => {
     it('adds debounced handler via debounce: number', (done) => {
         setTimeout(() => {
             expect(handler).toHaveBeenCalledTimes(0);
-            done();
-        }, 200);
+        }, 100);
 
         setTimeout(() => {
-            //  done();
-            //  expect(handler).toHaveBeenCalledTimes(1);
-        }, 600);
+            done();
+            expect(handler).toHaveBeenCalledTimes(1);
+        }, 300);
 
-        on(obj, 'someevent', handler, { debounce: 500 });
+        on(obj, 'someevent', handler, { debounce: 200 });
         trigger(obj, 'someevent');
         trigger(obj, 'someevent');
         trigger(obj, 'someevent');
