@@ -44,7 +44,7 @@
       "repository": "git@github.com:defijs/defi.git",
       "branch": "gh-pages",
       "folder": "bundle",
-      "script": "npm run bundle-deploy-script && npm run bundle-browser-test",
+      "script": "npm run bundle-deploy-script",
       "beforePushScript": "git tag v$npm_package_version-bundle",
       "commit": "$npm_package_version",
       "user": {
