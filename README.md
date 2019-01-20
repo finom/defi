@@ -95,6 +95,8 @@ const { html } = require('common-binders');
 defi.bindNode(obj, 'greeting', '.greeting', html())
 ```
 
+Note that there is also a routing library for defi.js - [defi-router](https://github.com/defijs/defi-router).
+
 ## Quick API ref
 
 Full reference with all variations, flags and tutorials live at [defi.js.org](http://defi.js.org).
