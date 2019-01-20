@@ -11,7 +11,7 @@
 
 
 <p align="center">
-  <img src="https://defijs.github.io/assets/defi_demo.gif" />
+  <img src="https://defijs.github.io/assets/defi_demo.gif" width="570" />
 </p>
 
 <p align="center">
