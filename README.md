@@ -124,7 +124,7 @@ defi.bindNode(obj, 'myKey', '.my-element', {
 obj.myKey = 'some value'; // updates the element
 ```
 
-- [calc](https://defi.js.org/#!defi.calc) - Creates a dependency of one property value on values of others.
+- [calc](https://defi.js.org/#!defi.calc) - Creates a dependency of one property value on values of other properties (including other objects).
 
 ```js
 defi.calc(obj, 'a', ['b', 'c'], (b, c) => b + c);
