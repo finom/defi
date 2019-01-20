@@ -109,7 +109,7 @@ defi.bindNode(obj, 'myKey', '.my-element');
 // custom use (for any custom element)
 defi.bindNode(obj, 'myKey', '.my-element', {
     // when is element state changed?
-    // (that,s a DOM event; a function can be used to listen to any non-DOM events)
+    // (that's a DOM event; a function can be used to listen to any non-DOM events)
     on: 'click',
     // how to extract element state?
     getValue: ({ node }) => someLibraryGetValue(node),
