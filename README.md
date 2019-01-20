@@ -75,7 +75,7 @@ defi.bindNode(obj, {
 
 If `first` or `last` is changed then event handlers print info about that to console, `greeting` property is updated, `.greeting` element is populated by calculated data (by default "Hello, John Doe"). And it happens every time when these properties are changed and it doesn't matter which way. You can do `obj.first = 'Jane'` or you can type text into its field, and everything will happen immediately.
 
-That's the real accessor-based reactiveness! Check the example above [here](https://jsbin.com/xuzohanuno/1/edit?html,js,console,output) and try to type `obj.first = 'Jane'` at the "Console" tab.
+That's the real accessor-based reactiveness! Check the example above [here](https://jsbin.com/hakunotaqo/edit?html,js,console,output) and try to type `obj.first = 'Jane'` at the "Console" tab.
 
 Note that if you want to use a custom HTML element (at the example above we use ``<output>`` tag) to update its innerHTML you will need to pass so-called "binder" as a rule of how the bound element should behave. By default ``defi.bindNode`` doesn't know how to interact with non-form elements.
 
