@@ -23,39 +23,11 @@ export default function bindNode(object, key, node, binder, eventOptions) {
     }
 
     if (key instanceof Array) {
-        if (typeof key[0] === 'string') {
-            /*
-             * accept array of keys
-             * this.bindNode(['a', 'b', 'c'], node)
-             */
-            nofn.forEach(key, itemKey => bindNode(object, itemKey, node, binder, eventOptions));
-        } else {
-            /*
-             * accept array of objects
-             * this.bindNode([{key, node, binder, event}], { silent: true });
-             */
-            nofn.forEach(key, ({
-                key: itemKey,
-                node: itemNode,
-                binder: itemBinder,
-                event: itemEventOptions
-            }) => {
-                const commonEventOptions = node;
-                const mergedEventOptions = {};
-
-                if (commonEventOptions) {
-                    // extend event object by "global" event
-                    nofn.assign(mergedEventOptions, commonEventOptions);
-                }
-
-                if (itemEventOptions) {
-                    // extend event object by "local" event ("event" key of an object)
-                    nofn.assign(mergedEventOptions, itemEventOptions);
-                }
-
-                bindNode(object, itemKey, itemNode, itemBinder, mergedEventOptions);
-            });
-        }
+        /*
+         * accept array of keys
+         * this.bindNode(['a', 'b', 'c'], node)
+         */
+        nofn.forEach(key, itemKey => bindNode(object, itemKey, node, binder, eventOptions));
 
         return object;
     }

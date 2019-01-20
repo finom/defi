@@ -237,20 +237,9 @@ describe('Bindings', () => {
         testSimpleUnbind();
     });
 
-    it('should unbind using key-bindingsarray object', () => {
+    it('should unbind using key-bindings array object', () => {
         bindNode(obj, { x: [{ node, binder }] }, null, noDebounceFlag);
         unbindNode(obj, { x: [{ node, binder }] });
-        testSimpleUnbind();
-    });
-
-    it('should bind using an array of objects', () => {
-        bindNode(obj, [{ key: 'x', node, binder }], noDebounceFlag);
-        testSimpleBind();
-    });
-
-    it('should unbind using an array of objects', () => {
-        bindNode(obj, [{ key: 'x', node, binder }], noDebounceFlag);
-        unbindNode(obj, [{ key: 'x', node }]);
         testSimpleUnbind();
     });
 

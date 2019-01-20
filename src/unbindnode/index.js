@@ -10,39 +10,11 @@ export default function unbindNode(object, key, node, eventOptions) {
     checkObjectType(object, 'unbindNode');
 
     if (key instanceof Array) {
-        if (typeof key[0] === 'string') {
-            /*
-             * accept array of keys
-             * this.unbindNode(['a', 'b', 'c'], node)
-             */
-
-            nofn.forEach(key, itemKey => unbindNode(object, itemKey, node, eventOptions));
-        } else {
-            /*
-             * acept array of objects
-             * this.unbindNode([{ key, node, binder, event }], { silent: true });
-             */
-            nofn.forEach(key, ({
-                key: itemKey,
-                node: itemNode,
-                event: itemEventOptions
-            }) => {
-                const commonEventOptions = node;
-                const mergedEventOptions = {};
-
-                if (commonEventOptions) {
-                    // extend event object by "global" event
-                    nofn.assign(mergedEventOptions, commonEventOptions);
-                }
-
-                if (itemEventOptions) {
-                    // extend event object by "local" event ("event" key of an object)
-                    nofn.assign(mergedEventOptions, itemEventOptions);
-                }
-
-                unbindNode(object, itemKey, itemNode, mergedEventOptions);
-            });
-        }
+        /*
+         * accept array of keys
+         * this.unbindNode(['a', 'b', 'c'], node)
+         */
+        nofn.forEach(key, itemKey => unbindNode(object, itemKey, node, eventOptions));
 
         return object;
     }
