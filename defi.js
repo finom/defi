@@ -1,6 +1,6 @@
 /*
     --------------------------------------------------------------
-    defi.js v0.0.29 (Sat, 19 Jan 2019 19:42:36 GMT)
+    defi.js v0.0.30 (Sun, 20 Jan 2019 00:56:27 GMT)
     By Andrey Gubanov http://github.com/finom
     Released under the MIT license
     More info: https://defi.js.org
@@ -227,23 +227,13 @@ var errors = {
         return errors['trigger:names_type']({ names: names });
     },
 
-    'removedatakeys:key_type': function (_ref9) {
+    'remove:key_type': function (_ref9) {
         var key = _ref9.key;
-        return 'Error in removeDataKeys: ' + getTypeError(key, 'key', 'string');
-    },
-
-    'adddatakeys:key_type': function (_ref10) {
-        var key = _ref10.key;
-        return 'Error in addDataKeys: ' + getTypeError(key, 'key', 'string');
-    },
-
-    'remove:key_type': function (_ref11) {
-        var key = _ref11.key;
         return 'Error in remove: ' + getTypeError(key, 'key', 'string');
     },
 
-    'mediate:key_type': function (_ref12) {
-        var key = _ref12.key;
+    'mediate:key_type': function (_ref10) {
+        var key = _ref10.key;
         return 'Error in mediate: ' + getTypeError(key, 'key', 'string');
     }
 };
