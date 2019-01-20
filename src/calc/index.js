@@ -19,7 +19,7 @@ export default function calc(object, target, sources, givenHandler, eventOptions
         nofn.forOwn(target, ({
             source: itemSource,
             handler: itemHandler,
-            event: itemEventOptions
+            options: itemEventOptions
         }, itemTarget) => {
             const commonEventOptions = sources;
             const mergedEventOptions = {};
