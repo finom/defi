@@ -13256,7 +13256,7 @@ function calc(object, target, sources, givenHandler, eventOptions) {
         for (var _target = target, _keys5 = Object.keys(_target), _i5 = 0, itemTarget, _ref, _l5 = _keys5.length; (itemTarget = _keys5[_i5], _ref = _target[itemTarget]), _i5 < _l5; _i5++) {
             var itemSource = _ref.source,
                 itemHandler = _ref.handler,
-                itemEventOptions = _ref.event;
+                itemEventOptions = _ref.options;
 
             var commonEventOptions = sources;
             var mergedEventOptions = {};

@@ -1,6 +1,6 @@
 /*
     --------------------------------------------------------------
-    defi.js v0.0.31 (Sun, 20 Jan 2019 15:18:49 GMT)
+    defi.js v0.0.32 (Sun, 20 Jan 2019 15:30:56 GMT)
     By Andrey Gubanov http://github.com/finom
     Released under the MIT license
     More info: https://defi.js.org
@@ -2391,7 +2391,7 @@ function calc(object, target, sources, givenHandler, eventOptions) {
         for (var _target = target, _keys5 = Object.keys(_target), _i5 = 0, itemTarget, _ref, _l5 = _keys5.length; (itemTarget = _keys5[_i5], _ref = _target[itemTarget]), _i5 < _l5; _i5++) {
             var itemSource = _ref.source,
                 itemHandler = _ref.handler,
-                itemEventOptions = _ref.event;
+                itemEventOptions = _ref.options;
 
             var commonEventOptions = sources;
             var mergedEventOptions = {};
