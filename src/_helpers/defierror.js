@@ -36,12 +36,6 @@ const errors = {
 
     'on:names_type': ({ names }) => errors['trigger:names_type']({ names }),
 
-    'removedatakeys:key_type': ({ key }) =>
-        `Error in removeDataKeys: ${getTypeError(key, 'key', 'string')}`,
-
-    'adddatakeys:key_type': ({ key }) =>
-        `Error in addDataKeys: ${getTypeError(key, 'key', 'string')}`,
-
     'remove:key_type': ({ key }) =>
         `Error in remove: ${getTypeError(key, 'key', 'string')}`,
 
