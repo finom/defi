@@ -13518,8 +13518,17 @@ var _lib = __webpack_require__(/*! ./_lib */ "../src/_lib.js");
 
 var functions = _lib;
 
+var lookForBinder = __webpack_require__(/*! ./lookforbinder */ "../src/lookforbinder.js");
 
-module.exports = functions;
+var chain = __webpack_require__(/*! ./chain */ "../src/chain.js");
+
+var defaultBinders = __webpack_require__(/*! ./defaultbinders */ "../src/defaultbinders.js");
+
+module.exports = Object.assign({}, functions, {
+    lookForBinder: lookForBinder,
+    chain: chain,
+    defaultBinders: defaultBinders
+});
 
 /***/ }),
 
@@ -15452,6 +15461,7 @@ var map = {
 	"./bindings/default_binders_spec.js": "./spec/bindings/default_binders_spec.js",
 	"./calc_spec.js": "./spec/calc_spec.js",
 	"./chain_spec.js": "./spec/chain_spec.js",
+	"./common_spec.js": "./spec/common_spec.js",
 	"./events/delegated_spec.js": "./spec/events/delegated_spec.js",
 	"./events/events_change_spec.js": "./spec/events/events_change_spec.js",
 	"./events/events_core_spec.js": "./spec/events/events_core_spec.js",
@@ -16382,6 +16392,30 @@ describe('chain', function () {
         }, { debounceCalc: false }).set('a', 2);
 
         expect(obj.b).toEqual(4);
+    });
+}); /* eslint-disable import/no-extraneous-dependencies, import/extensions */
+
+/***/ }),
+
+/***/ "./spec/common_spec.js":
+/*!*****************************!*\
+  !*** ./spec/common_spec.js ***!
+  \*****************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var defi = __webpack_require__(/*! src */ "../src/index.js");
+
+describe('common tests', function () {
+    it('includes all documented members', function () {
+        ['bindNode', 'bound', 'calc', 'chain', 'lookForBinder', 'set', 'mediate', 'off', 'on', 'remove', 'trigger', 'unbindNode'].forEach(function (methodName) {
+            expect(typeof defi[methodName]).toEqual('function');
+        });
+
+        expect(typeof defi.defaultBinders[0]).toEqual('function');
     });
 }); /* eslint-disable import/no-extraneous-dependencies, import/extensions */
 

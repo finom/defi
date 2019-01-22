@@ -1,6 +1,6 @@
 /*
     --------------------------------------------------------------
-    defi.js v0.0.34 (Tue, 22 Jan 2019 20:43:22 GMT)
+    defi.js v0.0.35 (Tue, 22 Jan 2019 22:51:04 GMT)
     By Andrey Gubanov http://github.com/finom
     Released under the MIT license
     More info: https://defi.js.org
@@ -100,7 +100,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 25);
+/******/ 	return __webpack_require__(__webpack_require__.s = 28);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -331,7 +331,7 @@ function removeListener(object, name, callback, info) {
             selector = domEventExecResult[3];
         // fixing circular reference issue
 
-        var removeDomListener = __webpack_require__(28);
+        var removeDomListener = __webpack_require__(30);
 
         removeDomListener(object, key, eventName, selector, callback, info);
 
@@ -398,15 +398,15 @@ function removeListener(object, name, callback, info) {
 
 var Init = __webpack_require__(12);
 
-var parseHTML = __webpack_require__(29);
+var parseHTML = __webpack_require__(31);
 
-var on = __webpack_require__(30);
+var on = __webpack_require__(32);
 
-var off = __webpack_require__(31);
+var off = __webpack_require__(33);
 
-var add = __webpack_require__(32);
+var add = __webpack_require__(34);
 
-var assign = __webpack_require__(33);
+var assign = __webpack_require__(35);
 
 // a tiny jQuery-like library
 module.exports = mq;
@@ -469,7 +469,7 @@ function addListener(object, name, callback) {
                 selector = domEventExecResult[3];
             // fixing circular reference issue
 
-            var addDomListener = __webpack_require__(34);
+            var addDomListener = __webpack_require__(36);
 
             addDomListener(object, key, eventName, selector, callback, info);
 
@@ -622,7 +622,7 @@ var triggerOne = __webpack_require__(3);
 
 var checkObjectType = __webpack_require__(1);
 
-var is = __webpack_require__(21);
+var is = __webpack_require__(22);
 
 // the function sets new value for a property
 // since its performance is very critical we're checking events existence manually
@@ -818,7 +818,7 @@ module.exports = /([^::]+)::([^()]+)?(?:\((.*)\))?/;
 "use strict";
 
 
-var html2nodeList = __webpack_require__(20);
+var html2nodeList = __webpack_require__(21);
 
 var win = window;
 
@@ -1015,7 +1015,7 @@ function debounce(func, givenDelay, thisArg) {
 
 var addListener = __webpack_require__(6);
 
-var changeHandler = __webpack_require__(36);
+var changeHandler = __webpack_require__(38);
 
 // adds delegated event listener to an object by given path
 // TODO Handler uses wrong context
@@ -1085,11 +1085,11 @@ var checkObjectType = __webpack_require__(1);
 
 var defs = __webpack_require__(0);
 
-var getNodes = __webpack_require__(24);
+var getNodes = __webpack_require__(25);
 
-var removeTreeListener = __webpack_require__(23);
+var removeTreeListener = __webpack_require__(24);
 
-var removeBinding = __webpack_require__(47);
+var removeBinding = __webpack_require__(49);
 
 // unbinds a node
 module.exports = unbindNode;
@@ -1317,6 +1317,45 @@ function input(type) {
 "use strict";
 
 
+var on = __webpack_require__(29);
+
+var off = __webpack_require__(20);
+
+var trigger = __webpack_require__(39);
+
+var calc = __webpack_require__(42);
+
+var bindNode = __webpack_require__(46);
+
+var bound = __webpack_require__(57);
+
+var unbindNode = __webpack_require__(17);
+
+var set = __webpack_require__(9);
+
+var remove = __webpack_require__(58);
+
+var mediate = __webpack_require__(59);
+
+// the following methods can be used as static methods and as instance methods
+exports.on = on;
+exports.off = off;
+exports.trigger = trigger;
+exports.calc = calc;
+exports.bindNode = bindNode;
+exports.bound = bound;
+exports.unbindNode = unbindNode;
+exports.set = set;
+exports.remove = remove;
+exports.mediate = mediate;
+
+/***/ }),
+/* 20 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
 var splitBySpaceReg = __webpack_require__(10);
 
 var checkObjectType = __webpack_require__(1);
@@ -1387,7 +1426,7 @@ function off(object, givenNames, callback) {
 }
 
 /***/ }),
-/* 20 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1432,7 +1471,7 @@ function html2nodeList(givenHTML) {
 }
 
 /***/ }),
-/* 21 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1447,7 +1486,7 @@ var isPolyfill = function (v1, v2) {
 module.exports = Object.is || isPolyfill;
 
 /***/ }),
-/* 22 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1455,7 +1494,7 @@ module.exports = Object.is || isPolyfill;
 
 var delegateListener = __webpack_require__(16);
 
-var removeTreeListener = __webpack_require__(23);
+var removeTreeListener = __webpack_require__(24);
 
 // creates tree listener
 function createTreeListener(_ref) {
@@ -1523,7 +1562,7 @@ function addTreeListener(object, deepPath, handler) {
 }
 
 /***/ }),
-/* 23 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1548,13 +1587,13 @@ function removeTreeListener(object, deepPath, handler) {
 }
 
 /***/ }),
-/* 24 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var selectNodes = __webpack_require__(45);
+var selectNodes = __webpack_require__(47);
 
 var $ = __webpack_require__(5);
 
@@ -1578,60 +1617,87 @@ function getNodes(object, selector) {
 }
 
 /***/ }),
-/* 25 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _lib = __webpack_require__(26);
-
-var functions = _lib;
-
-
-module.exports = functions;
-
-/***/ }),
 /* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var on = __webpack_require__(27);
+var defaultBinders = __webpack_require__(27);
 
-var off = __webpack_require__(19);
+// tries to find a binder for given node
+module.exports = lookForBinder;
+function lookForBinder(node) {
+    for (var i = 0; i < defaultBinders.length; i++) {
+        var binder = defaultBinders[i].call(node, node);
+        if (binder) {
+            return binder;
+        }
+    }
 
-var trigger = __webpack_require__(37);
-
-var calc = __webpack_require__(40);
-
-var bindNode = __webpack_require__(44);
-
-var bound = __webpack_require__(57);
-
-var unbindNode = __webpack_require__(17);
-
-var set = __webpack_require__(9);
-
-var remove = __webpack_require__(58);
-
-var mediate = __webpack_require__(59);
-
-// the following methods can be used as static methods and as instance methods
-exports.on = on;
-exports.off = off;
-exports.trigger = trigger;
-exports.calc = calc;
-exports.bindNode = bindNode;
-exports.bound = bound;
-exports.unbindNode = unbindNode;
-exports.set = set;
-exports.remove = remove;
-exports.mediate = mediate;
+    return undefined;
+}
 
 /***/ }),
 /* 27 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var input = __webpack_require__(18);
+
+var textarea = __webpack_require__(51);
+
+var select = __webpack_require__(52);
+
+var progress = __webpack_require__(53);
+
+var output = __webpack_require__(54);
+
+// defaultBinders collection by default contains only one function-checker
+module.exports = [function (node) {
+    switch (node.tagName) {
+        case 'INPUT':
+            return input(node.type);
+        case 'TEXTAREA':
+            return textarea();
+        case 'SELECT':
+            return select(node.multiple);
+        case 'PROGRESS':
+            return progress();
+        case 'OUTPUT':
+            return output();
+        default:
+            return null;
+    }
+}];
+
+/***/ }),
+/* 28 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _lib = __webpack_require__(19);
+
+var functions = _lib;
+
+var lookForBinder = __webpack_require__(26);
+
+var chain = __webpack_require__(60);
+
+var defaultBinders = __webpack_require__(27);
+
+module.exports = Object.assign({}, functions, {
+    lookForBinder: lookForBinder,
+    chain: chain,
+    defaultBinders: defaultBinders
+});
+
+/***/ }),
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1643,7 +1709,7 @@ var checkObjectType = __webpack_require__(1);
 
 var defiError = __webpack_require__(2);
 
-var off = __webpack_require__(19);
+var off = __webpack_require__(20);
 
 var debounce = __webpack_require__(15);
 
@@ -1721,7 +1787,7 @@ function on(object, givenNames, givenCallback, options) {
 }
 
 /***/ }),
-/* 28 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1773,13 +1839,13 @@ function removeDomListener(object, key, eventName, selector, callback, info) {
 }
 
 /***/ }),
-/* 29 */
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var html2nodeList = __webpack_require__(20);
+var html2nodeList = __webpack_require__(21);
 
 var Init = __webpack_require__(12);
 
@@ -1790,7 +1856,7 @@ function parseHTML(html) {
 }
 
 /***/ }),
-/* 30 */
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1885,7 +1951,7 @@ function on(namesStr, selector, handler) {
 }
 
 /***/ }),
-/* 31 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1951,7 +2017,7 @@ function off(namesStr, selector, handler) {
 }
 
 /***/ }),
-/* 32 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1995,7 +2061,7 @@ function add(selector) {
 }
 
 /***/ }),
-/* 33 */
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2026,7 +2092,7 @@ var assign = Object.assign || function assign(target) {
 module.exports = assign;
 
 /***/ }),
-/* 34 */
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2040,7 +2106,7 @@ var addListener = __webpack_require__(6);
 
 var $ = __webpack_require__(5);
 
-var createDomEventHandler = __webpack_require__(35);
+var createDomEventHandler = __webpack_require__(37);
 
 // returns an object with event handlers used at addDomListener
 function createBindingHandlers(_ref) {
@@ -2114,7 +2180,7 @@ function addDomListener(object, key, eventName, selector, callback, info) {
 }
 
 /***/ }),
-/* 35 */
+/* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2164,7 +2230,7 @@ function createDomEventHandler(_ref) {
 }
 
 /***/ }),
-/* 36 */
+/* 38 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2200,7 +2266,7 @@ function changeHandler(_ref) {
 }
 
 /***/ }),
-/* 37 */
+/* 39 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2218,7 +2284,7 @@ var defs = __webpack_require__(0);
 
 var triggerOne = __webpack_require__(3);
 
-var triggerDomEvent = __webpack_require__(38);
+var triggerDomEvent = __webpack_require__(40);
 
 // triggers an event
 module.exports = trigger;
@@ -2272,13 +2338,13 @@ function trigger(object, givenNames) {
 }
 
 /***/ }),
-/* 38 */
+/* 40 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var triggerOneDOMEvent = __webpack_require__(39);
+var triggerOneDOMEvent = __webpack_require__(41);
 
 var defs = __webpack_require__(0);
 
@@ -2332,7 +2398,7 @@ function triggerDOMEvent(object, key, eventName, selector, triggerArgs) {
 }
 
 /***/ }),
-/* 39 */
+/* 41 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2359,7 +2425,7 @@ function triggerOneDOMEvent(_ref) {
 }
 
 /***/ }),
-/* 40 */
+/* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2373,9 +2439,9 @@ var defiError = __webpack_require__(2);
 
 var debounce = __webpack_require__(15);
 
-var addSource = __webpack_require__(41);
+var addSource = __webpack_require__(43);
 
-var createCalcHandler = __webpack_require__(42);
+var createCalcHandler = __webpack_require__(44);
 
 var defineProp = __webpack_require__(8);
 
@@ -2529,7 +2595,7 @@ function calc(object, target, sources, givenHandler, eventOptions) {
 }
 
 /***/ }),
-/* 41 */
+/* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2537,7 +2603,7 @@ function calc(object, target, sources, givenHandler, eventOptions) {
 
 var addListener = __webpack_require__(6);
 
-var addTreeListener = __webpack_require__(22);
+var addTreeListener = __webpack_require__(23);
 
 var defiError = __webpack_require__(2);
 
@@ -2591,7 +2657,7 @@ function addSource(_ref) {
 }
 
 /***/ }),
-/* 42 */
+/* 44 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2599,7 +2665,7 @@ function addSource(_ref) {
 
 var set = __webpack_require__(9);
 
-var deepFind = __webpack_require__(43);
+var deepFind = __webpack_require__(45);
 
 // creates event handler for target object which will be fired when a source is changed
 module.exports = createCalcHandler;
@@ -2676,7 +2742,7 @@ function createCalcHandler(_ref) {
 }
 
 /***/ }),
-/* 43 */
+/* 45 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2701,7 +2767,7 @@ function deepFind(obj, givenPath) {
 }
 
 /***/ }),
-/* 44 */
+/* 46 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2711,17 +2777,17 @@ var initDefi = __webpack_require__(7);
 
 var defineProp = __webpack_require__(8);
 
-var getNodes = __webpack_require__(24);
+var getNodes = __webpack_require__(25);
 
-var createBindingSwitcher = __webpack_require__(46);
+var createBindingSwitcher = __webpack_require__(48);
 
-var bindSingleNode = __webpack_require__(48);
+var bindSingleNode = __webpack_require__(50);
 
 var checkObjectType = __webpack_require__(1);
 
 var defiError = __webpack_require__(2);
 
-var addTreeListener = __webpack_require__(22);
+var addTreeListener = __webpack_require__(23);
 
 // initializes binsing between a property of an object to HTML node
 module.exports = bindNode;
@@ -2837,7 +2903,7 @@ function bindNode(object, key, node, binder, eventOptions) {
 }
 
 /***/ }),
-/* 45 */
+/* 47 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2915,7 +2981,7 @@ function selectNodes(object, givenSelector) {
 }
 
 /***/ }),
-/* 46 */
+/* 48 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2993,7 +3059,7 @@ function createBindingSwitcher(_ref) {
 }
 
 /***/ }),
-/* 47 */
+/* 49 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3070,13 +3136,13 @@ function removeBinding(_ref) {
 }
 
 /***/ }),
-/* 48 */
+/* 50 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var lookForBinder = __webpack_require__(49);
+var lookForBinder = __webpack_require__(26);
 
 var createNodeHandler = __webpack_require__(55);
 
@@ -3290,63 +3356,6 @@ function bindSingleNode(object, _ref) {
 }
 
 /***/ }),
-/* 49 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var defaultBinders = __webpack_require__(50);
-
-// tries to find a binder for given node
-module.exports = lookForBinder;
-function lookForBinder(node) {
-    for (var i = 0; i < defaultBinders.length; i++) {
-        var binder = defaultBinders[i].call(node, node);
-        if (binder) {
-            return binder;
-        }
-    }
-
-    return undefined;
-}
-
-/***/ }),
-/* 50 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var input = __webpack_require__(18);
-
-var textarea = __webpack_require__(51);
-
-var select = __webpack_require__(52);
-
-var progress = __webpack_require__(53);
-
-var output = __webpack_require__(54);
-
-// defaultBinders collection by default contains only one function-checker
-module.exports = [function (node) {
-    switch (node.tagName) {
-        case 'INPUT':
-            return input(node.type);
-        case 'TEXTAREA':
-            return textarea();
-        case 'SELECT':
-            return select(node.multiple);
-        case 'PROGRESS':
-            return progress();
-        case 'OUTPUT':
-            return output();
-        default:
-            return null;
-    }
-}];
-
-/***/ }),
 /* 51 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -3465,7 +3474,7 @@ function output() {
 "use strict";
 
 
-var is = __webpack_require__(21);
+var is = __webpack_require__(22);
 
 var set = __webpack_require__(9);
 
@@ -3813,6 +3822,70 @@ function mediate(object, givenKeys, mediator) {
     }
 
     return object;
+}
+
+/***/ }),
+/* 60 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var checkObjectType = __webpack_require__(1);
+
+var _lib = __webpack_require__(19);
+
+var functions = _lib;
+
+
+// create a prototype of ChainClass
+// store target object at "object" property
+var prototype = {
+    constructor: function (object) {
+        this.object = object;
+    }
+};
+
+var funcNames = Object.keys(functions);
+
+// iterate over all universal methods
+
+var _loop = function (i) {
+    var funcName = funcNames[i];
+    var method = functions[funcName];
+
+    // create every chained method
+    prototype[funcName] = function chainedMethod() {
+        var args = [this.object];
+
+        for (var _target = arguments, _index = 0, argument, _l = _target.length; argument = _target[_index], _index < _l; _index++) {
+            args.push(argument);
+        }
+
+        method(...args);
+
+        // returning this is important for chained calls
+        return this;
+    };
+};
+
+for (var i = 0; i < funcNames.length; i++) {
+    _loop(i);
+}
+
+var ChainClass = function ChainClass(object) {
+    this.object = object;
+};
+
+ChainClass.prototype = prototype;
+
+// the function allows to chain static function calls on any object
+module.exports = chain;
+function chain(object) {
+    // check for type and throw an error if it is not an object and is not a function
+    checkObjectType(object, 'chain');
+
+    return new ChainClass(object);
 }
 
 /***/ })
