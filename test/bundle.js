@@ -11236,7 +11236,7 @@ var set = __webpack_require__(/*! ../set */ "../src/set.js");
 
 // the function defines needed descriptor for given property
 module.exports = defineProp;
-function defineProp(object, key, noAccessor) {
+function defineProp(object, key) {
     var def = defs.get(object);
 
     // if no object definition do nothing
@@ -11251,20 +11251,18 @@ function defineProp(object, key, noAccessor) {
             bindings: null
         };
 
-        if (!noAccessor) {
-            Object.defineProperty(object, key, {
-                configurable: true,
-                enumerable: true,
-                get: function () {
-                    return propDef.value;
-                },
-                set: function (v) {
-                    return set(object, key, v, {
-                        fromSetter: true
-                    });
-                }
-            });
-        }
+        Object.defineProperty(object, key, {
+            configurable: true,
+            enumerable: true,
+            get: function () {
+                return propDef.value;
+            },
+            set: function (v) {
+                return set(object, key, v, {
+                    fromSetter: true
+                });
+            }
+        });
     }
 
     return def.props[key];
@@ -13306,9 +13304,7 @@ function calc(object, target, sources, givenHandler, eventOptions) {
         _eventOptions$debounc2 = _eventOptions.debounceCalc,
         debounceCalc = _eventOptions$debounc2 === undefined ? true : _eventOptions$debounc2,
         _eventOptions$debounc3 = _eventOptions.debounceCalcDelay,
-        debounceCalcDelay = _eventOptions$debounc3 === undefined ? 0 : _eventOptions$debounc3,
-        _eventOptions$isTarge = _eventOptions.isTargetPropertyHidden,
-        isTargetPropertyHidden = _eventOptions$isTarge === undefined ? false : _eventOptions$isTarge;
+        debounceCalcDelay = _eventOptions$debounc3 === undefined ? 0 : _eventOptions$debounc3;
 
     var defaultHandler = function (value) {
         return value;
@@ -13331,7 +13327,7 @@ function calc(object, target, sources, givenHandler, eventOptions) {
         debouncedCalcHandler = debounce(syncCalcHandler, debounceCalcDelay);
     }
 
-    defineProp(object, target, isTargetPropertyHidden);
+    defineProp(object, target);
 
     if (!(sources instanceof Array)) {
         sources = [sources]; // eslint-disable-line no-param-reassign
