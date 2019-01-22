@@ -2,7 +2,7 @@ import defs from './defs';
 import set from '../set';
 
 // the function defines needed descriptor for given property
-export default function defineProp(object, key, noAccessor) {
+export default function defineProp(object, key) {
     const def = defs.get(object);
 
     // if no object definition do nothing
@@ -17,20 +17,18 @@ export default function defineProp(object, key, noAccessor) {
             bindings: null
         };
 
-        if (!noAccessor) {
-            Object.defineProperty(object, key, {
-                configurable: true,
-                enumerable: true,
-                get() {
-                    return propDef.value;
-                },
-                set(v) {
-                    return set(object, key, v, {
-                        fromSetter: true
-                    });
-                }
-            });
-        }
+        Object.defineProperty(object, key, {
+            configurable: true,
+            enumerable: true,
+            get() {
+                return propDef.value;
+            },
+            set(v) {
+                return set(object, key, v, {
+                    fromSetter: true
+                });
+            }
+        });
     }
 
     return def.props[key];

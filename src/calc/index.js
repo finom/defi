@@ -51,9 +51,6 @@ export default function calc(object, target, sources, givenHandler, eventOptions
         debounceCalcOnInit = false,
         debounceCalc = true,
         debounceCalcDelay = 0,
-        // the next option is used to hide a property for internal use (eg in bindings parser)
-        // hidden property means no accessors
-        isTargetPropertyHidden = false
     } = eventOptions;
     const defaultHandler = value => value;
     const handler = givenHandler || defaultHandler;
@@ -74,7 +71,7 @@ export default function calc(object, target, sources, givenHandler, eventOptions
         debouncedCalcHandler = debounce(syncCalcHandler, debounceCalcDelay);
     }
 
-    defineProp(object, target, isTargetPropertyHidden);
+    defineProp(object, target);
 
     if (!(sources instanceof Array)) {
         sources = [sources]; // eslint-disable-line no-param-reassign
