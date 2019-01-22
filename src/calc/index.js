@@ -50,7 +50,7 @@ export default function calc(object, target, sources, givenHandler, eventOptions
         setOnInit = true,
         debounceCalcOnInit = false,
         debounceCalc = true,
-        debounceCalcDelay = 0,
+        debounceCalcDelay = 0
     } = eventOptions;
     const defaultHandler = value => value;
     const handler = givenHandler || defaultHandler;
