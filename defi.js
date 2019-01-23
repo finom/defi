@@ -1,6 +1,6 @@
 /*
     --------------------------------------------------------------
-    defi.js v0.0.36 (Tue, 22 Jan 2019 23:11:50 GMT)
+    defi.js v0.0.37 (Wed, 23 Jan 2019 14:02:33 GMT)
     By Andrey Gubanov http://github.com/finom
     Released under the MIT license
     More info: https://defi.js.org
@@ -585,11 +585,14 @@ function defineProp(object, key) {
         return null;
     }
 
-    var currentPropDef = def.props[key];
+    if (!def.props[key]) {
+        var propDef = def.props[key] = {
+            value: object[key],
+            mediator: null,
+            bindings: null
+        };
 
-    // if a property isn't yet enabled for defi
-    if (!currentPropDef) {
-        var descriptor = {
+        Object.defineProperty(object, key, {
             configurable: true,
             enumerable: true,
             get: function () {
@@ -600,33 +603,7 @@ function defineProp(object, key) {
                     fromSetter: true
                 });
             }
-        };
-        var propDef = def.props[key] = {
-            value: object[key],
-            mediator: null,
-            bindings: null,
-            descriptor: descriptor
-        };
-
-        Object.defineProperty(object, key, descriptor);
-    } else if (typeof Object.getOwnPropertyDescriptor === 'function') {
-        // the following block is made to re-attach the descriptor
-        // if it was re-set by another library
-        // example https://github.com/babel/babel/issues/9388
-        var _Object$getOwnPropert = Object.getOwnPropertyDescriptor(object, key),
-            get = _Object$getOwnPropert.get,
-            setter = _Object$getOwnPropert.set,
-            configurable = _Object$getOwnPropert.configurable;
-
-        var _descriptor = currentPropDef.descriptor;
-
-        // if current descriptor isn't equal to one attached by defi and if it's still configurable
-
-        if ((get !== _descriptor.get || setter !== _descriptor.set) && configurable) {
-            // restore property value before updating its descriptor
-            currentPropDef.value = object[key];
-            Object.defineProperty(object, key, currentPropDef.descriptor);
-        }
+        });
     }
 
     return def.props[key];
