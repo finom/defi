@@ -31,7 +31,9 @@ export default function delegateListener(object, givenPath, name, callback, info
             object
         };
 
-        // the event is triggered by "set"
+        // the event is triggered by "set";
+        // a new function is created as a handler to make possible
+        // to add the handler multiple times for one key
         addListener(object, `_change:delegated:${key}`, evt => changeHandler(evt), {
             delegatedData,
             pathStr
