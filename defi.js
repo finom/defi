@@ -1,6 +1,6 @@
 /*
     --------------------------------------------------------------
-    defi.js v0.0.37 (Wed, 23 Jan 2019 14:02:33 GMT)
+    defi.js v0.0.38 (Wed, 17 Apr 2019 11:17:23 GMT)
     By Andrey Gubanov http://github.com/finom
     Released under the MIT license
     More info: https://defi.js.org
@@ -1062,7 +1062,9 @@ function delegateListener(object, givenPath, name, callback) {
         };
 
         // the event is triggered by "set"
-        addListener(object, '_change:delegated:' + key, changeHandler, {
+        addListener(object, '_change:delegated:' + key, function (evt) {
+            return changeHandler(evt);
+        }, {
             delegatedData: delegatedData,
             pathStr: pathStr
         });

@@ -14430,7 +14430,9 @@ function delegateListener(object, givenPath, name, callback) {
         };
 
         // the event is triggered by "set"
-        addListener(object, '_change:delegated:' + key, changeHandler, {
+        addListener(object, '_change:delegated:' + key, function (evt) {
+            return changeHandler(evt);
+        }, {
             delegatedData: delegatedData,
             pathStr: pathStr
         });
@@ -17030,6 +17032,31 @@ describe('Events summary (on, off, trigger)', function () {
         trigger(obj, 'someevent');
 
         expect(handler).not.toHaveBeenCalled();
+    });
+
+    it('fires delegated (simple)', function () {
+        var obj = makeObject('a');
+        var handler1 = createSpy();
+        var handler2 = createSpy();
+        on(obj, 'a@someevent1', handler1);
+        on(obj, 'a@someevent2', handler2);
+        trigger(obj.a, 'someevent1');
+        trigger(obj.a, 'someevent2');
+        expect(handler1).toHaveBeenCalledTimes(1);
+        expect(handler2).toHaveBeenCalledTimes(1);
+    });
+
+    it('fires delegated (simple, reassigned)', function () {
+        var obj = {};
+        var handler1 = createSpy();
+        var handler2 = createSpy();
+        on(obj, 'a@someevent1', handler1);
+        on(obj, 'a@someevent2', handler2);
+        obj.a = {};
+        trigger(obj.a, 'someevent1');
+        trigger(obj.a, 'someevent2');
+        expect(handler1).toHaveBeenCalledTimes(1);
+        expect(handler2).toHaveBeenCalledTimes(1);
     });
 
     it('fires delegated', function () {
