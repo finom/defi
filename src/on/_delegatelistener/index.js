@@ -32,7 +32,7 @@ export default function delegateListener(object, givenPath, name, callback, info
         };
 
         // the event is triggered by "set"
-        addListener(object, `_change:delegated:${key}`, changeHandler, {
+        addListener(object, `_change:delegated:${key}`, evt => changeHandler(evt), {
             delegatedData,
             pathStr
         });

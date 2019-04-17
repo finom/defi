@@ -60,6 +60,31 @@ describe('Events summary (on, off, trigger)', () => {
         expect(handler).not.toHaveBeenCalled();
     });
 
+    it('fires delegated (simple)', () => {
+        const obj = makeObject('a');
+        const handler1 = createSpy();
+        const handler2 = createSpy();
+        on(obj, 'a@someevent1', handler1);
+        on(obj, 'a@someevent2', handler2);
+        trigger(obj.a, 'someevent1');
+        trigger(obj.a, 'someevent2');
+        expect(handler1).toHaveBeenCalledTimes(1);
+        expect(handler2).toHaveBeenCalledTimes(1);
+    });
+
+    it('fires delegated (simple, reassigned)', () => {
+        const obj = {};
+        const handler1 = createSpy();
+        const handler2 = createSpy();
+        on(obj, 'a@someevent1', handler1);
+        on(obj, 'a@someevent2', handler2);
+        obj.a = {};
+        trigger(obj.a, 'someevent1');
+        trigger(obj.a, 'someevent2');
+        expect(handler1).toHaveBeenCalledTimes(1);
+        expect(handler2).toHaveBeenCalledTimes(1);
+    });
+
     it('fires delegated', () => {
         const obj = makeObject('a.b.c');
         on(obj, 'a.b.c@someevent', handler);
