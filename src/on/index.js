@@ -3,6 +3,8 @@ import checkObjectType from '../_helpers/checkobjecttype';
 import defiError from '../_helpers/defierror';
 import off from '../off';
 import debounce from '../_helpers/debounce';
+import forEach from '../_helpers/foreach';
+import forOwn from '../_helpers/forown';
 import addListener from './_addlistener';
 import delegateListener from './_delegatelistener';
 
@@ -15,8 +17,9 @@ export default function on(object, givenNames, givenCallback, options) {
 
     // allow to pass name-handler object
     if (givenNames && typeof givenNames === 'object' && !isNamesVarArray) {
-        nofn.forOwn(givenNames, (namesObjCallback, namesObjName) =>
-            on(object, namesObjName, namesObjCallback, givenCallback, options));
+        forOwn(givenNames, (namesObjCallback, namesObjName) => on(
+            object, namesObjName, namesObjCallback, givenCallback, options,
+        ));
         return object;
     }
 
@@ -45,7 +48,7 @@ export default function on(object, givenNames, givenCallback, options) {
         callback = givenCallback;
     }
 
-    nofn.forEach(names, (name) => {
+    forEach(names, (name) => {
         const delegatedEventParts = name.split('@');
 
         if (delegatedEventParts.length > 1) {

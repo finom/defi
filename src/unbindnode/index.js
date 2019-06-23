@@ -2,6 +2,8 @@ import checkObjectType from '../_helpers/checkobjecttype';
 import defs from '../_core/defs';
 import getNodes from '../bindnode/_getnodes';
 import removeTreeListener from '../off/_removetreelistener';
+import forEach from '../_helpers/foreach';
+import forOwn from '../_helpers/forown';
 import removeBinding from './_removebinding';
 
 // unbinds a node
@@ -14,13 +16,13 @@ export default function unbindNode(object, key, node, eventOptions) {
          * accept array of keys
          * this.unbindNode(['a', 'b', 'c'], node)
          */
-        nofn.forEach(key, itemKey => unbindNode(object, itemKey, node, eventOptions));
+        forEach(key, itemKey => unbindNode(object, itemKey, node, eventOptions));
 
         return object;
     }
 
     if (key && typeof key === 'object') {
-        nofn.forOwn(key, (keyObjValue, keyObjKey) => {
+        forOwn(key, (keyObjValue, keyObjKey) => {
             if (keyObjValue.constructor === Object && 'node' in keyObjValue) {
                 // this.unbindNode({ key: { node: $(), binder } ) }, { silent: true });
                 unbindNode(object, keyObjKey, keyObjValue.node, node);
@@ -31,7 +33,7 @@ export default function unbindNode(object, key, node, eventOptions) {
                 && 'node' in keyObjValue[0]
             ) {
                 // this.unbindNode({ key: [{ node: $(), binder }] ) }, { silent: true });
-                nofn.forEach(keyObjValue, (keyObjValueItem) => {
+                forEach(keyObjValue, (keyObjValueItem) => {
                     unbindNode(object, keyObjKey, keyObjValueItem.node, node);
                 });
             } else {
@@ -55,7 +57,7 @@ export default function unbindNode(object, key, node, eventOptions) {
     // allow to pass null or undefined as key
     // if passed then remove bindings of all keys for given object
     if (key === null || typeof key === 'undefined') {
-        nofn.forOwn(props, (propsItem, propsKey) => {
+        forOwn(props, (propsItem, propsKey) => {
             unbindNode(object, propsKey, null, eventOptions);
         });
 
@@ -101,7 +103,7 @@ export default function unbindNode(object, key, node, eventOptions) {
 
     // if no node is pased remove all bindings for given key
     if (!node) {
-        nofn.forEach(bindings, (binding) => {
+        forEach(bindings, (binding) => {
             removeBinding({
                 object, key, eventOptions, binding
             });
@@ -117,8 +119,8 @@ export default function unbindNode(object, key, node, eventOptions) {
     const retainNodes = [];
 
     // iterate over all bindngs and compare their node with given nodes
-    nofn.forEach($nodes, (nodesItem) => {
-        nofn.forEach(bindings, (binding) => {
+    forEach($nodes, (nodesItem) => {
+        forEach(bindings, (binding) => {
             if (binding.node === nodesItem) {
                 removeBinding({
                     object, key, eventOptions, binding

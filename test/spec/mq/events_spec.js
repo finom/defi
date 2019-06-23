@@ -8,6 +8,7 @@ describe('mq events', () => {
     let child2;
     let grandchild1;
     let handler;
+    const that = {};
 
     beforeEach(() => {
         testSandbox = window.document.createElement('div');
@@ -22,10 +23,9 @@ describe('mq events', () => {
         child1 = testSandbox.querySelector('.child1');
         child2 = testSandbox.querySelector('.child2');
         grandchild1 = testSandbox.querySelector('.grandchild1');
-
-        this.handler = () => {};
-        spyOn(this, 'handler');
-        handler = this.handler;
+        that.handler = () => {};
+        spyOn(that, 'handler');
+        handler = that.handler;
     });
 
     afterEach(() => {

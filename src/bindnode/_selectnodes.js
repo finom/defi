@@ -1,5 +1,6 @@
 import defs from '../_core/defs';
 import $ from '../_mq';
+import forEach from '../_helpers/foreach';
 
 const customSelectorReg = /\s*:bound\(([^(]*)\)\s*([\S\s]*)\s*/;
 const randomAttr = `${Math.random().toString().replace('0.', 'x')}y`; // x12345y
@@ -11,7 +12,7 @@ export default function selectNodes(object, givenSelector) {
     const selectors = givenSelector.split(',');
     let result = $();
 
-    nofn.forEach(selectors, (selector) => {
+    forEach(selectors, (selector) => {
         const execResult = customSelectorReg.exec(selector);
         if (execResult) {
             const boundKey = execResult[1];
@@ -22,7 +23,7 @@ export default function selectNodes(object, givenSelector) {
                 const { bindings } = propDef;
                 if (bindings) {
                     const boundNodes = Array(bindings.length);
-                    nofn.forEach(bindings, (binding, i) => {
+                    forEach(bindings, (binding, i) => {
                         boundNodes[i] = binding.node;
                     });
 
@@ -33,7 +34,7 @@ export default function selectNodes(object, givenSelector) {
                         // for example ":bound(KEY) > .my-selector"
                         if (subSelector.indexOf('>') === 0) {
                             // selecting children
-                            nofn.forEach(boundNodes, (node) => {
+                            forEach(boundNodes, (node) => {
                                 node.setAttribute(randomAttr, randomAttr);
                                 const selected = node.querySelectorAll(`[${randomAttr}="${randomAttr}"] ${subSelector}`);
                                 result = result.add(selected);
@@ -41,7 +42,7 @@ export default function selectNodes(object, givenSelector) {
                             });
                         } else {
                             // if native selector doesn't contain children selector
-                            nofn.forEach(boundNodes, (node) => {
+                            forEach(boundNodes, (node) => {
                                 const selected = node.querySelectorAll(subSelector);
                                 result = result.add(selected);
                             });

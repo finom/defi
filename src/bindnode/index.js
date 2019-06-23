@@ -5,6 +5,8 @@ import createBindingSwitcher from './_createbindingswitcher';
 import bindSingleNode from './_bindsinglenode';
 import checkObjectType from '../_helpers/checkobjecttype';
 import defiError from '../_helpers/defierror';
+import forEach from '../_helpers/foreach';
+import forOwn from '../_helpers/forown';
 import addTreeListener from '../on/_addtreelistener';
 
 // initializes binsing between a property of an object to HTML node
@@ -27,14 +29,14 @@ export default function bindNode(object, key, node, binder, eventOptions) {
          * accept array of keys
          * this.bindNode(['a', 'b', 'c'], node)
          */
-        nofn.forEach(key, itemKey => bindNode(object, itemKey, node, binder, eventOptions));
+        forEach(key, itemKey => bindNode(object, itemKey, node, binder, eventOptions));
 
         return object;
     }
 
 
     if (typeof key === 'object') {
-        nofn.forOwn(key, (keyObjValue, keyObjKey) => {
+        forOwn(key, (keyObjValue, keyObjKey) => {
             // binder means eventOptions
             eventOptions = binder; // eslint-disable-line no-param-reassign
 
@@ -59,7 +61,7 @@ export default function bindNode(object, key, node, binder, eventOptions) {
                 //   node: $(),
                 //   binder
                 // }] ) }, { on: 'evt' }, { silent: true });
-                nofn.forEach(keyObjValue, (keyObjValueItem) => {
+                forEach(keyObjValue, (keyObjValueItem) => {
                     bindNode(
                         object, keyObjKey, keyObjValueItem.node,
                         keyObjValueItem.binder || node, eventOptions
@@ -115,7 +117,7 @@ export default function bindNode(object, key, node, binder, eventOptions) {
     const propDef = defineProp(object, key);
 
     // handle binding for every node separately
-    nofn.forEach($nodes, oneNode => bindSingleNode(object, {
+    forEach($nodes, oneNode => bindSingleNode(object, {
         $nodes,
         node: oneNode,
         key,

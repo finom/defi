@@ -1,5 +1,7 @@
 import defs from '../_core/defs';
 import removeListener from './_removelistener';
+import slice from '../_helpers/slice';
+import forEach from '../_helpers/foreach';
 
 // the function removes internally used events such as _asterisk:add
 function detatchDelegatedLogic({
@@ -10,7 +12,7 @@ function detatchDelegatedLogic({
     const retain = [];
     const events = allEvents[delegatedEventName];
 
-    nofn.forEach(events, (event) => {
+    forEach(events, (event) => {
         // pathStr is assigned to info in delegateListener
         if (event.info.pathStr !== pathStr) {
             retain.push(event);
@@ -46,7 +48,7 @@ export default function undelegateListener(object, givenPath, name, callback, in
         let pathStr;
 
         if (path.length > 1) {
-            path = nofn.slice(path, 1);
+            path = slice(path, 1);
             pathStr = path.join('.');
         } else {
             path = [];

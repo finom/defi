@@ -1,6 +1,8 @@
 import defs from '../_core/defs';
 import triggerOne from '../trigger/_triggerone';
 import domEventReg from '../on/_domeventregexp';
+import forEach from '../_helpers/foreach';
+import forOwn from '../_helpers/forown';
 
 // removes simple event listener from an object
 export default function removeListener(object, name, callback, info) {
@@ -20,7 +22,7 @@ export default function removeListener(object, name, callback, info) {
     if (domEventExecResult) {
         const [, eventName, key, selector] = domEventExecResult;
         // fixing circular reference issue
-        const removeDomListener = require('./_removedomlistener');
+        const { default: removeDomListener } = require('./_removedomlistener');
 
         removeDomListener(object, key, eventName, selector, callback, info);
 
@@ -30,8 +32,8 @@ export default function removeListener(object, name, callback, info) {
     // if all events need to be removed
     if (typeof name === 'undefined') {
         if (!noTrigger) {
-            nofn.forOwn(allEvents, (allEventsItem, allEventsName) => {
-                nofn.forEach(allEventsItem, (event) => {
+            forOwn(allEvents, (allEventsItem, allEventsName) => {
+                forEach(allEventsItem, (event) => {
                     const removeEventData = {
                         allEventsName,
                         callback: event.callback
@@ -47,7 +49,7 @@ export default function removeListener(object, name, callback, info) {
         def.events = {};
     } else if (events) {
         // if events with given name are found
-        nofn.forEach(events, (event) => {
+        forEach(events, (event) => {
             const argCallback = (callback && callback._callback) || callback;
             const eventCallback = event.callback._callback || event.callback;
 

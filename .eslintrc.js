@@ -30,13 +30,13 @@ module.exports = {
                 terms: ['todo'],
                 location: 'start',
             }
-        ]
+        ],
+        'no-plusplus': 0, // allow ++ and --
     },
     env: {
         jasmine: true
     },
     globals: {
-        nofn: true,
         window: true
     }
 };

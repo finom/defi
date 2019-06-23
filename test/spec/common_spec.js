@@ -1,5 +1,5 @@
 /* eslint-disable import/no-extraneous-dependencies, import/extensions */
-import defi from 'src';
+import defi from 'src/index';
 
 describe('common tests', () => {
     it('includes all documented members', () => {

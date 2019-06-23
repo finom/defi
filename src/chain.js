@@ -1,5 +1,6 @@
 import checkObjectType from './_helpers/checkobjecttype';
 import * as functions from './_lib';
+import forEach from './_helpers/foreach';
 
 // create a prototype of ChainClass
 // store target object at "object" property
@@ -20,7 +21,7 @@ for (let i = 0; i < funcNames.length; i++) {
     prototype[funcName] = function chainedMethod() {
         const args = [this.object];
 
-        nofn.forEach(arguments, (argument) => {
+        forEach(arguments, (argument) => {
             args.push(argument);
         });
 

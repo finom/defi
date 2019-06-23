@@ -1,5 +1,6 @@
 import addListener from '../_addlistener';
 import changeHandler from './changehandler';
+import slice from '../../_helpers/slice';
 
 // adds delegated event listener to an object by given path
 // TODO Handler uses wrong context
@@ -16,7 +17,7 @@ export default function delegateListener(object, givenPath, name, callback, info
         let pathStr; // needed for undelegation
 
         if (path.length > 1) {
-            path = nofn.slice(path, 1);
+            path = slice(path, 1);
             pathStr = path.join('.');
         } else {
             path = [];

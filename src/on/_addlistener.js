@@ -4,8 +4,8 @@ import defineProp from '../_core/defineprop';
 import domEventReg from './_domeventregexp';
 
 // property modifier event regexp
-const propModEventReg // eslint-disable-next-line max-len
-    = /^_change:deps:|^_change:bindings:|^_change:delegated:|^_change:common:|^_change:tree:|^change:|^beforechange:/;
+// eslint-disable-next-line max-len
+const propModEventReg = /^_change:deps:|^_change:bindings:|^_change:delegated:|^_change:common:|^_change:tree:|^change:|^beforechange:/;
 
 // adds simple event listener
 // used as core of event engine
@@ -25,7 +25,7 @@ export default function addListener(object, name, callback, info = {}) {
         if (domEventExecResult) {
             const [, eventName, key, selector] = domEventExecResult;
             // fixing circular reference issue
-            const addDomListener = require('./_adddomlistener');
+            const { default: addDomListener } = require('./_adddomlistener');
 
             addDomListener(object, key, eventName, selector, callback, info);
 

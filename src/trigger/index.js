@@ -5,6 +5,7 @@ import splitBySpaceReg from '../on/_splitbyspaceregexp';
 import defs from '../_core/defs';
 import triggerOne from './_triggerone';
 import triggerDomEvent from './_triggerdomevent';
+import forEach from '../_helpers/foreach';
 
 // triggers an event
 export default function trigger(object, givenNames, ...triggerArgs) {
@@ -32,7 +33,7 @@ export default function trigger(object, givenNames, ...triggerArgs) {
         return object;
     }
 
-    nofn.forEach(names, (name) => {
+    forEach(names, (name) => {
         const domEvtExecResult = domEventReg.exec(name);
 
         if (domEvtExecResult) {

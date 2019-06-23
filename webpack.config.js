@@ -1,6 +1,7 @@
 const UnminifiedWebpackPlugin = require('unminified-webpack-plugin');
-const BannerAndFooterWebpackPlugin = require('./tools/banner-and-footer-webpack-plugin');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+
+const BannerAndFooterWebpackPlugin = require('./tools/banner-and-footer-webpack-plugin');
 
 module.exports = {
     devtool: 'source-map',

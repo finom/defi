@@ -4,7 +4,7 @@ import lookForBinder from './lookforbinder';
 import chain from './chain';
 import defaultBinders from './defaultbinders';
 
-module.exports = Object.assign({}, functions, {
+export default Object.assign({}, functions, {
     lookForBinder,
     chain,
     defaultBinders
