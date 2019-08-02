@@ -1,6 +1,6 @@
 /*
     --------------------------------------------------------------
-    defi.js v0.0.39 (Sun, 23 Jun 2019 16:14:31 GMT)
+    defi.js v0.0.40 (Fri, 02 Aug 2019 10:56:49 GMT)
     By Andrey Gubanov http://github.com/finom
     Released under the MIT license
     More info: https://defi.js.org
@@ -100,7 +100,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 26);
+/******/ 	return __webpack_require__(__webpack_require__.s = 25);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -354,30 +354,24 @@ function forOwn(obj, callback) {
 
 /***/ }),
 /* 7 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-var defineProperty = __webpack_require__(25);
-
-function _objectSpread(target) {
-  for (var i = 1; i < arguments.length; i++) {
-    var source = arguments[i] != null ? arguments[i] : {};
-    var ownKeys = Object.keys(source);
-
-    if (typeof Object.getOwnPropertySymbols === 'function') {
-      ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) {
-        return Object.getOwnPropertyDescriptor(source, sym).enumerable;
-      }));
-    }
-
-    ownKeys.forEach(function (key) {
-      defineProperty(target, key, source[key]);
+function _defineProperty(obj, key, value) {
+  if (key in obj) {
+    Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
     });
+  } else {
+    obj[key] = value;
   }
 
-  return target;
+  return obj;
 }
 
-module.exports = _objectSpread;
+module.exports = _defineProperty;
 
 /***/ }),
 /* 8 */
@@ -443,7 +437,7 @@ function addListener(object, name, callback) {
           selector = _domEventExecResult[3]; // fixing circular reference issue
 
 
-      var _require = __webpack_require__(27),
+      var _require = __webpack_require__(26),
           addDomListener = _require["default"];
 
       addDomListener(object, key, eventName, selector, callback, info);
@@ -494,8 +488,8 @@ function addListener(object, name, callback) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return set; });
-/* harmony import */ var _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(7);
-/* harmony import */ var _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(7);
+/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(1);
 /* harmony import */ var _babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _core_defs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(3);
@@ -504,6 +498,11 @@ function addListener(object, name, callback) {
 /* harmony import */ var _helpers_is__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(19);
 /* harmony import */ var _helpers_forown__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(6);
 
+
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 
 
@@ -569,7 +568,7 @@ function set(object, key, value, eventOptions) {
   // we override default eventOptions because some of the properties need to have actual values,
   // not inherited ones (eg when calc is used)
 
-  var extendedEventOptions = _babel_runtime_helpers_objectSpread__WEBPACK_IMPORTED_MODULE_0___default()({}, eventOptions, {
+  var extendedEventOptions = _objectSpread({}, eventOptions, {
     value: newValue,
     self: object,
     previousValue: previousValue,
@@ -1508,27 +1507,6 @@ function removeDomListener(object, key, eventName, selector, callback, info) {
 
 /***/ }),
 /* 25 */
-/***/ (function(module, exports) {
-
-function _defineProperty(obj, key, value) {
-  if (key in obj) {
-    Object.defineProperty(obj, key, {
-      value: value,
-      enumerable: true,
-      configurable: true,
-      writable: true
-    });
-  } else {
-    obj[key] = value;
-  }
-
-  return obj;
-}
-
-module.exports = _defineProperty;
-
-/***/ }),
-/* 26 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1886,9 +1864,9 @@ var init = __webpack_require__(13);
 // EXTERNAL MODULE: ./src/_helpers/assign.js
 var _helpers_assign = __webpack_require__(15);
 
-// EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/objectSpread.js
-var objectSpread = __webpack_require__(7);
-var objectSpread_default = /*#__PURE__*/__webpack_require__.n(objectSpread);
+// EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/defineProperty.js
+var defineProperty = __webpack_require__(7);
+var defineProperty_default = /*#__PURE__*/__webpack_require__.n(defineProperty);
 
 // CONCATENATED MODULE: ./src/off/_removetreelistener.js
  // removes tree listener from all object tree of fiven path
@@ -1909,6 +1887,11 @@ function removeTreeListener(object, deepPath, handler) {
 
 
 
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { defineProperty_default()(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+
  // creates tree listener
 
 function createTreeListener(_ref) {
@@ -1916,7 +1899,7 @@ function createTreeListener(_ref) {
       restPath = _ref.restPath;
 
   var newHandler = function treeListener(changeEvent) {
-    var extendedChangeEvent = objectSpread_default()({
+    var extendedChangeEvent = _objectSpread({
       restPath: restPath
     }, changeEvent);
 
@@ -2034,6 +2017,11 @@ function deepFind(obj, givenPath) {
 // CONCATENATED MODULE: ./src/calc/_createcalchandler.js
 
 
+function _createcalchandler_ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _createcalchandler_objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { _createcalchandler_ownKeys(source, true).forEach(function (key) { defineProperty_default()(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { _createcalchandler_ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+
 
  // creates event handler for target object which will be fired when a source is changed
 
@@ -2052,9 +2040,9 @@ function createCalcHandler(_ref) {
     var protectKey = target + def.id;
     var promiseCalc = eventOptions.promiseCalc;
 
-    var setEventOptions = objectSpread_default()({
+    var setEventOptions = _createcalchandler_objectSpread({
       protector: protector
-    }, eventOptions, changeEvent);
+    }, eventOptions, {}, changeEvent);
 
     if (protectKey in protector) {
       return;
@@ -2325,6 +2313,11 @@ function getNodes(object, selector) {
 // CONCATENATED MODULE: ./src/unbindnode/_removebinding.js
 
 
+function _removebinding_ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _removebinding_objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { _removebinding_ownKeys(source, true).forEach(function (key) { defineProperty_default()(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { _removebinding_ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+
 
 
 var spaceReg = /\s+/; // the function removes single binding for single object
@@ -2365,7 +2358,7 @@ function removeBinding(_ref) {
 
 
   if (!silent) {
-    var extendedEventOptions = objectSpread_default()({
+    var extendedEventOptions = _removebinding_objectSpread({
       key: key,
       node: node
     }, eventOptions);
@@ -2785,6 +2778,11 @@ var is = __webpack_require__(19);
 // CONCATENATED MODULE: ./src/bindnode/_createnodehandler.js
 
 
+function _createnodehandler_ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _createnodehandler_objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { _createnodehandler_ownKeys(source, true).forEach(function (key) { defineProperty_default()(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { _createnodehandler_ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+
  // returns a function which called when bound node state is changed (eg DOM event is fired)
 
 function createNodeHandler(_ref) {
@@ -2810,7 +2808,7 @@ function createNodeHandler(_ref) {
         ctrlKey = domEvent.ctrlKey,
         altKey = domEvent.altKey;
     var getValue = binder.getValue;
-    var value = getValue.call(node, objectSpread_default()({
+    var value = getValue.call(node, _createnodehandler_objectSpread({
       previousValue: previousValue,
       domEvent: domEvent,
       originalEvent: domEvent.originalEvent || domEvent,
@@ -2843,6 +2841,11 @@ function createNodeHandler(_ref) {
 }
 // CONCATENATED MODULE: ./src/bindnode/_createobjecthandler.js
 
+
+function _createobjecthandler_ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _createobjecthandler_objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { _createobjecthandler_ownKeys(source, true).forEach(function (key) { defineProperty_default()(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { _createobjecthandler_ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
 // returns a function which is called when property value is changed
 function createObjectHandler(_ref) {
   var node = _ref.node,
@@ -2863,12 +2866,17 @@ function createObjectHandler(_ref) {
       return;
     }
 
-    setValue.call(node, value, objectSpread_default()({
+    setValue.call(node, value, _createobjecthandler_objectSpread({
       value: value
     }, bindingOptions));
   };
 }
 // CONCATENATED MODULE: ./src/bindnode/_bindsinglenode.js
+
+
+function _bindsinglenode_ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _bindsinglenode_objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { _bindsinglenode_ownKeys(source, true).forEach(function (key) { defineProperty_default()(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { _bindsinglenode_ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 
 
@@ -3042,7 +3050,7 @@ function bindSingleNode(object, _ref) {
   }); // fire events
 
   if (!silent) {
-    var extendedEventOptions = objectSpread_default()({
+    var extendedEventOptions = _bindsinglenode_objectSpread({
       key: key,
       node: node
     }, eventOptions);
@@ -3200,6 +3208,11 @@ function bound(object, key) {
 // CONCATENATED MODULE: ./src/remove.js
 
 
+function remove_ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function remove_objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { remove_ownKeys(source, true).forEach(function (key) { defineProperty_default()(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { remove_ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+
 
 
 
@@ -3250,7 +3263,7 @@ function remove(object, givenKey, eventOptions) {
 
     delete object[key];
 
-    var extendedEventOptions = objectSpread_default()({
+    var extendedEventOptions = remove_objectSpread({
       key: key,
       value: value
     }, eventOptions); // trigger delegated events logic removal for asterisk events (*.*.*@foo)
@@ -3397,7 +3410,7 @@ function chain(object) {
 }));
 
 /***/ }),
-/* 27 */
+/* 26 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
