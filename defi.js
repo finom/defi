@@ -1,6 +1,6 @@
 /*
     --------------------------------------------------------------
-    defi.js v0.0.46 (Fri, 02 Aug 2019 15:20:03 GMT)
+    defi.js v0.0.47 (Fri, 02 Aug 2019 15:24:17 GMT)
     By Andrey Gubanov http://github.com/finom
     Released under the MIT license
     More info: https://defi.js.org
@@ -3547,5 +3547,5 @@ function addDomListener(object, key, eventName, selector, callback, info) {
 }
 
 /***/ })
-/******/ ]);
+/******/ ])["default"];
 });
