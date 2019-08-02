@@ -10,7 +10,6 @@ module.exports = {
         path: `${__dirname}/bundle`,
         filename: 'defi.min.js',
         libraryTarget: 'umd',
-        libraryExport: 'default',
         library: 'defi'
     },
     module: {
