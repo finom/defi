@@ -1,6 +1,6 @@
 /*
     --------------------------------------------------------------
-    defi.js v0.0.47 (Fri, 02 Aug 2019 15:24:17 GMT)
+    defi.js v0.0.48 (Fri, 02 Aug 2019 15:27:34 GMT)
     By Andrey Gubanov http://github.com/finom
     Released under the MIT license
     More info: https://defi.js.org
@@ -100,7 +100,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 25);
+/******/ 	return __webpack_require__(__webpack_require__.s = 21);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -377,11 +377,11 @@ module.exports = _defineProperty;
 /* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var arrayWithHoles = __webpack_require__(21);
+var arrayWithHoles = __webpack_require__(22);
 
-var iterableToArrayLimit = __webpack_require__(22);
+var iterableToArrayLimit = __webpack_require__(23);
 
-var nonIterableRest = __webpack_require__(23);
+var nonIterableRest = __webpack_require__(24);
 
 function _slicedToArray(arr, i) {
   return arrayWithHoles(arr) || iterableToArrayLimit(arr, i) || nonIterableRest();
@@ -437,7 +437,7 @@ function addListener(object, name, callback) {
           selector = _domEventExecResult[3]; // fixing circular reference issue
 
 
-      var _require = __webpack_require__(26),
+      var _require = __webpack_require__(27),
           addDomListener = _require["default"];
 
       addDomListener(object, key, eventName, selector, callback, info);
@@ -698,7 +698,7 @@ function removeListener(object, name, callback, info) {
         selector = _domEventExecResult[3]; // fixing circular reference issue
 
 
-    var _require = __webpack_require__(24),
+    var _require = __webpack_require__(25),
         removeDomListener = _require["default"];
 
     removeDomListener(object, key, eventName, selector, callback, info);
@@ -1407,6 +1407,12 @@ var isPolyfill = function isPolyfill(v1, v2) {
 
 /***/ }),
 /* 21 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(26)["default"];
+
+/***/ }),
+/* 22 */
 /***/ (function(module, exports) {
 
 function _arrayWithHoles(arr) {
@@ -1416,7 +1422,7 @@ function _arrayWithHoles(arr) {
 module.exports = _arrayWithHoles;
 
 /***/ }),
-/* 22 */
+/* 23 */
 /***/ (function(module, exports) {
 
 function _iterableToArrayLimit(arr, i) {
@@ -1448,7 +1454,7 @@ function _iterableToArrayLimit(arr, i) {
 module.exports = _iterableToArrayLimit;
 
 /***/ }),
-/* 23 */
+/* 24 */
 /***/ (function(module, exports) {
 
 function _nonIterableRest() {
@@ -1458,7 +1464,7 @@ function _nonIterableRest() {
 module.exports = _nonIterableRest;
 
 /***/ }),
-/* 24 */
+/* 25 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1506,7 +1512,7 @@ function removeDomListener(object, key, eventName, selector, callback, info) {
 }
 
 /***/ }),
-/* 25 */
+/* 26 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3398,19 +3404,19 @@ function chain(object) {
   Object(checkobjecttype["a" /* default */])(object, 'chain');
   return new ChainClass(object);
 }
-// CONCATENATED MODULE: ./src/index.js
+// CONCATENATED MODULE: ./src/defi.js
 
 
 
 
-/* harmony default export */ var src = __webpack_exports__["default"] = (Object.assign({}, _lib_namespaceObject, {
+/* harmony default export */ var defi = __webpack_exports__["default"] = (Object.assign({}, _lib_namespaceObject, {
   lookForBinder: lookForBinder,
   chain: chain,
   defaultBinders: defaultbinders
 }));
 
 /***/ }),
-/* 26 */
+/* 27 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3547,5 +3553,5 @@ function addDomListener(object, key, eventName, selector, callback, info) {
 }
 
 /***/ })
-/******/ ])["default"];
+/******/ ]);
 });

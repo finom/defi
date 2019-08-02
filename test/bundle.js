@@ -1073,6 +1073,7 @@ var map = {
 	"./calc/index.js": "../src/calc/index.js",
 	"./chain.js": "../src/chain.js",
 	"./defaultbinders.js": "../src/defaultbinders.js",
+	"./defi.js": "../src/defi.js",
 	"./index.js": "../src/index.js",
 	"./lookforbinder.js": "../src/lookforbinder.js",
 	"./mediate.js": "../src/mediate.js",
@@ -3471,10 +3472,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "../src/index.js":
-/*!***********************!*\
-  !*** ../src/index.js ***!
-  \***********************/
+/***/ "../src/defi.js":
+/*!**********************!*\
+  !*** ../src/defi.js ***!
+  \**********************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -3493,6 +3494,17 @@ __webpack_require__.r(__webpack_exports__);
   chain: _chain__WEBPACK_IMPORTED_MODULE_2__["default"],
   defaultBinders: _defaultbinders__WEBPACK_IMPORTED_MODULE_3__["default"]
 }));
+
+/***/ }),
+
+/***/ "../src/index.js":
+/*!***********************!*\
+  !*** ../src/index.js ***!
+  \***********************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! ./defi */ "../src/defi.js")["default"];
 
 /***/ }),
 
@@ -6316,6 +6328,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/typeof */ "../node_modules/@babel/runtime/helpers/typeof.js");
 /* harmony import */ var _babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var src_index__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! src/index */ "../src/index.js");
+/* harmony import */ var src_index__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(src_index__WEBPACK_IMPORTED_MODULE_1__);
 
 
 /* eslint-disable import/no-extraneous-dependencies, import/extensions */
@@ -6323,9 +6336,9 @@ __webpack_require__.r(__webpack_exports__);
 describe('common tests', function () {
   it('includes all documented members', function () {
     ['bindNode', 'bound', 'calc', 'chain', 'lookForBinder', 'set', 'mediate', 'off', 'on', 'remove', 'trigger', 'unbindNode'].forEach(function (methodName) {
-      expect(_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0___default()(src_index__WEBPACK_IMPORTED_MODULE_1__["default"][methodName])).toEqual('function');
+      expect(_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0___default()(src_index__WEBPACK_IMPORTED_MODULE_1___default.a[methodName])).toEqual('function');
     });
-    expect(_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0___default()(src_index__WEBPACK_IMPORTED_MODULE_1__["default"].defaultBinders[0])).toEqual('function');
+    expect(_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0___default()(src_index__WEBPACK_IMPORTED_MODULE_1___default.a.defaultBinders[0])).toEqual('function');
   });
 });
 
