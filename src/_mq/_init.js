@@ -1,10 +1,10 @@
 import html2nodeList from './_html2nodelist';
 
-const win = window;
-
 // function-constructor of mq library
 // accepts many kinds of arguments (selector, html, function)
 function MQInit(selector, context) {
+    const win = window;
+
     let result;
 
     if (selector) {
