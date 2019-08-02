@@ -1,6 +1,6 @@
 {
   "name": "defi",
-  "version": "0.0.41",
+  "version": "0.0.39",
   "description": "defi.js library",
   "scripts": {
     "test": "npm run node-cover && npm run check-coverage && npm run lint",
@@ -78,7 +78,6 @@
     "@babel/plugin-transform-runtime": "^7.5.5",
     "@babel/polyfill": "^7.4.4",
     "@babel/preset-env": "^7.5.5",
-    "@babel/runtime": "^7.5.5",
     "app-module-path": "^2.2.0",
     "babel-eslint": "^10.0.2",
     "babel-istanbul": "^0.12.2",
@@ -124,5 +123,8 @@
     "webpack-cli": "^3.3.6",
     "webpack-core": "^0.6.9",
     "word-wrap": "^1.2.3"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.5.5"
   }
 }
