@@ -1,6 +1,6 @@
 /*
     --------------------------------------------------------------
-    defi.js v0.0.40 (Fri, 02 Aug 2019 10:56:49 GMT)
+    defi.js v0.0.41 (Fri, 02 Aug 2019 11:02:39 GMT)
     By Andrey Gubanov http://github.com/finom
     Released under the MIT license
     More info: https://defi.js.org
