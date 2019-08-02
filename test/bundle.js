@@ -1748,11 +1748,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _html2nodelist__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./_html2nodelist */ "../src/_mq/_html2nodelist.js");
 
-
-var win = window; // function-constructor of mq library
+ // function-constructor of mq library
 // accepts many kinds of arguments (selector, html, function)
 
 function MQInit(selector, context) {
+  var win = window;
   var result;
 
   if (selector) {

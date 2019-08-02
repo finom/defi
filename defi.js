@@ -1,6 +1,6 @@
 /*
     --------------------------------------------------------------
-    defi.js v0.0.45 (Fri, 02 Aug 2019 15:16:41 GMT)
+    defi.js v0.0.46 (Fri, 02 Aug 2019 15:20:03 GMT)
     By Andrey Gubanov http://github.com/finom
     Released under the MIT license
     More info: https://defi.js.org
@@ -798,11 +798,11 @@ function html2nodeList(givenHTML) {
 }
 // CONCATENATED MODULE: ./src/_mq/_init.js
 
-
-var win = window; // function-constructor of mq library
+ // function-constructor of mq library
 // accepts many kinds of arguments (selector, html, function)
 
 function MQInit(selector, context) {
+  var win = window;
   var result;
 
   if (selector) {
