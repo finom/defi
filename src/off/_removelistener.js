@@ -17,7 +17,8 @@ export default function removeListener(object, name, callback, info) {
     const events = allEvents[name];
     const retain = [];
     const noTrigger = name ? name[0] === '_' : false;
-    const domEventExecResult = domEventReg.exec(name);
+    const nameIsString = typeof name === 'string';
+    const domEventExecResult = nameIsString ? domEventReg.exec(name) : null;
 
     if (domEventExecResult) {
         const [, eventName, key, selector] = domEventExecResult;
@@ -63,7 +64,10 @@ export default function removeListener(object, name, callback, info) {
                 };
 
                 if (!noTrigger) {
-                    triggerOne(object, `removeevent:${name}`, removeEventData);
+                    if (nameIsString) {
+                        triggerOne(object, `removeevent:${name}`, removeEventData);
+                    }
+
                     triggerOne(object, 'removeevent', removeEventData);
                 }
             }

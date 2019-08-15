@@ -41,6 +41,28 @@ describe('Events summary (on, off, trigger)', () => {
         expect(handler).toHaveBeenCalledTimes(1);
     });
 
+    it('fires symbolic event name', () => {
+        const someevent = Symbol('someevent');
+        on(obj, someevent, handler);
+        trigger(obj, someevent);
+        expect(handler).toHaveBeenCalledTimes(1);
+    });
+
+    it('fires if an array of events is given', () => {
+        const someevent2 = Symbol('someevent2');
+        on(obj, ['someevent1', someevent2], handler);
+        trigger(obj, 'someevent1');
+        expect(handler).toHaveBeenCalledTimes(1);
+        trigger(obj, someevent2);
+        expect(handler).toHaveBeenCalledTimes(2);
+    });
+
+    it('fires if an array of events is given and trigger got an array of events', () => {
+        const someevent2 = Symbol('someevent2');
+        on(obj, ['someevent1', someevent2], handler);
+        trigger(obj, ['someevent1', someevent2]);
+        expect(handler).toHaveBeenCalledTimes(2);
+    });
 
     it('allows to pass few arguments to trigger', () => {
         const handler = createSpy((a, b) => {
@@ -56,6 +78,15 @@ describe('Events summary (on, off, trigger)', () => {
         on(obj, 'someevent', handler);
         off(obj, 'someevent');
         trigger(obj, 'someevent');
+
+        expect(handler).not.toHaveBeenCalled();
+    });
+
+    it('removes multiple events at once', () => {
+        const someevent2 = Symbol('someevent2');
+        on(obj, ['someevent1', someevent2], handler);
+        off(obj, ['someevent1', someevent2]);
+        trigger(obj, ['someevent1', someevent2]);
 
         expect(handler).not.toHaveBeenCalled();
     });
@@ -114,7 +145,6 @@ describe('Events summary (on, off, trigger)', () => {
         simulateClick(childNode);
         expect(handler).not.toHaveBeenCalled();
     });
-
 
     it('triggers DOM event using selector', () => {
         bindNode(obj, 'x', '#child');

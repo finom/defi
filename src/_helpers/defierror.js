@@ -1,7 +1,6 @@
 /* eslint-disable prefer-template, max-len */
 const bindingErrorPrefix = 'Binding error:';
 const calcErrorPrefix = 'Calc error:';
-const eventsErrorPrefix = 'Events error:';
 
 const getType = (variable) => {
     if (variable === null) {
@@ -25,10 +24,6 @@ const errors = {
     'calc:source_key_type': ({ sourceKey }) => `${calcErrorPrefix} ${getTypeError(sourceKey, 'source key', 'string')}`,
     'calc:source_object_type': ({ sourceObject }) => `${calcErrorPrefix} ${getTypeError(sourceObject, 'source object', 'object')}`,
     'calc:source_type': ({ source }) => `${calcErrorPrefix} ${getTypeError(source, 'source', 'object')}`,
-
-    'trigger:names_type': ({ names }) => `${eventsErrorPrefix} ${getTypeError(names, 'event name', 'string')}`,
-
-    'on:names_type': ({ names }) => errors['trigger:names_type']({ names }),
 
     'remove:key_type': ({ key }) => `Error in remove: ${getTypeError(key, 'key', 'string')}`,
 

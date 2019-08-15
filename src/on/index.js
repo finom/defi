@@ -1,6 +1,4 @@
-import splitBySpaceReg from './_splitbyspaceregexp';
 import checkObjectType from '../_helpers/checkobjecttype';
-import defiError from '../_helpers/defierror';
 import off from '../off';
 import debounce from '../_helpers/debounce';
 import forEach from '../_helpers/foreach';
@@ -23,13 +21,8 @@ export default function on(object, givenNames, givenCallback, options) {
         return object;
     }
 
-    if (typeof givenNames !== 'string' && !isNamesVarArray) {
-        throw defiError('on:names_type', { names: givenNames });
-    }
-
-    // split by spaces
-    // TODO: Array of names passed to on method is a non-documented feature
-    const names = isNamesVarArray ? givenNames : givenNames.split(splitBySpaceReg);
+    // convert a single event name into array
+    const names = isNamesVarArray ? givenNames : [givenNames];
 
     const { triggerOnInit, once, debounce: debounceOption } = options || {};
     let callback;
@@ -49,7 +42,7 @@ export default function on(object, givenNames, givenCallback, options) {
     }
 
     forEach(names, (name) => {
-        const delegatedEventParts = name.split('@');
+        const delegatedEventParts = typeof name === 'string' && name.split('@');
 
         if (delegatedEventParts.length > 1) {
             // if @ exists in event name then this is delegated event

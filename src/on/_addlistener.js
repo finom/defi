@@ -15,12 +15,13 @@ export default function addListener(object, name, callback, info = {}) {
     const event = {
         callback, name, info
     };
+    const nameIsString = typeof name === 'string';
 
     // skipChecks is used by internal methods for better performance
     const { skipChecks = false } = info;
 
     if (!skipChecks) {
-        const domEventExecResult = domEventReg.exec(name);
+        const domEventExecResult = nameIsString && domEventReg.exec(name);
 
         if (domEventExecResult) {
             const [, eventName, key, selector] = domEventExecResult;
@@ -54,14 +55,17 @@ export default function addListener(object, name, callback, info = {}) {
         allEvents[name] = [event];
     }
 
-    if (propModEventReg.test(name)) {
+    if (nameIsString && propModEventReg.test(name)) {
         // define needed accessors for KEY
         defineProp(object, name.replace(propModEventReg, ''));
     }
 
     // names prefixed by underscore mean "private" events
     if (!skipChecks && name[0] !== '_') {
-        triggerOne(object, `addevent:${name}`, event);
+        if (nameIsString) {
+            triggerOne(object, `addevent:${name}`, event);
+        }
+
         triggerOne(object, 'addevent', event);
     }
 

@@ -1,7 +1,5 @@
 import domEventReg from '../on/_domeventregexp';
 import checkObjectType from '../_helpers/checkobjecttype';
-import defiError from '../_helpers/defierror';
-import splitBySpaceReg from '../on/_splitbyspaceregexp';
 import defs from '../_core/defs';
 import triggerOne from './_triggerone';
 import triggerDomEvent from './_triggerdomevent';
@@ -11,14 +9,9 @@ import forEach from '../_helpers/foreach';
 export default function trigger(object, givenNames, ...triggerArgs) {
     // throw error when object type is wrong
     checkObjectType(object, 'trigger');
-    let names;
 
-    // allow to use strings only as event name
-    if (typeof givenNames === 'string') {
-        names = givenNames.split(splitBySpaceReg);
-    } else {
-        throw defiError('trigger:names_type', { names: givenNames });
-    }
+    // allow to use either a string or an array of events
+    const names = givenNames instanceof Array ? givenNames : [givenNames];
 
     const def = defs.get(object);
 
@@ -34,7 +27,7 @@ export default function trigger(object, givenNames, ...triggerArgs) {
     }
 
     forEach(names, (name) => {
-        const domEvtExecResult = domEventReg.exec(name);
+        const domEvtExecResult = typeof name === 'string' && domEventReg.exec(name);
 
         if (domEvtExecResult) {
             // if EVT::KEY(SELECTOR) ia passed as event name then trigger DOM event

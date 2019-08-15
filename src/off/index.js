@@ -1,4 +1,3 @@
-import splitBySpaceReg from '../on/_splitbyspaceregexp';
 import checkObjectType from '../_helpers/checkobjecttype';
 import forEach from '../_helpers/foreach';
 import forOwn from '../_helpers/forown';
@@ -40,12 +39,11 @@ export default function off(object, givenNames, callback) {
         return object;
     }
 
-    // TODO: Array of names passed to off method is non-documented feature
-    // split by spaces
-    const names = isNamesVarArray ? givenNames : givenNames.split(splitBySpaceReg);
+    // convert a single event name into array
+    const names = isNamesVarArray ? givenNames : [givenNames];
 
     forEach(names, (name) => {
-        const delegatedEventParts = name.split('@');
+        const delegatedEventParts = typeof name === 'string' && name.split('@');
         if (delegatedEventParts.length > 1) {
             const [path, delegatedName] = delegatedEventParts;
             undelegateListener(object, path, delegatedName, callback);
