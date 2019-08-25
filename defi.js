@@ -1,6 +1,6 @@
 /*
     --------------------------------------------------------------
-    defi.js v0.0.48 (Fri, 02 Aug 2019 15:27:34 GMT)
+    defi.js v1.0.0 (Sun, 25 Aug 2019 20:44:45 GMT)
     By Andrey Gubanov http://github.com/finom
     Released under the MIT license
     More info: https://defi.js.org
@@ -198,30 +198,8 @@ triggerOne.latestEvent = {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var _helpers_assign__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(15);
-
-
-function PseudoMap() {} // PseudoMap simulates WeakMap behavior with O(1) search complexity
-// it's needed to support @IE9 and @IE10
-
-
-Object(_helpers_assign__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])(PseudoMap.prototype, {
-  get: function get(obj) {
-    return obj.defi;
-  },
-  set: function set(obj, data) {
-    Object.defineProperty(obj, 'defi', {
-      value: data,
-      enumerable: false,
-      writable: false,
-      configurable: false
-    });
-  },
-  has: function has(obj) {
-    return 'defi' in obj;
-  }
-});
-/* harmony default export */ __webpack_exports__["a"] = (typeof WeakMap === 'undefined' ? new PseudoMap() : new WeakMap());
+// object definitions
+/* harmony default export */ __webpack_exports__["a"] = (new WeakMap());
 
 /***/ }),
 /* 4 */
@@ -231,7 +209,7 @@ Object(_helpers_assign__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])(PseudoMa
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return checkObjectType; });
 /* harmony import */ var _babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);
 /* harmony import */ var _babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _defierror__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(5);
+/* harmony import */ var _defierror__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(7);
 
  // checks type of a variable and throws an error if its type is not an object
 
@@ -251,6 +229,45 @@ function checkObjectType(object, method) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return forOwn; });
+function forOwn(obj, callback) {
+  var keys = Object.keys(obj);
+  var l = keys.length;
+  var i = 0;
+  var key;
+
+  while (i < l) {
+    key = keys[i++];
+    callback(obj[key], key);
+  }
+}
+
+/***/ }),
+/* 6 */
+/***/ (function(module, exports) {
+
+function _defineProperty(obj, key, value) {
+  if (key in obj) {
+    Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
+  }
+
+  return obj;
+}
+
+module.exports = _defineProperty;
+
+/***/ }),
+/* 7 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return defiError; });
 /* harmony import */ var _babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);
 /* harmony import */ var _babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0__);
@@ -259,7 +276,6 @@ function checkObjectType(object, method) {
 /* eslint-disable prefer-template, max-len */
 var bindingErrorPrefix = 'Binding error:';
 var calcErrorPrefix = 'Calc error:';
-var eventsErrorPrefix = 'Events error:';
 
 var getType = function getType(variable) {
   if (variable === null) {
@@ -304,22 +320,12 @@ var errors = {
     var source = _ref6.source;
     return "".concat(calcErrorPrefix, " ").concat(getTypeError(source, 'source', 'object'));
   },
-  'trigger:names_type': function triggerNames_type(_ref7) {
-    var names = _ref7.names;
-    return "".concat(eventsErrorPrefix, " ").concat(getTypeError(names, 'event name', 'string'));
-  },
-  'on:names_type': function onNames_type(_ref8) {
-    var names = _ref8.names;
-    return errors['trigger:names_type']({
-      names: names
-    });
-  },
-  'remove:key_type': function removeKey_type(_ref9) {
-    var key = _ref9.key;
+  'remove:key_type': function removeKey_type(_ref7) {
+    var key = _ref7.key;
     return "Error in remove: ".concat(getTypeError(key, 'key', 'string'));
   },
-  'mediate:key_type': function mediateKey_type(_ref10) {
-    var key = _ref10.key;
+  'mediate:key_type': function mediateKey_type(_ref8) {
+    var key = _ref8.key;
     return "Error in mediate: ".concat(getTypeError(key, 'key', 'string'));
   }
 };
@@ -333,45 +339,6 @@ function defiError(key, data) {
 
   return new Error(getError(data));
 }
-
-/***/ }),
-/* 6 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return forOwn; });
-function forOwn(obj, callback) {
-  var keys = Object.keys(obj);
-  var l = keys.length;
-  var i = 0;
-  var key;
-
-  while (i < l) {
-    key = keys[i++];
-    callback(obj[key], key);
-  }
-}
-
-/***/ }),
-/* 7 */
-/***/ (function(module, exports) {
-
-function _defineProperty(obj, key, value) {
-  if (key in obj) {
-    Object.defineProperty(obj, key, {
-      value: value,
-      enumerable: true,
-      configurable: true,
-      writable: true
-    });
-  } else {
-    obj[key] = value;
-  }
-
-  return obj;
-}
-
-module.exports = _defineProperty;
 
 /***/ }),
 /* 8 */
@@ -422,13 +389,14 @@ function addListener(object, name, callback) {
     callback: callback,
     name: name,
     info: info
-  }; // skipChecks is used by internal methods for better performance
+  };
+  var nameIsString = typeof name === 'string'; // skipChecks is used by internal methods for better performance
 
   var _info$skipChecks = info.skipChecks,
       skipChecks = _info$skipChecks === void 0 ? false : _info$skipChecks;
 
   if (!skipChecks) {
-    var domEventExecResult = _domeventregexp__WEBPACK_IMPORTED_MODULE_4__[/* default */ "a"].exec(name);
+    var domEventExecResult = nameIsString && _domeventregexp__WEBPACK_IMPORTED_MODULE_4__[/* default */ "a"].exec(name);
 
     if (domEventExecResult) {
       var _domEventExecResult = _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0___default()(domEventExecResult, 4),
@@ -467,14 +435,17 @@ function addListener(object, name, callback) {
     allEvents[name] = [event];
   }
 
-  if (propModEventReg.test(name)) {
+  if (nameIsString && propModEventReg.test(name)) {
     // define needed accessors for KEY
     Object(_core_defineprop__WEBPACK_IMPORTED_MODULE_3__[/* default */ "a"])(object, name.replace(propModEventReg, ''));
   } // names prefixed by underscore mean "private" events
 
 
   if (!skipChecks && name[0] !== '_') {
-    Object(_trigger_triggerone__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"])(object, "addevent:".concat(name), event);
+    if (nameIsString) {
+      Object(_trigger_triggerone__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"])(object, "addevent:".concat(name), event);
+    }
+
     Object(_trigger_triggerone__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"])(object, 'addevent', event);
   } // if event is added successfully return true
 
@@ -488,7 +459,7 @@ function addListener(object, name, callback) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return set; });
-/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(7);
+/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(6);
 /* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(1);
 /* harmony import */ var _babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_1__);
@@ -496,7 +467,7 @@ function addListener(object, name, callback) {
 /* harmony import */ var _trigger_triggerone__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(2);
 /* harmony import */ var _helpers_checkobjecttype__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(4);
 /* harmony import */ var _helpers_is__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(19);
-/* harmony import */ var _helpers_forown__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(6);
+/* harmony import */ var _helpers_forown__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(5);
 
 
 
@@ -670,7 +641,7 @@ function set(object, key, value, eventOptions) {
 /* harmony import */ var _trigger_triggerone__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(2);
 /* harmony import */ var _on_domeventregexp__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(16);
 /* harmony import */ var _helpers_foreach__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(0);
-/* harmony import */ var _helpers_forown__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(6);
+/* harmony import */ var _helpers_forown__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(5);
 
 
 
@@ -689,7 +660,8 @@ function removeListener(object, name, callback, info) {
   var events = allEvents[name];
   var retain = [];
   var noTrigger = name ? name[0] === '_' : false;
-  var domEventExecResult = _on_domeventregexp__WEBPACK_IMPORTED_MODULE_3__[/* default */ "a"].exec(name);
+  var nameIsString = typeof name === 'string';
+  var domEventExecResult = nameIsString ? _on_domeventregexp__WEBPACK_IMPORTED_MODULE_3__[/* default */ "a"].exec(name) : null;
 
   if (domEventExecResult) {
     var _domEventExecResult = _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0___default()(domEventExecResult, 4),
@@ -738,7 +710,10 @@ function removeListener(object, name, callback, info) {
         };
 
         if (!noTrigger) {
-          Object(_trigger_triggerone__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"])(object, "removeevent:".concat(name), removeEventData);
+          if (nameIsString) {
+            Object(_trigger_triggerone__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"])(object, "removeevent:".concat(name), removeEventData);
+          }
+
           Object(_trigger_triggerone__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"])(object, 'removeevent', removeEventData);
         }
       }
@@ -1538,20 +1513,14 @@ var slicedToArray_default = /*#__PURE__*/__webpack_require__.n(slicedToArray);
 var helpers_typeof = __webpack_require__(1);
 var typeof_default = /*#__PURE__*/__webpack_require__.n(helpers_typeof);
 
-// CONCATENATED MODULE: ./src/on/_splitbyspaceregexp.js
-// allows to split by spaces not inclusing ones inside of brackers
-/* harmony default export */ var _splitbyspaceregexp = (/\s+(?![^(]*\))/g);
 // EXTERNAL MODULE: ./src/_helpers/checkobjecttype.js
 var checkobjecttype = __webpack_require__(4);
-
-// EXTERNAL MODULE: ./src/_helpers/defierror.js
-var defierror = __webpack_require__(5);
 
 // EXTERNAL MODULE: ./src/_helpers/foreach.js
 var foreach = __webpack_require__(0);
 
 // EXTERNAL MODULE: ./src/_helpers/forown.js
-var forown = __webpack_require__(6);
+var forown = __webpack_require__(5);
 
 // EXTERNAL MODULE: ./src/_core/defs.js
 var defs = __webpack_require__(3);
@@ -1566,7 +1535,6 @@ var _undelegatelistener = __webpack_require__(17);
 var _mq = __webpack_require__(12);
 
 // CONCATENATED MODULE: ./src/off/index.js
-
 
 
 
@@ -1605,13 +1573,12 @@ function off(object, givenNames, callback) {
       }
     });
     return object;
-  } // TODO: Array of names passed to off method is non-documented feature
-  // split by spaces
+  } // convert a single event name into array
 
 
-  var names = isNamesVarArray ? givenNames : givenNames.split(_splitbyspaceregexp);
+  var names = isNamesVarArray ? givenNames : [givenNames];
   Object(foreach["a" /* default */])(names, function (name) {
-    var delegatedEventParts = name.split('@');
+    var delegatedEventParts = typeof name === 'string' && name.split('@');
 
     if (delegatedEventParts.length > 1) {
       var _delegatedEventParts = slicedToArray_default()(delegatedEventParts, 2),
@@ -1666,8 +1633,6 @@ var _delegatelistener = __webpack_require__(18);
 
 
 
-
-
  // adds event listener
 
 function on_on(object, givenNames, givenCallback, options) {
@@ -1680,17 +1645,10 @@ function on_on(object, givenNames, givenCallback, options) {
       return on_on(object, namesObjName, namesObjCallback, givenCallback, options);
     });
     return object;
-  }
-
-  if (typeof givenNames !== 'string' && !isNamesVarArray) {
-    throw Object(defierror["a" /* default */])('on:names_type', {
-      names: givenNames
-    });
-  } // split by spaces
-  // TODO: Array of names passed to on method is a non-documented feature
+  } // convert a single event name into array
 
 
-  var names = isNamesVarArray ? givenNames : givenNames.split(_splitbyspaceregexp);
+  var names = isNamesVarArray ? givenNames : [givenNames];
 
   var _ref = options || {},
       triggerOnInit = _ref.triggerOnInit,
@@ -1715,7 +1673,7 @@ function on_on(object, givenNames, givenCallback, options) {
   }
 
   Object(foreach["a" /* default */])(names, function (name) {
-    var delegatedEventParts = name.split('@');
+    var delegatedEventParts = typeof name === 'string' && name.split('@');
 
     if (delegatedEventParts.length > 1) {
       // if @ exists in event name then this is delegated event
@@ -1813,8 +1771,6 @@ function triggerDOMEvent(object, key, eventName, selector, triggerArgs) {
 
 
 
-
-
  // triggers an event
 
 function trigger(object, givenNames) {
@@ -1823,17 +1779,9 @@ function trigger(object, givenNames) {
   }
 
   // throw error when object type is wrong
-  Object(checkobjecttype["a" /* default */])(object, 'trigger');
-  var names; // allow to use strings only as event name
+  Object(checkobjecttype["a" /* default */])(object, 'trigger'); // allow to use either a string or an array of events
 
-  if (typeof givenNames === 'string') {
-    names = givenNames.split(_splitbyspaceregexp);
-  } else {
-    throw Object(defierror["a" /* default */])('trigger:names_type', {
-      names: givenNames
-    });
-  }
-
+  var names = givenNames instanceof Array ? givenNames : [givenNames];
   var def = defs["a" /* default */].get(object); // if no definition do nothing
 
   if (!def) {
@@ -1847,7 +1795,7 @@ function trigger(object, givenNames) {
   }
 
   Object(foreach["a" /* default */])(names, function (name) {
-    var domEvtExecResult = _domeventregexp["a" /* default */].exec(name);
+    var domEvtExecResult = typeof name === 'string' && _domeventregexp["a" /* default */].exec(name);
 
     if (domEvtExecResult) {
       // if EVT::KEY(SELECTOR) ia passed as event name then trigger DOM event
@@ -1867,11 +1815,14 @@ function trigger(object, givenNames) {
 // EXTERNAL MODULE: ./src/_core/init.js
 var init = __webpack_require__(13);
 
+// EXTERNAL MODULE: ./src/_helpers/defierror.js
+var defierror = __webpack_require__(7);
+
 // EXTERNAL MODULE: ./src/_helpers/assign.js
 var _helpers_assign = __webpack_require__(15);
 
 // EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/defineProperty.js
-var defineProperty = __webpack_require__(7);
+var defineProperty = __webpack_require__(6);
 var defineProperty_default = /*#__PURE__*/__webpack_require__.n(defineProperty);
 
 // CONCATENATED MODULE: ./src/off/_removetreelistener.js

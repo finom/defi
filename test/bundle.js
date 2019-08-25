@@ -1179,30 +1179,8 @@ function defineProp(object, key) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _helpers_assign__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../_helpers/assign */ "../src/_helpers/assign.js");
-
-
-function PseudoMap() {} // PseudoMap simulates WeakMap behavior with O(1) search complexity
-// it's needed to support @IE9 and @IE10
-
-
-Object(_helpers_assign__WEBPACK_IMPORTED_MODULE_0__["default"])(PseudoMap.prototype, {
-  get: function get(obj) {
-    return obj.defi;
-  },
-  set: function set(obj, data) {
-    Object.defineProperty(obj, 'defi', {
-      value: data,
-      enumerable: false,
-      writable: false,
-      configurable: false
-    });
-  },
-  has: function has(obj) {
-    return 'defi' in obj;
-  }
-});
-/* harmony default export */ __webpack_exports__["default"] = (typeof WeakMap === 'undefined' ? new PseudoMap() : new WeakMap());
+// object definitions
+/* harmony default export */ __webpack_exports__["default"] = (new WeakMap());
 
 /***/ }),
 
@@ -1397,7 +1375,6 @@ __webpack_require__.r(__webpack_exports__);
 /* eslint-disable prefer-template, max-len */
 var bindingErrorPrefix = 'Binding error:';
 var calcErrorPrefix = 'Calc error:';
-var eventsErrorPrefix = 'Events error:';
 
 var getType = function getType(variable) {
   if (variable === null) {
@@ -1442,22 +1419,12 @@ var errors = {
     var source = _ref6.source;
     return "".concat(calcErrorPrefix, " ").concat(getTypeError(source, 'source', 'object'));
   },
-  'trigger:names_type': function triggerNames_type(_ref7) {
-    var names = _ref7.names;
-    return "".concat(eventsErrorPrefix, " ").concat(getTypeError(names, 'event name', 'string'));
-  },
-  'on:names_type': function onNames_type(_ref8) {
-    var names = _ref8.names;
-    return errors['trigger:names_type']({
-      names: names
-    });
-  },
-  'remove:key_type': function removeKey_type(_ref9) {
-    var key = _ref9.key;
+  'remove:key_type': function removeKey_type(_ref7) {
+    var key = _ref7.key;
     return "Error in remove: ".concat(getTypeError(key, 'key', 'string'));
   },
-  'mediate:key_type': function mediateKey_type(_ref10) {
-    var key = _ref10.key;
+  'mediate:key_type': function mediateKey_type(_ref8) {
+    var key = _ref8.key;
     return "Error in mediate: ".concat(getTypeError(key, 'key', 'string'));
   }
 };
@@ -3703,7 +3670,8 @@ function removeListener(object, name, callback, info) {
   var events = allEvents[name];
   var retain = [];
   var noTrigger = name ? name[0] === '_' : false;
-  var domEventExecResult = _on_domeventregexp__WEBPACK_IMPORTED_MODULE_3__["default"].exec(name);
+  var nameIsString = typeof name === 'string';
+  var domEventExecResult = nameIsString ? _on_domeventregexp__WEBPACK_IMPORTED_MODULE_3__["default"].exec(name) : null;
 
   if (domEventExecResult) {
     var _domEventExecResult = _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0___default()(domEventExecResult, 4),
@@ -3752,7 +3720,10 @@ function removeListener(object, name, callback, info) {
         };
 
         if (!noTrigger) {
-          Object(_trigger_triggerone__WEBPACK_IMPORTED_MODULE_2__["default"])(object, "removeevent:".concat(name), removeEventData);
+          if (nameIsString) {
+            Object(_trigger_triggerone__WEBPACK_IMPORTED_MODULE_2__["default"])(object, "removeevent:".concat(name), removeEventData);
+          }
+
           Object(_trigger_triggerone__WEBPACK_IMPORTED_MODULE_2__["default"])(object, 'removeevent', removeEventData);
         }
       }
@@ -3900,15 +3871,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/typeof */ "../node_modules/@babel/runtime/helpers/typeof.js");
 /* harmony import */ var _babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _on_splitbyspaceregexp__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../on/_splitbyspaceregexp */ "../src/on/_splitbyspaceregexp.js");
-/* harmony import */ var _helpers_checkobjecttype__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../_helpers/checkobjecttype */ "../src/_helpers/checkobjecttype.js");
-/* harmony import */ var _helpers_foreach__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../_helpers/foreach */ "../src/_helpers/foreach.js");
-/* harmony import */ var _helpers_forown__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../_helpers/forown */ "../src/_helpers/forown.js");
-/* harmony import */ var _core_defs__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../_core/defs */ "../src/_core/defs.js");
-/* harmony import */ var _removelistener__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./_removelistener */ "../src/off/_removelistener.js");
-/* harmony import */ var _undelegatelistener__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./_undelegatelistener */ "../src/off/_undelegatelistener.js");
-/* harmony import */ var _mq__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../_mq */ "../src/_mq/index.js");
-
+/* harmony import */ var _helpers_checkobjecttype__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../_helpers/checkobjecttype */ "../src/_helpers/checkobjecttype.js");
+/* harmony import */ var _helpers_foreach__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../_helpers/foreach */ "../src/_helpers/foreach.js");
+/* harmony import */ var _helpers_forown__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../_helpers/forown */ "../src/_helpers/forown.js");
+/* harmony import */ var _core_defs__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../_core/defs */ "../src/_core/defs.js");
+/* harmony import */ var _removelistener__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./_removelistener */ "../src/off/_removelistener.js");
+/* harmony import */ var _undelegatelistener__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./_undelegatelistener */ "../src/off/_undelegatelistener.js");
+/* harmony import */ var _mq__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../_mq */ "../src/_mq/index.js");
 
 
 
@@ -3921,13 +3890,13 @@ __webpack_require__.r(__webpack_exports__);
 
 function off(object, givenNames, callback) {
   // throw error when object type is wrong
-  Object(_helpers_checkobjecttype__WEBPACK_IMPORTED_MODULE_3__["default"])(object, 'off');
+  Object(_helpers_checkobjecttype__WEBPACK_IMPORTED_MODULE_2__["default"])(object, 'off');
   var isNamesVarArray = givenNames instanceof Array;
-  var def = _core_defs__WEBPACK_IMPORTED_MODULE_6__["default"].get(object); // allow to pass name-handler object
+  var def = _core_defs__WEBPACK_IMPORTED_MODULE_5__["default"].get(object); // allow to pass name-handler object
   // TODO: Name-handler object passed to off method is non-documented feature
 
   if (givenNames && _babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_1___default()(givenNames) === 'object' && !isNamesVarArray) {
-    Object(_helpers_forown__WEBPACK_IMPORTED_MODULE_5__["default"])(givenNames, function (namesObjCallback, namesObjName) {
+    Object(_helpers_forown__WEBPACK_IMPORTED_MODULE_4__["default"])(givenNames, function (namesObjCallback, namesObjName) {
       return off(object, namesObjName, namesObjCallback, callback);
     });
     return object;
@@ -3935,34 +3904,33 @@ function off(object, givenNames, callback) {
 
   if (!givenNames && !callback) {
     def.events = {};
-    Object(_helpers_forown__WEBPACK_IMPORTED_MODULE_5__["default"])(def.props, function (_ref, propName) {
+    Object(_helpers_forown__WEBPACK_IMPORTED_MODULE_4__["default"])(def.props, function (_ref, propName) {
       var bindings = _ref.bindings;
 
       if (bindings) {
-        Object(_helpers_foreach__WEBPACK_IMPORTED_MODULE_4__["default"])(bindings, function (_ref2) {
+        Object(_helpers_foreach__WEBPACK_IMPORTED_MODULE_3__["default"])(bindings, function (_ref2) {
           var node = _ref2.node;
           var eventNamespace = def.id + propName;
-          Object(_mq__WEBPACK_IMPORTED_MODULE_9__["default"])(node).off(".".concat(eventNamespace));
+          Object(_mq__WEBPACK_IMPORTED_MODULE_8__["default"])(node).off(".".concat(eventNamespace));
         });
       }
     });
     return object;
-  } // TODO: Array of names passed to off method is non-documented feature
-  // split by spaces
+  } // convert a single event name into array
 
 
-  var names = isNamesVarArray ? givenNames : givenNames.split(_on_splitbyspaceregexp__WEBPACK_IMPORTED_MODULE_2__["default"]);
-  Object(_helpers_foreach__WEBPACK_IMPORTED_MODULE_4__["default"])(names, function (name) {
-    var delegatedEventParts = name.split('@');
+  var names = isNamesVarArray ? givenNames : [givenNames];
+  Object(_helpers_foreach__WEBPACK_IMPORTED_MODULE_3__["default"])(names, function (name) {
+    var delegatedEventParts = typeof name === 'string' && name.split('@');
 
     if (delegatedEventParts.length > 1) {
       var _delegatedEventParts = _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0___default()(delegatedEventParts, 2),
           path = _delegatedEventParts[0],
           delegatedName = _delegatedEventParts[1];
 
-      Object(_undelegatelistener__WEBPACK_IMPORTED_MODULE_8__["default"])(object, path, delegatedName, callback);
+      Object(_undelegatelistener__WEBPACK_IMPORTED_MODULE_7__["default"])(object, path, delegatedName, callback);
     } else {
-      Object(_removelistener__WEBPACK_IMPORTED_MODULE_7__["default"])(object, name, callback);
+      Object(_removelistener__WEBPACK_IMPORTED_MODULE_6__["default"])(object, name, callback);
     }
   });
   return object;
@@ -4098,13 +4066,14 @@ function addListener(object, name, callback) {
     callback: callback,
     name: name,
     info: info
-  }; // skipChecks is used by internal methods for better performance
+  };
+  var nameIsString = typeof name === 'string'; // skipChecks is used by internal methods for better performance
 
   var _info$skipChecks = info.skipChecks,
       skipChecks = _info$skipChecks === void 0 ? false : _info$skipChecks;
 
   if (!skipChecks) {
-    var domEventExecResult = _domeventregexp__WEBPACK_IMPORTED_MODULE_4__["default"].exec(name);
+    var domEventExecResult = nameIsString && _domeventregexp__WEBPACK_IMPORTED_MODULE_4__["default"].exec(name);
 
     if (domEventExecResult) {
       var _domEventExecResult = _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0___default()(domEventExecResult, 4),
@@ -4143,14 +4112,17 @@ function addListener(object, name, callback) {
     allEvents[name] = [event];
   }
 
-  if (propModEventReg.test(name)) {
+  if (nameIsString && propModEventReg.test(name)) {
     // define needed accessors for KEY
     Object(_core_defineprop__WEBPACK_IMPORTED_MODULE_3__["default"])(object, name.replace(propModEventReg, ''));
   } // names prefixed by underscore mean "private" events
 
 
   if (!skipChecks && name[0] !== '_') {
-    Object(_trigger_triggerone__WEBPACK_IMPORTED_MODULE_2__["default"])(object, "addevent:".concat(name), event);
+    if (nameIsString) {
+      Object(_trigger_triggerone__WEBPACK_IMPORTED_MODULE_2__["default"])(object, "addevent:".concat(name), event);
+    }
+
     Object(_trigger_triggerone__WEBPACK_IMPORTED_MODULE_2__["default"])(object, 'addevent', event);
   } // if event is added successfully return true
 
@@ -4440,17 +4412,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/typeof */ "../node_modules/@babel/runtime/helpers/typeof.js");
 /* harmony import */ var _babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _splitbyspaceregexp__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./_splitbyspaceregexp */ "../src/on/_splitbyspaceregexp.js");
-/* harmony import */ var _helpers_checkobjecttype__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../_helpers/checkobjecttype */ "../src/_helpers/checkobjecttype.js");
-/* harmony import */ var _helpers_defierror__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../_helpers/defierror */ "../src/_helpers/defierror.js");
-/* harmony import */ var _off__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../off */ "../src/off/index.js");
-/* harmony import */ var _helpers_debounce__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../_helpers/debounce */ "../src/_helpers/debounce.js");
-/* harmony import */ var _helpers_foreach__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../_helpers/foreach */ "../src/_helpers/foreach.js");
-/* harmony import */ var _helpers_forown__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../_helpers/forown */ "../src/_helpers/forown.js");
-/* harmony import */ var _addlistener__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./_addlistener */ "../src/on/_addlistener.js");
-/* harmony import */ var _delegatelistener__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./_delegatelistener */ "../src/on/_delegatelistener/index.js");
-
-
+/* harmony import */ var _helpers_checkobjecttype__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../_helpers/checkobjecttype */ "../src/_helpers/checkobjecttype.js");
+/* harmony import */ var _off__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../off */ "../src/off/index.js");
+/* harmony import */ var _helpers_debounce__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../_helpers/debounce */ "../src/_helpers/debounce.js");
+/* harmony import */ var _helpers_foreach__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../_helpers/foreach */ "../src/_helpers/foreach.js");
+/* harmony import */ var _helpers_forown__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../_helpers/forown */ "../src/_helpers/forown.js");
+/* harmony import */ var _addlistener__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./_addlistener */ "../src/on/_addlistener.js");
+/* harmony import */ var _delegatelistener__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./_delegatelistener */ "../src/on/_delegatelistener/index.js");
 
 
 
@@ -4463,25 +4431,18 @@ __webpack_require__.r(__webpack_exports__);
 
 function on(object, givenNames, givenCallback, options) {
   // throw error when object type is wrong
-  Object(_helpers_checkobjecttype__WEBPACK_IMPORTED_MODULE_3__["default"])(object, 'on');
+  Object(_helpers_checkobjecttype__WEBPACK_IMPORTED_MODULE_2__["default"])(object, 'on');
   var isNamesVarArray = givenNames instanceof Array; // allow to pass name-handler object
 
   if (givenNames && _babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_1___default()(givenNames) === 'object' && !isNamesVarArray) {
-    Object(_helpers_forown__WEBPACK_IMPORTED_MODULE_8__["default"])(givenNames, function (namesObjCallback, namesObjName) {
+    Object(_helpers_forown__WEBPACK_IMPORTED_MODULE_6__["default"])(givenNames, function (namesObjCallback, namesObjName) {
       return on(object, namesObjName, namesObjCallback, givenCallback, options);
     });
     return object;
-  }
-
-  if (typeof givenNames !== 'string' && !isNamesVarArray) {
-    throw Object(_helpers_defierror__WEBPACK_IMPORTED_MODULE_4__["default"])('on:names_type', {
-      names: givenNames
-    });
-  } // split by spaces
-  // TODO: Array of names passed to on method is a non-documented feature
+  } // convert a single event name into array
 
 
-  var names = isNamesVarArray ? givenNames : givenNames.split(_splitbyspaceregexp__WEBPACK_IMPORTED_MODULE_2__["default"]);
+  var names = isNamesVarArray ? givenNames : [givenNames];
 
   var _ref = options || {},
       triggerOnInit = _ref.triggerOnInit,
@@ -4494,19 +4455,19 @@ function on(object, givenNames, givenCallback, options) {
     callback = function onceCallback() {
       givenCallback.apply(this, arguments); // remove event listener after its call
 
-      Object(_off__WEBPACK_IMPORTED_MODULE_5__["default"])(object, names, onceCallback);
+      Object(_off__WEBPACK_IMPORTED_MODULE_3__["default"])(object, names, onceCallback);
     }; // allow to remove event listener py passing original callback to "off"
 
 
     callback._callback = givenCallback;
   } else if (typeof debounceOption === 'number' || debounceOption === true) {
-    callback = Object(_helpers_debounce__WEBPACK_IMPORTED_MODULE_6__["default"])(givenCallback, debounceOption === true ? 0 : debounceOption, object);
+    callback = Object(_helpers_debounce__WEBPACK_IMPORTED_MODULE_4__["default"])(givenCallback, debounceOption === true ? 0 : debounceOption, object);
   } else {
     callback = givenCallback;
   }
 
-  Object(_helpers_foreach__WEBPACK_IMPORTED_MODULE_7__["default"])(names, function (name) {
-    var delegatedEventParts = name.split('@');
+  Object(_helpers_foreach__WEBPACK_IMPORTED_MODULE_5__["default"])(names, function (name) {
+    var delegatedEventParts = typeof name === 'string' && name.split('@');
 
     if (delegatedEventParts.length > 1) {
       // if @ exists in event name then this is delegated event
@@ -4514,10 +4475,10 @@ function on(object, givenNames, givenCallback, options) {
           path = _delegatedEventParts[0],
           delegatedName = _delegatedEventParts[1];
 
-      Object(_delegatelistener__WEBPACK_IMPORTED_MODULE_10__["default"])(object, path, delegatedName, callback);
+      Object(_delegatelistener__WEBPACK_IMPORTED_MODULE_8__["default"])(object, path, delegatedName, callback);
     } else {
       // if not, this is simple event
-      Object(_addlistener__WEBPACK_IMPORTED_MODULE_9__["default"])(object, name, callback);
+      Object(_addlistener__WEBPACK_IMPORTED_MODULE_7__["default"])(object, name, callback);
     }
   }); // call callback immediatelly if triggerOnInit is true
 
@@ -4963,14 +4924,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _on_domeventregexp__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../on/_domeventregexp */ "../src/on/_domeventregexp.js");
 /* harmony import */ var _helpers_checkobjecttype__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../_helpers/checkobjecttype */ "../src/_helpers/checkobjecttype.js");
-/* harmony import */ var _helpers_defierror__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../_helpers/defierror */ "../src/_helpers/defierror.js");
-/* harmony import */ var _on_splitbyspaceregexp__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../on/_splitbyspaceregexp */ "../src/on/_splitbyspaceregexp.js");
-/* harmony import */ var _core_defs__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../_core/defs */ "../src/_core/defs.js");
-/* harmony import */ var _triggerone__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./_triggerone */ "../src/trigger/_triggerone.js");
-/* harmony import */ var _triggerdomevent__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./_triggerdomevent */ "../src/trigger/_triggerdomevent.js");
-/* harmony import */ var _helpers_foreach__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../_helpers/foreach */ "../src/_helpers/foreach.js");
-
-
+/* harmony import */ var _core_defs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../_core/defs */ "../src/_core/defs.js");
+/* harmony import */ var _triggerone__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./_triggerone */ "../src/trigger/_triggerone.js");
+/* harmony import */ var _triggerdomevent__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./_triggerdomevent */ "../src/trigger/_triggerdomevent.js");
+/* harmony import */ var _helpers_foreach__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../_helpers/foreach */ "../src/_helpers/foreach.js");
 
 
 
@@ -4985,18 +4942,10 @@ function trigger(object, givenNames) {
   }
 
   // throw error when object type is wrong
-  Object(_helpers_checkobjecttype__WEBPACK_IMPORTED_MODULE_2__["default"])(object, 'trigger');
-  var names; // allow to use strings only as event name
+  Object(_helpers_checkobjecttype__WEBPACK_IMPORTED_MODULE_2__["default"])(object, 'trigger'); // allow to use either a string or an array of events
 
-  if (typeof givenNames === 'string') {
-    names = givenNames.split(_on_splitbyspaceregexp__WEBPACK_IMPORTED_MODULE_4__["default"]);
-  } else {
-    throw Object(_helpers_defierror__WEBPACK_IMPORTED_MODULE_3__["default"])('trigger:names_type', {
-      names: givenNames
-    });
-  }
-
-  var def = _core_defs__WEBPACK_IMPORTED_MODULE_5__["default"].get(object); // if no definition do nothing
+  var names = givenNames instanceof Array ? givenNames : [givenNames];
+  var def = _core_defs__WEBPACK_IMPORTED_MODULE_3__["default"].get(object); // if no definition do nothing
 
   if (!def) {
     return object;
@@ -5008,8 +4957,8 @@ function trigger(object, givenNames) {
     return object;
   }
 
-  Object(_helpers_foreach__WEBPACK_IMPORTED_MODULE_8__["default"])(names, function (name) {
-    var domEvtExecResult = _on_domeventregexp__WEBPACK_IMPORTED_MODULE_1__["default"].exec(name);
+  Object(_helpers_foreach__WEBPACK_IMPORTED_MODULE_6__["default"])(names, function (name) {
+    var domEvtExecResult = typeof name === 'string' && _on_domeventregexp__WEBPACK_IMPORTED_MODULE_1__["default"].exec(name);
 
     if (domEvtExecResult) {
       // if EVT::KEY(SELECTOR) ia passed as event name then trigger DOM event
@@ -5018,10 +4967,10 @@ function trigger(object, givenNames) {
           key = _domEvtExecResult[2],
           selector = _domEvtExecResult[3];
 
-      Object(_triggerdomevent__WEBPACK_IMPORTED_MODULE_7__["default"])(object, key, eventName, selector, triggerArgs);
+      Object(_triggerdomevent__WEBPACK_IMPORTED_MODULE_5__["default"])(object, key, eventName, selector, triggerArgs);
     } else {
       // trigger ordinary event
-      Object(_triggerone__WEBPACK_IMPORTED_MODULE_6__["default"])(object, name, triggerArgs);
+      Object(_triggerone__WEBPACK_IMPORTED_MODULE_4__["default"])(object, name, triggerArgs);
     }
   });
   return object;
@@ -6506,15 +6455,6 @@ describe('Delegated events (delegateListener, undelegateListener)', function () 
     Object(src_trigger_triggerone__WEBPACK_IMPORTED_MODULE_2__["default"])(obj.a.b.c, 'someevent');
     expect(handler).toHaveBeenCalled();
   });
-  xit('uses correct context for delegated events', function () {
-    var obj = Object(_helpers_makeobject__WEBPACK_IMPORTED_MODULE_3__["default"])('a.b.c');
-    var bool = false;
-    Object(src_on_delegatelistener__WEBPACK_IMPORTED_MODULE_0__["default"])(obj, 'a.b.c', 'someevent', function handle() {
-      bool = this === obj;
-    });
-    Object(src_trigger_triggerone__WEBPACK_IMPORTED_MODULE_2__["default"])(obj.a.b.c, 'someevent');
-    expect(bool).toBe(true);
-  });
 });
 
 /***/ }),
@@ -6850,6 +6790,31 @@ describe('Events summary (on, off, trigger)', function () {
     Object(src_trigger__WEBPACK_IMPORTED_MODULE_2__["default"])(obj, 'someevent');
     expect(handler).toHaveBeenCalledTimes(1);
   });
+  it('fires event with a space', function () {
+    Object(src_on__WEBPACK_IMPORTED_MODULE_0__["default"])(obj, 'someevent someevent2', handler);
+    Object(src_trigger__WEBPACK_IMPORTED_MODULE_2__["default"])(obj, 'someevent someevent2');
+    expect(handler).toHaveBeenCalledTimes(1);
+  });
+  it('fires symbolic event name', function () {
+    var someevent = Symbol('someevent');
+    Object(src_on__WEBPACK_IMPORTED_MODULE_0__["default"])(obj, someevent, handler);
+    Object(src_trigger__WEBPACK_IMPORTED_MODULE_2__["default"])(obj, someevent);
+    expect(handler).toHaveBeenCalledTimes(1);
+  });
+  it('fires if an array of events is given', function () {
+    var someevent2 = Symbol('someevent2');
+    Object(src_on__WEBPACK_IMPORTED_MODULE_0__["default"])(obj, ['someevent1', someevent2], handler);
+    Object(src_trigger__WEBPACK_IMPORTED_MODULE_2__["default"])(obj, 'someevent1');
+    expect(handler).toHaveBeenCalledTimes(1);
+    Object(src_trigger__WEBPACK_IMPORTED_MODULE_2__["default"])(obj, someevent2);
+    expect(handler).toHaveBeenCalledTimes(2);
+  });
+  it('fires if an array of events is given and trigger got an array of events', function () {
+    var someevent2 = Symbol('someevent2');
+    Object(src_on__WEBPACK_IMPORTED_MODULE_0__["default"])(obj, ['someevent1', someevent2], handler);
+    Object(src_trigger__WEBPACK_IMPORTED_MODULE_2__["default"])(obj, ['someevent1', someevent2]);
+    expect(handler).toHaveBeenCalledTimes(2);
+  });
   it('allows to pass few arguments to trigger', function () {
     var handler = Object(_helpers_createspy__WEBPACK_IMPORTED_MODULE_4__["default"])(function (a, b) {
       expect(a).toEqual('foo');
@@ -6863,6 +6828,13 @@ describe('Events summary (on, off, trigger)', function () {
     Object(src_on__WEBPACK_IMPORTED_MODULE_0__["default"])(obj, 'someevent', handler);
     Object(src_off__WEBPACK_IMPORTED_MODULE_1__["default"])(obj, 'someevent');
     Object(src_trigger__WEBPACK_IMPORTED_MODULE_2__["default"])(obj, 'someevent');
+    expect(handler).not.toHaveBeenCalled();
+  });
+  it('removes multiple events at once', function () {
+    var someevent2 = Symbol('someevent2');
+    Object(src_on__WEBPACK_IMPORTED_MODULE_0__["default"])(obj, ['someevent1', someevent2], handler);
+    Object(src_off__WEBPACK_IMPORTED_MODULE_1__["default"])(obj, ['someevent1', someevent2]);
+    Object(src_trigger__WEBPACK_IMPORTED_MODULE_2__["default"])(obj, ['someevent1', someevent2]);
     expect(handler).not.toHaveBeenCalled();
   });
   it('fires delegated (simple)', function () {
