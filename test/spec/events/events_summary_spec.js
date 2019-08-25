@@ -41,6 +41,12 @@ describe('Events summary (on, off, trigger)', () => {
         expect(handler).toHaveBeenCalledTimes(1);
     });
 
+    it('fires event with a space', () => {
+        on(obj, 'someevent someevent2', handler);
+        trigger(obj, 'someevent someevent2');
+        expect(handler).toHaveBeenCalledTimes(1);
+    });
+
     it('fires symbolic event name', () => {
         const someevent = Symbol('someevent');
         on(obj, someevent, handler);
