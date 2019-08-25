@@ -186,16 +186,4 @@ describe('Delegated events (delegateListener, undelegateListener)', () => {
         triggerOne(obj.a.b.c, 'someevent');
         expect(handler).toHaveBeenCalled();
     });
-
-    xit('uses correct context for delegated events', () => {
-        const obj = makeObject('a.b.c');
-        let bool = false;
-
-        delegateListener(obj, 'a.b.c', 'someevent', function handle() {
-            bool = this === obj;
-        });
-
-        triggerOne(obj.a.b.c, 'someevent');
-        expect(bool).toBe(true);
-    });
 });
