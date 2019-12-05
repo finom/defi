@@ -29,7 +29,7 @@ export default function bindNode(object, key, node, binder, eventOptions) {
          * accept array of keys
          * this.bindNode(['a', 'b', 'c'], node)
          */
-        forEach(key, itemKey => bindNode(object, itemKey, node, binder, eventOptions));
+        forEach(key, (itemKey) => bindNode(object, itemKey, node, binder, eventOptions));
 
         return object;
     }
@@ -117,7 +117,7 @@ export default function bindNode(object, key, node, binder, eventOptions) {
     const propDef = defineProp(object, key);
 
     // handle binding for every node separately
-    forEach($nodes, oneNode => bindSingleNode(object, {
+    forEach($nodes, (oneNode) => bindSingleNode(object, {
         $nodes,
         node: oneNode,
         key,

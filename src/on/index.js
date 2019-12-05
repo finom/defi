@@ -16,7 +16,7 @@ export default function on(object, givenNames, givenCallback, options) {
     // allow to pass name-handler object
     if (givenNames && typeof givenNames === 'object' && !isNamesVarArray) {
         forOwn(givenNames, (namesObjCallback, namesObjName) => on(
-            object, namesObjName, namesObjCallback, givenCallback, options,
+            object, namesObjName, namesObjCallback, givenCallback, options
         ));
         return object;
     }

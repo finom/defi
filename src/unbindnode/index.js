@@ -16,7 +16,7 @@ export default function unbindNode(object, key, node, eventOptions) {
          * accept array of keys
          * this.unbindNode(['a', 'b', 'c'], node)
          */
-        forEach(key, itemKey => unbindNode(object, itemKey, node, eventOptions));
+        forEach(key, (itemKey) => unbindNode(object, itemKey, node, eventOptions));
 
         return object;
     }

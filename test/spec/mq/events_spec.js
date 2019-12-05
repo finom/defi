@@ -118,7 +118,7 @@ describe('mq events', () => {
 
     it('stops propagation', () => {
         $(testSandbox).on('click', handler);
-        $(child1).on('click', evt => evt.stopPropagation());
+        $(child1).on('click', (evt) => evt.stopPropagation());
         simulateClick(child1);
         expect(handler).not.toHaveBeenCalled();
     });

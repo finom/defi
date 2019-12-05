@@ -55,7 +55,7 @@ export default function calc(object, target, sources, givenHandler, eventOptions
         debounceCalc = true,
         debounceCalcDelay = 0
     } = eventOptions;
-    const defaultHandler = value => value;
+    const defaultHandler = (value) => value;
     const handler = givenHandler || defaultHandler;
     const allSources = [];
     const syncCalcHandler = createCalcHandler({

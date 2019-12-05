@@ -11,8 +11,8 @@ describe('mediate', () => {
     it('mediates', () => {
         const obj = {};
 
-        mediate(obj, 'a', v => Number(v));
-        mediate(obj, ['b', 'c'], v => Number(v));
+        mediate(obj, 'a', (v) => Number(v));
+        mediate(obj, ['b', 'c'], (v) => Number(v));
 
         obj.a = obj.b = obj.c = '123';
 
@@ -25,8 +25,8 @@ describe('mediate', () => {
         const obj = {};
 
         mediate(obj, {
-            a: v => Number(v),
-            b: v => Number(v)
+            a: (v) => Number(v),
+            b: (v) => Number(v)
         });
 
         obj.a = obj.b = '123';

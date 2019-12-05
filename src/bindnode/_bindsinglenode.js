@@ -112,7 +112,7 @@ export default function bindSingleNode(object, {
             // addEventListener is faster than "on" method from any DOM library
             forEach(
                 on.split(spaceReg),
-                evtName => node.addEventListener(evtName, nodeHandler)
+                (evtName) => node.addEventListener(evtName, nodeHandler)
             );
         }
 

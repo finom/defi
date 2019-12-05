@@ -32,7 +32,7 @@ export default function removeBinding({
         // removeEventListener is faster than "on" method from any DOM library
         forEach(
             on.split(spaceReg),
-            evtName => node.removeEventListener(evtName, nodeHandler)
+            (evtName) => node.removeEventListener(evtName, nodeHandler)
         );
     }
 

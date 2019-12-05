@@ -265,9 +265,7 @@ describe('Bindings', () => {
     });
 
     it('cancels delegated binding when exactKey=true option is passed', () => {
-        bindNode(obj, 'x.y.z', node, binder, Object.assign({
-            exactKey: true
-        }, noDebounceFlag));
+        bindNode(obj, 'x.y.z', node, binder, { exactKey: true, ...noDebounceFlag });
         testSimpleBind('x.y.z');
     });
 

@@ -45,7 +45,7 @@ export default function createCalcHandler({
             }
 
             targetValue
-                .then(promiseResult => set(object, target, promiseResult, setEventOptions))
+                .then((promiseResult) => set(object, target, promiseResult, setEventOptions))
                 .catch((e) => {
                     throw Error(e);
                 });

@@ -23,7 +23,7 @@ describe('chain', () => {
     it('can call calc and set as proof of chain work', () => {
         const obj = { a: 1 };
         chain(obj)
-            .calc('b', 'a', a => a * 2, { debounceCalc: false })
+            .calc('b', 'a', (a) => a * 2, { debounceCalc: false })
             .set('a', 2);
 
         expect(obj.b).toEqual(4);

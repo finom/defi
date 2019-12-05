@@ -5,7 +5,7 @@ import makeObject from '../helpers/makeobject';
 import createSpy from '../helpers/createspy';
 
 const noDebounceFlag = { debounceCalc: false };
-const delay = duration => new Promise(resolve => setTimeout(resolve, duration));
+const delay = (duration) => new Promise((resolve) => setTimeout(resolve, duration));
 
 describe('calc', () => {
     it('throws an error if an object is null', () => {
@@ -118,7 +118,7 @@ describe('calc', () => {
     it('allows delegated dependencies', () => {
         const obj = makeObject('a.b.c', 1);
 
-        calc(obj, 'd', 'a.b.c', c => c, noDebounceFlag);
+        calc(obj, 'd', 'a.b.c', (c) => c, noDebounceFlag);
         expect(obj.d).toEqual(1);
         obj.a.b.c = 2;
         expect(obj.d).toEqual(2);
@@ -141,7 +141,7 @@ describe('calc', () => {
         calc(obj, 'd', {
             object: obj2,
             key: 'b.c.d'
-        }, c => c * 2);
+        }, (c) => c * 2);
 
         expect(obj.d).toEqual(4);
     });
@@ -166,7 +166,7 @@ describe('calc', () => {
 
     it('uses event options', () => {
         const obj = {};
-        const handler = createSpy(evt => expect(evt.foo).toEqual('bar'));
+        const handler = createSpy((evt) => expect(evt.foo).toEqual('bar'));
         calc(obj, 'c', ['a', 'b'], (a, b) => a + b, {
             foo: 'bar',
             debounceCalc: false
@@ -252,7 +252,7 @@ describe('calc', () => {
             b: 2
         };
 
-        calc(obj, 'c', ['a', 'b'], (a, b) => new Promise(resolve => setTimeout(() => resolve(a + b), 10)), {
+        calc(obj, 'c', ['a', 'b'], (a, b) => new Promise((resolve) => setTimeout(() => resolve(a + b), 10)), {
             promiseCalc: true
         });
 

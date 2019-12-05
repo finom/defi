@@ -53,7 +53,7 @@ export default function remove(object, givenKey, eventOptions) {
         ];
 
         // remove all events
-        forEach(removeEventPrefies, prefix => removeListener(object, `${prefix}:${key}`));
+        forEach(removeEventPrefies, (prefix) => removeListener(object, `${prefix}:${key}`));
 
         // delete property definition
         delete props[key];
