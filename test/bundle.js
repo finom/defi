@@ -101,53 +101,6 @@ module.exports = _arrayWithHoles;
 
 /***/ }),
 
-/***/ "../node_modules/@babel/runtime/helpers/asyncToGenerator.js":
-/*!******************************************************************!*\
-  !*** ../node_modules/@babel/runtime/helpers/asyncToGenerator.js ***!
-  \******************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
-  try {
-    var info = gen[key](arg);
-    var value = info.value;
-  } catch (error) {
-    reject(error);
-    return;
-  }
-
-  if (info.done) {
-    resolve(value);
-  } else {
-    Promise.resolve(value).then(_next, _throw);
-  }
-}
-
-function _asyncToGenerator(fn) {
-  return function () {
-    var self = this,
-        args = arguments;
-    return new Promise(function (resolve, reject) {
-      var gen = fn.apply(self, args);
-
-      function _next(value) {
-        asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);
-      }
-
-      function _throw(err) {
-        asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);
-      }
-
-      _next(undefined);
-    });
-  };
-}
-
-module.exports = _asyncToGenerator;
-
-/***/ }),
-
 /***/ "../node_modules/@babel/runtime/helpers/defineProperty.js":
 /*!****************************************************************!*\
   !*** ../node_modules/@babel/runtime/helpers/defineProperty.js ***!
@@ -182,6 +135,10 @@ module.exports = _defineProperty;
 /***/ (function(module, exports) {
 
 function _iterableToArrayLimit(arr, i) {
+  if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) {
+    return;
+  }
+
   var _arr = [];
   var _n = true;
   var _d = false;
@@ -2320,7 +2277,7 @@ __webpack_require__.r(__webpack_exports__);
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 
 
@@ -2612,7 +2569,7 @@ __webpack_require__.r(__webpack_exports__);
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 
  // returns a function which called when bound node state is changed (eg DOM event is fired)
@@ -2690,7 +2647,7 @@ __webpack_require__.r(__webpack_exports__);
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 // returns a function which is called when property value is changed
 function createObjectHandler(_ref) {
@@ -3105,7 +3062,7 @@ __webpack_require__.r(__webpack_exports__);
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 
 
@@ -3448,18 +3405,26 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _lib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./_lib */ "../src/_lib.js");
-/* harmony import */ var _lookforbinder__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./lookforbinder */ "../src/lookforbinder.js");
-/* harmony import */ var _chain__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./chain */ "../src/chain.js");
-/* harmony import */ var _defaultbinders__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./defaultbinders */ "../src/defaultbinders.js");
+/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../node_modules/@babel/runtime/helpers/defineProperty.js");
+/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _lib__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./_lib */ "../src/_lib.js");
+/* harmony import */ var _lookforbinder__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./lookforbinder */ "../src/lookforbinder.js");
+/* harmony import */ var _chain__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./chain */ "../src/chain.js");
+/* harmony import */ var _defaultbinders__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./defaultbinders */ "../src/defaultbinders.js");
+
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 
 
 
-/* harmony default export */ __webpack_exports__["default"] = (Object.assign({}, _lib__WEBPACK_IMPORTED_MODULE_0__, {
-  lookForBinder: _lookforbinder__WEBPACK_IMPORTED_MODULE_1__["default"],
-  chain: _chain__WEBPACK_IMPORTED_MODULE_2__["default"],
-  defaultBinders: _defaultbinders__WEBPACK_IMPORTED_MODULE_3__["default"]
+
+/* harmony default export */ __webpack_exports__["default"] = (_objectSpread({}, _lib__WEBPACK_IMPORTED_MODULE_1__, {
+  lookForBinder: _lookforbinder__WEBPACK_IMPORTED_MODULE_2__["default"],
+  chain: _chain__WEBPACK_IMPORTED_MODULE_3__["default"],
+  defaultBinders: _defaultbinders__WEBPACK_IMPORTED_MODULE_4__["default"]
 }));
 
 /***/ }),
@@ -4153,7 +4118,7 @@ __webpack_require__.r(__webpack_exports__);
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1___default()(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1___default()(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 
  // creates tree listener
@@ -4514,7 +4479,7 @@ __webpack_require__.r(__webpack_exports__);
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 
 
@@ -4604,17 +4569,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/typeof */ "../node_modules/@babel/runtime/helpers/typeof.js");
 /* harmony import */ var _babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _core_defs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./_core/defs */ "../src/_core/defs.js");
-/* harmony import */ var _trigger_triggerone__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./trigger/_triggerone */ "../src/trigger/_triggerone.js");
-/* harmony import */ var _helpers_checkobjecttype__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./_helpers/checkobjecttype */ "../src/_helpers/checkobjecttype.js");
-/* harmony import */ var _helpers_is__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./_helpers/is */ "../src/_helpers/is.js");
-/* harmony import */ var _helpers_forown__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./_helpers/forown */ "../src/_helpers/forown.js");
+/* harmony import */ var _core_init__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./_core/init */ "../src/_core/init.js");
+/* harmony import */ var _core_defs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./_core/defs */ "../src/_core/defs.js");
+/* harmony import */ var _trigger_triggerone__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./trigger/_triggerone */ "../src/trigger/_triggerone.js");
+/* harmony import */ var _helpers_checkobjecttype__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./_helpers/checkobjecttype */ "../src/_helpers/checkobjecttype.js");
+/* harmony import */ var _helpers_is__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./_helpers/is */ "../src/_helpers/is.js");
+/* harmony import */ var _helpers_forown__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./_helpers/forown */ "../src/_helpers/forown.js");
 
 
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
 
 
 
@@ -4625,7 +4592,7 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function set(object, key, value, eventOptions) {
   // throw error when object type is wrong
-  Object(_helpers_checkobjecttype__WEBPACK_IMPORTED_MODULE_4__["default"])(object, 'set'); // if no key or falsy key is given
+  Object(_helpers_checkobjecttype__WEBPACK_IMPORTED_MODULE_5__["default"])(object, 'set'); // if no key or falsy key is given
 
   if (!key) {
     return object;
@@ -4633,15 +4600,35 @@ function set(object, key, value, eventOptions) {
 
 
   if (_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_1___default()(key) === 'object') {
-    Object(_helpers_forown__WEBPACK_IMPORTED_MODULE_6__["default"])(key, function (objVal, objKey) {
+    Object(_helpers_forown__WEBPACK_IMPORTED_MODULE_7__["default"])(key, function (objVal, objKey) {
       return set(object, objKey, objVal, value);
     });
     return object;
   }
 
   eventOptions = eventOptions || {}; // eslint-disable-line no-param-reassign
+  // possible flags, all of them are falsy by default
 
-  var def = _core_defs__WEBPACK_IMPORTED_MODULE_2__["default"].get(object); // if no object definition then make simple assignment
+  var _eventOptions = eventOptions,
+      skipMediator = _eventOptions.skipMediator,
+      fromMediator = _eventOptions.fromMediator,
+      define = _eventOptions.define,
+      force = _eventOptions.force,
+      forceHTML = _eventOptions.forceHTML,
+      silent = _eventOptions.silent,
+      silentHTML = _eventOptions.silentHTML,
+      skipCalc = _eventOptions.skipCalc;
+
+  if (define) {
+    // fixing circular ref
+    var _require = __webpack_require__(/*! ./_core/defineprop */ "../src/_core/defineprop.js"),
+        defineProp = _require["default"];
+
+    Object(_core_init__WEBPACK_IMPORTED_MODULE_2__["default"])(object);
+    defineProp(object, key);
+  }
+
+  var def = _core_defs__WEBPACK_IMPORTED_MODULE_3__["default"].get(object); // if no object definition then make simple assignment
 
   if (!def) {
     object[key] = value;
@@ -4658,25 +4645,16 @@ function set(object, key, value, eventOptions) {
   }
 
   var previousValue = propDef.value,
-      mediator = propDef.mediator; // possible flags, all of them are falsy by default
-
-  var _eventOptions = eventOptions,
-      skipMediator = _eventOptions.skipMediator,
-      fromMediator = _eventOptions.fromMediator,
-      force = _eventOptions.force,
-      forceHTML = _eventOptions.forceHTML,
-      silent = _eventOptions.silent,
-      silentHTML = _eventOptions.silentHTML,
-      skipCalc = _eventOptions.skipCalc;
+      mediator = propDef.mediator;
   var newValue;
 
-  if (mediator && !Object(_helpers_is__WEBPACK_IMPORTED_MODULE_5__["default"])(value, previousValue) && !skipMediator && !fromMediator) {
+  if (mediator && !Object(_helpers_is__WEBPACK_IMPORTED_MODULE_6__["default"])(value, previousValue) && !skipMediator && !fromMediator) {
     newValue = mediator(value);
   } else {
     newValue = value;
   }
 
-  var isChanged = !Object(_helpers_is__WEBPACK_IMPORTED_MODULE_5__["default"])(newValue, previousValue); // add to eventOptions object some useful properties
+  var isChanged = !Object(_helpers_is__WEBPACK_IMPORTED_MODULE_6__["default"])(newValue, previousValue); // add to eventOptions object some useful properties
   // we override default eventOptions because some of the properties need to have actual values,
   // not inherited ones (eg when calc is used)
 
@@ -4695,11 +4673,11 @@ function set(object, key, value, eventOptions) {
     var beforechangeEventName = "".concat(beforechangeStr, ":").concat(key);
 
     if (events[beforechangeEventName]) {
-      Object(_trigger_triggerone__WEBPACK_IMPORTED_MODULE_3__["default"])(object, beforechangeEventName, extendedEventOptions);
+      Object(_trigger_triggerone__WEBPACK_IMPORTED_MODULE_4__["default"])(object, beforechangeEventName, extendedEventOptions);
     }
 
     if (events[beforechangeStr]) {
-      Object(_trigger_triggerone__WEBPACK_IMPORTED_MODULE_3__["default"])(object, beforechangeStr, extendedEventOptions);
+      Object(_trigger_triggerone__WEBPACK_IMPORTED_MODULE_4__["default"])(object, beforechangeStr, extendedEventOptions);
     }
   }
 
@@ -4709,7 +4687,7 @@ function set(object, key, value, eventOptions) {
     var changeBindingsEventName = "_change:bindings:".concat(key);
 
     if (events[changeBindingsEventName]) {
-      Object(_trigger_triggerone__WEBPACK_IMPORTED_MODULE_3__["default"])(object, changeBindingsEventName, extendedEventOptions);
+      Object(_trigger_triggerone__WEBPACK_IMPORTED_MODULE_4__["default"])(object, changeBindingsEventName, extendedEventOptions);
     }
   } // trigger change:KEY and change events
 
@@ -4719,11 +4697,11 @@ function set(object, key, value, eventOptions) {
     var changeEventName = "".concat(changeStr, ":").concat(key);
 
     if (events[changeEventName]) {
-      Object(_trigger_triggerone__WEBPACK_IMPORTED_MODULE_3__["default"])(object, changeEventName, extendedEventOptions);
+      Object(_trigger_triggerone__WEBPACK_IMPORTED_MODULE_4__["default"])(object, changeEventName, extendedEventOptions);
     }
 
     if (events[changeStr]) {
-      Object(_trigger_triggerone__WEBPACK_IMPORTED_MODULE_3__["default"])(object, changeStr, extendedEventOptions);
+      Object(_trigger_triggerone__WEBPACK_IMPORTED_MODULE_4__["default"])(object, changeStr, extendedEventOptions);
     }
   } // trigger dependencies made by calc method
 
@@ -4732,7 +4710,7 @@ function set(object, key, value, eventOptions) {
     var changeDepsEventName = "_change:deps:".concat(key);
 
     if (events[changeDepsEventName]) {
-      Object(_trigger_triggerone__WEBPACK_IMPORTED_MODULE_3__["default"])(object, changeDepsEventName, extendedEventOptions);
+      Object(_trigger_triggerone__WEBPACK_IMPORTED_MODULE_4__["default"])(object, changeDepsEventName, extendedEventOptions);
     }
   }
 
@@ -4741,21 +4719,21 @@ function set(object, key, value, eventOptions) {
     var changeDelegatedKeyEventName = "_change:delegated:".concat(key);
 
     if (events[changeDelegatedKeyEventName]) {
-      Object(_trigger_triggerone__WEBPACK_IMPORTED_MODULE_3__["default"])(object, changeDelegatedKeyEventName, extendedEventOptions);
+      Object(_trigger_triggerone__WEBPACK_IMPORTED_MODULE_4__["default"])(object, changeDelegatedKeyEventName, extendedEventOptions);
     } // trigger tree change events logic
 
 
     var changeTreeEventName = "_change:tree:".concat(key);
 
     if (events[changeTreeEventName]) {
-      Object(_trigger_triggerone__WEBPACK_IMPORTED_MODULE_3__["default"])(object, changeTreeEventName, extendedEventOptions);
+      Object(_trigger_triggerone__WEBPACK_IMPORTED_MODULE_4__["default"])(object, changeTreeEventName, extendedEventOptions);
     } // trigger other internal change events
 
 
     var changeCommonEventName = "_change:common:".concat(key);
 
     if (events[changeCommonEventName]) {
-      Object(_trigger_triggerone__WEBPACK_IMPORTED_MODULE_3__["default"])(object, changeCommonEventName, extendedEventOptions);
+      Object(_trigger_triggerone__WEBPACK_IMPORTED_MODULE_4__["default"])(object, changeCommonEventName, extendedEventOptions);
     } // trigger delegated logic for asterisk events (*.*.*@foo)
     // TODO: Confusing events names ("_change:delegated", "_change:common:KEY" etc)
 
@@ -4763,7 +4741,7 @@ function set(object, key, value, eventOptions) {
     var changeDelegatedEventName = '_change:delegated';
 
     if (events[changeDelegatedEventName]) {
-      Object(_trigger_triggerone__WEBPACK_IMPORTED_MODULE_3__["default"])(object, changeDelegatedEventName, extendedEventOptions);
+      Object(_trigger_triggerone__WEBPACK_IMPORTED_MODULE_4__["default"])(object, changeDelegatedEventName, extendedEventOptions);
     }
   }
 
@@ -4867,8 +4845,10 @@ function triggerOne(object, name, triggerArgs) {
       while (i < l) {
         var _event = triggerOne.latestEvent = events[i];
 
-        var callback = _event.callback;
-        callback.call(object, triggerArgs);
+        var _callback = _event.callback;
+
+        _callback.call(object, triggerArgs);
+
         i += 1;
       }
     }
@@ -4997,7 +4977,7 @@ __webpack_require__.r(__webpack_exports__);
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 
 
@@ -5373,12 +5353,20 @@ webpackContext.id = "./spec sync recursive .*\\.js$";
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var src_bindnode__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! src/bindnode */ "../src/bindnode/index.js");
-/* harmony import */ var src_unbindnode__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! src/unbindnode */ "../src/unbindnode/index.js");
-/* harmony import */ var src_bound__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/bound */ "../src/bound.js");
-/* harmony import */ var src_on_addlistener__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/on/_addlistener */ "../src/on/_addlistener.js");
-/* harmony import */ var _helpers_makeobject__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../helpers/makeobject */ "./helpers/makeobject.js");
-/* harmony import */ var _helpers_createspy__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../helpers/createspy */ "./helpers/createspy.js");
+/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../node_modules/@babel/runtime/helpers/defineProperty.js");
+/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var src_bindnode__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! src/bindnode */ "../src/bindnode/index.js");
+/* harmony import */ var src_unbindnode__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/unbindnode */ "../src/unbindnode/index.js");
+/* harmony import */ var src_bound__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/bound */ "../src/bound.js");
+/* harmony import */ var src_on_addlistener__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/on/_addlistener */ "../src/on/_addlistener.js");
+/* harmony import */ var _helpers_makeobject__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../helpers/makeobject */ "./helpers/makeobject.js");
+/* harmony import */ var _helpers_createspy__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../helpers/createspy */ "./helpers/createspy.js");
+
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
 /* eslint-disable import/no-extraneous-dependencies, no-shadow, max-lines, import/extensions */
 
 
@@ -5408,8 +5396,8 @@ describe('Bindings', function () {
     node.ondummyevent();
     expect(obj[key]).toEqual('bar');
     expect(initializeCall).toHaveBeenCalled();
-    expect(Object(src_bound__WEBPACK_IMPORTED_MODULE_2__["default"])(obj, key)).toEqual(node);
-    expect(Array.from(Object(src_bound__WEBPACK_IMPORTED_MODULE_2__["default"])(obj, key, {
+    expect(Object(src_bound__WEBPACK_IMPORTED_MODULE_3__["default"])(obj, key)).toEqual(node);
+    expect(Array.from(Object(src_bound__WEBPACK_IMPORTED_MODULE_3__["default"])(obj, key, {
       all: true
     }))).toEqual([node]);
   };
@@ -5423,8 +5411,8 @@ describe('Bindings', function () {
     testedNode.ondummyevent();
     expect(obj[key]).toEqual('foo');
     expect(destroyCall).toHaveBeenCalled();
-    expect(Object(src_bound__WEBPACK_IMPORTED_MODULE_2__["default"])(obj, key)).toEqual(null);
-    expect(Array.from(Object(src_bound__WEBPACK_IMPORTED_MODULE_2__["default"])(obj, key, {
+    expect(Object(src_bound__WEBPACK_IMPORTED_MODULE_3__["default"])(obj, key)).toEqual(null);
+    expect(Array.from(Object(src_bound__WEBPACK_IMPORTED_MODULE_3__["default"])(obj, key, {
       all: true
     }))).toEqual([]);
   };
@@ -5434,8 +5422,8 @@ describe('Bindings', function () {
     node = document.createElement('div');
     child = node.appendChild(document.createElement('div'));
     child.className = 'child';
-    initializeCall = Object(_helpers_createspy__WEBPACK_IMPORTED_MODULE_5__["default"])();
-    destroyCall = Object(_helpers_createspy__WEBPACK_IMPORTED_MODULE_5__["default"])();
+    initializeCall = Object(_helpers_createspy__WEBPACK_IMPORTED_MODULE_6__["default"])();
+    destroyCall = Object(_helpers_createspy__WEBPACK_IMPORTED_MODULE_6__["default"])();
     binder = {
       on: function on(cbc) {
         this.ondummyevent = cbc;
@@ -5457,7 +5445,7 @@ describe('Bindings', function () {
   });
   it('should handle debounceSetValueOnBind=true', function (done) {
     obj.x = 'foo';
-    Object(src_bindnode__WEBPACK_IMPORTED_MODULE_0__["default"])(obj, 'x', node, binder, {
+    Object(src_bindnode__WEBPACK_IMPORTED_MODULE_1__["default"])(obj, 'x', node, binder, {
       debounceSetValueOnBind: true
     });
     expect(node.value).toEqual('');
@@ -5468,7 +5456,7 @@ describe('Bindings', function () {
   });
   it('should handle debounceGetValueOnBind=true', function (done) {
     node.value = 'foo';
-    Object(src_bindnode__WEBPACK_IMPORTED_MODULE_0__["default"])(obj, 'x', node, binder, {
+    Object(src_bindnode__WEBPACK_IMPORTED_MODULE_1__["default"])(obj, 'x', node, binder, {
       debounceGetValueOnBind: true
     });
     expect(obj.x).toEqual(undefined);
@@ -5479,7 +5467,7 @@ describe('Bindings', function () {
   });
   it('should handle debounceSetValue=true (use default value)', function (done) {
     obj.x = 'foo';
-    Object(src_bindnode__WEBPACK_IMPORTED_MODULE_0__["default"])(obj, 'x', node, binder);
+    Object(src_bindnode__WEBPACK_IMPORTED_MODULE_1__["default"])(obj, 'x', node, binder);
     expect(node.value).toEqual('foo');
     obj.x = 'bar';
     expect(node.value).toEqual('foo');
@@ -5490,7 +5478,7 @@ describe('Bindings', function () {
   });
   it('should handle debounceGetValue=true (use default value)', function (done) {
     node.value = 'foo';
-    Object(src_bindnode__WEBPACK_IMPORTED_MODULE_0__["default"])(obj, 'x', node, binder);
+    Object(src_bindnode__WEBPACK_IMPORTED_MODULE_1__["default"])(obj, 'x', node, binder);
     expect(obj.x).toEqual('foo');
     node.value = 'bar';
     node.ondummyevent();
@@ -5506,34 +5494,34 @@ describe('Bindings', function () {
   xit('handle option setOnBind=false', function () {});
   xit('handle option getOnBind=false', function () {});
   it('should bind and trigger events', function () {
-    var bindCall = Object(_helpers_createspy__WEBPACK_IMPORTED_MODULE_5__["default"])();
-    var bindKeyCall = Object(_helpers_createspy__WEBPACK_IMPORTED_MODULE_5__["default"])();
-    Object(src_on_addlistener__WEBPACK_IMPORTED_MODULE_3__["default"])(obj, 'bind', bindCall);
-    Object(src_on_addlistener__WEBPACK_IMPORTED_MODULE_3__["default"])(obj, 'bind:x', bindKeyCall);
-    Object(src_bindnode__WEBPACK_IMPORTED_MODULE_0__["default"])(obj, 'x', node, binder, noDebounceFlag);
+    var bindCall = Object(_helpers_createspy__WEBPACK_IMPORTED_MODULE_6__["default"])();
+    var bindKeyCall = Object(_helpers_createspy__WEBPACK_IMPORTED_MODULE_6__["default"])();
+    Object(src_on_addlistener__WEBPACK_IMPORTED_MODULE_4__["default"])(obj, 'bind', bindCall);
+    Object(src_on_addlistener__WEBPACK_IMPORTED_MODULE_4__["default"])(obj, 'bind:x', bindKeyCall);
+    Object(src_bindnode__WEBPACK_IMPORTED_MODULE_1__["default"])(obj, 'x', node, binder, noDebounceFlag);
     testSimpleBind();
     expect(bindCall).toHaveBeenCalled();
     expect(bindKeyCall).toHaveBeenCalled();
   });
   it('should unbind and trigger events', function () {
-    var unbindCall = Object(_helpers_createspy__WEBPACK_IMPORTED_MODULE_5__["default"])();
-    var unbindKeyCall = Object(_helpers_createspy__WEBPACK_IMPORTED_MODULE_5__["default"])();
-    Object(src_on_addlistener__WEBPACK_IMPORTED_MODULE_3__["default"])(obj, 'unbind', unbindCall);
-    Object(src_on_addlistener__WEBPACK_IMPORTED_MODULE_3__["default"])(obj, 'unbind:x', unbindKeyCall);
-    Object(src_bindnode__WEBPACK_IMPORTED_MODULE_0__["default"])(obj, 'x', node, binder, noDebounceFlag);
-    Object(src_unbindnode__WEBPACK_IMPORTED_MODULE_1__["default"])(obj, 'x', node);
+    var unbindCall = Object(_helpers_createspy__WEBPACK_IMPORTED_MODULE_6__["default"])();
+    var unbindKeyCall = Object(_helpers_createspy__WEBPACK_IMPORTED_MODULE_6__["default"])();
+    Object(src_on_addlistener__WEBPACK_IMPORTED_MODULE_4__["default"])(obj, 'unbind', unbindCall);
+    Object(src_on_addlistener__WEBPACK_IMPORTED_MODULE_4__["default"])(obj, 'unbind:x', unbindKeyCall);
+    Object(src_bindnode__WEBPACK_IMPORTED_MODULE_1__["default"])(obj, 'x', node, binder, noDebounceFlag);
+    Object(src_unbindnode__WEBPACK_IMPORTED_MODULE_2__["default"])(obj, 'x', node);
     testSimpleUnbind();
     expect(unbindCall).toHaveBeenCalled();
     expect(unbindKeyCall).toHaveBeenCalled();
   });
   it('should bind using key-node object', function () {
-    Object(src_bindnode__WEBPACK_IMPORTED_MODULE_0__["default"])(obj, {
+    Object(src_bindnode__WEBPACK_IMPORTED_MODULE_1__["default"])(obj, {
       x: node
     }, binder, noDebounceFlag);
     testSimpleBind();
   });
   it('should bind using key-binding object', function () {
-    Object(src_bindnode__WEBPACK_IMPORTED_MODULE_0__["default"])(obj, {
+    Object(src_bindnode__WEBPACK_IMPORTED_MODULE_1__["default"])(obj, {
       x: {
         node: node,
         binder: binder
@@ -5542,7 +5530,7 @@ describe('Bindings', function () {
     testSimpleBind();
   });
   it('should bind using key-bindingsarray object', function () {
-    Object(src_bindnode__WEBPACK_IMPORTED_MODULE_0__["default"])(obj, {
+    Object(src_bindnode__WEBPACK_IMPORTED_MODULE_1__["default"])(obj, {
       x: [{
         node: node,
         binder: binder
@@ -5551,7 +5539,7 @@ describe('Bindings', function () {
     testSimpleBind();
   });
   it('should bind using key-binding object and use common binder', function () {
-    Object(src_bindnode__WEBPACK_IMPORTED_MODULE_0__["default"])(obj, {
+    Object(src_bindnode__WEBPACK_IMPORTED_MODULE_1__["default"])(obj, {
       x: {
         node: node
       }
@@ -5559,7 +5547,7 @@ describe('Bindings', function () {
     testSimpleBind();
   });
   it('should bind using key-bindingsarray object and use common binder', function () {
-    Object(src_bindnode__WEBPACK_IMPORTED_MODULE_0__["default"])(obj, {
+    Object(src_bindnode__WEBPACK_IMPORTED_MODULE_1__["default"])(obj, {
       x: [{
         node: node
       }]
@@ -5568,59 +5556,59 @@ describe('Bindings', function () {
   });
   it('should not unbind when wrong node is given', function () {
     var wrongNode = document.createElement('div');
-    Object(src_bindnode__WEBPACK_IMPORTED_MODULE_0__["default"])(obj, 'x', node, binder, noDebounceFlag);
-    Object(src_unbindnode__WEBPACK_IMPORTED_MODULE_1__["default"])(obj, 'x', wrongNode);
+    Object(src_bindnode__WEBPACK_IMPORTED_MODULE_1__["default"])(obj, 'x', node, binder, noDebounceFlag);
+    Object(src_unbindnode__WEBPACK_IMPORTED_MODULE_2__["default"])(obj, 'x', wrongNode);
     testSimpleBind();
   });
   it('should not unbind when wrong key is given', function () {
-    Object(src_bindnode__WEBPACK_IMPORTED_MODULE_0__["default"])(obj, 'x', node, binder, noDebounceFlag);
-    Object(src_unbindnode__WEBPACK_IMPORTED_MODULE_1__["default"])(obj, 'y', node);
+    Object(src_bindnode__WEBPACK_IMPORTED_MODULE_1__["default"])(obj, 'x', node, binder, noDebounceFlag);
+    Object(src_unbindnode__WEBPACK_IMPORTED_MODULE_2__["default"])(obj, 'y', node);
     testSimpleBind();
   });
   it('should unbind when node is not given', function () {
-    Object(src_bindnode__WEBPACK_IMPORTED_MODULE_0__["default"])(obj, 'x', node, binder, noDebounceFlag);
-    Object(src_unbindnode__WEBPACK_IMPORTED_MODULE_1__["default"])(obj, 'x');
+    Object(src_bindnode__WEBPACK_IMPORTED_MODULE_1__["default"])(obj, 'x', node, binder, noDebounceFlag);
+    Object(src_unbindnode__WEBPACK_IMPORTED_MODULE_2__["default"])(obj, 'x');
     testSimpleUnbind();
   });
   it('should unbind all when neither key nor node is given', function () {
-    Object(src_bindnode__WEBPACK_IMPORTED_MODULE_0__["default"])(obj, 'x', node, binder, noDebounceFlag);
-    Object(src_unbindnode__WEBPACK_IMPORTED_MODULE_1__["default"])(obj);
+    Object(src_bindnode__WEBPACK_IMPORTED_MODULE_1__["default"])(obj, 'x', node, binder, noDebounceFlag);
+    Object(src_unbindnode__WEBPACK_IMPORTED_MODULE_2__["default"])(obj);
     testSimpleUnbind();
   });
   it('should unbind by ":bound()" selector', function () {
-    Object(src_bindnode__WEBPACK_IMPORTED_MODULE_0__["default"])(obj, 'x', node, binder, noDebounceFlag);
-    Object(src_unbindnode__WEBPACK_IMPORTED_MODULE_1__["default"])(obj, 'x', ':bound(x)');
+    Object(src_bindnode__WEBPACK_IMPORTED_MODULE_1__["default"])(obj, 'x', node, binder, noDebounceFlag);
+    Object(src_unbindnode__WEBPACK_IMPORTED_MODULE_2__["default"])(obj, 'x', ':bound(x)');
     testSimpleUnbind();
   });
   it('should unbind by ":bound() [native_selector]" selector', function () {
-    Object(src_bindnode__WEBPACK_IMPORTED_MODULE_0__["default"])(obj, 'x', node, binder, noDebounceFlag);
-    Object(src_bindnode__WEBPACK_IMPORTED_MODULE_0__["default"])(obj, 'y', child, binder, noDebounceFlag);
-    Object(src_unbindnode__WEBPACK_IMPORTED_MODULE_1__["default"])(obj, 'y', ':bound(x) .child');
+    Object(src_bindnode__WEBPACK_IMPORTED_MODULE_1__["default"])(obj, 'x', node, binder, noDebounceFlag);
+    Object(src_bindnode__WEBPACK_IMPORTED_MODULE_1__["default"])(obj, 'y', child, binder, noDebounceFlag);
+    Object(src_unbindnode__WEBPACK_IMPORTED_MODULE_2__["default"])(obj, 'y', ':bound(x) .child');
     testSimpleUnbind('y', child);
   });
   it('should unbind by ":bound() > [native_selector]" selector', function () {
-    Object(src_bindnode__WEBPACK_IMPORTED_MODULE_0__["default"])(obj, 'x', node, binder, noDebounceFlag);
-    Object(src_bindnode__WEBPACK_IMPORTED_MODULE_0__["default"])(obj, 'y', child, binder, noDebounceFlag);
-    Object(src_unbindnode__WEBPACK_IMPORTED_MODULE_1__["default"])(obj, 'y', ':bound(x) > .child');
+    Object(src_bindnode__WEBPACK_IMPORTED_MODULE_1__["default"])(obj, 'x', node, binder, noDebounceFlag);
+    Object(src_bindnode__WEBPACK_IMPORTED_MODULE_1__["default"])(obj, 'y', child, binder, noDebounceFlag);
+    Object(src_unbindnode__WEBPACK_IMPORTED_MODULE_2__["default"])(obj, 'y', ':bound(x) > .child');
     testSimpleUnbind('y', child);
   });
   it('should unbind using key-node object', function () {
-    Object(src_bindnode__WEBPACK_IMPORTED_MODULE_0__["default"])(obj, {
+    Object(src_bindnode__WEBPACK_IMPORTED_MODULE_1__["default"])(obj, {
       x: node
     }, binder, noDebounceFlag);
-    Object(src_unbindnode__WEBPACK_IMPORTED_MODULE_1__["default"])(obj, {
+    Object(src_unbindnode__WEBPACK_IMPORTED_MODULE_2__["default"])(obj, {
       x: node
     });
     testSimpleUnbind();
   });
   it('should unbind using key-binding object', function () {
-    Object(src_bindnode__WEBPACK_IMPORTED_MODULE_0__["default"])(obj, {
+    Object(src_bindnode__WEBPACK_IMPORTED_MODULE_1__["default"])(obj, {
       x: {
         node: node,
         binder: binder
       }
     }, null, noDebounceFlag);
-    Object(src_unbindnode__WEBPACK_IMPORTED_MODULE_1__["default"])(obj, {
+    Object(src_unbindnode__WEBPACK_IMPORTED_MODULE_2__["default"])(obj, {
       x: {
         node: node,
         binder: binder
@@ -5629,13 +5617,13 @@ describe('Bindings', function () {
     testSimpleUnbind();
   });
   it('should unbind using key-bindings array object', function () {
-    Object(src_bindnode__WEBPACK_IMPORTED_MODULE_0__["default"])(obj, {
+    Object(src_bindnode__WEBPACK_IMPORTED_MODULE_1__["default"])(obj, {
       x: [{
         node: node,
         binder: binder
       }]
     }, null, noDebounceFlag);
-    Object(src_unbindnode__WEBPACK_IMPORTED_MODULE_1__["default"])(obj, {
+    Object(src_unbindnode__WEBPACK_IMPORTED_MODULE_2__["default"])(obj, {
       x: [{
         node: node,
         binder: binder
@@ -5644,8 +5632,8 @@ describe('Bindings', function () {
     testSimpleUnbind();
   });
   it('should bind delegated target', function () {
-    var obj = Object(_helpers_makeobject__WEBPACK_IMPORTED_MODULE_4__["default"])('x.y');
-    Object(src_bindnode__WEBPACK_IMPORTED_MODULE_0__["default"])(obj, 'x.y.z', node, binder, noDebounceFlag);
+    var obj = Object(_helpers_makeobject__WEBPACK_IMPORTED_MODULE_5__["default"])('x.y');
+    Object(src_bindnode__WEBPACK_IMPORTED_MODULE_1__["default"])(obj, 'x.y.z', node, binder, noDebounceFlag);
     obj.x.y.z = 'foo';
     expect(node.value).toEqual('foo');
     node.value = 'bar';
@@ -5653,9 +5641,9 @@ describe('Bindings', function () {
     expect(obj.x.y.z).toEqual('bar');
   });
   it('should unbind delegated target', function () {
-    var obj = Object(_helpers_makeobject__WEBPACK_IMPORTED_MODULE_4__["default"])('x.y');
-    Object(src_bindnode__WEBPACK_IMPORTED_MODULE_0__["default"])(obj, 'x.y.z', node, binder, noDebounceFlag);
-    Object(src_unbindnode__WEBPACK_IMPORTED_MODULE_1__["default"])(obj, 'x.y.z', node);
+    var obj = Object(_helpers_makeobject__WEBPACK_IMPORTED_MODULE_5__["default"])('x.y');
+    Object(src_bindnode__WEBPACK_IMPORTED_MODULE_1__["default"])(obj, 'x.y.z', node, binder, noDebounceFlag);
+    Object(src_unbindnode__WEBPACK_IMPORTED_MODULE_2__["default"])(obj, 'x.y.z', node);
     obj.x.y.z = 'foo';
     expect(node.value).toEqual('');
     node.value = 'bar';
@@ -5663,25 +5651,25 @@ describe('Bindings', function () {
     expect(obj.x.y.z).toEqual('foo');
   });
   it('cancels delegated binding when exactKey=true option is passed', function () {
-    Object(src_bindnode__WEBPACK_IMPORTED_MODULE_0__["default"])(obj, 'x.y.z', node, binder, Object.assign({
+    Object(src_bindnode__WEBPACK_IMPORTED_MODULE_1__["default"])(obj, 'x.y.z', node, binder, _objectSpread({
       exactKey: true
     }, noDebounceFlag));
     testSimpleBind('x.y.z');
   });
   it('should rebind delegated target', function () {
-    var obj = Object(_helpers_makeobject__WEBPACK_IMPORTED_MODULE_4__["default"])('u.x.y.z', 'go');
-    Object(src_bindnode__WEBPACK_IMPORTED_MODULE_0__["default"])(obj, 'u.x.y.z', node, binder, noDebounceFlag);
-    obj.u.x = Object(_helpers_makeobject__WEBPACK_IMPORTED_MODULE_4__["default"])('y.z', 'foo');
+    var obj = Object(_helpers_makeobject__WEBPACK_IMPORTED_MODULE_5__["default"])('u.x.y.z', 'go');
+    Object(src_bindnode__WEBPACK_IMPORTED_MODULE_1__["default"])(obj, 'u.x.y.z', node, binder, noDebounceFlag);
+    obj.u.x = Object(_helpers_makeobject__WEBPACK_IMPORTED_MODULE_5__["default"])('y.z', 'foo');
     expect(node.value).toEqual('foo');
     node.value = 'bar';
     node.ondummyevent();
     expect(obj.u.x.y.z).toEqual('bar');
   });
   it('should remove binding if delegated target is reassigned', function () {
-    var obj = Object(_helpers_makeobject__WEBPACK_IMPORTED_MODULE_4__["default"])('u.x.y');
-    Object(src_bindnode__WEBPACK_IMPORTED_MODULE_0__["default"])(obj, 'u.x.y.z', node, binder, noDebounceFlag);
+    var obj = Object(_helpers_makeobject__WEBPACK_IMPORTED_MODULE_5__["default"])('u.x.y');
+    Object(src_bindnode__WEBPACK_IMPORTED_MODULE_1__["default"])(obj, 'u.x.y.z', node, binder, noDebounceFlag);
     var x = obj.u.x;
-    obj.u.x = Object(_helpers_makeobject__WEBPACK_IMPORTED_MODULE_4__["default"])('y.z', 'foo');
+    obj.u.x = Object(_helpers_makeobject__WEBPACK_IMPORTED_MODULE_5__["default"])('y.z', 'foo');
     node.value = 'bar';
     node.ondummyevent();
     expect(x.y.z).not.toEqual('bar');
@@ -5691,31 +5679,31 @@ describe('Bindings', function () {
   });
   it('throws error when node is not there', function () {
     expect(function () {
-      Object(src_bindnode__WEBPACK_IMPORTED_MODULE_0__["default"])(obj, 'x');
+      Object(src_bindnode__WEBPACK_IMPORTED_MODULE_1__["default"])(obj, 'x');
     }).toThrow();
   });
   it('throws error when node falsy', function () {
     expect(function () {
-      Object(src_bindnode__WEBPACK_IMPORTED_MODULE_0__["default"])(obj, '', node);
+      Object(src_bindnode__WEBPACK_IMPORTED_MODULE_1__["default"])(obj, '', node);
     }).toThrow();
   });
   it('does not throw error when node is not there and optional=true is given', function () {
     expect(function () {
-      Object(src_bindnode__WEBPACK_IMPORTED_MODULE_0__["default"])(obj, 'x', undefined, undefined, {
+      Object(src_bindnode__WEBPACK_IMPORTED_MODULE_1__["default"])(obj, 'x', undefined, undefined, {
         optional: true
       });
     }).not.toThrow();
   });
   it('doesn\'t throw error with bindNode method when node is missing', function () {
     expect(function () {
-      Object(src_bindnode__WEBPACK_IMPORTED_MODULE_0__["default"])(obj, 'x', {}, {
+      Object(src_bindnode__WEBPACK_IMPORTED_MODULE_1__["default"])(obj, 'x', {}, {
         optional: true
       });
     }).not.toThrow();
   });
   it('doesn\'t throw error with bindNode method' + ' when node is missing (an object is used)', function () {
     expect(function () {
-      Object(src_bindnode__WEBPACK_IMPORTED_MODULE_0__["default"])(obj, {
+      Object(src_bindnode__WEBPACK_IMPORTED_MODULE_1__["default"])(obj, {
         x: null,
         y: undefined
       }, {}, {
@@ -5868,13 +5856,10 @@ describe('Default binders', function () {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "../node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ "../node_modules/@babel/runtime/helpers/asyncToGenerator.js");
-/* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var src_calc__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/calc */ "../src/calc/index.js");
-/* harmony import */ var src_on_addlistener__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/on/_addlistener */ "../src/on/_addlistener.js");
-/* harmony import */ var _helpers_makeobject__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../helpers/makeobject */ "./helpers/makeobject.js");
-/* harmony import */ var _helpers_createspy__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../helpers/createspy */ "./helpers/createspy.js");
-
+/* harmony import */ var src_calc__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! src/calc */ "../src/calc/index.js");
+/* harmony import */ var src_on_addlistener__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/on/_addlistener */ "../src/on/_addlistener.js");
+/* harmony import */ var _helpers_makeobject__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../helpers/makeobject */ "./helpers/makeobject.js");
+/* harmony import */ var _helpers_createspy__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../helpers/createspy */ "./helpers/createspy.js");
 
 
 /* eslint-disable import/no-extraneous-dependencies, max-lines, import/extensions */
@@ -5895,7 +5880,7 @@ var delay = function delay(duration) {
 describe('calc', function () {
   it('throws an error if an object is null', function () {
     expect(function () {
-      Object(src_calc__WEBPACK_IMPORTED_MODULE_2__["default"])(null, 'a', 'b');
+      Object(src_calc__WEBPACK_IMPORTED_MODULE_1__["default"])(null, 'a', 'b');
     }).toThrow();
   });
   it('adds simple dependency', function () {
@@ -5903,7 +5888,7 @@ describe('calc', function () {
       a: 1,
       b: 2
     };
-    Object(src_calc__WEBPACK_IMPORTED_MODULE_2__["default"])(obj, 'c', ['a', 'b'], function (a, b) {
+    Object(src_calc__WEBPACK_IMPORTED_MODULE_1__["default"])(obj, 'c', ['a', 'b'], function (a, b) {
       return a + b;
     }, noDebounceFlag);
     expect(obj.c).toEqual(3);
@@ -5921,7 +5906,7 @@ describe('calc', function () {
       c: 4,
       d: 8
     };
-    Object(src_calc__WEBPACK_IMPORTED_MODULE_2__["default"])(obj, 'e', [{
+    Object(src_calc__WEBPACK_IMPORTED_MODULE_1__["default"])(obj, 'e', [{
       object: obj,
       key: ['a', 'b']
     }, {
@@ -5942,7 +5927,7 @@ describe('calc', function () {
       c: 4,
       d: 8
     };
-    Object(src_calc__WEBPACK_IMPORTED_MODULE_2__["default"])(obj, {
+    Object(src_calc__WEBPACK_IMPORTED_MODULE_1__["default"])(obj, {
       e: {
         source: ['a', 'b', {
           object: obj2,
@@ -5969,7 +5954,7 @@ describe('calc', function () {
       b: 2,
       c: 0
     };
-    Object(src_calc__WEBPACK_IMPORTED_MODULE_2__["default"])(obj, 'c', ['a', 'b'], function (a, b) {
+    Object(src_calc__WEBPACK_IMPORTED_MODULE_1__["default"])(obj, 'c', ['a', 'b'], function (a, b) {
       return a + b;
     }, {
       setOnInit: false,
@@ -5983,13 +5968,13 @@ describe('calc', function () {
       b: 2,
       c: 3
     };
-    Object(src_calc__WEBPACK_IMPORTED_MODULE_2__["default"])(obj, 'a', ['b', 'c'], function (x, y) {
+    Object(src_calc__WEBPACK_IMPORTED_MODULE_1__["default"])(obj, 'a', ['b', 'c'], function (x, y) {
       return x + y;
     }, noDebounceFlag);
-    Object(src_calc__WEBPACK_IMPORTED_MODULE_2__["default"])(obj, 'b', ['a', 'c'], function (x, y) {
+    Object(src_calc__WEBPACK_IMPORTED_MODULE_1__["default"])(obj, 'b', ['a', 'c'], function (x, y) {
       return x + y;
     }, noDebounceFlag);
-    Object(src_calc__WEBPACK_IMPORTED_MODULE_2__["default"])(obj, 'c', ['a', 'b'], function (x, y) {
+    Object(src_calc__WEBPACK_IMPORTED_MODULE_1__["default"])(obj, 'c', ['a', 'b'], function (x, y) {
       return x + y;
     }, noDebounceFlag);
     expect(obj.a).toEqual(27);
@@ -5999,8 +5984,8 @@ describe('calc', function () {
   xit('throws error when source key is not a string', function () {});
   xit('throws error when source object is not an object', function () {});
   it('allows delegated dependencies', function () {
-    var obj = Object(_helpers_makeobject__WEBPACK_IMPORTED_MODULE_4__["default"])('a.b.c', 1);
-    Object(src_calc__WEBPACK_IMPORTED_MODULE_2__["default"])(obj, 'd', 'a.b.c', function (c) {
+    var obj = Object(_helpers_makeobject__WEBPACK_IMPORTED_MODULE_3__["default"])('a.b.c', 1);
+    Object(src_calc__WEBPACK_IMPORTED_MODULE_1__["default"])(obj, 'd', 'a.b.c', function (c) {
       return c;
     }, noDebounceFlag);
     expect(obj.d).toEqual(1);
@@ -6024,9 +6009,9 @@ describe('calc', function () {
     expect(obj.d).toEqual(4);
   });
   it('allows delegated dependencies from another object', function () {
-    var obj = Object(_helpers_makeobject__WEBPACK_IMPORTED_MODULE_4__["default"])('a', 1);
-    var obj2 = Object(_helpers_makeobject__WEBPACK_IMPORTED_MODULE_4__["default"])('b.c.d', 2);
-    Object(src_calc__WEBPACK_IMPORTED_MODULE_2__["default"])(obj, 'd', {
+    var obj = Object(_helpers_makeobject__WEBPACK_IMPORTED_MODULE_3__["default"])('a', 1);
+    var obj2 = Object(_helpers_makeobject__WEBPACK_IMPORTED_MODULE_3__["default"])('b.c.d', 2);
+    Object(src_calc__WEBPACK_IMPORTED_MODULE_1__["default"])(obj, 'd', {
       object: obj2,
       key: 'b.c.d'
     }, function (c) {
@@ -6039,7 +6024,7 @@ describe('calc', function () {
       'a.b.c': 1,
       'd.e.f': 2
     };
-    Object(src_calc__WEBPACK_IMPORTED_MODULE_2__["default"])(obj, 'c', ['a.b.c', 'd.e.f'], function (abc, def) {
+    Object(src_calc__WEBPACK_IMPORTED_MODULE_1__["default"])(obj, 'c', ['a.b.c', 'd.e.f'], function (abc, def) {
       return abc + def;
     }, {
       debounceCalc: false,
@@ -6053,25 +6038,25 @@ describe('calc', function () {
   });
   it('uses event options', function () {
     var obj = {};
-    var handler = Object(_helpers_createspy__WEBPACK_IMPORTED_MODULE_5__["default"])(function (evt) {
+    var handler = Object(_helpers_createspy__WEBPACK_IMPORTED_MODULE_4__["default"])(function (evt) {
       return expect(evt.foo).toEqual('bar');
     });
-    Object(src_calc__WEBPACK_IMPORTED_MODULE_2__["default"])(obj, 'c', ['a', 'b'], function (a, b) {
+    Object(src_calc__WEBPACK_IMPORTED_MODULE_1__["default"])(obj, 'c', ['a', 'b'], function (a, b) {
       return a + b;
     }, {
       foo: 'bar',
       debounceCalc: false
     });
-    Object(src_on_addlistener__WEBPACK_IMPORTED_MODULE_3__["default"])(obj, 'change:c', handler);
+    Object(src_on_addlistener__WEBPACK_IMPORTED_MODULE_2__["default"])(obj, 'change:c', handler);
     obj.a = 2;
     obj.b = 3;
     expect(handler).toHaveBeenCalledTimes(1);
   });
   it('uses silent=true from event options', function () {
     var obj = {};
-    var handler = Object(_helpers_createspy__WEBPACK_IMPORTED_MODULE_5__["default"])();
-    Object(src_on_addlistener__WEBPACK_IMPORTED_MODULE_3__["default"])(obj, 'change:c', handler);
-    Object(src_calc__WEBPACK_IMPORTED_MODULE_2__["default"])(obj, 'c', ['a', 'b'], function (a, b) {
+    var handler = Object(_helpers_createspy__WEBPACK_IMPORTED_MODULE_4__["default"])();
+    Object(src_on_addlistener__WEBPACK_IMPORTED_MODULE_2__["default"])(obj, 'change:c', handler);
+    Object(src_calc__WEBPACK_IMPORTED_MODULE_1__["default"])(obj, 'c', ['a', 'b'], function (a, b) {
       return a + b;
     }, {
       silent: true
@@ -6085,13 +6070,13 @@ describe('calc', function () {
       a: 1,
       b: 2
     };
-    var handler = Object(_helpers_createspy__WEBPACK_IMPORTED_MODULE_5__["default"])(function () {
+    var handler = Object(_helpers_createspy__WEBPACK_IMPORTED_MODULE_4__["default"])(function () {
       expect(obj.c).toEqual(firstCall ? 3 : 5);
     });
-    Object(src_on_addlistener__WEBPACK_IMPORTED_MODULE_3__["default"])(obj, 'change:c', handler); // we'e going to handle the first call separately because debounceCalcOnInit is always true
+    Object(src_on_addlistener__WEBPACK_IMPORTED_MODULE_2__["default"])(obj, 'change:c', handler); // we'e going to handle the first call separately because debounceCalcOnInit is always true
 
     var firstCall = true;
-    Object(src_calc__WEBPACK_IMPORTED_MODULE_2__["default"])(obj, 'c', ['a', 'b'], function (a, b) {
+    Object(src_calc__WEBPACK_IMPORTED_MODULE_1__["default"])(obj, 'c', ['a', 'b'], function (a, b) {
       return a + b;
     });
     firstCall = false;
@@ -6112,12 +6097,12 @@ describe('calc', function () {
       a: 1,
       b: 2
     };
-    var handler = Object(_helpers_createspy__WEBPACK_IMPORTED_MODULE_5__["default"])(function () {
+    var handler = Object(_helpers_createspy__WEBPACK_IMPORTED_MODULE_4__["default"])(function () {
       expect(obj.c).toEqual(3);
       done();
     });
-    Object(src_on_addlistener__WEBPACK_IMPORTED_MODULE_3__["default"])(obj, 'change:c', handler);
-    Object(src_calc__WEBPACK_IMPORTED_MODULE_2__["default"])(obj, 'c', ['a', 'b'], function (a, b) {
+    Object(src_on_addlistener__WEBPACK_IMPORTED_MODULE_2__["default"])(obj, 'change:c', handler);
+    Object(src_calc__WEBPACK_IMPORTED_MODULE_1__["default"])(obj, 'c', ['a', 'b'], function (a, b) {
       return a + b;
     }, {
       debounceCalcOnInit: true
@@ -6125,104 +6110,84 @@ describe('calc', function () {
     expect(obj.c).toEqual(undefined);
     expect(handler).not.toHaveBeenCalled();
   });
-  it('allows to use promises via promiseCalc',
-  /*#__PURE__*/
-  function () {
-    var _ref = _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1___default()(
-    /*#__PURE__*/
-    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(done) {
-      var obj;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
-        while (1) {
-          switch (_context.prev = _context.next) {
-            case 0:
-              obj = {
-                a: 1,
-                b: 2
-              };
-              Object(src_calc__WEBPACK_IMPORTED_MODULE_2__["default"])(obj, 'c', ['a', 'b'], function (a, b) {
-                return new Promise(function (resolve) {
-                  return setTimeout(function () {
-                    return resolve(a + b);
-                  }, 10);
-                });
-              }, {
-                promiseCalc: true
+  it('allows to use promises via promiseCalc', function _callee(done) {
+    var obj;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            obj = {
+              a: 1,
+              b: 2
+            };
+            Object(src_calc__WEBPACK_IMPORTED_MODULE_1__["default"])(obj, 'c', ['a', 'b'], function (a, b) {
+              return new Promise(function (resolve) {
+                return setTimeout(function () {
+                  return resolve(a + b);
+                }, 10);
               });
-              expect(obj.c).toEqual(undefined);
-              obj.a = 3;
-              _context.next = 6;
-              return delay(50);
+            }, {
+              promiseCalc: true
+            });
+            expect(obj.c).toEqual(undefined);
+            obj.a = 3;
+            _context.next = 6;
+            return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(delay(50));
 
-            case 6:
-              expect(obj.c).toEqual(5);
-              obj.b = 3;
-              _context.next = 10;
-              return delay(50);
+          case 6:
+            expect(obj.c).toEqual(5);
+            obj.b = 3;
+            _context.next = 10;
+            return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(delay(50));
 
-            case 10:
-              expect(obj.c).toEqual(6);
-              done();
+          case 10:
+            expect(obj.c).toEqual(6);
+            done();
 
-            case 12:
-            case "end":
-              return _context.stop();
-          }
+          case 12:
+          case "end":
+            return _context.stop();
         }
-      }, _callee);
-    }));
+      }
+    });
+  });
+  it('allows to use non-promises when promiseCalc=true', function _callee2(done) {
+    var obj;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function _callee2$(_context2) {
+      while (1) {
+        switch (_context2.prev = _context2.next) {
+          case 0:
+            obj = {
+              a: 1,
+              b: 2
+            };
+            Object(src_calc__WEBPACK_IMPORTED_MODULE_1__["default"])(obj, 'c', ['a', 'b'], function (a, b) {
+              return a + b;
+            }, {
+              promiseCalc: true
+            });
+            expect(obj.c).toEqual(undefined);
+            obj.a = 3;
+            _context2.next = 6;
+            return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(delay(50));
 
-    return function (_x) {
-      return _ref.apply(this, arguments);
-    };
-  }());
-  it('allows to use non-promises when promiseCalc=true',
-  /*#__PURE__*/
-  function () {
-    var _ref2 = _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1___default()(
-    /*#__PURE__*/
-    _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2(done) {
-      var obj;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
-        while (1) {
-          switch (_context2.prev = _context2.next) {
-            case 0:
-              obj = {
-                a: 1,
-                b: 2
-              };
-              Object(src_calc__WEBPACK_IMPORTED_MODULE_2__["default"])(obj, 'c', ['a', 'b'], function (a, b) {
-                return a + b;
-              }, {
-                promiseCalc: true
-              });
-              expect(obj.c).toEqual(undefined);
-              obj.a = 3;
-              _context2.next = 6;
-              return delay(50);
+          case 6:
+            expect(obj.c).toEqual(5);
+            obj.b = 3;
+            _context2.next = 10;
+            return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(delay(50));
 
-            case 6:
-              expect(obj.c).toEqual(5);
-              obj.b = 3;
-              _context2.next = 10;
-              return delay(50);
+          case 10:
+            expect(obj.c).toEqual(6);
+            done();
 
-            case 10:
-              expect(obj.c).toEqual(6);
-              done();
-
-            case 12:
-            case "end":
-              return _context2.stop();
-          }
+          case 12:
+          case "end":
+            return _context2.stop();
         }
-      }, _callee2);
-    }));
-
-    return function (_x2) {
-      return _ref2.apply(this, arguments);
-    };
-  }());
+      }
+    });
+  });
 });
 
 /***/ }),
@@ -6469,12 +6434,14 @@ describe('Delegated events (delegateListener, undelegateListener)', function () 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var src_on_addlistener__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! src/on/_addlistener */ "../src/on/_addlistener.js");
-/* harmony import */ var src_on_delegatelistener__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! src/on/_delegatelistener */ "../src/on/_delegatelistener/index.js");
-/* harmony import */ var src_off_undelegatelistener__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/off/_undelegatelistener */ "../src/off/_undelegatelistener.js");
-/* harmony import */ var src_off_removelistener__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/off/_removelistener */ "../src/off/_removelistener.js");
-/* harmony import */ var _helpers_makeobject__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../helpers/makeobject */ "./helpers/makeobject.js");
-/* harmony import */ var _helpers_createspy__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../helpers/createspy */ "./helpers/createspy.js");
+/* harmony import */ var src_set__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! src/set */ "../src/set.js");
+/* harmony import */ var src_on_delegatelistener__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/on/_delegatelistener */ "../src/on/_delegatelistener/index.js");
+/* harmony import */ var src_off_undelegatelistener__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/off/_undelegatelistener */ "../src/off/_undelegatelistener.js");
+/* harmony import */ var src_off_removelistener__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/off/_removelistener */ "../src/off/_removelistener.js");
+/* harmony import */ var _helpers_makeobject__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../helpers/makeobject */ "./helpers/makeobject.js");
+/* harmony import */ var _helpers_createspy__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../helpers/createspy */ "./helpers/createspy.js");
 /* eslint-disable import/no-extraneous-dependencies, import/extensions */
+
 
 
 
@@ -6484,9 +6451,27 @@ __webpack_require__.r(__webpack_exports__);
 describe('Change event (simple and delegated)', function () {
   var handler;
   beforeEach(function () {
-    handler = Object(_helpers_createspy__WEBPACK_IMPORTED_MODULE_5__["default"])();
+    handler = Object(_helpers_createspy__WEBPACK_IMPORTED_MODULE_6__["default"])();
   });
-  it('fires simple', function () {
+  it('fires common "change" event when "forceDefine" is used used at defi.set', function () {
+    var obj = {
+      x: 1
+    };
+    Object(src_on_addlistener__WEBPACK_IMPORTED_MODULE_0__["default"])(obj, 'change', handler);
+    Object(src_set__WEBPACK_IMPORTED_MODULE_1__["default"])(obj, 'x', 2, {
+      define: true
+    });
+    expect(handler).toHaveBeenCalled();
+  });
+  it('doesn\'t fire common "change" event when "forceDefine" isn\'t used at defi.set', function () {
+    var obj = {
+      x: 1
+    };
+    Object(src_on_addlistener__WEBPACK_IMPORTED_MODULE_0__["default"])(obj, 'change', handler);
+    Object(src_set__WEBPACK_IMPORTED_MODULE_1__["default"])(obj, 'x', 2);
+    expect(handler).not.toHaveBeenCalled();
+  });
+  it('fires simple "change:x" event', function () {
     var obj = {
       x: 1
     };
@@ -6495,14 +6480,14 @@ describe('Change event (simple and delegated)', function () {
     expect(handler).toHaveBeenCalled();
   });
   it('fires delegated (a.x)', function () {
-    var obj = Object(_helpers_makeobject__WEBPACK_IMPORTED_MODULE_4__["default"])('a.x', 1);
-    Object(src_on_delegatelistener__WEBPACK_IMPORTED_MODULE_1__["default"])(obj, 'a', 'change:x', handler);
+    var obj = Object(_helpers_makeobject__WEBPACK_IMPORTED_MODULE_5__["default"])('a.x', 1);
+    Object(src_on_delegatelistener__WEBPACK_IMPORTED_MODULE_2__["default"])(obj, 'a', 'change:x', handler);
     obj.a.x = 2;
     expect(handler).toHaveBeenCalled();
   });
   it('fires delegated (a.b.x)', function () {
-    var obj = Object(_helpers_makeobject__WEBPACK_IMPORTED_MODULE_4__["default"])('a.b.x', 1);
-    Object(src_on_delegatelistener__WEBPACK_IMPORTED_MODULE_1__["default"])(obj, 'a.b', 'change:x', handler);
+    var obj = Object(_helpers_makeobject__WEBPACK_IMPORTED_MODULE_5__["default"])('a.b.x', 1);
+    Object(src_on_delegatelistener__WEBPACK_IMPORTED_MODULE_2__["default"])(obj, 'a.b', 'change:x', handler);
     obj.a.b.x = 2;
     expect(handler).toHaveBeenCalled();
   });
@@ -6511,33 +6496,33 @@ describe('Change event (simple and delegated)', function () {
       x: 1
     };
     Object(src_on_addlistener__WEBPACK_IMPORTED_MODULE_0__["default"])(obj, 'change:x', handler);
-    Object(src_off_removelistener__WEBPACK_IMPORTED_MODULE_3__["default"])(obj, 'change:x', handler);
+    Object(src_off_removelistener__WEBPACK_IMPORTED_MODULE_4__["default"])(obj, 'change:x', handler);
     obj.x = 2;
     expect(handler).not.toHaveBeenCalled();
   });
   it('removes delegated (a.x)', function () {
-    var obj = Object(_helpers_makeobject__WEBPACK_IMPORTED_MODULE_4__["default"])('a.x', 1);
-    Object(src_on_delegatelistener__WEBPACK_IMPORTED_MODULE_1__["default"])(obj, 'a', 'change:x', handler);
-    Object(src_off_undelegatelistener__WEBPACK_IMPORTED_MODULE_2__["default"])(obj, 'a', 'change:x', handler);
+    var obj = Object(_helpers_makeobject__WEBPACK_IMPORTED_MODULE_5__["default"])('a.x', 1);
+    Object(src_on_delegatelistener__WEBPACK_IMPORTED_MODULE_2__["default"])(obj, 'a', 'change:x', handler);
+    Object(src_off_undelegatelistener__WEBPACK_IMPORTED_MODULE_3__["default"])(obj, 'a', 'change:x', handler);
     obj.a.x = 2;
     expect(handler).not.toHaveBeenCalled();
   });
   it('removes delegated (a.b.x)', function () {
-    var obj = Object(_helpers_makeobject__WEBPACK_IMPORTED_MODULE_4__["default"])('a.b.x', 1);
-    Object(src_on_delegatelistener__WEBPACK_IMPORTED_MODULE_1__["default"])(obj, 'a.b', 'change:x', handler);
-    Object(src_off_undelegatelistener__WEBPACK_IMPORTED_MODULE_2__["default"])(obj, 'a.b', 'change:x', handler);
+    var obj = Object(_helpers_makeobject__WEBPACK_IMPORTED_MODULE_5__["default"])('a.b.x', 1);
+    Object(src_on_delegatelistener__WEBPACK_IMPORTED_MODULE_2__["default"])(obj, 'a.b', 'change:x', handler);
+    Object(src_off_undelegatelistener__WEBPACK_IMPORTED_MODULE_3__["default"])(obj, 'a.b', 'change:x', handler);
     obj.a.b.x = 2;
     expect(handler).not.toHaveBeenCalled();
   });
   it('fires delegated (a.b.x)', function () {
-    var obj = Object(_helpers_makeobject__WEBPACK_IMPORTED_MODULE_4__["default"])('a.b.x', 1);
-    Object(src_on_delegatelistener__WEBPACK_IMPORTED_MODULE_1__["default"])(obj, 'a.b', 'change:x', handler);
+    var obj = Object(_helpers_makeobject__WEBPACK_IMPORTED_MODULE_5__["default"])('a.b.x', 1);
+    Object(src_on_delegatelistener__WEBPACK_IMPORTED_MODULE_2__["default"])(obj, 'a.b', 'change:x', handler);
     obj.a.b.x = 2;
     expect(handler).toHaveBeenCalled();
   });
   it('accepts null target (a.b.c, reassign b)', function () {
-    var obj = Object(_helpers_makeobject__WEBPACK_IMPORTED_MODULE_4__["default"])('a.b.c.x', 1);
-    Object(src_on_delegatelistener__WEBPACK_IMPORTED_MODULE_1__["default"])(obj, 'a.b.c', 'someevent', handler);
+    var obj = Object(_helpers_makeobject__WEBPACK_IMPORTED_MODULE_5__["default"])('a.b.c.x', 1);
+    Object(src_on_delegatelistener__WEBPACK_IMPORTED_MODULE_2__["default"])(obj, 'a.b.c', 'someevent', handler);
     expect(function () {
       obj.a.b = null;
     }).not.toThrow();
