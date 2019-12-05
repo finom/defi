@@ -1,5 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies, import/extensions */
 import addListener from 'src/on/_addlistener';
+import set from 'src/set';
 import delegateListener from 'src/on/_delegatelistener';
 import undelegateListener from 'src/off/_undelegatelistener';
 import removeListener from 'src/off/_removelistener';
@@ -13,7 +14,23 @@ describe('Change event (simple and delegated)', () => {
         handler = createSpy();
     });
 
-    it('fires simple', () => {
+    it('fires common "change" event when "forceDefine" is used used at defi.set', () => {
+        const obj = { x: 1 };
+
+        addListener(obj, 'change', handler);
+        set(obj, 'x', 2, { define: true });
+        expect(handler).toHaveBeenCalled();
+    });
+
+    it('doesn\'t fire common "change" event when "forceDefine" isn\'t used at defi.set', () => {
+        const obj = { x: 1 };
+
+        addListener(obj, 'change', handler);
+        set(obj, 'x', 2);
+        expect(handler).not.toHaveBeenCalled();
+    });
+
+    it('fires simple "change:x" event', () => {
         const obj = { x: 1 };
 
         addListener(obj, 'change:x', handler);

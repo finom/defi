@@ -1,3 +1,5 @@
+import initDefi from './_core/init';
+
 import defs from './_core/defs';
 import triggerOne from './trigger/_triggerone';
 import checkObjectType from './_helpers/checkobjecttype';
@@ -22,6 +24,25 @@ export default function set(object, key, value, eventOptions) {
     }
 
     eventOptions = eventOptions || {}; // eslint-disable-line no-param-reassign
+    // possible flags, all of them are falsy by default
+    const {
+        skipMediator,
+        fromMediator,
+        define,
+        force,
+        forceHTML,
+        silent,
+        silentHTML,
+        skipCalc
+    } = eventOptions;
+
+    if (define) {
+        // fixing circular ref
+        const { default: defineProp } = require('./_core/defineprop');
+        initDefi(object);
+        defineProp(object, key);
+    }
+
     const def = defs.get(object);
 
     // if no object definition then make simple assignment
@@ -40,17 +61,6 @@ export default function set(object, key, value, eventOptions) {
     }
 
     const { value: previousValue, mediator } = propDef;
-
-    // possible flags, all of them are falsy by default
-    const {
-        skipMediator,
-        fromMediator,
-        force,
-        forceHTML,
-        silent,
-        silentHTML,
-        skipCalc
-    } = eventOptions;
 
     let newValue;
 
