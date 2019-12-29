@@ -160,13 +160,13 @@ obj.x = 1;
 - [off](https://defi.js.org/#!defi.off) - Deletes an event handler.
 
 ```js
-defi.off(obj, 'change:x bind');
+defi.off(obj, ['change:x', 'bind']);
 ```
 
 - [trigger](https://defi.js.org/#!defi.trigger) - Fires an event.
 
 ```js
-defi.on(obj, 'foo bar', (a, b, c) => {
+defi.on(obj, ['foo', 'bar'], (a, b, c) => {
 	alert(a + b + c);
 });
 defi.trigger(obj, 'foo', 1, 2, 3); // alerts 6
