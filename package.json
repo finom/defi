@@ -1,7 +1,7 @@
 {
   "name": "defi",
   "version": "1.1.0",
-  "description": "defi.js library",
+  "description": "Data binding without framework",
   "scripts": {
     "test": "npm run node-cover && npm run check-coverage && npm run lint",
     "node-test": "BABEL_ENV=test babel-node test/node-test/jasmine.js",

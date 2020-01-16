@@ -6,7 +6,7 @@
 
 </p>
 
-<p align="center">A bunch of utilities that enable accessor-based reactivity for JavaScript objects.</p>
+<p align="center">Data binding without framework: a bunch of utilities that enable accessor-based reactivity for JavaScript objects.</p>
 
 
 
