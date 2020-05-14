@@ -1,7 +1,7 @@
 {
 	"name": "defi-monorepo",
 	"private": true,
-	"version": "1.1.5",
+	"version": "1.1.6",
 	"scripts": {
 		"test": "npm run --prefix packages/defi npm-compile && npm run lint && npm run unit && cat ./packages/defi/coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
 		"unit": "lerna run test",
@@ -14,8 +14,8 @@
 		"upgrade": "ncu -u -x coveralls && npm i",
 		"npm-compile": "lerna run npm-compile",
 		"root-version": "echo $(node -pe 'const pk = require(`./package`); pk.version = require(`./lerna.json`).version; require(`fs`).writeFileSync(`./package.json`, JSON.stringify(pk, null, `\t`)); `Version copied`')",
-		"patch": "lerna version patch --yes && npm run root-version && npm run npm-compile && npm run npm-deploy",
-		"minor": "lerna version minor && npm run root-version && npm run npm-compile && npm run npm-deploy",
+		"patch": "lerna version patch --yes && npm run npm-compile && npm run npm-deploy",
+		"minor": "lerna version minor && npm run npm-compile && npm run npm-deploy",
 		"install-all": "npm install && lerna exec --concurrency 1 -- npm install",
 		"post-publish-test": "node test/post-publish/post-publish.js",
 		"npm-deploy": "lerna publish from-package --yes --contents npm && npm run post-publish-test"
@@ -37,7 +37,7 @@
 			"repository": "git@github.com:finom/defi.git",
 			"branch": "gh-pages",
 			"folder": "bundle",
-			"script": "npm run build",
+			"script": "npm run root-version && npm run build",
 			"beforePushScript": "git tag v$npm_package_version-bundle",
 			"commit": "$npm_package_version",
 			"user": {
