@@ -1,3 +1,4 @@
+/* eslint-disable no-unresolved */
 const { execSync } = require('child_process');
 const { JSDOM } = require('jsdom');
 const expect = require('expect.js');
