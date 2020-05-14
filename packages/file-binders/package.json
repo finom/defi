@@ -20,5 +20,6 @@
   "homepage": "https://github.com/defijs/file-binders#readme",
   "devDependencies": {
     "makeelement": "^0.1.0"
-  }
+  },
+  "gitHead": "5d73b7d6892730283893fe296dea35cdef74f461"
 }

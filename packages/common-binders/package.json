@@ -18,5 +18,6 @@
   "homepage": "https://github.com/finom/defi#readme",
   "devDependencies": {
     "defi": "^1.1.1"
-  }
+  },
+  "gitHead": "5d73b7d6892730283893fe296dea35cdef74f461"
 }

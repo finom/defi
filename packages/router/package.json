@@ -29,5 +29,6 @@
   },
   "peerDependencies": {
     "defi": "*"
-  }
+  },
+  "gitHead": "5d73b7d6892730283893fe296dea35cdef74f461"
 }
