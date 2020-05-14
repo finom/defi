@@ -1,6 +1,6 @@
-const { execSync } = require('child_process'); // eslint-disable-line no-unresolved
-const { JSDOM } = require('jsdom'); // eslint-disable-line no-unresolved
-const expect = require('expect.js'); // eslint-disable-line no-unresolved
+const { execSync } = require('child_process');
+const { JSDOM } = require('jsdom');
+const expect = require('expect.js');
 
 execSync('rm -rf node_modules && npm i --no-package-lock', { cwd: __dirname });
 
@@ -11,13 +11,13 @@ global.window = new JSDOM('<!doctype html><html><body><form><input name="a"></fo
 global.document = global.window.document;
 global.navigator = global.window.navigator;
 
-const defi = require('defi');
-const Router = require('defi-router/router');
-const initRouter = require('defi-router');
+const defi = require('defi'); // eslint-disable-line import/no-unresolved
+const Router = require('defi-router/router'); // eslint-disable-line import/no-unresolved
+const initRouter = require('defi-router'); // eslint-disable-line import/no-unresolved
 
-const codemirrorBinder = require('codemirror-binder');
-const commonBinders = require('common-binders');
-const fileBinders = require('file-binders');
+const codemirrorBinder = require('codemirror-binder'); // eslint-disable-line import/no-unresolved
+const commonBinders = require('common-binders'); // eslint-disable-line import/no-unresolved
+const fileBinders = require('file-binders'); // eslint-disable-line import/no-unresolved
 
 // check if defi itself is OK
 const obj = { b: 3 };
