@@ -1,7 +1,7 @@
 <p align="center">
 
 <a href="https://defi.js.org">
-  <img src="https://defijs.github.io/assets/logo.svg" />
+  <img src="https://defi.js.org/logo/logo.svg" />
 </a>
 
 </p>
@@ -11,7 +11,7 @@
 
 
 <p align="center">
-  <img src="https://defijs.github.io/assets/defi_demo.gif" width="570" />
+  <img src="https://defi.js.org/img/defi_demo.gif" width="570" />
 </p>
 
 <p align="center">
