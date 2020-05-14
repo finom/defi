@@ -12,8 +12,8 @@
     "deploy-to-git": "shx rm -rf bundle && deploy-to-git",
     "upgrade": "ncu -u -x coveralls && npm i",
     "npm-compile": "lerna run npm-compile",
-    "patch": "npm run npm-compile && lerna version patch --yes && npm run npm-deploy",
-    "minor": "npm run npm-compile && lerna version minor && npm run npm-deploy",
+    "patch": "lerna version patch --yes && npm run npm-compile && npm run npm-deploy",
+    "minor": "lerna version minor && npm run npm-compile && npm run npm-deploy",
     "install-all": "npm install && lerna exec --concurrency 1 -- npm install",
     "post-publish-test": "node test/post-publish/post-publish.js",
     "npm-deploy": "lerna publish from-package --yes --contents npm && npm run post-publish-test"
