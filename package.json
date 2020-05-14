@@ -1,122 +1,123 @@
 {
-  "name": "defi-monorepo",
-  "private": true,
-  "version": "0.0.0-by-lerna",
-  "scripts": {
-    "test": "npm run --prefix packages/defi npm-compile && npm run lint && npm run unit && cat ./packages/defi/coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
-    "unit": "lerna run test",
-    "lint": "eslint .",
-    "commit": "git-cz",
-    "build": "lerna run build",
-    "install": "lerna exec -- npm ci",
-    "reinstall": "rm -rf node_modules package-lock.json && npm i",
-    "deploy-to-git": "shx rm -rf bundle && deploy-to-git",
-    "upgrade": "ncu -u -x coveralls && npm i",
-    "npm-compile": "lerna run npm-compile",
-    "patch": "lerna version patch --yes && npm run npm-compile && npm run npm-deploy",
-    "minor": "lerna version minor && npm run npm-compile && npm run npm-deploy",
-    "install-all": "npm install && lerna exec --concurrency 1 -- npm install",
-    "post-publish-test": "node test/post-publish/post-publish.js",
-    "npm-deploy": "lerna publish from-package --yes --contents npm && npm run post-publish-test"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/finom/defi.git"
-  },
-  "author": {
-    "name": "Andrey Gubanov",
-    "email": "andrey.a.gubanov@gmail.com"
-  },
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/finom/defi/issues"
-  },
-  "config": {
-    "deployToGit": {
-      "repository": "git@github.com:finom/defi.git",
-      "branch": "gh-pages",
-      "folder": "bundle",
-      "script": "npm run bundle-deploy-script",
-      "beforePushScript": "git tag v$npm_package_version-bundle",
-      "commit": "$npm_package_version",
-      "user": {
-        "email": "andrey.a.gubanov@gmail.com",
-        "name": "Andrey Gubanov (his virtual clone)"
-      }
-    },
-    "commitizen": {
-      "path": "cz-simple-conventional-changelog"
-    },
-    "validate-commit-msg": {
-      "types": [
-        "feat",
-        "fix",
-        "refactor",
-        "perf",
-        "test",
-        "chore",
-        "revert"
-      ]
-    },
-    "ghooks": {
-      "commit-msg": "validate-commit-msg"
-    }
-  },
-  "homepage": "https://github.com/finom/defi#readme",
-  "devDependencies": {
-    "@babel/cli": "^7.8.4",
-    "@babel/core": "^7.9.6",
-    "@babel/node": "^7.8.7",
-    "@babel/plugin-transform-runtime": "^7.9.6",
-    "@babel/polyfill": "^7.8.7",
-    "@babel/preset-env": "^7.9.6",
-    "@babel/runtime": "^7.9.6",
-    "app-module-path": "^2.2.0",
-    "babel-core": "7.0.0-bridge.0",
-    "babel-eslint": "^10.1.0",
-    "babel-istanbul": "^0.12.2",
-    "babel-istanbul-loader": "^0.1.0",
-    "babel-loader": "^8.1.0",
-    "babel-plugin-transform-es2015-modules-simple-commonjs": "^0.3.0",
-    "commitizen": "^4.1.2",
-    "copy-webpack-plugin": "^5.1.1",
-    "coveralls": "2.11.16",
-    "cz-simple-conventional-changelog": "0.0.1",
-    "deploy-to-git": "^0.1.5",
-    "eslint": "^7.0.0",
-    "eslint-config-airbnb-base": "^14.1.0",
-    "eslint-loader": "^4.0.2",
-    "eslint-plugin-import": "^2.20.2",
-    "eslint-plugin-output-todo-comments": "0.0.7",
-    "expect.js": "^0.3.1",
-    "ghooks": "^2.0.4",
-    "istanbul": "^1.1.0-alpha.1",
-    "jasmine": "^3.5.0",
-    "jasmine-core": "^3.5.0",
-    "jasmine-spec-reporter": "^5.0.2",
-    "jsdom": "^16.2.2",
-    "karma": "^5.0.5",
-    "karma-babel-preprocessor": "^8.0.1",
-    "karma-chrome-launcher": "^3.1.0",
-    "karma-commonjs": "1.0.0",
-    "karma-coverage": "^2.0.2",
-    "karma-jasmine": "^3.1.1",
-    "karma-sourcemap-loader": "^0.3.7",
-    "karma-webpack": "^4.0.2",
-    "karma-webpack-with-fast-source-maps": "^1.10.2",
-    "lerna": "^3.21.0",
-    "npm-check-updates": "^5.0.0",
-    "npm-registry-client": "^8.6.0",
-    "optimist": "^0.6.1",
-    "shx": "^0.3.2",
-    "twit": "^2.2.11",
-    "uglifyjs-webpack-plugin": "^2.2.0",
-    "unminified-webpack-plugin": "^2.0.0",
-    "validate-commit-msg": "^2.14.0",
-    "webidl-conversions": "^6.1.0",
-    "webpack": "^4.43.0",
-    "webpack-cli": "^3.3.11",
-    "webpack-core": "^0.6.9",
-    "word-wrap": "^1.2.3"
-  }
+	"name": "defi-monorepo",
+	"private": true,
+	"version": "1.1.5",
+	"scripts": {
+		"test": "npm run --prefix packages/defi npm-compile && npm run lint && npm run unit && cat ./packages/defi/coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
+		"unit": "lerna run test",
+		"lint": "eslint .",
+		"commit": "git-cz",
+		"build": "lerna run build",
+		"install": "lerna exec -- npm ci",
+		"reinstall": "rm -rf node_modules package-lock.json && npm i",
+		"deploy-to-git": "shx rm -rf bundle && deploy-to-git",
+		"upgrade": "ncu -u -x coveralls && npm i",
+		"npm-compile": "lerna run npm-compile",
+		"root-version": "echo $(node -pe 'const pk = require(`./package`); pk.version = require(`./lerna.json`).version; require(`fs`).writeFileSync(`./package.json`, JSON.stringify(pk, null, `\t`)); `Version copied`')",
+		"patch": "lerna version patch --yes && npm run root-version && npm run npm-compile && npm run npm-deploy",
+		"minor": "lerna version minor && npm run root-version && npm run npm-compile && npm run npm-deploy",
+		"install-all": "npm install && lerna exec --concurrency 1 -- npm install",
+		"post-publish-test": "node test/post-publish/post-publish.js",
+		"npm-deploy": "lerna publish from-package --yes --contents npm && npm run post-publish-test"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/finom/defi.git"
+	},
+	"author": {
+		"name": "Andrey Gubanov",
+		"email": "andrey.a.gubanov@gmail.com"
+	},
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/finom/defi/issues"
+	},
+	"config": {
+		"deployToGit": {
+			"repository": "git@github.com:finom/defi.git",
+			"branch": "gh-pages",
+			"folder": "bundle",
+			"script": "npm run build",
+			"beforePushScript": "git tag v$npm_package_version-bundle",
+			"commit": "$npm_package_version",
+			"user": {
+				"email": "andrey.a.gubanov@gmail.com",
+				"name": "Andrey Gubanov (his virtual clone)"
+			}
+		},
+		"commitizen": {
+			"path": "cz-simple-conventional-changelog"
+		},
+		"validate-commit-msg": {
+			"types": [
+				"feat",
+				"fix",
+				"refactor",
+				"perf",
+				"test",
+				"chore",
+				"revert"
+			]
+		},
+		"ghooks": {
+			"commit-msg": "validate-commit-msg"
+		}
+	},
+	"homepage": "https://github.com/finom/defi#readme",
+	"devDependencies": {
+		"@babel/cli": "^7.8.4",
+		"@babel/core": "^7.9.6",
+		"@babel/node": "^7.8.7",
+		"@babel/plugin-transform-runtime": "^7.9.6",
+		"@babel/polyfill": "^7.8.7",
+		"@babel/preset-env": "^7.9.6",
+		"@babel/runtime": "^7.9.6",
+		"app-module-path": "^2.2.0",
+		"babel-core": "7.0.0-bridge.0",
+		"babel-eslint": "^10.1.0",
+		"babel-istanbul": "^0.12.2",
+		"babel-istanbul-loader": "^0.1.0",
+		"babel-loader": "^8.1.0",
+		"babel-plugin-transform-es2015-modules-simple-commonjs": "^0.3.0",
+		"commitizen": "^4.1.2",
+		"copy-webpack-plugin": "^5.1.1",
+		"coveralls": "2.11.16",
+		"cz-simple-conventional-changelog": "0.0.1",
+		"deploy-to-git": "^0.1.5",
+		"eslint": "^7.0.0",
+		"eslint-config-airbnb-base": "^14.1.0",
+		"eslint-loader": "^4.0.2",
+		"eslint-plugin-import": "^2.20.2",
+		"eslint-plugin-output-todo-comments": "0.0.7",
+		"expect.js": "^0.3.1",
+		"ghooks": "^2.0.4",
+		"istanbul": "^1.1.0-alpha.1",
+		"jasmine": "^3.5.0",
+		"jasmine-core": "^3.5.0",
+		"jasmine-spec-reporter": "^5.0.2",
+		"jsdom": "^16.2.2",
+		"karma": "^5.0.5",
+		"karma-babel-preprocessor": "^8.0.1",
+		"karma-chrome-launcher": "^3.1.0",
+		"karma-commonjs": "1.0.0",
+		"karma-coverage": "^2.0.2",
+		"karma-jasmine": "^3.1.1",
+		"karma-sourcemap-loader": "^0.3.7",
+		"karma-webpack": "^4.0.2",
+		"karma-webpack-with-fast-source-maps": "^1.10.2",
+		"lerna": "^3.21.0",
+		"npm-check-updates": "^5.0.0",
+		"npm-registry-client": "^8.6.0",
+		"optimist": "^0.6.1",
+		"shx": "^0.3.2",
+		"twit": "^2.2.11",
+		"uglifyjs-webpack-plugin": "^2.2.0",
+		"unminified-webpack-plugin": "^2.0.0",
+		"validate-commit-msg": "^2.14.0",
+		"webidl-conversions": "^6.1.0",
+		"webpack": "^4.43.0",
+		"webpack-cli": "^3.3.11",
+		"webpack-core": "^0.6.9",
+		"word-wrap": "^1.2.3"
+	}
 }
