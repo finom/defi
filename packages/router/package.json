@@ -1,6 +1,6 @@
 {
   "name": "defi-router",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "A router for defi.js",
   "main": "index",
   "scripts": {
@@ -25,7 +25,7 @@
   },
   "homepage": "https://github.com/defijs/defi-router#readme",
   "devDependencies": {
-    "defi": "^1.1.1"
+    "defi": "^1.1.2"
   },
   "peerDependencies": {
     "defi": "*"
