@@ -1,6 +1,6 @@
 {
   "name": "file-binders",
-  "version": "1.1.2",
+  "version": "1.1.6",
   "scripts": {
     "test": "npm run cover",
     "cover": "../../node_modules/.bin/babel-node ../../node_modules/.bin/babel-istanbul cover test/index.js",

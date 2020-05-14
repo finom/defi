@@ -1,6 +1,6 @@
 {
   "name": "defi-router",
-  "version": "1.1.4",
+  "version": "1.1.6",
   "description": "A router for defi.js",
   "main": "index",
   "scripts": {
@@ -25,7 +25,7 @@
   },
   "homepage": "https://github.com/finom/defi/tree/master/packages/router",
   "devDependencies": {
-    "defi": "^1.1.4"
+    "defi": "^1.1.6"
   },
   "peerDependencies": {
     "defi": "*"
