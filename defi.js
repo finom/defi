@@ -1,6 +1,6 @@
 /*
     --------------------------------------------------------------
-    defi.js v1.1.0 (Thu, 05 Dec 2019 19:42:15 GMT)
+    defi.js v1.1.4 (Thu, 14 May 2020 19:08:02 GMT)
     By Andrey Gubanov http://github.com/finom
     Released under the MIT license
     More info: https://defi.js.org
@@ -122,28 +122,16 @@ function forEach(arr, callback) {
 /* 1 */
 /***/ (function(module, exports) {
 
-function _typeof2(obj) {
+function _typeof(obj) {
+  "@babel/helpers - typeof";
+
   if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
-    _typeof2 = function _typeof2(obj) {
+    module.exports = _typeof = function _typeof(obj) {
       return typeof obj;
     };
   } else {
-    _typeof2 = function _typeof2(obj) {
+    module.exports = _typeof = function _typeof(obj) {
       return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
-    };
-  }
-
-  return _typeof2(obj);
-}
-
-function _typeof(obj) {
-  if (typeof Symbol === "function" && _typeof2(Symbol.iterator) === "symbol") {
-    module.exports = _typeof = function _typeof(obj) {
-      return _typeof2(obj);
-    };
-  } else {
-    module.exports = _typeof = function _typeof(obj) {
-      return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : _typeof2(obj);
     };
   }
 
@@ -350,10 +338,12 @@ var arrayWithHoles = __webpack_require__(22);
 
 var iterableToArrayLimit = __webpack_require__(23);
 
-var nonIterableRest = __webpack_require__(24);
+var unsupportedIterableToArray = __webpack_require__(24);
+
+var nonIterableRest = __webpack_require__(26);
 
 function _slicedToArray(arr, i) {
-  return arrayWithHoles(arr) || iterableToArrayLimit(arr, i) || nonIterableRest();
+  return arrayWithHoles(arr) || iterableToArrayLimit(arr, i) || unsupportedIterableToArray(arr, i) || nonIterableRest();
 }
 
 module.exports = _slicedToArray;
@@ -454,7 +444,7 @@ function addListener(object, name, callback) {
           selector = _domEventExecResult[3]; // fixing circular reference issue
 
 
-      var _require = __webpack_require__(27),
+      var _require = __webpack_require__(29),
           addDomListener = _require["default"];
 
       addDomListener(object, key, eventName, selector, callback, info);
@@ -643,7 +633,7 @@ function set(object, key, value, eventOptions) {
   // we override default eventOptions because some of the properties need to have actual values,
   // not inherited ones (eg when calc is used)
 
-  var extendedEventOptions = _objectSpread({}, eventOptions, {
+  var extendedEventOptions = _objectSpread(_objectSpread({}, eventOptions), {}, {
     value: newValue,
     self: object,
     previousValue: previousValue,
@@ -774,7 +764,7 @@ function removeListener(object, name, callback, info) {
         selector = _domEventExecResult[3]; // fixing circular reference issue
 
 
-    var _require = __webpack_require__(25),
+    var _require = __webpack_require__(27),
         removeDomListener = _require["default"];
 
     removeDomListener(object, key, eventName, selector, callback, info);
@@ -839,7 +829,10 @@ function removeListener(object, name, callback, info) {
 
 "use strict";
 
-// EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/typeof.js
+// EXPORTS
+__webpack_require__.d(__webpack_exports__, "a", function() { return /* binding */ mq; });
+
+// EXTERNAL MODULE: /Users/finom/Work/defi/node_modules/@babel/runtime/helpers/typeof.js
 var helpers_typeof = __webpack_require__(1);
 var typeof_default = /*#__PURE__*/__webpack_require__.n(helpers_typeof);
 
@@ -926,7 +919,7 @@ MQInit.prototype = [];
 function parseHTML(html) {
   return new _init(html2nodeList(html));
 }
-// EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/slicedToArray.js
+// EXTERNAL MODULE: /Users/finom/Work/defi/node_modules/@babel/runtime/helpers/slicedToArray.js
 var slicedToArray = __webpack_require__(8);
 var slicedToArray_default = /*#__PURE__*/__webpack_require__.n(slicedToArray);
 
@@ -1129,7 +1122,6 @@ function add(selector) {
 var _helpers_assign = __webpack_require__(15);
 
 // CONCATENATED MODULE: ./src/_mq/index.js
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return mq; });
 
 
 
@@ -1262,12 +1254,16 @@ function undelegateListener(object, givenPath, name, callback) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+// ESM COMPAT FLAG
 __webpack_require__.r(__webpack_exports__);
+
+// EXPORTS
+__webpack_require__.d(__webpack_exports__, "default", function() { return /* binding */ _delegatelistener_delegateListener; });
 
 // EXTERNAL MODULE: ./src/on/_addlistener.js
 var _addlistener = __webpack_require__(10);
 
-// EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/typeof.js
+// EXTERNAL MODULE: /Users/finom/Work/defi/node_modules/@babel/runtime/helpers/typeof.js
 var helpers_typeof = __webpack_require__(1);
 var typeof_default = /*#__PURE__*/__webpack_require__.n(helpers_typeof);
 
@@ -1310,7 +1306,6 @@ function changeHandler(_ref) {
 var slice = __webpack_require__(20);
 
 // CONCATENATED MODULE: ./src/on/_delegatelistener/index.js
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return _delegatelistener_delegateListener; });
 
 
  // adds delegated event listener to an object by given path
@@ -1380,7 +1375,8 @@ var isPolyfill = function isPolyfill(v1, v2) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony default export */ __webpack_exports__["a"] = (function (arrLike, start, end) {
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return slice; });
+function slice(arrLike, start, end) {
   var l = arrLike.length;
   var i = start || 0;
 
@@ -1394,13 +1390,13 @@ var isPolyfill = function isPolyfill(v1, v2) {
   }
 
   return arr;
-});
+}
 
 /***/ }),
 /* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(26)["default"];
+module.exports = __webpack_require__(28)["default"];
 
 /***/ }),
 /* 22 */
@@ -1417,10 +1413,7 @@ module.exports = _arrayWithHoles;
 /***/ (function(module, exports) {
 
 function _iterableToArrayLimit(arr, i) {
-  if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) {
-    return;
-  }
-
+  if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return;
   var _arr = [];
   var _n = true;
   var _d = false;
@@ -1450,16 +1443,49 @@ module.exports = _iterableToArrayLimit;
 
 /***/ }),
 /* 24 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var arrayLikeToArray = __webpack_require__(25);
+
+function _unsupportedIterableToArray(o, minLen) {
+  if (!o) return;
+  if (typeof o === "string") return arrayLikeToArray(o, minLen);
+  var n = Object.prototype.toString.call(o).slice(8, -1);
+  if (n === "Object" && o.constructor) n = o.constructor.name;
+  if (n === "Map" || n === "Set") return Array.from(o);
+  if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return arrayLikeToArray(o, minLen);
+}
+
+module.exports = _unsupportedIterableToArray;
+
+/***/ }),
+/* 25 */
+/***/ (function(module, exports) {
+
+function _arrayLikeToArray(arr, len) {
+  if (len == null || len > arr.length) len = arr.length;
+
+  for (var i = 0, arr2 = new Array(len); i < len; i++) {
+    arr2[i] = arr[i];
+  }
+
+  return arr2;
+}
+
+module.exports = _arrayLikeToArray;
+
+/***/ }),
+/* 26 */
 /***/ (function(module, exports) {
 
 function _nonIterableRest() {
-  throw new TypeError("Invalid attempt to destructure non-iterable instance");
+  throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
 }
 
 module.exports = _nonIterableRest;
 
 /***/ }),
-/* 25 */
+/* 27 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1507,11 +1533,14 @@ function removeDomListener(object, key, eventName, selector, callback, info) {
 }
 
 /***/ }),
-/* 26 */
+/* 28 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+// ESM COMPAT FLAG
 __webpack_require__.r(__webpack_exports__);
+
+// NAMESPACE OBJECT: ./src/_lib.js
 var _lib_namespaceObject = {};
 __webpack_require__.r(_lib_namespaceObject);
 __webpack_require__.d(_lib_namespaceObject, "on", function() { return on_on; });
@@ -1525,15 +1554,15 @@ __webpack_require__.d(_lib_namespaceObject, "set", function() { return set["a" /
 __webpack_require__.d(_lib_namespaceObject, "remove", function() { return remove; });
 __webpack_require__.d(_lib_namespaceObject, "mediate", function() { return mediate; });
 
-// EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/defineProperty.js
+// EXTERNAL MODULE: /Users/finom/Work/defi/node_modules/@babel/runtime/helpers/defineProperty.js
 var defineProperty = __webpack_require__(5);
 var defineProperty_default = /*#__PURE__*/__webpack_require__.n(defineProperty);
 
-// EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/slicedToArray.js
+// EXTERNAL MODULE: /Users/finom/Work/defi/node_modules/@babel/runtime/helpers/slicedToArray.js
 var slicedToArray = __webpack_require__(8);
 var slicedToArray_default = /*#__PURE__*/__webpack_require__.n(slicedToArray);
 
-// EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/typeof.js
+// EXTERNAL MODULE: /Users/finom/Work/defi/node_modules/@babel/runtime/helpers/typeof.js
 var helpers_typeof = __webpack_require__(1);
 var typeof_default = /*#__PURE__*/__webpack_require__.n(helpers_typeof);
 
@@ -2017,9 +2046,9 @@ function createCalcHandler(_ref) {
     var protectKey = target + def.id;
     var promiseCalc = eventOptions.promiseCalc;
 
-    var setEventOptions = _createcalchandler_objectSpread({
+    var setEventOptions = _createcalchandler_objectSpread(_createcalchandler_objectSpread({
       protector: protector
-    }, eventOptions, {}, changeEvent);
+    }, eventOptions), changeEvent);
 
     if (protectKey in protector) {
       return;
@@ -3386,18 +3415,22 @@ function defi_objectSpread(target) { for (var i = 1; i < arguments.length; i++) 
 
 
 
-/* harmony default export */ var defi = __webpack_exports__["default"] = (defi_objectSpread({}, _lib_namespaceObject, {
+/* harmony default export */ var defi = __webpack_exports__["default"] = (defi_objectSpread(defi_objectSpread({}, _lib_namespaceObject), {}, {
   lookForBinder: lookForBinder,
   chain: chain,
   defaultBinders: defaultbinders
 }));
 
 /***/ }),
-/* 27 */
+/* 29 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+// ESM COMPAT FLAG
 __webpack_require__.r(__webpack_exports__);
+
+// EXPORTS
+__webpack_require__.d(__webpack_exports__, "default", function() { return /* binding */ addDomListener; });
 
 // EXTERNAL MODULE: ./src/_core/init.js
 var init = __webpack_require__(9);
@@ -3455,7 +3488,6 @@ function createDomEventHandler(_ref) {
 var foreach = __webpack_require__(0);
 
 // CONCATENATED MODULE: ./src/on/_adddomlistener.js
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return addDomListener; });
 
 
 
