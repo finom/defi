@@ -3,8 +3,8 @@
   "private": true,
   "version": "0.0.0-by-lerna",
   "scripts": {
-    "test": "npm run lint && npm run unit && cat ./packages/defi/coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
-    "unit": "npm run --prefix packages/defi npm-compile && lerna run test",
+    "test": "npm run --prefix packages/defi npm-compile && npm run lint && npm run unit && cat ./packages/defi/coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
+    "unit": "lerna run test",
     "lint": "eslint .",
     "commit": "git-cz",
     "build": "lerna run build",
