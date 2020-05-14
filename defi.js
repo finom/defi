@@ -1,6 +1,6 @@
 /*
     --------------------------------------------------------------
-    defi.js v1.1.6 (Thu, 14 May 2020 19:49:14 GMT)
+    defi.js v1.1.6 (Thu, 14 May 2020 21:40:12 GMT)
     By Andrey Gubanov http://github.com/finom
     Released under the MIT license
     More info: https://defi.js.org
