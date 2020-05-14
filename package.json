@@ -8,7 +8,7 @@
     "lint": "eslint .",
     "commit": "git-cz",
     "build": "lerna run build",
-    "install": "lerna run install",
+    "install": "lerna exec -- npm i",
     "reinstall": "rm -rf node_modules package-lock.json && npm i",
     "deploy-to-git": "shx rm -rf bundle && deploy-to-git",
     "upgrade": "ncu -u -x coveralls && npm i",
