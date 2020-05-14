@@ -1,0 +1,35 @@
+{
+  "name": "codemirror-binder",
+  "version": "0.0.10",
+  "description": "CodeMirror binder for defi.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run cover",
+    "cover": "../../node_modules/.bin/babel-node ../../node_modules/.bin/babel-istanbul cover test/index.js",
+    "unit": "../../node_modules/.bin/babel-node test/index.js",
+    "npm-compile": "../../node_modules/.bin/babel src.js --out-file npm/index.js && cp package.json npm/package.json && cp README.md npm/README.md",
+    "build": "../../node_modules/.bin/webpack --mode=production"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/defijs/codemirror-binder.git"
+  },
+  "keywords": [
+    "defijs",
+    "codemirror"
+  ],
+  "author": "Andrey Gubanov",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/defijs/codemirror-binder/issues"
+  },
+  "homepage": "https://github.com/defijs/codemirror-binder#readme",
+  "devDependencies": {
+    "codemirror": "^5.53.2",
+    "defi": "*"
+  },
+  "peerDependencies": {
+    "codemirror": "*",
+    "defi": "*"
+  }
+}

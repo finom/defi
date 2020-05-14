@@ -1,0 +1,11 @@
+{
+  "name": "seemple-post-publish",
+  "dependencies": {
+    "defi": "*",
+    "defi-router": "*",
+    "codemirror-binder": "*",
+    "common-binders": "*",
+    "file-binders": "*",
+    "codemirror": "*"
+  }
+}

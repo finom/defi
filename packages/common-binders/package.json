@@ -1,0 +1,22 @@
+{
+  "name": "common-binders",
+  "version": "0.1.2",
+  "scripts": {
+    "test": "../../node_modules/.bin/babel-node ../../node_modules/.bin/babel-istanbul cover test/index.js",
+    "npm-compile": "babel src -d npm && cp package.json npm/package.json && cp README.md npm/README.md",
+    "build": "webpack --mode=production"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/finom/defi.git"
+  },
+  "author": "Andrey Gubanov",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/finom/defi/issues"
+  },
+  "homepage": "https://github.com/finom/defi#readme",
+  "devDependencies": {
+    "defi": "*"
+  }
+}

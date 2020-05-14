@@ -1,0 +1,32 @@
+{
+  "name": "defi",
+  "version": "1.1.0",
+  "description": "Data binding without framework",
+  "main": "npm",
+  "scripts": {
+    "test": "npm run node-cover && npm run check-coverage",
+    "node-test": "BABEL_ENV=test babel-node test/node-test/jasmine.js",
+    "node-cover": "BABEL_ENV=test ../../node_modules/.bin/babel-node ../../node_modules/.bin/babel-istanbul cover test/node-test/jasmine.js",
+    "check-coverage": "../../node_modules/.bin/babel-istanbul check-coverage --lines 85",
+    "develop": "karma start test/karma-test/karma.conf.js",
+    "karma-test": "BABEL_ENV=test karma start test/karma-test/karma.conf.js --single-run --no-auto-watch --no-sandbox",
+    "build": "../../node_modules/.bin/webpack --config ./webpack.config.js --mode production",
+    "watch": "webpack --config ./webpack.config.js --watch --mode development",
+    "watch-browser-test": "webpack --config test/webpack-test.config.js --watch --mode development",
+    "npm-compile": "shx rm -rf npm && babel src -d npm --source-maps && shx cp ../../README.md npm/README.md && node ./tools/generate-package"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/finom/defi.git"
+  },
+  "author": {
+    "name": "Andrey Gubanov",
+    "email": "andrey.a.gubanov@gmail.com"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/finom/defi/issues"
+  },
+  "homepage": "https://github.com/finom/defi#readme",
+  "dependencies": {}
+}

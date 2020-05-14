@@ -1,0 +1,24 @@
+{
+  "name": "file-binders",
+  "version": "0.3.13",
+  "scripts": {
+    "test": "npm run cover",
+    "cover": "../../node_modules/.bin/babel-node ../../node_modules/.bin/babel-istanbul cover test/index.js",
+    "unit": "../../node_modules/.bin/babel-node test/index.js",
+    "npm-compile": "../../node_modules/.bin/babel src -d npm && cp package.json npm/package.json && cp README.md npm/README.md",
+    "build": "../../node_modules/.bin/webpack --mode=production"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/defijs/file-binders.git"
+  },
+  "author": "Andrey Gubanov",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/defijs/file-binders/issues"
+  },
+  "homepage": "https://github.com/defijs/file-binders#readme",
+  "devDependencies": {
+    "makeelement": "^0.1.0"
+  }
+}

@@ -1,13 +1,13 @@
 const UnminifiedWebpackPlugin = require('unminified-webpack-plugin');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
-
+const path = require('path');
 const BannerAndFooterWebpackPlugin = require('./tools/banner-and-footer-webpack-plugin');
 
 module.exports = {
     devtool: 'source-map',
     entry: './src/index',
     output: {
-        path: `${__dirname}/bundle`,
+        path: path.resolve(__dirname, '../../bundle'),
         filename: 'defi.min.js',
         libraryTarget: 'umd',
         library: 'defi'

@@ -1,0 +1,33 @@
+{
+  "name": "defi-router",
+  "version": "0.0.11",
+  "description": "A router for defi.js",
+  "main": "index",
+  "scripts": {
+    "test": "npm run unit",
+    "unit": "../../node_modules/.bin/babel-node ../../node_modules/.bin/babel-istanbul cover test/index.js",
+    "npm-compile": "../../node_modules/.bin/babel src -d npm && cp package.json npm/package.json && cp README.md npm/README.md",
+    "build": "../../node_modules/.bin/webpack --mode production",
+    "release": "npm run release-bundle && npm run release-npm"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/defijs/defi-router.git"
+  },
+  "keywords": [
+    "defi",
+    "router"
+  ],
+  "author": "Andrey Gubanov",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/defijs/defi-router/issues"
+  },
+  "homepage": "https://github.com/defijs/defi-router#readme",
+  "devDependencies": {
+    "defi": "*"
+  },
+  "peerDependencies": {
+    "defi": "*"
+  }
+}
