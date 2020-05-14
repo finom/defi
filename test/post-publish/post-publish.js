@@ -1,7 +1,6 @@
-/* eslint-disable no-unresolved */
-const { execSync } = require('child_process');
-const { JSDOM } = require('jsdom');
-const expect = require('expect.js');
+const { execSync } = require('child_process'); // eslint-disable-line no-unresolved
+const { JSDOM } = require('jsdom'); // eslint-disable-line no-unresolved
+const expect = require('expect.js'); // eslint-disable-line no-unresolved
 
 execSync('rm -rf node_modules && npm i --no-package-lock', { cwd: __dirname });
 
