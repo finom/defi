@@ -12,18 +12,18 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/defijs/codemirror-binder.git"
+    "url": "https://github.com/finom/defi.git"
   },
   "keywords": [
-    "defijs",
+    "defi",
     "codemirror"
   ],
   "author": "Andrey Gubanov",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/defijs/codemirror-binder/issues"
+    "url": "https://github.com/finom/defi/issues"
   },
-  "homepage": "https://github.com/defijs/codemirror-binder#readme",
+  "homepage": "https://github.com/finom/defi/tree/master/packages/codemirror-binder",
   "devDependencies": {
     "codemirror": "^5.53.2",
     "defi": "^1.1.4"

@@ -1,6 +1,6 @@
-# common-binders [![npm version](https://badge.fury.io/js/common-binders.svg)](https://badge.fury.io/js/common-binders) [![Build Status](https://travis-ci.org/defijs/common-binders.svg?branch=master)](https://travis-ci.org/defijs/common-binders) [![Coverage Status](https://coveralls.io/repos/github/defijs/common-binders/badge.svg?branch=master)](https://coveralls.io/github/defijs/common-binders?branch=master)
+# common-binders [![npm version](https://badge.fury.io/js/common-binders.svg)](https://badge.fury.io/js/common-binders)
 
-The module includes common binder creators or HTML binding, attribute binding etc. which can be used with [defi.js](https://github.com/defijs/defi).
+The module includes common binder creators or HTML binding, attribute binding etc. which can be used with [defi.js](https://github.com/finom/defi).
 
 - `attr` used to bind attributes.
 - `className` used to bind element class name.
@@ -33,7 +33,7 @@ bindNode(obj, 'key', node, html());
 bindNode(obj, 'key', node, commonBinders.prop('foo'));
 ```
 
-The bundle can be downloaded at [gh-pages branch](https://github.com/defijs/common-binders/tree/gh-pages)
+The bundle can be downloaded at [gh-pages branch](https://github.com/finom/defi/tree/master/packages/common-binders)
 
 -------------
 

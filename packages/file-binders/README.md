@@ -1,4 +1,4 @@
-# file-binders [![npm version](https://badge.fury.io/js/file-binders.svg)](https://badge.fury.io/js/file-binders) [![Build Status](https://travis-ci.org/defijs/file-binders.svg?branch=master)](https://travis-ci.org/defijs/file-binders) [![Coverage Status](https://coveralls.io/repos/github/defijs/file-binders/badge.svg?branch=master)](https://coveralls.io/github/defijs/file-binders?branch=master)
+# file-binders [![npm version](https://badge.fury.io/js/file-binders.svg)](https://badge.fury.io/js/file-binders)
 
 The module includes 3 binder creators for defi.js which deal with files.
 
@@ -17,7 +17,7 @@ defi.bindNode(object, 'file', node, file());
 defi.bindNode(object, 'file', node, fileBinders.file());
 ```
 
-The bundle can be downloaded at [gh-pages branch](https://github.com/defijs/file-binders/tree/gh-pages)
+The bundle can be downloaded at [gh-pages branch](https://github.com/finom/defi/tree/gh-pages)
 
 -------------
 

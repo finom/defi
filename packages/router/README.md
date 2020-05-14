@@ -1,17 +1,14 @@
-A router for defi.js
+A router for defi.js [![npm version](https://badge.fury.io/js/defi-router.svg)](https://badge.fury.io/js/defi-router)
 ============
 
-[![Coverage Status](https://coveralls.io/repos/github/defijs/defi-router/badge.svg?branch=master)](https://coveralls.io/github/defijs/defi-router?branch=master) [![Build Status](https://travis-ci.org/defijs/defi-router.svg?branch=master)](https://travis-ci.org/defijs/defi-router) [![npm version](https://badge.fury.io/js/defi-router.svg)](https://badge.fury.io/js/defi-router)
-
-
-[Demo](https://defijs.github.io/defi-router/#!/foo/bar/baz/)
+[Demo](https://finom.github.io/defi-router/#!/foo/bar/baz/)
 
 Installing:
 ```
 npm i defi-router
 ```
 
-A bundle (downloadable version) lives at [gh-pages branch](https://github.com/defijs/defi-router/tree/gh-pages)
+A bundle (downloadable version) lives at [gh-pages branch](https://github.com/finom/defi/tree/gh-pages)
 
 # tl;dr
 

@@ -15,7 +15,7 @@
 </p>
 
 <p align="center">
-<a href="https://badge.fury.io/js/defi" rel="nofollow"><img src="https://camo.githubusercontent.com/b31c945ec1f09892388cda654d117de5c6aa3ed6/68747470733a2f2f62616467652e667572792e696f2f6a732f646566692e737667" alt="npm version" data-canonical-src="https://badge.fury.io/js/defi.svg" style="max-width:100%;"></a> <a href="https://travis-ci.org/defi/defi" rel="nofollow"><img src="https://camo.githubusercontent.com/08c41f8284a28f9799ed1eb27eac080cf445ec3e/68747470733a2f2f7472617669732d63692e6f72672f646566696a732f646566692e737667" alt="Build Status" data-canonical-src="https://travis-ci.org/defijs/defi.svg" style="max-width:100%;"></a> <a href="https://coveralls.io/github/defijs/defi?branch=master" rel="nofollow"><img src="https://camo.githubusercontent.com/526676c4a2e526e118492ff4eb25a87e71f92bfa/68747470733a2f2f636f766572616c6c732e696f2f7265706f732f6769746875622f646566696a732f646566692f62616467652e7376673f6272616e63683d6d6173746572" alt="Coverage Status" data-canonical-src="https://coveralls.io/repos/github/defijs/defi/badge.svg?branch=master" style="max-width:100%;"></a>
+<a href="https://badge.fury.io/js/defi" rel="nofollow"><img src="https://camo.githubusercontent.com/b31c945ec1f09892388cda654d117de5c6aa3ed6/68747470733a2f2f62616467652e667572792e696f2f6a732f646566692e737667" alt="npm version" data-canonical-src="https://badge.fury.io/js/defi.svg" style="max-width:100%;"></a> <a href="https://travis-ci.org/defi/defi" rel="nofollow"><img src="https://camo.githubusercontent.com/08c41f8284a28f9799ed1eb27eac080cf445ec3e/68747470733a2f2f7472617669732d63692e6f72672f646566696a732f646566692e737667" alt="Build Status" data-canonical-src="https://travis-ci.org/finom/defi.svg" style="max-width:100%;"></a> <a href="https://coveralls.io/github/finom/defi?branch=master" rel="nofollow"><img src="https://camo.githubusercontent.com/526676c4a2e526e118492ff4eb25a87e71f92bfa/68747470733a2f2f636f766572616c6c732e696f2f7265706f732f6769746875622f646566696a732f646566692f62616467652e7376673f6272616e63683d6d6173746572" alt="Coverage Status" data-canonical-src="https://coveralls.io/repos/github/finom/defi/badge.svg?branch=master" style="max-width:100%;"></a>
 
 
 </p>
@@ -31,7 +31,7 @@ const { bindNode, calc } = require('defi');
 bindNode(obj, 'key', node)
 ```
 
-Or [downloaded to use as a global variable](https://github.com/defijs/defi/tree/gh-pages)
+Or [downloaded to use as a global variable](https://github.com/finom/defi/tree/gh-pages)
 
 ```js
 // use defi as a global variable
@@ -88,14 +88,14 @@ const htmlBinder = {
 defi.bindNode(obj, 'greeting', '.greeting', htmlBinder)
 ```
 
-Also you can use ``html`` from [common-binders](https://github.com/defijs/common-binders) (a collection of binders of general purpose).
+Also you can use ``html`` from [common-binders](https://github.com/finom/defi/tree/master/packages/common-binders) (a collection of binders of general purpose).
 
 ```js
 const { html } = require('common-binders');
 defi.bindNode(obj, 'greeting', '.greeting', html())
 ```
 
-Note that there is also a routing library for defi.js - [defi-router](https://github.com/defijs/defi-router).
+Note that there is also a routing library for defi.js - [defi-router](https://github.com/finom/defi/tree/master/packages/router).
 
 ## Quick API ref
 

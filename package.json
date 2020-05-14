@@ -32,7 +32,7 @@
   },
   "config": {
     "deployToGit": {
-      "repository": "git@github.com:defijs/defi.git",
+      "repository": "git@github.com:finom/defi.git",
       "branch": "gh-pages",
       "folder": "bundle",
       "script": "npm run bundle-deploy-script",
