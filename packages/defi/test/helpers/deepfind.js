@@ -1,4 +1,4 @@
-export default function (obj, path) {
+export default function deepFind(obj, path) {
     const paths = typeof path === 'string' ? path.split('.') : path;
     let current = obj;
 

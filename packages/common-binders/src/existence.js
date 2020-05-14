@@ -30,6 +30,7 @@ export default function existence(switcher = true) {
             }
 
             if (value) {
+                // eslint-disable-next-line no-underscore-dangle
                 delete node.__replacedByNode;
                 if (comment.parentNode) {
                     comment.parentNode.insertBefore(node, comment);
@@ -38,6 +39,7 @@ export default function existence(switcher = true) {
             }
 
             if (!value) {
+                // eslint-disable-next-line no-underscore-dangle
                 node.__replacedByNode = comment;
                 if (node.parentNode) {
                     node.parentNode.insertBefore(comment, node);

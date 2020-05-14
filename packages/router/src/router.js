@@ -16,7 +16,6 @@ function handlePopStateChange(router) {
 
 class Router {
     constructor(type) {
-
         // singletone pattern for history and hash router
         /* istanbul ignore if */
         if (type in Router) {
@@ -143,7 +142,7 @@ class Router {
     subscribe(obj, route) {
         const keys = route.replace(/\/\//g, '/').replace(/^\/|\/$/g, '').split('/');
         const changeEvents = [];
-        const filteredKeys = keys.filter(key => key !== '*');
+        const filteredKeys = keys.filter((key) => key !== '*');
         const parts = [];
 
         this.init();

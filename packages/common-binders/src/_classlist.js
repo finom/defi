@@ -13,6 +13,7 @@ if (window.document.createElement('div').classList) {
     add = (node, name) => {
         const re = new RegExp(`(^|\\s)${name}(\\s|$)`, 'g');
         if (!re.test(node.className)) {
+            // eslint-disable-next-line no-param-reassign
             node.className = `${node.className} ${name}`
                 .replace(/\s+/g, ' ')
                 .replace(/(^ | $)/g, '');
@@ -21,6 +22,7 @@ if (window.document.createElement('div').classList) {
 
     remove = (node, name) => {
         const re = new RegExp(`(^|\\s)${name}(\\s|$)`, 'g');
+        // eslint-disable-next-line no-param-reassign
         node.className = node.className
             .replace(re, '$1')
             .replace(/\s+/g, ' ')

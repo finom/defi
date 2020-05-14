@@ -1,12 +1,11 @@
 const path = require('path');
 
-
 module.exports = {
     devtool: 'source-map',
     entry: './src/index',
     optimization: { minimize: true },
     output: {
-      path: path.resolve(__dirname, '../../bundle'),
+        path: path.resolve(__dirname, '../../bundle'),
         filename: 'defi-router.min.js',
         libraryTarget: 'umd',
         library: 'defiRouter'

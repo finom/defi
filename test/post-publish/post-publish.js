@@ -5,7 +5,7 @@ const expect = require('expect.js');
 execSync('rm -rf node_modules && npm i --no-package-lock', { cwd: __dirname });
 
 global.window = new JSDOM('<!doctype html><html><body><form><input name="a"></form></body></html>', {
-  url: 'http://localhost'
+    url: 'http://localhost'
 }).window;
 
 global.document = global.window.document;

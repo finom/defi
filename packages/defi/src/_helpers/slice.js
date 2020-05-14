@@ -1,4 +1,4 @@
-export default function (arrLike, start, end) {
+export default function slice(arrLike, start, end) {
     const l = arrLike.length;
     let i = start || 0;
     const _end = end || l;

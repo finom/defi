@@ -15,11 +15,11 @@ module.exports = {
         'new-cap': ['error', { capIsNewExceptions: ['Class'] }],
         'comma-dangle': ['error', 'never'], // personal preference
         'no-continue': 0, // continue statements are useful to flatten nested blocks
-        'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
+        'import/no-extraneous-dependencies': 0,
         'import/no-unresolved': ['error', { ignore: ['^src'] }], // allow to use 'src/' in tests
         'no-cond-assign': ['error', 'except-parens'], // sometimes it's needed in while()
         'max-lines': ['error', 210], // we may want to decrease this number later
-        'no-plusplus': ['error', { allowForLoopAfterthoughts: true }], // x++ is used very often in cycles
+        'no-plusplus': 0, // x++ is used very often in loops
         'class-methods-use-this': 0, // it't not required to use this in class methods
         'no-bitwise': ['error', { allow: ['~'] }], // allow to use ~x.indexOf
         'no-restricted-syntax': 0, // for..of is used at tests
@@ -30,8 +30,7 @@ module.exports = {
                 terms: ['todo'],
                 location: 'start'
             }
-        ],
-        'no-plusplus': 0 // allow ++ and --
+        ]
     },
     env: {
         jasmine: true

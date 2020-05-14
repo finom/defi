@@ -1,5 +1,7 @@
 bundle/**/*.js
+coverage/**/*.js
 packages/defi/npm/**/*.js
 packages/*/coverage/**/*.js
+packages/*/npm/**/*.js
 packages/defi/test/browser-test/**/*.js
 packages/defi/test/karma-test/vendor-dom-libraries/**/*.js
