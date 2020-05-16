@@ -15,7 +15,7 @@
 </p>
 
 <p align="center">
-<a href="https://badge.fury.io/js/defi" rel="nofollow"><img alt="npm version" src="https://badge.fury.io/js/defi.svg" style="max-width:100%;"></a> <a href="https://travis-ci.org/finom/defi" rel="nofollow"><img src="https://travis-ci.org/finom/defi.svg" style="max-width:100%;"></a> <a href="https://coveralls.io/github/finom/defi?branch=master" rel="nofollow"><img alt="Coverage Status" src="https://coveralls.io/repos/github/finom/defi/badge.svg?branch=master" style="max-width:100%;"></a>
+<a href="https://badge.fury.io/js/defi" rel="nofollow"><img alt="npm version" src="https://badge.fury.io/js/defi.svg" style="max-width:100%;"></a> <a href="https://coveralls.io/github/finom/defi?branch=master" rel="nofollow"><img alt="Coverage Status" src="https://coveralls.io/repos/github/finom/defi/badge.svg?branch=master" style="max-width:100%;"></a>
 
 
 </p>
