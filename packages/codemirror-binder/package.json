@@ -24,6 +24,9 @@
     "url": "https://github.com/finom/defi/issues"
   },
   "homepage": "https://github.com/finom/defi/tree/master/packages/codemirror-binder",
+  "dependencies": {
+    "@babel/runtime": "^7.9.6"
+  },
   "devDependencies": {
     "codemirror": "^5.53.2",
     "defi": "^1.1.6"

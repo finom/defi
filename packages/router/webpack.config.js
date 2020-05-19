@@ -7,7 +7,7 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, '../../bundle'),
         filename: 'defi-router.min.js',
-        libraryTarget: 'umd',
+        libraryTarget: 'var',
         library: 'defiRouter'
     },
     module: {
@@ -19,11 +19,6 @@ module.exports = {
         ]
     },
     externals: {
-        defi: {
-            commonjs: 'defi',
-            commonjs2: 'defi',
-            amd: 'defi',
-            root: 'defi'
-        }
+        defi: 'defi'
     }
 };

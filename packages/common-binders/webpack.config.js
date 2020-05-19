@@ -6,7 +6,7 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, '../../bundle'),
         filename: 'common-binders.min.js',
-        libraryTarget: 'umd',
+        libraryTarget: 'var',
         library: 'commonBinders'
     },
     module: {

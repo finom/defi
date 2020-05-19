@@ -1,8 +1,12 @@
 const { execSync } = require('child_process');
+
+execSync('rm -rf node_modules && npm i --no-package-lock', { cwd: __dirname });
+// remove root dependencies to avoid usage of them
+execSync('rm -rf ../../node_modules', { cwd: __dirname });
+
 const { JSDOM } = require('jsdom');
 const expect = require('expect.js');
 
-execSync('rm -rf node_modules && npm i --no-package-lock', { cwd: __dirname });
 
 global.window = new JSDOM('<!doctype html><html><body><form><input name="a"></form></body></html>', {
     url: 'http://localhost'
@@ -39,3 +43,6 @@ expect(typeof commonBinders.html().setValue === 'function');
 
 expect(typeof fileBinders.file === 'function');
 expect(typeof fileBinders.file().setValue === 'function');
+
+// return main dependencies back
+execSync('npm install --prefix ../..', { cwd: __dirname });

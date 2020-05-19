@@ -9,7 +9,7 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, '../../bundle'),
         filename: 'defi.min.js',
-        libraryTarget: 'umd',
+        libraryTarget: 'var',
         library: 'defi'
     },
     module: {

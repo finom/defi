@@ -21,5 +21,8 @@
   "devDependencies": {
     "makeelement": "^0.1.0"
   },
+  "dependencies": {
+    "@babel/runtime": "^7.9.6"
+  },
   "gitHead": "5d73b7d6892730283893fe296dea35cdef74f461"
 }

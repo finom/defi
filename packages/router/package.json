@@ -27,6 +27,9 @@
   "devDependencies": {
     "defi": "^1.1.6"
   },
+  "dependencies": {
+    "@babel/runtime": "^7.9.6"
+  },
   "peerDependencies": {
     "defi": "*"
   },
