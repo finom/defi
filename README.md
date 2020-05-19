@@ -11,6 +11,6 @@ This branch contains a minified bundle of [defi](https://github.com/finom/defi) 
 </script>
 ```
 
-[Router Demo](https://finom.github.io/defi/router-demo.html/#!/foo/bar/baz/)
+[Router Demo](https://finom.github.io/defi/router-demo.html#!/foo/bar/baz/)
 
 [Browser test runner](https://finom.github.io/defi/test/SpecRunner.html)
