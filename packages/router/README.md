@@ -1,7 +1,7 @@
 A router for defi.js [![npm version](https://badge.fury.io/js/defi-router.svg)](https://badge.fury.io/js/defi-router)
 ============
 
-[Demo](https://finom.github.io/defi-router/#!/foo/bar/baz/)
+[Demo](https://finom.github.io/defi/router-demo.html#!/foo/bar/baz/)
 
 Installing:
 ```

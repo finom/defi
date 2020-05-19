@@ -3,6 +3,6 @@ module.exports = {
         '@babel/preset-env'
     ],
     plugins: [
-        ['@babel/plugin-transform-runtime']
+        ['babel-plugin-transform-es2015-modules-simple-commonjs', '@babel/plugin-transform-runtime']
     ]
 };
