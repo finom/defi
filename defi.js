@@ -1,6 +1,6 @@
 /*
     --------------------------------------------------------------
-    defi.js v1.1.9 (Tue, 19 May 2020 16:28:32 GMT)
+    defi.js v2.0.0 (Wed, 03 Jun 2020 17:22:58 GMT)
     By Andrey Gubanov http://github.com/finom
     Released under the MIT license
     More info: https://defi.js.org
@@ -500,8 +500,7 @@ function removeListener(object, name, callback, info) {
         selector = _domEventExecResult[3]; // fixing circular reference issue
 
 
-    var _require = __webpack_require__(41),
-        removeDomListener = _require["default"];
+    var removeDomListener = __webpack_require__(41);
 
     removeDomListener(object, key, eventName, selector, callback, info);
     return true;
@@ -643,8 +642,7 @@ function addListener(object, name, callback) {
           selector = _domEventExecResult[3]; // fixing circular reference issue
 
 
-      var _require = __webpack_require__(46),
-          addDomListener = _require["default"];
+      var addDomListener = __webpack_require__(46);
 
       addDomListener(object, key, eventName, selector, callback, info);
       return true;
@@ -753,8 +751,7 @@ function set(object, key, value, eventOptions) {
 
   if (define) {
     // fixing circular ref
-    var _require = __webpack_require__(10),
-        defineProp = _require["default"];
+    var defineProp = __webpack_require__(10);
 
     initDefi(object);
     defineProp(object, key);
@@ -2459,8 +2456,7 @@ function changeHandler(_ref) {
       info = _ref2.info;
 
   if (value && _typeof(value) === 'object') {
-    var _require = __webpack_require__(21),
-        delegateListener = _require["default"]; // fixing circular ref
+    var delegateListener = __webpack_require__(21); // fixing circular ref
 
 
     delegateListener(value, path, name, callback, info);
