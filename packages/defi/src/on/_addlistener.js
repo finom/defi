@@ -26,8 +26,8 @@ export default function addListener(object, name, callback, info = {}) {
         if (domEventExecResult) {
             const [, eventName, key, selector] = domEventExecResult;
             // fixing circular reference issue
-            const addDomListener = require('./_adddomlistener');
-
+            const addDomListenerReq = require('./_adddomlistener');
+            const addDomListener = addDomListenerReq.default || addDomListenerReq;
             addDomListener(object, key, eventName, selector, callback, info);
 
             return true;

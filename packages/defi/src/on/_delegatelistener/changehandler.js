@@ -14,7 +14,8 @@ export default function changeHandler({
     info
 } = triggerOne.latestEvent.info.delegatedData) {
     if (value && typeof value === 'object') {
-        const delegateListener = require('.'); // fixing circular ref
+        const delegateListenerReq = require('.'); // fixing circular ref
+        const delegateListener = delegateListenerReq.default || delegateListenerReq;
         delegateListener(value, path, name, callback, info);
     }
 

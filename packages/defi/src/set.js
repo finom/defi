@@ -38,7 +38,8 @@ export default function set(object, key, value, eventOptions) {
 
     if (define) {
         // fixing circular ref
-        const defineProp = require('./_core/defineprop');
+        const definePropReq = require('./_core/defineprop');
+        const defineProp = definePropReq.default || definePropReq;
         initDefi(object);
         defineProp(object, key);
     }

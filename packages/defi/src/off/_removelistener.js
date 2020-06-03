@@ -23,8 +23,8 @@ export default function removeListener(object, name, callback, info) {
     if (domEventExecResult) {
         const [, eventName, key, selector] = domEventExecResult;
         // fixing circular reference issue
-        const removeDomListener = require('./_removedomlistener');
-
+        const removeDomListenerReq = require('./_removedomlistener');
+        const removeDomListener = removeDomListenerReq.default || removeDomListenerReq;
         removeDomListener(object, key, eventName, selector, callback, info);
 
         return true;
