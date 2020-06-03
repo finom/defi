@@ -1,6 +1,6 @@
 {
   "name": "defi",
-  "version": "1.1.9",
+  "version": "2.0.0",
   "description": "Data binding without framework",
   "main": "npm",
   "scripts": {
