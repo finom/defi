@@ -13,7 +13,7 @@
     "build": "../../node_modules/.bin/webpack --config ./webpack.config.js --mode production",
     "watch": "webpack --config ./webpack.config.js --watch --mode development",
     "watch-browser-test": "webpack --config test/webpack-test.config.js --watch --mode development",
-    "npm-compile": "shx rm -rf npm && babel src -d npm --source-maps && shx cp ../../README.md npm/README.md && node ./tools/generate-package"
+    "npm-compile": "shx rm -rf npm && babel src -d npm --source-maps && shx cp ../../README.md npm/README.md && shx cp index.d.ts npm/index.d.ts && node ./tools/generate-package"
   },
   "repository": {
     "type": "git",
