@@ -194,7 +194,7 @@ const triggerFoo = useTrigger(store, 'foo');
 As it mentioned above you can use any object as store but it's recommended to use classes to keep your store well structured. All classes used used as sore 
 
 ```js
-// store.js
+// ----- store.js -----
 import { on } from 'defi';
 
 class Auth {
@@ -228,7 +228,7 @@ class Store {
 
 export default new Store();
 
-// App.js
+// ----- App.js -----
 import { Provider as DefiProvider } from 'defi';
 import store from './store';
 import Authentication from './Authentication'
@@ -238,7 +238,7 @@ export default () => (
   </DefiProvider>
 )
 
-// Authentication.js
+// ----- Authentication.js -----
 export default () => {
   const { auth } = useStore();
   const [email, setEmail] = useChange(auth, 'email');
@@ -262,6 +262,7 @@ As you may notice there is no such thing as "action" all modifications, side-eff
 If you want more examples (like if you want to see how deletion needs to be implemented) create an issue. But everything with defi-react should be quite straightforward.
 
 ```js
+// ----- store.js -----
 class Store {
   // that's the array you want to render
   items = [];
@@ -287,7 +288,7 @@ class Store {
   }
 }
 
-// Items.js
+// ----- Items.j s-----
 import Item from './Item';
 export default () => {
   const store = useStore();
@@ -298,8 +299,8 @@ export default () => {
 
   return (
     <div>
-      {items.map((item) => (
-        <Item key={item.foo} item={item} updateItem={updateItem} />
+      {items.map(({ foo }) => (
+        <Item key={foo} foo={foo} updateItem={updateItem} />
       ))}
       <button onClick={() => addItem({ foo: items.length })}>Add item</button>
     </div>
@@ -307,8 +308,8 @@ export default () => {
 }
 
 
-// Item.js
-export default ({ updateItem }) => {
+// ----- Item.js -----
+export default ({ foo, updateItem }) => {
   return (
     <div>
       Foo: {foo}
