@@ -1,5 +1,6 @@
 import { useContext } from 'react';
 import Context from './Context';
+import { StoreSelector } from './types.d';
 
 export default (storeSlice: object | StoreSelector) => {
   const contextValue = useContext(Context);

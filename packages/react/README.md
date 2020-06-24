@@ -2,6 +2,31 @@
 
 > A super straightforward state management library for React in 5 hooks and 2 methods
 
+```
+npm i defi defi-react
+
+# or 
+yarn add defi defi-react
+```
+
+* [Why?](#why)
+	* [Alternatives](#alternatives)
+* [What do I need to know about defi.js](#what-do-i-need-to-know-about-defijs)
+	* [defi.js methods you're going to use](#defijs-methods-youre-going-to-use)
+	* [defi.on](#defion)
+	* [defi.trigger](#defitrigger)
+* [Reference](#reference)
+	* [Context and Provider](#context-and-provider)
+	* [useStore](#usestore)
+	* [useChange](#usechange)
+	* [useSet](#useset)
+	* [useOn](#useon)
+	* [useTrigger](#usetrigger)
+* [Examples](#examples)
+	* [Store class](#store-class)
+	* [Array rendering and its modification](#array-rendering-and-its-modification)
+
+
 ## Why?
 
 Beeing many years a React developer I've found out that app-wide state management in React is tricky. I've got an idea to create my own state management solution after I started to work on my own React Native project and tried to find out what I'd like use as an app state library. In my regular work the main tool for this task usually was Redux but with my own project I'm not tied by market standards and decided to develop something super simple for my needs. I was tired by all these actions, reducers, constants, action creators, sagas, middlewares, but couldn't find any simple and flexible alternative for Redux. To be fair enough there is a list of alternatives I should mention.
@@ -22,12 +47,12 @@ defi.js is a library which enhances JavaScript objects with `Object.defineProper
 ### defi.js methods you're going to use
 To make you easier to start suing **defi-react** hooks there is a quick reference to a few methods you're going to need while you implement your store.
 
-### defi.on
+#### defi.on
 `on(target: object, eventName: string | string[], callback: (...triggerArgs: any[]) => void)`
 
 The function makes the target object to become an event target. A special event name `"change:KEY"` allows to listen properties re-definition. Events can be triggered by `defi.trigger` described below.
 
-### defi.trigger
+#### defi.trigger
 `trigger(target: object, eventName, callback)`
 
 Triggers custom events.
@@ -115,51 +140,6 @@ const [foo, setFoo] = useChange(store => store.baz, 'foo'); // listen for store.
 const [foo, setFoo] = useChange(someObject, 'foo'); // listen for someObject.foo changes
 ```
 
-Array example:
-
-```js
-// let's say you have the following store structure
-const store = {
-	items: [{ foo: 1 }, { foo: 2 }, { foo: 3 }]
-};
-... 
-
-// Items.js
-import Item from './Item';
-export default () => {
-	const store = useStore();
-	const [items, setItems] = useChange(store, 'items');
-	// you need to reassign the entire array to update store field
-	// just like in Redux
-	const addItem = useCallback(
-		(item) => setItems([...items, { foo: items.length + 1 }]), 
-		[items],
-	);
-
-	return (
-		<div>
-			{items.map((item) => (
-				<Item key={item.foo} item={item} />
-			))}
-			<button onClick={addItem}>Add item</button>
-		</div>
-	)
-}
-
-... 
-// Item.js
-export default ({ item }) => {
-	const [foo, setFoo] = useChange(item, 'foo'); // listen to changes made at item.foo
-	const update = useCallback(() => setFoo(Math.random()), [])
-	return (
-		<div>
-			Foo: {foo}
-			<button onClick={update}>Update "foo" to random</button>
-		</div>
-	);
-}
-```
-
 ### useSet
 `useSet(storeSlice: object | storeSelector, key: string) => value: any`
 
@@ -207,9 +187,11 @@ const triggerFoo = useTrigger(store, 'foo');
 ```
 
 
-## Store example
+## Examples
 
-As it mentioned above you can use any object as store but it's recommended to use classes to keep your store well structured.
+### Store class
+
+As it mentioned above you can use any object as store but it's recommended to use classes to keep your store well structured. All classes used used as sore 
 
 ```js
 // store.js
@@ -271,122 +253,67 @@ export default () => {
 
 ```
 
---------------------------
+### Array rendering and its modification
 
-The module includes 3 binder creators for defi.js which deal with files.
+At this example we define an array which is going to be rendered by a component. Data modifications is very similar to what you [may do with Redux](https://redux.js.org/recipes/structuring-reducers/immutable-update-patterns). To make components re-render because of some peace of data is changed you need to reassign store slice property. In other words if you run `useChange(storeSlice, someArrayField[)` then `storeSlice[someArrayField]` needs to be re-asssigned instead of doing `someArrayField.push(...)`.
 
-## Usage
-In browser environment these functions live at ``window.fileBinders`` object.
-```html
-<script src="path/to/file-binders.min.js"></script>
-```
+As you may notice there is no such thing as "action" all modifications, side-effects, and any other things are reecommended to be defined as class methods.
+
+If you want more examples (like if you want to see how deletion needs to be implemented) create an issue. But everything with defi-react should be quite straightforward.
 
 ```js
-const { file, dropFiles, dragOver } = fileBinders;
-// ...
-defi.bindNode(object, 'file', node, file());
-
-// if you don't want to create variables
-defi.bindNode(object, 'file', node, fileBinders.file());
-```
-
-The bundle can be downloaded at [gh-pages branch](https://github.com/finom/defi/tree/gh-pages)
-
--------------
-
-```
-npm i file-binders
-```
-
-```js
-// import all binders
-const { file, dropFiles, dragOver } = require('file-binders');
-
-// import only needed binders
-const file = require('file-binders/file');
-const dropFiles = require('file-binders/dropfiles');
-const dragOver = require('file-binders/dragover');
-
-// ...
-
-defi.bindNode(object, 'file', node, files());
-```
-
-## ``file(readAs)``
-Returns a binder for file input. The binder allows not only to get basic data about a file, but also to read it without calling ``FileReader`` manually.
-
-If ``readAs`` argument isn’t set, input value gets into the bound property after its changing (on "change" DOM event). If ``readAs`` is set, binder will read the file and transform it into the needed format (data URI, Blob...) and only after reading the file, the property will be changed.
-
-The file (native ``File``) or an array of files becomes the final value of the property in the presence of ``multiple`` attribute. At the same time the result of reading will get into the object of every file as ``readerResult`` property.
-
-### Arguments
-``readAs`` [optional] (string) - the argument value can be "arrayBufer", "binaryString", "dataURL", "text". The value depends on the presence of corresponding methods of the ``FileReader`` prototype.
-
-### Example
-```js
-defi.bindNode(object, 'myKey', '.my-file', file('dataURL'));
-// ... user changes input content
-// choosing my-image.png from file system ...
-defi.on(object, 'change:myKey', () => {
-	console.log(object.myKey);
-	// -->
-	// File
-	//	lastModified: 1383404384000
-	//	lastModifiedDate: ...
-	//	name: "my-image.png"
-	//	readerResult: "data:image/png;base64,iVBO..."
-	//		- the result of file reading
-	//	size: 9378
-	//	type: "image/png"
-});
-```
-
-## ``dropFiles(readAs)``
-Returns a binder which allows to drop files from a file manager to a given element. After ``bindNode`` is called HTML block gets needed DOM event listeners (eg, "dragover" and "drop"). When user drops files from file manager into the block, the property gets an array of dropped files as its value. As like ``file`` the binder accepts one optional argument called ``readAs`` which says how the files need to be read by ``FileReader``: data URI, Blob... (the result of reading is placed in ``readerResult`` property of every file). If ``readAs`` isn't given, the property gets an array of files which wasn't read.
-
-### Arguments
-``readAs`` [optional] (string) - the argument value can be ``"arrayBuffer"``, ``"binaryString"``, ``"dataURL"``, ``"text"``. The value depends on the presence of corresponding methods of the ``FileReader`` prototype.
-
-### Example
-```js
-defi.bindNode(object, 'myKey', '.drop-area', dropFiles('dataURL'));
-// ... user drops one file called
-// "my-image.png" into .drop-area block
-defi.on(object, 'change:myKey', () => {
-	console.log(object.myKey[0]);
-	// -->
-	// File
-	//	lastModified: 1383404384000
-	//	lastModifiedDate: ...
-	//	name: "my-image.png"
-	//	readerResult: "data:image/png;base64,iVBO..."
-	//		- the result of file reading
-	//	size: 9378
-	//	type: "image/png"
-});
-```
-
-## ``dragOver()``
-Makes given property equal to ``true`` when something is dragged over a given node.
-
-### Arguments
-none
-
-### Examples
-```js
-defi.bindNode(object, 'myKey', '.my-node', dragOver());
-defi.on(object, 'change:myKey', function() {
-	if(object.myKey) {
-		console.log('something is dragging over .my-node');
-	} else {
-		console.log('nothing is dragged over the node');
+class Store {
+	// that's the array you want to render
+	items = [];
+	addItem = (item) => {
+		// add items like this
+		this.items = [...this.items, item];
 	}
-});
-```
 
-Add "dragovered" class name when file (or another draggable object) is dragged over .my-node
+	updateItem = (updatedItem, index) => {
+		// update items like that (map returns a new array)
+		this.items = this.items.map((item, i) => {
+			if (i !== index) {
+				// this isn't the item we care about - keep it as-is
+				return item;
+			}
 
-```js
-defi.bindNode(object, 'myKey', '.my-node', dragOver());
-defi.bindNode(object, 'myKey', '.my-node', className('dragovered'));
+			// otherwise, this is the one we want - return an updated value
+			return {
+				...item,
+				...updatedItem,
+			}
+		})
+	}
+}
+
+// Items.js
+import Item from './Item';
+export default () => {
+	const store = useStore();
+	// we don't use update function here since it's handled by addItem, updateItem methods
+	const [items] = useChange(store, 'items'); 
+	// get these store methods
+	const { addItem, updateItem } = store; 
+
+	return (
+		<div>
+			{items.map((item) => (
+				<Item key={item.foo} item={item} updateItem={updateItem} />
+			))}
+			<button onClick={() => addItem({ foo: items.length })}>Add item</button>
+		</div>
+	)
+}
+
+
+// Item.js
+export default ({ updateItem }) => {
+	return (
+		<div>
+			Foo: {foo}
+			<button onClick={() => updateItem({ foo: Math.random() }) }>Update "foo" to random</button>
+		</div>
+	);
+}
 ```

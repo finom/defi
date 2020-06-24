@@ -113,7 +113,7 @@ declare module 'defi' {
     export function trigger(
         obj: objectLike,
         name: string,
-        ...args: any[],
+        ...args: any[]
     ): objectLike
 
     export function set(

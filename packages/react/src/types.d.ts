@@ -1,3 +1,3 @@
-interface StoreSelector {
+export interface StoreSelector {
   (store: object): object;
 }
