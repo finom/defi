@@ -10,21 +10,21 @@ yarn add defi defi-react
 ```
 
 * [Why?](#why)
-	* [Alternatives](#alternatives)
+  * [Alternatives](#alternatives)
 * [What do I need to know about defi.js](#what-do-i-need-to-know-about-defijs)
-	* [defi.js methods you're going to use](#defijs-methods-youre-going-to-use)
-	* [defi.on](#defion)
-	* [defi.trigger](#defitrigger)
+  * [defi.js methods you're going to use](#defijs-methods-youre-going-to-use)
+  * [defi.on](#defion)
+  * [defi.trigger](#defitrigger)
 * [Reference](#reference)
-	* [Context and Provider](#context-and-provider)
-	* [useStore](#usestore)
-	* [useChange](#usechange)
-	* [useSet](#useset)
-	* [useOn](#useon)
-	* [useTrigger](#usetrigger)
+  * [Context and Provider](#context-and-provider)
+  * [useStore](#usestore)
+  * [useChange](#usechange)
+  * [useSet](#useset)
+  * [useOn](#useon)
+  * [useTrigger](#usetrigger)
 * [Examples](#examples)
-	* [Store class](#store-class)
-	* [Array rendering and its modification](#array-rendering-and-its-modification)
+  * [Store class](#store-class)
+  * [Array rendering and its modification](#array-rendering-and-its-modification)
 
 
 ## Why?
@@ -87,9 +87,9 @@ import { Provider as DefiProvider } from 'defi-react';
 const store = {}; 
 ...
 export default () => (
-	<DefiProvider value={store}>
-		...
-	</DefiProvider>
+  <DefiProvider value={store}>
+    ...
+  </DefiProvider>
 )
 ```
 
@@ -198,32 +198,32 @@ As it mentioned above you can use any object as store but it's recommended to us
 import { on } from 'defi';
 
 class Auth {
-	email - '';
-	password = '';
-	token = null;
-	error = null;
-	authenticate = () => {
-		try {
-			const { email, password } = this; 
-			const { token } = await sendCredentialsSomeHow(email, password);
-			this.token = token;
-		} catch(e) {
-			this.error = 'Unable to authenticate';
-		}
-	}
+  email - '';
+  password = '';
+  token = null;
+  error = null;
+  authenticate = () => {
+    try {
+      const { email, password } = this; 
+      const { token } = await sendCredentialsSomeHow(email, password);
+      this.token = token;
+    } catch(e) {
+      this.error = 'Unable to authenticate';
+    }
+  }
 }
 class Store {
-	constructor() {
-		this.auth = new Auth();
-		on(this.auth, ['change:token', 'change:error'], () => {
-			if(this.auth.token) {
-				alert('authenticated!')
-			} else if (this.auth.error){
-				alert(`Error: ${this.auth.error}`)
-			}
-			
-		});
-	}
+  constructor() {
+    this.auth = new Auth();
+    on(this.auth, ['change:token', 'change:error'], () => {
+      if(this.auth.token) {
+        alert('authenticated!')
+      } else if (this.auth.error){
+        alert(`Error: ${this.auth.error}`)
+      }
+      
+    });
+  }
 }
 
 export default new Store();
@@ -233,22 +233,22 @@ import { Provider as DefiProvider } from 'defi';
 import store from './store';
 import Authentication from './Authentication'
 export default () => (
-	<DefiProvider>
-		<Authentication />
-	</DefiProvider>
+  <DefiProvider>
+    <Authentication />
+  </DefiProvider>
 )
 
 // Authentication.js
 export default () => {
-	const { auth } = useStore();
-	const [email, setEmail] = useChange(auth, 'email');
-	const [password, setPassword] = useChange(auth, 'password');
-	return (
-		<form>
-			{/* ... email and password inputs are here ... */}
-			<button onClick={auth.authenticate}>Authenticate</button>
-		</form>
-	)	
+  const { auth } = useStore();
+  const [email, setEmail] = useChange(auth, 'email');
+  const [password, setPassword] = useChange(auth, 'password');
+  return (
+    <form>
+      {/* ... email and password inputs are here ... */}
+      <button onClick={auth.authenticate}>Authenticate</button>
+    </form>
+  )  
 }
 
 ```
@@ -263,57 +263,57 @@ If you want more examples (like if you want to see how deletion needs to be impl
 
 ```js
 class Store {
-	// that's the array you want to render
-	items = [];
-	addItem = (item) => {
-		// add items like this
-		this.items = [...this.items, item];
-	}
+  // that's the array you want to render
+  items = [];
+  addItem = (item) => {
+    // add items like this
+    this.items = [...this.items, item];
+  }
 
-	updateItem = (updatedItem, index) => {
-		// update items like that (map returns a new array)
-		this.items = this.items.map((item, i) => {
-			if (i !== index) {
-				// this isn't the item we care about - keep it as-is
-				return item;
-			}
+  updateItem = (updatedItem, index) => {
+    // update items like that (map returns a new array)
+    this.items = this.items.map((item, i) => {
+      if (i !== index) {
+        // this isn't the item we care about - keep it as-is
+        return item;
+      }
 
-			// otherwise, this is the one we want - return an updated value
-			return {
-				...item,
-				...updatedItem,
-			}
-		})
-	}
+      // otherwise, this is the one we want - return an updated value
+      return {
+        ...item,
+        ...updatedItem,
+      }
+    })
+  }
 }
 
 // Items.js
 import Item from './Item';
 export default () => {
-	const store = useStore();
-	// we don't use update function here since it's handled by addItem, updateItem methods
-	const [items] = useChange(store, 'items'); 
-	// get these store methods
-	const { addItem, updateItem } = store; 
+  const store = useStore();
+  // we don't use update function here since it's handled by addItem, updateItem methods
+  const [items] = useChange(store, 'items'); 
+  // get these store methods
+  const { addItem, updateItem } = store; 
 
-	return (
-		<div>
-			{items.map((item) => (
-				<Item key={item.foo} item={item} updateItem={updateItem} />
-			))}
-			<button onClick={() => addItem({ foo: items.length })}>Add item</button>
-		</div>
-	)
+  return (
+    <div>
+      {items.map((item) => (
+        <Item key={item.foo} item={item} updateItem={updateItem} />
+      ))}
+      <button onClick={() => addItem({ foo: items.length })}>Add item</button>
+    </div>
+  )
 }
 
 
 // Item.js
 export default ({ updateItem }) => {
-	return (
-		<div>
-			Foo: {foo}
-			<button onClick={() => updateItem({ foo: Math.random() }) }>Update "foo" to random</button>
-		</div>
-	);
+  return (
+    <div>
+      Foo: {foo}
+      <button onClick={() => updateItem({ foo: Math.random() }) }>Update "foo" to random</button>
+    </div>
+  );
 }
 ```

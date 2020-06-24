@@ -56,7 +56,8 @@
 				"perf",
 				"test",
 				"chore",
-				"revert"
+				"revert",
+				"docs"
 			]
 		},
 		"ghooks": {
