@@ -48,7 +48,7 @@ Being many years a React developer I've found out that app-wide state management
 
 - Clear and simple API.
 - Minimum work to get started (no actions, middlewares, etc.).
-- Minimum concepts to get started (no such things as observables, decorators, etc.), just setters (for listenable properties) and custom events.
+- Minimum concepts to get started (no such things as observables, decorators, etc.), just built-in setters (for listenable properties) and custom events.
 - Render components only when used peace of data is updated.
 - Use any object as global store or as component's own store (or multiple stores if needed).
 
