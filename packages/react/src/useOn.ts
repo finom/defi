@@ -1,10 +1,15 @@
 import { useEffect, useState, useCallback,
 } from 'react';
+// @ts-ignore
 import { on, off, trigger } from 'defi';
 import getStoreSlice from './getStoreSlice';
-import { StoreSelector } from './types.d';
 
-export default (storeSlice: object | StoreSelector, eventName: string) => {
+export interface StoreSelector {
+    (store: object): object;
+}
+  
+
+export default function useOn(storeSlice: object | StoreSelector, eventName: string) {
     const slice = getStoreSlice(storeSlice);
     const [, forceRender] = useState(0);
 
@@ -13,7 +18,7 @@ export default (storeSlice: object | StoreSelector, eventName: string) => {
     }, []);
 
     useEffect(() => {
-        const handler = (...args) => {
+        const handler = (...args: any[]) => {
             // @ts-ignore
             fire.latest = args[0];
             // @ts-ignore
