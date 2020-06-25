@@ -4,68 +4,68 @@ import { useOn } from '../../npm';
 import getWrapper from './getWrapper';
 
 describe('useOn', () => {
-    it('Should work', () => {
-        const store = {};
-        let renderedTimes = 0;
+  it('Should work', () => {
+    const store = {};
+    let renderedTimes = 0;
 
-        const { result } = renderHook(() => {
-            renderedTimes += 1;
-            return useOn(store, 'foo');
-        });
-        const returnedTrigger = result.current;
-
-        expect(typeof returnedTrigger === 'function').toBeTrue();
-        expect(renderedTimes).toBe(1);
-
-        let arg = { a: 'b' };
-        act(() => { trigger(store, 'foo', arg); });
-
-        expect(returnedTrigger).toBe(result.current);
-        expect(renderedTimes).toBe(2);
-        expect(arg).toBe(returnedTrigger.latest);
-        expect([arg]).toEqual(returnedTrigger.latestAll);
-        act(() => { trigger(store, 'bar', arg); });
-
-        expect(returnedTrigger).toBe(result.current);
-        expect(renderedTimes).toBe(2);
-        expect(arg).toBe(returnedTrigger.latest);
-        expect([arg]).toEqual(returnedTrigger.latestAll);
-
-        arg = { c: 'd' };
-        act(() => { trigger(store, 'foo', arg); });
-
-        expect(returnedTrigger).toBe(result.current);
-        expect(renderedTimes).toBe(3);
-        expect(arg).toBe(returnedTrigger.latest);
-        expect([arg]).toEqual(returnedTrigger.latestAll);
+    const { result } = renderHook(() => {
+      renderedTimes += 1;
+      return useOn(store, 'foo');
     });
+    const returnedTrigger = result.current;
 
-    it('Should use store selector', () => {
-        const store = { x: { y: 1 } };
-        const wrapper = getWrapper(store);
-        let renderedTimes = 0;
-        const { result } = renderHook(() => {
-            renderedTimes += 1;
-            return useOn(({ x }) => x, 'foo');
-        }, { wrapper });
+    expect(typeof returnedTrigger === 'function').toBeTrue();
+    expect(renderedTimes).toBe(1);
 
-        const returnedTrigger = result.current;
+    let arg = { a: 'b' };
+    act(() => { trigger(store, 'foo', arg); });
 
-        expect(renderedTimes).toBe(1);
+    expect(returnedTrigger).toBe(result.current);
+    expect(renderedTimes).toBe(2);
+    expect(arg).toBe(returnedTrigger.latest);
+    expect([arg]).toEqual(returnedTrigger.latestAll);
+    act(() => { trigger(store, 'bar', arg); });
 
-        const arg = { a: 'b' };
-        act(() => { trigger(store.x, 'foo', arg); });
+    expect(returnedTrigger).toBe(result.current);
+    expect(renderedTimes).toBe(2);
+    expect(arg).toBe(returnedTrigger.latest);
+    expect([arg]).toEqual(returnedTrigger.latestAll);
 
-        expect(returnedTrigger).toBe(result.current);
-        expect(renderedTimes).toBe(2);
-        expect(arg).toBe(returnedTrigger.latest);
-        expect([arg]).toEqual(returnedTrigger.latestAll);
-        act(() => { trigger(store.x, 'bar', arg); });
-    });
+    arg = { c: 'd' };
+    act(() => { trigger(store, 'foo', arg); });
 
-    it('Should throw error if store selector is null', () => {
-        const { result: { error } } = renderHook(() => useOn(null, 'y'));
+    expect(returnedTrigger).toBe(result.current);
+    expect(renderedTimes).toBe(3);
+    expect(arg).toBe(returnedTrigger.latest);
+    expect([arg]).toEqual(returnedTrigger.latestAll);
+  });
 
-        expect(error).toBeTruthy();
-    });
+  it('Should use store selector', () => {
+    const store = { x: { y: 1 } };
+    const wrapper = getWrapper(store);
+    let renderedTimes = 0;
+    const { result } = renderHook(() => {
+      renderedTimes += 1;
+      return useOn(({ x }) => x, 'foo');
+    }, { wrapper });
+
+    const returnedTrigger = result.current;
+
+    expect(renderedTimes).toBe(1);
+
+    const arg = { a: 'b' };
+    act(() => { trigger(store.x, 'foo', arg); });
+
+    expect(returnedTrigger).toBe(result.current);
+    expect(renderedTimes).toBe(2);
+    expect(arg).toBe(returnedTrigger.latest);
+    expect([arg]).toEqual(returnedTrigger.latestAll);
+    act(() => { trigger(store.x, 'bar', arg); });
+  });
+
+  it('Should throw error if store selector is null', () => {
+    const { result: { error } } = renderHook(() => useOn(null, 'y'));
+
+    expect(error).toBeTruthy();
+  });
 });

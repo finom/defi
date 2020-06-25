@@ -1,6 +1,5 @@
 import { createContext } from 'react';
 
-interface AnyObject { [fieldName: string]: any }
-const Context = createContext({ __ERROR__: new Error('Component isn\'t wrapped by Provider') } as AnyObject);
+const Context = createContext(null as Record<string, unknown>);
 export const { Provider } = Context;
 export default Context;

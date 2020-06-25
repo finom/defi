@@ -1,22 +1,22 @@
-import {
-  useContext, useEffect, useState, useCallback,
-} from 'react';
+import { useEffect, useState, useCallback } from 'react';
 // @ts-ignore
 import { on, off, set } from 'defi';
-import Context from './Context';
 import getStoreSlice from './getStoreSlice';
 
 export interface StoreSelector {
-  (store: object): object;
+  (store: Record<string, unknown>): Record<string, unknown>;
 }
 
-export default function useChange(storeSlice: object | StoreSelector, key: string) {
+export default function useChange(
+  storeSlice: Record<string, unknown> | StoreSelector,
+  key: string,
+): [any, (value: any) => void] {
   const slice = getStoreSlice(storeSlice);
 
   const [stateValue, setStateValue] = useState(slice[key]);
   const setValue = useCallback(
-    (value) => set(slice, key, value, { fromHook: true }), 
-    [slice, key]
+    (value) => set(slice, key, value, { fromHook: true }),
+    [slice, key],
   );
 
   useEffect(() => {

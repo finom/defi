@@ -9,7 +9,7 @@ const expect = require('expect.js');
 
 
 global.window = new JSDOM('<!doctype html><html><body><form><input name="a"></form></body></html>', {
-    url: 'http://localhost'
+  url: 'http://localhost',
 }).window;
 
 global.document = global.window.document;

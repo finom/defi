@@ -2,10 +2,10 @@ import { useContext } from 'react';
 import Context from './Context';
 
 export interface StoreSelector {
-  (store: object): object;
+  (store: Record<string, unknown>): Record<string, unknown>;
 }
 
-export default (storeSlice: object | StoreSelector) => {
+export default (storeSlice: Record<string, unknown> | StoreSelector): Record<string, unknown> => {
   const contextValue = useContext(Context);
   let slice;
 
@@ -13,9 +13,9 @@ export default (storeSlice: object | StoreSelector) => {
     throw new Error('storeSlice argument is required');
   }
 
-  if(typeof storeSlice === 'function') {
+  if (typeof storeSlice === 'function') {
     slice = storeSlice(contextValue);
-    if(slice === null || typeof slice !== 'object') {
+    if (slice === null || typeof slice !== 'object') {
       throw new Error('storeSlice selector returned non-object value');
     }
   } else {
@@ -23,4 +23,4 @@ export default (storeSlice: object | StoreSelector) => {
   }
 
   return slice;
-}
+};

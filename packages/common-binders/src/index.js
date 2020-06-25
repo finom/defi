@@ -9,13 +9,13 @@ import dataset from './dataset';
 import existence from './existence';
 
 export {
-    html,
-    display,
-    className,
-    prop,
-    attr,
-    text,
-    style,
-    dataset,
-    existence
+  html,
+  display,
+  className,
+  prop,
+  attr,
+  text,
+  style,
+  dataset,
+  existence,
 };
