@@ -20,6 +20,8 @@
 
 </p>
 
+*If you're looking for **defi-react** [get its README here](https://github.com/finom/defi/tree/master/packages/react)*
+
 
 It can be installed via NPM:
 ```
@@ -37,6 +39,7 @@ Or [downloaded to use as a global variable](https://github.com/finom/defi/tree/g
 // use defi as a global variable
 defi.bindNode(obj, 'key', node)
 ```
+
 
 
 ## How would I use it?
