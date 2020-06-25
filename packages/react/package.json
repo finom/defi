@@ -19,7 +19,7 @@
   "bugs": {
     "url": "https://github.com/finom/defi/issues"
   },
-  "homepage": "https://github.com/finom/defi/tree/master/packages/defi-react",
+  "homepage": "https://github.com/finom/defi/tree/master/packages/react",
   "devDependencies": {
     "@babel/preset-typescript": "^7.10.1",
     "@testing-library/react-hooks": "^3.3.0",
