@@ -56,7 +56,7 @@ export default App;
   * [Pros &amp; cons](#pros--cons)
     * [Pros](#pros)
     * [Cons](#cons)
-* [What do I need to know about defi.js](#what-do-i-need-to-know-about-defijs)
+* [What do I need to know about defi.js?](#what-do-i-need-to-know-about-defijs)
   * [defi.on](#defion)
   * [defi.trigger](#defitrigger)
 * [Reference](#reference)
@@ -99,7 +99,7 @@ Being many years a React developer I've found out that app-wide state management
 - Both **defi** and **defi-react** aren't that popular as other well-known libraries.
 - Less structural requirements (you should architect your store by your own).
 
-## What do I need to know about defi.js
+## What do I need to know about defi.js?
 
 **defi** is a library which enhances JavaScript objects with `Object.defineProperty`. By defining accessors it turns any object into an event target and also allows to subscribe to property change events.
 
