@@ -327,9 +327,9 @@ export default () => {
 
 ### Array rendering and its modification
 
-At this example we define an array which is going to be rendered by a component. Data modifications is very similar to what you [may do with Redux](https://redux.js.org/recipes/structuring-reducers/immutable-update-patterns). To make components re-render because of some peace of data is changed you need to reassign store slice property. In other words if you run `useChange(storeSlice, someArrayField[)` then `storeSlice[someArrayField]` needs to be re-asssigned instead of doing `storeSlice[someArrayField].push(...)`.
+At this example we define an array which is going to be rendered by a component. Data modifications is very similar to what you [may do with Redux](https://redux.js.org/recipes/structuring-reducers/immutable-update-patterns). To make components re-render because of some peace of data is changed you need to reassign store slice property. In other words if you run `useChange(storeSlice, someArrayField)` then `storeSlice[someArrayField]` needs to be re-asssigned instead of doing `storeSlice[someArrayField].push(...)`.
 
-As you may notice there is no such thing as "action". Mmodifications (especially complex), side-effects, and any other things are recommended to be defined as class methods.
+As you may notice there is no such thing as "action". Modifications (especially complex), side-effects, and any other things are recommended to be defined as class methods.
 
 If you want more examples (like if you want to see how deletion needs to be implemented) feel free to create an issue. But everything with defi-react should be quite straightforward as it mentioned in the library description.
 
