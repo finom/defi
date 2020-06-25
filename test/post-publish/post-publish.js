@@ -35,6 +35,7 @@ customRouter.subscribe(obj, '/a/');
 expect(customRouter.path).to.eql('/6/');
 expect(typeof initRouter === 'function');
 
+
 // check if binders are OK
 expect(typeof codemirrorBinder === 'function').to.be(true);
 expect(typeof codemirrorBinder().setValue === 'function').to.be(true);
@@ -43,7 +44,7 @@ expect(typeof commonBinders.html === 'function').to.be(true);
 expect(typeof commonBinders.html().setValue === 'function').to.be(true);
 
 expect(typeof fileBinders.file === 'function').to.be(true);
-expect(typeof fileBinders.file().setValue === 'function').to.be(true);
+expect(typeof fileBinders.file().getValue === 'function').to.be(true);
 
 // check if defi-react is OK
 expect(typeof defiReact.useChange === 'function').to.be(true);
