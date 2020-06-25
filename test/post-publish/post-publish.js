@@ -22,6 +22,7 @@ const initRouter = require('defi-router'); // eslint-disable-line import/no-unre
 const codemirrorBinder = require('codemirror-binder'); // eslint-disable-line import/no-unresolved
 const commonBinders = require('common-binders'); // eslint-disable-line import/no-unresolved
 const fileBinders = require('file-binders'); // eslint-disable-line import/no-unresolved
+const defiReact = require('defi-react'); // eslint-disable-line import/no-unresolved
 
 // check if defi itself is OK
 const obj = { b: 3 };
@@ -35,14 +36,17 @@ expect(customRouter.path).to.eql('/6/');
 expect(typeof initRouter === 'function');
 
 // check if binders are OK
-expect(typeof codemirrorBinder === 'function');
-expect(typeof codemirrorBinder().setValue === 'function');
+expect(typeof codemirrorBinder === 'function').to.be(true);
+expect(typeof codemirrorBinder().setValue === 'function').to.be(true);
 
-expect(typeof commonBinders.html === 'function');
-expect(typeof commonBinders.html().setValue === 'function');
+expect(typeof commonBinders.html === 'function').to.be(true);
+expect(typeof commonBinders.html().setValue === 'function').to.be(true);
 
-expect(typeof fileBinders.file === 'function');
-expect(typeof fileBinders.file().setValue === 'function');
+expect(typeof fileBinders.file === 'function').to.be(true);
+expect(typeof fileBinders.file().setValue === 'function').to.be(true);
+
+// check if defi-react is OK
+expect(typeof defiReact.useChange === 'function').to.be(true);
 
 // return main dependencies back
 execSync('npm install --prefix ../..', { cwd: __dirname });

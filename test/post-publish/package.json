@@ -3,6 +3,7 @@
   "dependencies": {
     "defi": "*",
     "defi-router": "*",
+    "defi-react": "*",
     "codemirror-binder": "*",
     "common-binders": "*",
     "file-binders": "*",
