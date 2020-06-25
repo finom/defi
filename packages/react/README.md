@@ -314,9 +314,9 @@ export default () => {
   
   return (
     <form>
-    Token:{' '}{token}
-    <br />
-    Error:{' '}{error}
+      Token:{' '}{token}
+      <br />
+      Error:{' '}{error}
       {/* ... email and password inputs are here ... */}
       <button onClick={auth.authenticate}>Authenticate</button>
     </form>
