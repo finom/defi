@@ -164,10 +164,19 @@ Returns update function for a given object peoperty. It's goal is to make possib
 const store = useStore();
 const setFoo = useSet(store, 'foo');
 
-setFoo('bar');
+setFoo(42);
 
 // which is equivalent to 
-store.foo = 'bar';
+store.foo = 42;
+```
+
+```js
+const setBar = useSet(({ foo }) => foo, 'bar');
+
+setBar(42);
+
+// which is equivalent to 
+store.foo.bar = 42;
 ```
 
 ### useOn
@@ -176,17 +185,16 @@ store.foo = 'bar';
 Subscribes component to a given event on an object (in other words re-renders when the event is triggered). Returns trigger function to make possible to fire the event in component body.
 
 ```js
-const store = useStore();
-const triggerFoo = useOn(store, 'foo');
+const triggerBar = useOn(({ foo }) => foo, 'bar');
 
 ...
-<button onClick={triggerFoo}></button>
+<button onClick={triggerBar}></button>
 ```
 ```js
 // somewhere outside of the component
 import { trigger } from 'defi'
 ... 
-trigger(store, 'foo'); // triggers foo and notifies all components which listen that event with useOn
+trigger(store.foo, 'bar'); // triggers bar and notifies all components which listen that event with useOn
 ```
 
 ### useTrigger
@@ -195,11 +203,10 @@ trigger(store, 'foo'); // triggers foo and notifies all components which listen 
 The hook is very similar to `useOn` but it doesn't re-render component when an event is triggered. the only thing it does is it returns trigger function to fire events which may be listened by store or by other compoents which use `useOn`.
 
 ```js
-const store = useStore();
-const triggerFoo = useTrigger(store, 'foo');
+const triggerBar = useTrigger(({ foo }) => foo, 'bar');
 
 ...
-<button onClick={triggerFoo}></button>
+<button onClick={triggerBar}></button>
 ```
 
 
