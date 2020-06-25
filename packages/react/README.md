@@ -21,7 +21,7 @@ import App from './App';
 // store can be literally any object
 // but for structural purposes it's recommended to create a class
 // see examples below
-const store = { foo: 'bar' }; 
+const store = { foo: 1 }; 
 
 export default () => (
   <DefiProvider value={store}>
@@ -41,7 +41,7 @@ const App = () => {
   return (
     <div>
       Foo:{' '}{foo}
-      <button onClick={() => setFoo('baz')}>Change foo</button>
+      <button onClick={() => setFoo(42)}>Change "foo" to 42</button>
     </div>
   )
 }  
