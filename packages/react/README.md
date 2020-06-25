@@ -31,6 +31,20 @@ yarn add defi defi-react
 
 Being many years a React developer I've found out that app-wide state management in React is tricky. I've got an idea to create my own state management solution after I started to work on my own React Native project and tried to find out what I'd like use as an app state library. In my regular work the main tool for this task usually was Redux but with my own project I'm not tied by market standards and decided to develop something super simple for my needs. I was tired by all these actions, reducers, constants, action creators, sagas, middlewares, but couldn't find any simple and flexible alternative for Redux. To be fair enough there is a list of alternatives I should mention.
 
+## Pros & cons
+
+### Pros
+
+- Clear and simple API.
+- Minimum work to get started (no actions, middlewares, etc.).
+- Minimum concepts to get started (no observables, decorators, etc.).
+- Render components only when used peace of data is updated.
+- Use any object as global store or as component's own store (or multiple stores if needed).
+
+### Cons
+
+- Both defi and defi-react aren't that popular as other well-known libraries.
+- Less structural requirements (you should architect your store by your own).
 
 ### Alternatives
 
