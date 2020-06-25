@@ -2,11 +2,50 @@
 
 > A super straightforward state management library for React in 5 hooks and 2 methods
 
+## Quick start
+
+Install deps.
+
 ```
 npm i defi defi-react
 
 # or 
 yarn add defi defi-react
+```
+
+Create store and wrap your app by `DefiProvider` (it's not a requirement, but a recommendation, see docs below).
+
+```js
+import { Provider as DefiProvider } from 'defi-react';
+import App from './App';
+// store can be literally any object
+// but for structural purposes it's recommended to create a class
+// see examples below
+const store = { foo: 'bar' }; 
+
+export default () => (
+  <DefiProvider value={store}>
+    <App />
+  </DefiProvider>
+)
+```
+
+Make defi-react do its job!
+
+```js
+import { useChange, useStore } from 'defi-react';
+const App = () => {
+  const [foo, setFoo] = useChange(useStore(), 'foo'); // listen for store.foo changes
+
+  return (
+	<div>
+		Foo:{' '}{foo}
+		<button onClick={() => setFoo('baz')}>Change foo</button>
+	</div>
+  )
+}
+
+export default App;
 ```
 
 * [Why?](#why)
