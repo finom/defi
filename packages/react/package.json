@@ -2,7 +2,7 @@
   "name": "defi-react",
   "version": "1.3.2",
   "scripts": {
-    "test": "npm run npm-compile && npm run cover",
+    "test": "npm run cover",
     "cover": "../../node_modules/.bin/babel-node ../../node_modules/.bin/babel-istanbul cover test/index.js",
     "unit": "../../node_modules/.bin/babel-node test/index.js",
     "generate-types": "npx tsc --emitDeclarationOnly -d --rootDir ./src --outDir ./npm",
