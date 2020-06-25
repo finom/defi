@@ -34,38 +34,39 @@ Make defi-react do its job!
 
 ```js
 import { useChange, useStore } from 'defi-react';
+
 const App = () => {
   const [foo, setFoo] = useChange(useStore(), 'foo'); // listen for store.foo changes
 
   return (
-	<div>
-		Foo:{' '}{foo}
-		<button onClick={() => setFoo('baz')}>Change foo</button>
-	</div>
+    <div>
+      Foo:{' '}{foo}
+      <button onClick={() => setFoo('baz')}>Change foo</button>
+    </div>
   )
-}
+}  
 
 export default App;
 ```
 
 * [Why?](#why)
-	* [Alternatives](#alternatives)
-	* [Pros &amp; cons](#pros--cons)
-		* [Pros](#pros)
-		* [Cons](#cons)
+  * [Alternatives](#alternatives)
+  * [Pros &amp; cons](#pros--cons)
+    * [Pros](#pros)
+    * [Cons](#cons)
 * [What do I need to know about defi.js](#what-do-i-need-to-know-about-defijs)
-	* [defi.on](#defion)
-	* [defi.trigger](#defitrigger)
+  * [defi.on](#defion)
+  * [defi.trigger](#defitrigger)
 * [Reference](#reference)
-	* [Context and Provider](#context-and-provider)
-	* [useStore](#usestore)
-	* [useChange](#usechange)
-	* [useSet](#useset)
-	* [useOn](#useon)
-	* [useTrigger](#usetrigger)
+  * [Context and Provider](#context-and-provider)
+  * [useStore](#usestore)
+  * [useChange](#usechange)
+  * [useSet](#useset)
+  * [useOn](#useon)
+  * [useTrigger](#usetrigger)
 * [Examples](#examples)
-	* [Store class](#store-class)
-	* [Array rendering and its modification](#array-rendering-and-its-modification)
+  * [Store class](#store-class)
+  * [Array rendering and its modification](#array-rendering-and-its-modification)
 
 
 ## Why?
@@ -311,9 +312,9 @@ export default () => {
   
   return (
     <form>
-	  Token:{' '}{token}
-	  <br />
-	  Error:{' '}{error}
+    Token:{' '}{token}
+    <br />
+    Error:{' '}{error}
       {/* ... email and password inputs are here ... */}
       <button onClick={auth.authenticate}>Authenticate</button>
     </form>
