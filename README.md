@@ -44,6 +44,8 @@ defi.bindNode(obj, 'key', node)
 
 ## How would I use it?
 
+*Skip this section if you're using **defi-react** because React handles DOM rendering by its own.*
+
 As a simple task let's say you want to define a simple form with first name and last name input, where while you type a greeting appears.
 
 ```html
