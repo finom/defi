@@ -20,7 +20,7 @@
 
 </p>
 
-*If you're looking for **defi-react** [get its README here](https://github.com/finom/defi/tree/master/packages/react)*
+*If you're looking for **defi-react** [get its README here](https://github.com/finom/defi/tree/master/packages/react).*
 
 
 It can be installed via NPM:
