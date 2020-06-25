@@ -49,6 +49,8 @@ const App = () => {
 export default App;
 ```
 
+## Table of contents
+
 * [Why?](#why)
   * [Alternatives](#alternatives)
   * [Pros &amp; cons](#pros--cons)
