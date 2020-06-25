@@ -31,6 +31,15 @@ yarn add defi defi-react
 
 Being many years a React developer I've found out that app-wide state management in React is tricky. I've got an idea to create my own state management solution after I started to work on my own React Native project and tried to find out what I'd like use as an app state library. In my regular work the main tool for this task usually was Redux but with my own project I'm not tied by market standards and decided to develop something super simple for my needs. I was tired by all these actions, reducers, constants, action creators, sagas, middlewares, but couldn't find any simple and flexible alternative for Redux. To be fair enough there is a list of alternatives I should mention.
 
+
+
+### Alternatives
+
+- The first is **Redux**. This is s amazing library in terms of how many users know it. My favorite part of Redux (to be precise react-redux) is `useSelector` hook which allows to get only what you want and receive components updates only if that you need is updated. But as I noted above it's overvcomplicated in my opinion. This issue can be partially solved by [rematch](https://github.com/rematch/rematch) which is definitely a recommended library if you want to use Redux.
+- **MobX** is a cool library. Unfortunately it's cool only in case if you use class components but in the new world of hooks it appears to be not that elegant because you have to wrap returned React elements by [useObserver](https://mobx-react.js.org/observer-hook). I don't say it's bad but I really don't like the idea to return something else than regular React elements from pure React components. In other words, that just my personal preference and if you OK with that, use MobX as a cool, battle-tested and second library by popularity after Redux.
+- **Apollo Client** is also a highlighted library. It allows to bring Graphql syntax to your local store which is super cool when you also have a server powered by Graphql. In case if you don't use Graphql on server-side I think it appears to be too complicated to solve state management problem.
+- **WatermelonDB** (React Native only) provides a nice ORM powered by SQLite to store your local data. In my specific case I had no need to store data locally except of what needs to be sent to Firebase DB. Since Firebase supports offline mode and stores offline data by itself I keep WatermelonDB for cases where I really need such a great and powerful tool.
+
 ## Pros & cons
 
 ### Pros
@@ -45,14 +54,6 @@ Being many years a React developer I've found out that app-wide state management
 
 - Both defi and defi-react aren't that popular as other well-known libraries.
 - Less structural requirements (you should architect your store by your own).
-
-### Alternatives
-
-- The first is **Redux**. This is s amazing library in terms of how many users know it. My favorite part of Redux (to be precise react-redux) is `useSelector` hook which allows to get only what you want and receive components updates only if that you need is updated. But as I noted above it's overvcomplicated in my opinion. This issue can be partially solved by [rematch](https://github.com/rematch/rematch) which is definitely a recommended library if you want to use Redux.
-- **MobX** is a cool library. Unfortunately it's cool only in case if you use class components but in the new world of hooks it appears to be not that elegant because you have to wrap returned React elements by [useObserver](https://mobx-react.js.org/observer-hook). I don't say it's bad but I really don't like the idea to return something else than regular React elements from pure React components. In other words, that just my personal preference and if you OK with that, use MobX as a cool, battle-tested and second library by popularity after Redux.
-- **Apollo Client** is also a highlighted library. It allows to bring Graphql syntax to your local store which is super cool when you also have a server powered by Graphql. In case if you don't use Graphql on server-side I think it appears to be too complicated to solve state management problem.
-- **WatermelonDB** (React Native only) provides a nice ORM powered by SQLite to store your local data. In my specific case I had no need to store data locally except of what needs to be sent to Firebase DB. Since Firebase supports offline mode and stores offline data by itself I keep WatermelonDB for cases where I really need such a great and powerful tool.
-
 
 ## What do I need to know about defi.js
 
