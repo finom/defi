@@ -30,7 +30,7 @@ export default () => (
 )
 ```
 
-Make defi-react do its job!
+Make **defi-react** do its job!
 
 ```js
 import { useChange, useStore } from 'defi-react';
