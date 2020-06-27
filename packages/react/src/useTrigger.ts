@@ -4,11 +4,11 @@ import { on, off, trigger } from 'defi';
 import getStoreSlice from './getStoreSlice';
 
 export interface StoreSelector {
-  (store: Record<string, unknown>): Record<string, unknown>;
+  (store: { [key: string]: unknown }): { [key: string]: unknown };
 }
 
 export default function useTrigger(
-  storeSlice: Record<string, unknown> | StoreSelector,
+  storeSlice: { [key: string]: unknown } | StoreSelector,
   eventName: string,
 ): (...args: any) => void {
   const slice = getStoreSlice(storeSlice);

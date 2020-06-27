@@ -2,10 +2,12 @@ import { useContext } from 'react';
 import Context from './Context';
 
 export interface StoreSelector {
-  (store: Record<string, unknown>): Record<string, unknown>;
+  (store: { [key: string]: unknown }): { [key: string]: unknown };
 }
 
-export default (storeSlice: Record<string, unknown> | StoreSelector): Record<string, unknown> => {
+export default (
+  storeSlice: { [key: string]: unknown } | StoreSelector,
+): { [key: string]: unknown } => {
   const contextValue = useContext(Context);
   let slice;
 

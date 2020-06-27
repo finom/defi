@@ -4,13 +4,13 @@ import { set } from 'defi';
 import getStoreSlice from './getStoreSlice';
 
 export interface StoreSelector {
-  (store: Record<string, unknown>): Record<string, unknown>;
+  (store: { [key: string]: unknown }): { [key: string]: unknown };
 }
 
 export default function useSet(
-  storeSlice: Record<string, unknown> | StoreSelector,
+  storeSlice: { [key: string]: unknown } | StoreSelector,
   key: string,
-  options?: Record<string, unknown>,
+  options?: { [key: string]: unknown },
 ): (value: any) => void {
   const slice = getStoreSlice(storeSlice);
 
