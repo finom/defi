@@ -1,6 +1,6 @@
 # defi-react [![npm version](https://badge.fury.io/js/defi-react.svg)](https://badge.fury.io/js/defi-react)
 
-> A super straightforward state management library for React in 5 hooks and 2 methods
+> A super straightforward state management library for React in 5 hooks and 2 methods. Get rid of useless component re-renders!
 
 ## Quick start
 
@@ -49,6 +49,8 @@ const App = () => {
 export default App;
 ```
 
+[Jump to examples to see how you can define store class](#examples)
+
 ## Table of contents
 
 * [Why?](#why)
@@ -74,8 +76,6 @@ export default App;
 ## Why?
 
 Being many years a React developer I've found out that app-wide state management in React is tricky. I've got an idea to create my own state management solution after I started to work on my own React Native project and tried to find out what I'd like use as an app state library. In my regular work the main tool for this task usually was Redux but with my own project I'm not tied by market standards and decided to develop something super simple for my needs. I was tired by all these actions, reducers, constants, action creators, sagas, middlewares, but couldn't find any simple and flexible alternative for Redux. To be fair enough there is a list of alternatives I should mention.
-
-
 
 ### Alternatives
 
