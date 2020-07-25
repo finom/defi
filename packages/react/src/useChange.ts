@@ -22,9 +22,13 @@ export default function useChange(
   useEffect(() => {
     const changeEventName = `change:${key}`;
 
-    const handler = ({ value }: { value: any }) => {
-      setStateValue(value);
+    const handler = () => {
+      setStateValue(slice[key]);
     };
+
+    if (slice[key] !== stateValue) {
+      handler();
+    }
 
     on(slice, changeEventName, handler);
 
