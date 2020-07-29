@@ -93,7 +93,7 @@ declare module 'defi' {
 
     export function on(
         obj: objectLike,
-        names: string | string[],
+        names: string | string[] | symbol | symbol[],
         callback: eventCallback,
         options?: OnMethodOptions,
     ): objectLike;
@@ -106,13 +106,13 @@ declare module 'defi' {
 
     export function off(
         obj: objectLike,
-        names?: string | string[],
+        names?: string | string[] | symbol | symbol[],
         callback?: eventCallback,
     ): objectLike;
 
     export function trigger(
         obj: objectLike,
-        name: string,
+        name: string | symbol,
         ...args: any[]
     ): objectLike
 
