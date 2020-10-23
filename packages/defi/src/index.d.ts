@@ -1,6 +1,6 @@
 type objectLike = object | (() => any);
 
-type eventCallback = (arg0: AnyObject, ...args: any[]) => void;
+type eventCallback = (arg0: AnyObject, ...args: any[]) => any;
 
 interface EvtNameHandlerObject {
     [name: string]: eventCallback

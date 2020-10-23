@@ -5,6 +5,7 @@ execSync('rm -rf node_modules && npm i --no-package-lock', { cwd: __dirname });
 execSync('rm -rf ../../node_modules', { cwd: __dirname });
 
 const { JSDOM } = require('jsdom');
+// eslint-disable-next-line import/no-unresolved
 const expect = require('expect.js');
 
 
